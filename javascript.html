@@ -1,298 +1,182 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
-
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/style.css">
     <title>محاور الجافا سكريبت</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/theme.js" defer></script>
 </head>
-
 <body>
 
-    <div class="px-4 py-5 my-1 text-center">
-        <img class="d-block mx-auto mb-4" src="https://claudsoft.com/wp-content/uploads/2024/10/logo.png" alt=""
-            width="72" height="57" />
-        <h3 class="display-6 fw-bold text-body-emphasis mb-4">محاور كورس الفرونت إند المستوى الثاني</h1>
-            <h3 class="alert alert-danger m-3 w-50 m-auto">JavaScript - React js - next js - MongoDB</h3>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead my-4">
-                    كورس تصميم مواقع الويب الإحترافي
-                </p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <a href="#first" type="button" class="btn btn-primary btn-lg px-4 gap-3">
-                        القسم المجاني
-                    </a>
-                    <a href="#second" type="button" class="btn btn-outline-secondary btn-lg px-4">
-                        القسم المدفوع
-                    </a>
+    <div class="theme-toggle-container" style="top: 20px; left: 20px; display: flex; gap: 15px;">
+        <a href="index.html" class="theme-toggle-btn" aria-label="Back to Home" style="text-decoration:none; transform: scaleX(-1);">
+            🔙
+        </a>
+        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+            🌙
+        </button>
+    </div>
+
+    <div class="container">
+        <header>
+            <a href="https://claudsoft.com" target="_blank">
+                <img src="images/logo.png" alt="ClaudSoft Logo" class="logo-header">
+            </a>
+            <div class="badge-pro">JavaScript - React js - Next js - MongoDB</div>
+            <h1>محاور كورس الفرونت إند المستوى الثاني</h1>
+            <p class="subtitle">كورس تصميم مواقع الويب الإحترافي</p>
+        </header>
+
+        <div class="modules-container">
+            
+            <!-- Module 1 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">01</div>
+                    <div class="module-title">
+                        <h2>القسم الأول</h2>
+                        <p>أساسيات ومفاهيم الجافا سكريبت العميقة</p>
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة وبيئة العمل</strong> — ما هي الجافاسكربت وأين تُستخدم، إعداد الأدوات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأساسيات</strong> — المتغيرات، الأنواع، العمليات، التعليقات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التحكم في التدفق</strong> — الجمل الشرطية والحلقات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الدوال</strong> — التعريف، الدوال السهمية، البراميترات، higher-order.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>النطاق والكلوزر</strong> — scope، closures.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الكائنات</strong> — الخصائص، الطرق، prototype.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>المصفوفات</strong> — التعامل مع العناصر وطرق مثل map وfilter وreduce.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>this وCall/Apply/Bind</strong> — فهم السياق والتحكم به.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>ميزات ES6+</strong> — let/const، destructuring، classes، modules.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الوحدات (Modules)</strong> — import/export وتنظيم الكود.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>DOM</strong> — التعديل على العناصر والسمات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأحداث</strong> — التعامل مع Event Listeners وdelegation.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>واجهات المتصفح</strong> — LocalStorage، Fetch API، Geolocation.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التواصل الشبكي</strong> — AJAX، Fetch، WebSockets.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>البرمجة غير المتزامنة</strong> — callbacks، promises، async/await.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>إدارة الحزم</strong> — npm، scripts، Babel.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأداء</strong> — تحسين السرعة واستخدام Web Workers.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الوصولية والتدويل</strong> — مبادئ A11y ودعم اللغات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Node.js</strong> — بناء خوادم والتعامل مع الملفات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مشاريع عملية</strong> — تطبيقات مثل ToDo أو متجر صغير.</div>
                 </div>
             </div>
+
+            <!-- Module 2 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">02</div>
+                    <div class="module-title">
+                        <h2>القسم الثاني</h2>
+                        <p>احتراف مكتبة React.js</p>
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى React</strong> — مفهوم الـ component-based UI، Virtual DOM، لماذا نستخدم React ومتى تكون مناسبة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>البيئة والأدوات</strong> — Node/npm، إنشاء المشاريع، React DevTools.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>JSX</strong> — كتابة JSX، الفروقات عن HTML، className وchildren.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>المكونات (Components)</strong> — الوظيفية والكلاس، تركيب وإعادة الاستخدام.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Props وState</strong> — تمرير البيانات، إدارة الحالة، رفع الحالة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>دورة حياة المكونات</strong> — lifecycle و useEffect.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأحداث والـ DOM</strong> — event handlers، النماذج، refs.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>القوائم والمفاتيح (Lists & Keys)</strong> — القوائم الديناميكية وأهمية الـ key.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>النماذج والتحقق</strong> — controlled components، Formik, React Hook Form.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Refs والـ Imperative Code</strong> — useRef، forwardRef.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الـ Hooks الأساسية</strong> — useState، useEffect، useRef، useContext.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الـ Hooks المتقدمة</strong> — useMemo، useCallback، useReducer.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الـ Custom Hooks</strong> — كتابة دوال قابلة لإعادة الاستخدام.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Context API</strong> — توفير البيانات بدون prop-drilling.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>إدارة الحالة المتقدمة</strong> — Redux / Zustand / Recoil.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>جلب البيانات</strong> — React Query أو SWR.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Suspense للبيانات</strong> — مفاهيم التزامن المتقدمة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>تقسيم الكود (Code Splitting)</strong> — التحميل الكسول للواجهات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التوجيه (Routing)</strong> — react-router، حماية المسارات (protected routes).</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التعامل مع الأخطاء</strong> — Error Boundaries.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأداء Optimization</strong> — تقليل إعادة التصيير.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الاختبار (Testing)</strong> — Unit tests, Cypress.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الستايلينغ وCSS</strong> — CSS Modules, Tailwind.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>العمل مع TypeScript</strong> — Components Typed.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مشاريع عملية مقترحة</strong> — ToDo مع CRUD، مدونة، لوحة تحكم، تطبيق دردشة.</div>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">03</div>
+                    <div class="module-title">
+                        <h2>القسم الثالث</h2>
+                        <p>شرح إطار العمل Next.js الشامل</p>
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى Next.js</strong> — ما هو ولماذا يُستخدم؟ مميزات SSR, SSG.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>إعداد البيئة</strong> — التثبيت، وهيكل المشروع الافتراضي.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الصفحات (Pages)</strong> — ديناميكية وثابتة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التوجيه (Routing)</strong> — التوجيه التلقائي الديناميكي والمتداخل.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>جلب البيانات</strong> — getStaticProps، getServerSideProps، getStaticPaths.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التصيير (Rendering)</strong> — الفرق بين SSR, SSG, ISR.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الصور (Image Optimization)</strong> — next/image للتحميل الذكي للصور.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>API Routes</strong> — إنشاء واجهات برمجية داخل المشروع.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>المصادقة (Authentication)</strong> — NextAuth.js و JWTs.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الوسيطات (Middleware)</strong> — التحكم بالطلبات المركزية.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التدويل (i18n)</strong> — دعم اللغات المتعددة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>SEO</strong> — تحسين محركات البحث مع Next.js.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Next.js 13+ (App Router)</strong> — نظام المجلدات الجديد والمكونات المحسنة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>React Server Components</strong> — الفوارق عن المكونات العادية.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>Streaming وSuspense</strong> — التصيير الجزئي.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>النشر (Deployment)</strong> — على منصات سحابية مثل Vercel.</div>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">04</div>
+                    <div class="module-title">
+                        <h2>القسم الرابع</h2>
+                        <p>قواعد بيانات الـ NoSQL عبر MongoDB</p>
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى MongoDB</strong> — مفهوم NoSQL والمميزات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>تثبيت وإعداد البيئة</strong> — MongoDB Atlas و Compass.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>المفاهيم الأساسية</strong> — قواعد، مجموعات، ووثائق.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>أنواع البيانات</strong> — هيكلة الوثائق الداخلية.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأوامر الأساسية والاستعلامات</strong> — CRUD وعوامل التصفية.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>الفهارس (Indexes)</strong> — تحسين الأداء.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التجميع (Aggregation)</strong> — معالجة خطوط الإنتاج.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>العلاقات بين البيانات</strong> — التضمين أو الإشارة (Embedding vs Referencing).</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>النسخ المتماثل والمجزأ</strong> — Replication و Sharding.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التكامل عبر Mongoose</strong> — ربط قواعد البيانات و Node.js.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التكامل مع Next.js</strong> — بناء API Routes مع MongoDB.</div>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="module-card">
+                <div class="module-header">
+                    <div class="module-number">05</div>
+                    <div class="module-title">
+                        <h2>القسم الخامس</h2>
+                        <p>تطوير واجهات خلفية سريعة مع Strapi</p>
+                    </div>
+                </div>
+                <div class="module-content">
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى Strapi</strong> — ما هو الـ Headless CMS ومميزاته.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>إعداد البيئة</strong> — التثبيت وهيكلة المشاريع.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>إنشاء Content Types</strong> — واجهات الحقول والعلاقات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>REST API & GraphQL API</strong> — التصفية، الترتيب، واستهلاك الواجهات.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>المصادقة والصلاحيات</strong> — JWT، تكامل OAuth وإدارة الأدوار.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>رفع الملفات</strong> — إدارة الوسائط عبر الأنظمة السحابية الداعمة.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التخصيص (Customization)</strong> — تعديل الـ Controllers و Middleware.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>النشر السحابي</strong> — Vercel، Heroku و DigitalOcean.</div>
+                    <div class="topic-item"><span class="topic-icon"></span> <strong>التكامل مع Frontend</strong> — مشاريع مدونة ومتجر مع Strapi و Next.js.</div>
+                </div>
+            </div>
+
+        </div>
     </div>
-
-
-    <div class="container" id="second">
-        <h2 class="text-center  alert alert-danger">القسم الأول</h2>
-
-        <ul>
-            <li><strong>مقدمة وبيئة العمل</strong> — ما هي الجافاسكربت وأين تُستخدم، إعداد الأدوات.</li>
-            <li><strong>الأساسيات</strong> — المتغيرات، الأنواع، العمليات، التعليقات.</li>
-            <li><strong>التحكم في التدفق</strong> — الجمل الشرطية والحلقات.</li>
-            <li><strong>الدوال</strong> — التعريف، الدوال السهمية، البراميترات، higher-order.</li>
-            <li><strong>النطاق والكلوزر</strong> — scope، closures.</li>
-            <li><strong>الكائنات</strong> — الخصائص، الطرق، prototype.</li>
-            <li><strong>المصفوفات</strong> — التعامل مع العناصر وطرق مثل map وfilter وreduce.</li>
-            <li><strong>this وCall/Apply/Bind</strong> — فهم السياق والتحكم به.</li>
-            <li><strong>ميزات ES6+</strong> — let/const، destructuring، classes، modules.</li>
-            <li><strong>الوحدات (Modules)</strong> — import/export وتنظيم الكود.</li>
-            <li><strong>DOM</strong> — التعديل على العناصر والسمات.</li>
-            <li><strong>الأحداث</strong> — التعامل مع Event Listeners وdelegation.</li>
-            <li><strong>واجهات المتصفح</strong> — LocalStorage، Fetch API، Geolocation.</li>
-            <li><strong>التواصل الشبكي</strong> — AJAX، Fetch، WebSockets.</li>
-            <li><strong>البرمجة غير المتزامنة</strong> — callbacks، promises، async/await.</li>
-            <li><strong>إدارة الحزم</strong> — npm، scripts، Babel.</li>
-            <li><strong>الأداء</strong> — تحسين السرعة واستخدام Web Workers.</li>
-            <li><strong>الوصولية والتدويل</strong> — مبادئ A11y ودعم اللغات.</li>
-            <li><strong>Node.js</strong> — بناء خوادم والتعامل مع الملفات.</li>
-
-            <li><strong>مشاريع عملية</strong> — تطبيقات مثل ToDo أو متجر صغير.</li>
-        </ul>
-    </div>
-
-
-
-    <div class="container" id="second">
-        <h2 class="text-center  alert alert-danger">القسم الثاني</h2>
-
-        <ul>
-            <li><strong>مقدمة إلى React</strong> — مفهوم الـ component-based UI، Virtual DOM، لماذا نستخدم React ومتى
-                تكون مناسبة.</li>
-            <li><strong>البيئة والأدوات</strong> — Node/npm أو pnpm، إنشاء المشاريع (Create React App / Vite)، إعداد
-                محرر، React DevTools.</li>
-            <li><strong>JSX</strong> — كتابة JSX، الفروقات عن HTML، التعبيرات داخل JSX، الصفة className وchildren.</li>
-            <li><strong>المكونات (Components)</strong> — مكونات وظيفية (Functional) مقابل كلاس (Class)، مبدأ التركيب
-                (composition) وإعادة الاستخدام.</li>
-            <li><strong>Props وState</strong> — تمرير البيانات عبر props، إدارة الحالة المحلية، مبدأ الـ immutability
-                ورفع الحالة (lifting state up).</li>
-            <li><strong>دورة حياة المكونات</strong> — lifecycle methods في الكلاسات (componentDidMount...) والمعادل
-                باستخدام useEffect في الـ hooks.</li>
-            <li><strong>التعامل مع الأحداث والـ DOM</strong> — event handlers (Synthetic Events)، التعامل مع النماذج،
-                منع السلوك الافتراضي، الوصول للـ DOM عبر refs.</li>
-            <li><strong>القوائم والمفاتيح (Lists & Keys)</strong> — عرض قوائم ديناميكية، أهمية الـ key وكيفية اختيارها
-                لتجنّب إعادة التصيير غير الضرورية.</li>
-            <li><strong>النماذج (Forms) والتحقق</strong> — controlled vs uncontrolled components، التحقق validation،
-                مكتبات شائعة (Formik, React Hook Form).</li>
-            <li><strong>Refs والـ Imperative Code</strong> — useRef، forwardRef، createRef، when and how to use
-                imperative handles.</li>
-            <li><strong>الـ Hooks الأساسية</strong> — useState، useEffect، useRef، useContext: ما تفعل ولمتى تُستخدم.
-            </li>
-            <li><strong>الـ Hooks المتقدمة</strong> — useMemo وuseCallback لتحسين الأداء، useReducer لإدارة حالات مركبة،
-                useLayoutEffect، useImperativeHandle.</li>
-            <li><strong>الـ Custom Hooks</strong> — كتابة hooks قابلة لإعادة الاستخدام لفصل المنطق عن العرض ونماذج تصميم
-                شائعة.</li>
-            <li><strong>Context API</strong> — توفير القيمة عبر الشجرة بدون prop-drilling، نمط الاستخدام ومشاكل الأداء
-                وكيفية تجنّبها.</li>
-            <li><strong>إدارة الحالة المتقدمة</strong> — مقارنة بين Redux / MobX / Zustand / Recoil، مفاهيم store,
-                actions, reducers، middleware.</li>
-            <li><strong>جلب البيانات وإدارة الـ Server State</strong> — patterns للـ data fetching (fetch/axios)،
-                التعامل مع loading/error، أدوات مثل React Query أو SWR للـ caching وbackground updates.</li>
-            <li><strong>Suspense وConcurrent Features (React 18+)</strong> — مفاهيم التزامن، startTransition، Suspense
-                للـ code-splitting والبيانات (مقدمة).</li>
-            <li><strong>تقسيم الكود (Code Splitting) والتحميل الكسول</strong> — React.lazy وSuspense وdynamic imports
-                لتحميل أجزاء التطبيق عند الحاجة.</li>
-            <li><strong>التوجيه (Routing)</strong> — استخدام react-router: إعداد المسارات، nested routes، params، حماية
-                المسارات (protected routes).</li>
-            <li><strong>التعامل مع الأخطاء (Error Boundaries)</strong> — كتابة Error Boundaries لمكونات معينة وتجربة
-                المستخدم عند حدوث أخطاء.</li>
-            <li><strong>الأداء Optimization</strong> — تقنيات تقليل إعادة التصيير (memo، useMemo، useCallback)،
-                virtualized lists (react-window), profiling وأدوات القياس.</li>
-            <li><strong>الاختبار (Testing)</strong> — unit tests مع Jest، اختبارات الواجهة مع React Testing Library، e2e
-                مع Cypress أو Playwright، استراتيجيات Mocking.</li>
-            <li><strong>الستايلينغ وCSS في React</strong> — CSS Modules، CSS-in-JS (styled-components, Emotion)،
-                Tailwind، مقاربة التصميم المكوّناتي.</li>
-            <li><strong>الوصولية (A11y) وSEO</strong> — عناصر ARIA، الوصول عبر لوحة المفاتيح، تحسين SEO للواجهات
-                المُحمّلة من جهة الخادم أو المهيأة مسبقًا.</li>
-            <li><strong>العمل مع TypeScript</strong> — كتابة مكونات مؤنّنة، typing لـ props وhooks، نماذج شائعة لتجنب
-                أخطاء الأنواع.</li>
-            <li><strong>الـ Server-side Rendering وStatic Generation</strong> — مبادئ SSR/SSG، مقدمة إلى Next.js
-                (getServerSideProps, getStaticProps) وفوائدها.</li>
-            <li><strong>التكامل مع Backends وGraphQL</strong> — REST vs GraphQL، استخدام Apollo Client أو urql، إدارة
-                الـ caching والـ subscriptions.</li>
-            <li><strong>Realtime & WebSockets</strong> — حالات الاستخدام (chat، live updates)، نمط التكامل وإدارة الحالة
-                في الوقت الحقيقي.</li>
-            <li><strong>النشر والبناء وCI/CD</strong> — إعدادات build، env variables، نشر على Vercel/Netlify/Docker،
-                إعداد خط تكامل/نشر مستمر.</li>
-            <li><strong>أمن تطبيقات React</strong> — تجنّب XSS، التعامل الآمن مع توكنات المصادقة، best practices للتخزين
-                والمحافظة على السرية.</li>
-            <li><strong>تصميم المعمارية لتطبيقات كبيرة</strong> — تقسيم الميزات (feature folders)، boundaries للمكونات،
-                ممارسات لفرق متعددة المطورين.</li>
-            <li><strong>الرسوم المتحركة (Animations)</strong> — CSS transitions vs libraries (Framer Motion)، أمثلة على
-                حركة واجهات تفاعلية.</li>
-            <li><strong>التقنيات الحديثة ونظرة مستقبلية</strong> — React Server Components، edge rendering،
-                micro-frontends، وكيفية متابعة التحديثات في الإيكوسيستم.</li>
-            <li><strong>مشاريع عملية مقترحة</strong> — قائمة مشاريع تدريجية: ToDo مع CRUD، مدونة مع SSR، متجر إلكتروني
-                بسيط، لوحة تحكم Dashboard، تطبيق دردشة في الوقت الحقيقي.</li>
-        </ul>
-
-    </div>
-
-
-
-    <div class="container" id="second">
-        <h2 class="text-center  alert alert-danger">القسم الثالث</h2>
-
-        <ul>
-            <li><strong>مقدمة إلى Next.js</strong> — ما هو Next.js؟ ولماذا يُستخدم؟ مميزات SSR, SSG مقارنة بـ CRA/React
-                التقليدي.</li>
-            <li><strong>إعداد البيئة</strong> — تثبيت Next.js عبر create-next-app، هيكل المشروع الافتراضي، تشغيل الخادم
-                المحلي.</li>
-            <li><strong>الصفحات (Pages)</strong> — نظام الصفحات المبني على الملفات، إنشاء صفحات ديناميكية وثابتة،
-                التعامل مع 404 و500.</li>
-            <li><strong>التوجيه (Routing)</strong> — التوجيه التلقائي، الروابط باستخدام next/link، التوجيه الديناميكي
-                (dynamic routes)، التوجيه المتداخل (nested).</li>
-            <li><strong>جلب البيانات (Data Fetching)</strong> — getStaticProps، getServerSideProps، getStaticPaths، متى
-                يُستخدم كل واحد منها.</li>
-            <li><strong>التصيير (Rendering)</strong> — SSR (Server-Side Rendering)، SSG (Static Site Generation)، ISR
-                (Incremental Static Regeneration) والفرق بينهم.</li>
-            <li><strong>المكونات والتخطيطات (Layouts)</strong> — إنشاء Layout مشترك بين الصفحات، _app.js و _document.js
-                ودورهما.</li>
-            <li><strong>الستايلينغ</strong> — دعم CSS وSass، CSS Modules، styled-jsx، التكامل مع Tailwind CSS أو
-                styled-components.</li>
-            <li><strong>الصور (Image Optimization)</strong> — استخدام next/image لتحسين الصور، التحميل الكسول (lazy
-                loading)، إعدادات domains.</li>
-            <li><strong>الخطوط (Fonts)</strong> — تحميل الخطوط باستخدام next/font، ميزات التحسين والأداء.</li>
-            <li><strong>API Routes</strong> — إنشاء API داخل مشروع Next.js، التعامل مع REST endpoints، أمثلة على
-                GET/POST.</li>
-            <li><strong>المصادقة (Authentication)</strong> — التكامل مع NextAuth.js، JWTs، حماية الصفحات (protected
-                routes).</li>
-            <li><strong>إدارة الحالة</strong> — استخدام Context API أو Redux أو Zustand داخل Next.js، مشاركة الحالة بين
-                الصفحات.</li>
-            <li><strong>التعامل مع قواعد البيانات</strong> — التكامل مع Prisma، MongoDB، أو PostgreSQL، الاتصال من خلال
-                API Routes.</li>
-            <li><strong>النماذج (Forms)</strong> — معالجة البيانات في النماذج، رفع الملفات، التعامل مع المكتبات (Formik,
-                React Hook Form).</li>
-            <li><strong>التوجيه المتقدم (Advanced Routing)</strong> — catch-all routes، optional routes، middleware في
-                Next.js.</li>
-            <li><strong>الوسيطات (Middleware)</strong> — مفهوم Middleware، التحكم بالطلبات قبل وصولها للصفحات أو الـ
-                APIs.</li>
-            <li><strong>الأداء والتحسين</strong> — prefetching للروابط، code splitting، lazy loading، القياس باستخدام
-                Lighthouse.</li>
-            <li><strong>التدويل (i18n)</strong> — دعم اللغات المتعددة، إعداد next.config.js، إدارة الترجمة
-                (next-i18next).</li>
-            <li><strong>SEO في Next.js</strong> — تحسين محركات البحث، استخدام next/head، Open Graph وMeta Tags.</li>
-            <li><strong>الأمان</strong> — حماية API Routes، التعامل مع CSRF/XSS، best practices.</li>
-            <li><strong>النشر (Deployment)</strong> — النشر على Vercel، Netlify، Docker، إعدادات بيئة الإنتاج (env
-                variables).</li>
-            <li><strong>Next.js 13 وما بعده (App Router)</strong> — نظام المجلد app/ الجديد، server components،
-                layout.tsx، page.tsx، loading.tsx.</li>
-            <li><strong>React Server Components (RSC)</strong> — الفرق عن المكونات التقليدية، تحسين الأداء.</li>
-            <li><strong>Streaming وSuspense</strong> — التصيير الجزئي (partial rendering)، تحديثات React 18.</li>
-            <li><strong>التكامل مع GraphQL</strong> — استخدام Apollo Client أو urql مع Next.js.</li>
-            <li><strong>Realtime وWebSockets</strong> — إضافة دعم للتحديثات الفورية (chat/live updates).</li>
-            <li><strong>اختبار تطبيقات Next.js</strong> — unit tests مع Jest، integration tests، e2e مع
-                Cypress/Playwright.</li>
-            <li><strong>مشاريع عملية</strong> — مدونة مع SSG، متجر إلكتروني بقاعدة بيانات، Dashboard مع مصادقة، تطبيق
-                دردشة realtime.</li>
-        </ul>
-
-
-    </div>
-    <div class="container" id="second">
-        <h2 class="text-center  alert alert-danger">القسم الرابع</h2>
-
-        <ul>
-            <li><strong>مقدمة إلى MongoDB</strong> — ما هي NoSQL؟ مقارنة مع قواعد البيانات العلائقية، مميزات MongoDB.
-            </li>
-            <li><strong>تثبيت وإعداد البيئة</strong> — تثبيت MongoDB Community/Atlas، استخدام MongoDB Compass وmongosh.
-            </li>
-            <li><strong>المفاهيم الأساسية</strong> — قواعد البيانات (Databases)، المجموعات (Collections)، الوثائق
-                (Documents).</li>
-            <li><strong>أنواع البيانات</strong> — النصوص، الأرقام، القيم المنطقية، المصفوفات، الكائنات المتداخلة،
-                ObjectId، التواريخ.</li>
-            <li><strong>الأوامر الأساسية</strong> — insertOne/Many، find، updateOne/Many، deleteOne/Many.</li>
-            <li><strong>الاستعلامات (Queries)</strong> — عوامل مقارنة ($eq, $gt, $in ...)، عوامل منطقية ($and, $or,
-                $not)، البحث النصي.</li>
-            <li><strong>الفهارس (Indexes)</strong> — أنواع الفهارس (وحيد، مركّب، نصي)، تحسين الأداء باستخدام الفهرسة.
-            </li>
-            <li><strong>التجميع (Aggregation Framework)</strong> — مراحل التجميع: $match، $group، $project، $sort،
-                $lookup.</li>
-            <li><strong>العلاقات بين البيانات</strong> — Embedding vs Referencing، متى تستخدم كل واحدة، $lookup للربط
-                بين المجموعات.</li>
-            <li><strong>التعامل مع المصفوفات</strong> — إضافة عناصر ($push, $addToSet)، التحديث بعوامل ($elemMatch,
-                $size, $slice).</li>
-            <li><strong>التعامل مع التواريخ</strong> — تخزين التواريخ، الاستعلام باستخدام $gte/$lt، استخدام Aggregation
-                مع التواريخ.</li>
-            <li><strong>التعامل مع البيانات الجغرافية</strong> — GeoJSON، الفهارس الجغرافية (2dsphere)، استعلامات الموقع
-                (near, within).</li>
-            <li><strong>الأمان</strong> — إنشاء المستخدمين والأدوار، التحكم في الصلاحيات، التشفير.</li>
-            <li><strong>النسخ المتماثل (Replication)</strong> — مفهوم الـ Replica Set، الفوائد للتوافر العالي، إعداد
-                النسخ المتماثل.</li>
-            <li><strong>التجزئة (Sharding)</strong> — تقسيم البيانات على عدة خوادم، مفهوم shard key، متى تحتاج sharding.
-            </li>
-            <li><strong>النسخ الاحتياطي والاستعادة</strong> — أوامر mongodump وmongorestore، إدارة النسخ الاحتياطية.
-            </li>
-            <li><strong>الأداء</strong> — تحليل الاستعلامات باستخدام explain()، تحسين الفهارس، best practices.</li>
-            <li><strong>التكامل مع Node.js</strong> — استخدام مكتبة MongoDB driver أو Mongoose، CRUD مع Express.</li>
-            <li><strong>Mongoose</strong> — النماذج (Schemas & Models)، الفاليديشن، Middleware hooks، Population.</li>
-            <li><strong>التكامل مع Next.js/React</strong> — ربط MongoDB مع واجهة حديثة، API Routes مع MongoDB Atlas.
-            </li>
-            <li><strong>Atlas</strong> — إنشاء Cluster على MongoDB Atlas، الاتصال بالتطبيق، إعداد users/roles.</li>
-            <li><strong>اختبار قواعد البيانات</strong> — استخدام in-memory MongoDB للاختبارات (mongodb-memory-server).
-            </li>
-            <li><strong>مشاريع عملية</strong> — مدونة بسيطة، نظام إدارة مستخدمين، متجر إلكتروني صغير بمنتجات ومستخدمين
-                وطلبات.</li>
-        </ul>
-
-
-
-    </div>
-    <div class="container" id="second">
-        <h2 class="text-center  alert alert-danger">القسم الخامس</h2>
-
-        <ul>
-            <li><strong>مقدمة إلى Strapi</strong> — ما هو Headless CMS؟ مميزاته مقارنة بـ WordPress وExpress.</li>
-            <li><strong>إعداد البيئة</strong> — التثبيت عبر npx أو Docker، هيكل المشروع.</li>
-            <li><strong>لوحة التحكم (Admin Panel)</strong> — نظرة على الواجهة، إدارة المستخدمين، الصلاحيات.</li>
-            <li><strong>إنشاء Content Types</strong> — الحقول الأساسية (String, Number, Boolean, Date, Media)، العلاقات
-                (one-to-one, one-to-many, many-to-many).</li>
-            <li><strong>إدارة البيانات</strong> — إنشاء وتعديل وحذف البيانات من خلال لوحة التحكم أو عبر API.</li>
-            <li><strong>REST API</strong> — استهلاك بيانات عبر /api/، التصفية (filters)، الترتيب، Pagination، Populate.
-            </li>
-            <li><strong>GraphQL API</strong> — تثبيت Plugin GraphQL، كتابة Queries وMutations.</li>
-            <li><strong>Roles & Permissions</strong> — التحكم في الوصول (Public, Authenticated, Custom Roles).</li>
-            <li><strong>المصادقة (Authentication)</strong> — تسجيل الدخول/الخروج، JWT Tokens، التكامل مع OAuth (Google,
-                GitHub...).</li>
-            <li><strong>رفع الملفات (Upload)</strong> — إدارة الوسائط، تخزين محلي أو عبر S3/Cloudinary.</li>
-            <li><strong>التدويل (i18n)</strong> — دعم اللغات المتعددة وإدارة المحتوى المترجم.</li>
-            <li><strong>الإضافات (Plugins)</strong> — نظرة على plugins الافتراضية، تثبيت Plugins جديدة، تطوير Plugins
-                مخصصة.</li>
-            <li><strong>التخصيص (Customization)</strong> — تعديل الـ Controllers وServices، Middleware، Hooks.</li>
-            <li><strong>Webhooks</strong> — إرسال إشعارات للتطبيقات الأخرى عند إنشاء/تعديل/حذف بيانات.</li>
-            <li><strong>التكامل مع قواعد البيانات</strong> — MongoDB، PostgreSQL، MySQL، SQLite.</li>
-            <li><strong>الأمان</strong> — ضبط CORS، حماية المفاتيح، الصلاحيات الدقيقة للـ API.</li>
-            <li><strong>الأداء</strong> — تحسين الاستعلامات، استخدام caching، تقليل populate غير الضروري.</li>
-            <li><strong>النشر (Deployment)</strong> — على Vercel، Heroku، DigitalOcean، أو AWS، إعداد ملفات env.</li>
-            <li><strong>التكامل مع Frontend</strong> — استهلاك الـ API من React/Next.js/Vue.</li>
-            <li><strong>مشاريع عملية</strong> — مدونة Blog، متجر إلكتروني صغير، نظام إدارة مستخدمين مع صلاحيات.</li>
-        </ul>
-
-
-
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-    <script src="js/bootstrap.js"></script>
 </body>
-
 </html>
