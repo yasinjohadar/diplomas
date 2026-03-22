@@ -330,9 +330,18 @@ p.subtitle {
 }
 
 .course-card h2 {
-    font-size: 2.2rem;
+    font-size: 1.6rem;
     color: var(--text-main);
     margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.course-level {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin-top: 0.5rem;
+    font-weight: 600;
 }
 
 .course-card p {
