@@ -1,0 +1,1837 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>خارطة طريق DevOps — من الصفر إلى الاحتراف</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       CSS VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --bg-primary: #050508;
+      --bg-secondary: #0a0a0f;
+      --bg-card: rgba(255,255,255,0.03);
+      --bg-card-hover: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.15);
+      --text-primary: #f0f0f5;
+      --text-secondary: #8888a0;
+      --text-muted: #4a4a60;
+      --accent-blue: #4f8ef7;
+      --accent-purple: #a855f7;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-orange: #f59e0b;
+      --accent-pink: #ec4899;
+      --accent-red: #ef4444;
+      --glow-blue: rgba(79,142,247,0.3);
+      --glow-purple: rgba(168,85,247,0.3);
+      --glow-cyan: rgba(6,182,212,0.3);
+      --gradient-1: linear-gradient(135deg, #4f8ef7 0%, #a855f7 100%);
+      --gradient-2: linear-gradient(135deg, #06b6d4 0%, #4f8ef7 100%);
+      --gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      --gradient-4: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      --font-heading: 'Alexandria', sans-serif;
+      --font-body: 'Cairo', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-glow: 0 0 40px rgba(79,142,247,0.15);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-blue) var(--bg-secondary);
+    }
+    html::-webkit-scrollbar { width: 6px; }
+    html::-webkit-scrollbar-track { background: var(--bg-secondary); }
+    html::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      cursor: none;
+      direction: rtl;
+    }
+
+    /* ============================================================
+       CUSTOM CURSOR
+    ============================================================ */
+    .cursor {
+      position: fixed;
+      width: 12px; height: 12px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background 0.2s;
+      mix-blend-mode: screen;
+    }
+    .cursor-follower {
+      position: fixed;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(79,142,247,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.12s ease, width 0.3s, height 0.3s, border-color 0.3s;
+    }
+    .cursor.hover { width: 20px; height: 20px; background: var(--accent-purple); }
+    .cursor-follower.hover { width: 56px; height: 56px; border-color: rgba(168,85,247,0.4); }
+
+    /* ============================================================
+       LOADING SCREEN
+    ============================================================ */
+    #loader {
+      position: fixed; inset: 0;
+      background: var(--bg-primary);
+      z-index: 99990;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column;
+      gap: 24px;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-logo {
+      font-size: 2rem; font-weight: 800;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: 0px;
+      font-family: var(--font-heading);
+    }
+    .loader-bar {
+      width: 200px; height: 2px;
+      background: var(--border);
+      border-radius: 2px; overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%; width: 0%;
+      background: var(--gradient-1);
+      border-radius: 2px;
+      animation: loadFill 1.8s ease forwards;
+    }
+    @keyframes loadFill { to { width: 100%; } }
+    .loader-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      direction: ltr;
+    }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      transition: var(--transition);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+      border-bottom: 1px solid transparent;
+      transition: var(--transition);
+    }
+    nav.scrolled .nav-inner { border-bottom-color: var(--border); }
+    nav.scrolled {
+      background: rgba(5,5,8,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-icon {
+      width: 38px; height: 38px;
+      background: var(--gradient-1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .nav-logo-text {
+      font-weight: 800; font-size: 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 6px;
+      list-style: none;
+      flex-direction: row-reverse;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem; font-weight: 600;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+    .nav-links a:hover { color: var(--text-primary); background: var(--bg-card); }
+    .nav-cta {
+      background: var(--gradient-1) !important;
+      color: white !important;
+      padding: 8px 20px !important;
+    }
+    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 24px var(--glow-blue); }
+    .nav-mobile-btn {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      cursor: pointer; padding: 8px;
+    }
+    .nav-mobile-btn span {
+      width: 24px; height: 2px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: var(--transition);
+      display: block;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: rgba(5,5,8,0.97);
+      backdrop-filter: blur(20px);
+      padding: 20px 24px 28px;
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      flex-direction: column; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 1rem; font-weight: 600;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--text-primary); background: var(--bg-card); }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 120px 24px 80px;
+    }
+    #particles-canvas {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 1;
+    }
+    .hero-bg-glow {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+    }
+    .glow-1 {
+      width: 600px; height: 600px;
+      background: rgba(79,142,247,0.12);
+      top: -200px; right: -200px;
+      animation: floatGlow 8s ease-in-out infinite;
+    }
+    .glow-2 {
+      width: 500px; height: 500px;
+      background: rgba(168,85,247,0.1);
+      bottom: -150px; left: -150px;
+      animation: floatGlow 10s ease-in-out infinite reverse;
+    }
+    .glow-3 {
+      width: 300px; height: 300px;
+      background: rgba(6,182,212,0.08);
+      top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      animation: floatGlow 6s ease-in-out infinite 2s;
+    }
+    @keyframes floatGlow {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      50% { transform: translate(30px,-30px) scale(1.1); }
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 900px; margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.25);
+      border-radius: 100px;
+      padding: 7px 20px;
+      font-size: 0.875rem; font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 36px;
+      animation: fadeSlideDown 0.8s ease forwards;
+    }
+    .hero-badge-dot {
+      width: 7px; height: 7px;
+      background: var(--accent-blue);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    .hero-title {
+      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 28px;
+      animation: fadeSlideUp 0.8s ease 0.2s both;
+      font-family: var(--font-heading);
+    }
+    .hero-title .line1 { display: block; color: var(--text-primary); }
+    .hero-title .line2 {
+      display: block;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.175rem);
+      color: var(--text-secondary);
+      max-width: 660px; margin: 0 auto 52px;
+      line-height: 1.9; font-weight: 400;
+      animation: fadeSlideUp 0.8s ease 0.4s both;
+      font-family: var(--font-body);
+    }
+    .hero-cta {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 16px;
+      animation: fadeSlideUp 0.8s ease 0.6s both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gradient-1);
+      color: white;
+      padding: 14px 34px;
+      border-radius: var(--radius-md);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+      font-family: var(--font-heading);
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .btn-primary:hover::before { opacity: 1; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px var(--glow-blue); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      padding: 14px 34px;
+      border-radius: var(--radius-md);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none; cursor: pointer;
+      transition: var(--transition);
+      backdrop-filter: blur(10px);
+      font-family: var(--font-heading);
+    }
+    .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 40px;
+      margin-top: 72px;
+      padding-top: 48px;
+      border-top: 1px solid var(--border);
+      animation: fadeSlideUp 0.8s ease 0.8s both;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-number {
+      font-size: 2.2rem; font-weight: 900;
+      letter-spacing: -1px;
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-family: var(--font-mono);
+    }
+    .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
+    .hero-scroll-indicator {
+      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: fadeSlideUp 1s ease 1.2s both;
+    }
+    .hero-scroll-text { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 2px; }
+    .scroll-line {
+      width: 1px; height: 48px;
+      background: linear-gradient(to bottom, var(--accent-blue), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+    @keyframes fadeSlideUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    section { padding: 120px 24px; }
+    .section-header { text-align: center; margin-bottom: 72px; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.875rem; font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after {
+      content: '';
+      width: 28px; height: 1px;
+      background: var(--accent-blue);
+      opacity: 0.5;
+    }
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+    }
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 580px; margin: 0 auto;
+      line-height: 1.9;
+      font-family: var(--font-body);
+    }
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    /* ============================================================
+       REVEAL ANIMATIONS
+    ============================================================ */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ============================================================
+       ROADMAP SECTION
+    ============================================================ */
+    #roadmap { background: var(--bg-secondary); }
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .roadmap-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+      cursor: default;
+    }
+    .roadmap-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: var(--card-gradient, var(--gradient-1));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      border-radius: inherit;
+    }
+    .roadmap-card:hover {
+      border-color: var(--card-color, var(--accent-blue));
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--card-color, var(--accent-blue));
+    }
+    .roadmap-card:hover::before { opacity: 0.04; }
+    .card-top {
+      display: flex; align-items: flex-start;
+      justify-content: space-between; gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card-icon-wrap {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px;
+      background: var(--card-gradient, var(--gradient-1));
+      flex-shrink: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    .card-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--text-muted);
+      padding: 4px 10px;
+      background: var(--border);
+      border-radius: 100px;
+      white-space: nowrap;
+      direction: ltr;
+    }
+    .card-title {
+      font-size: 1.175rem; font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+    }
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 20px;
+      font-family: var(--font-body);
+    }
+    .card-skills {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 20px;
+    }
+    .skill-tag {
+      font-size: 0.75rem; font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      transition: var(--transition);
+      font-family: var(--font-mono);
+      direction: ltr;
+    }
+    .roadmap-card:hover .skill-tag {
+      border-color: var(--card-color, var(--accent-blue));
+      color: var(--card-color, var(--accent-blue));
+      background: rgba(79,142,247,0.06);
+    }
+    .card-difficulty {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .difficulty-label {
+      font-size: 0.8rem; font-weight: 700;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+    .difficulty-badge {
+      font-size: 0.72rem; font-weight: 800;
+      padding: 3px 12px;
+      border-radius: 100px;
+    }
+    .diff-beginner { background: rgba(16,185,129,0.15); color: #10b981; }
+    .diff-intermediate { background: rgba(245,158,11,0.15); color: #f59e0b; }
+    .diff-advanced { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 4px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: var(--card-gradient, var(--gradient-1));
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .card-tools {
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .tools-label {
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--text-muted);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+    .tools-list { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tool-chip {
+      font-size: 0.7rem; font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 5px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      direction: ltr;
+    }
+
+    /* ============================================================
+       TOOLS GRID SECTION
+    ============================================================ */
+    #tools { background: var(--bg-primary); }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 16px;
+    }
+    .tool-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 28px 16px;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 12px;
+      transition: var(--transition);
+      cursor: default;
+      position: relative; overflow: hidden;
+    }
+    .tool-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--tool-gradient, var(--gradient-1));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .tool-card:hover { border-color: var(--border-hover); transform: translateY(-4px); background: var(--bg-card-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    .tool-card:hover::after { transform: scaleX(1); }
+    .tool-icon { font-size: 2.5rem; transition: var(--transition); }
+    .tool-card:hover .tool-icon { transform: scale(1.15); }
+    .tool-name {
+      font-size: 0.8125rem; font-weight: 700;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      text-align: center;
+      font-family: var(--font-mono);
+    }
+    .tool-card:hover .tool-name { color: var(--text-primary); }
+
+    /* ============================================================
+       LEARNING PATH SECTION
+    ============================================================ */
+    #learning-path { background: var(--bg-secondary); overflow: hidden; }
+    .path-stages {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      position: relative;
+    }
+    .path-stage {
+      display: flex; flex-direction: column;
+      align-items: center; gap: 18px;
+      padding: 36px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: var(--transition);
+      text-align: center; cursor: default;
+      position: relative;
+    }
+    .path-stage:hover {
+      border-color: var(--stage-color, var(--accent-blue));
+      transform: translateY(-6px);
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 40px var(--stage-glow, var(--glow-blue));
+    }
+    .stage-number {
+      font-family: var(--font-mono);
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--stage-color, var(--accent-blue));
+      background: rgba(79,142,247,0.08);
+      padding: 4px 14px; border-radius: 100px;
+      border: 1px solid var(--stage-color, var(--accent-blue));
+      direction: ltr;
+    }
+    .stage-icon {
+      font-size: 2.8rem;
+      filter: drop-shadow(0 0 20px var(--stage-glow, var(--glow-blue)));
+      animation: iconFloat 4s ease-in-out infinite;
+    }
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .stage-title {
+      font-size: 1.25rem; font-weight: 900;
+      color: var(--stage-color, var(--accent-blue));
+      text-shadow: 0 0 30px currentColor;
+      font-family: var(--font-heading);
+    }
+    .stage-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      font-family: var(--font-body);
+    }
+    .stage-items { list-style: none; width: 100%; }
+    .stage-items li {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      padding: 7px 0;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-mono);
+      transition: var(--transition);
+      direction: ltr;
+    }
+    .stage-items li:last-child { border-bottom: none; }
+    .path-stage:hover .stage-items li { color: var(--text-secondary); }
+    .neon-badge {
+      display: inline-block;
+      padding: 6px 22px;
+      border-radius: 100px;
+      font-size: 0.875rem; font-weight: 800;
+      text-shadow: 0 0 20px currentColor;
+      border: 1px solid currentColor;
+      box-shadow: 0 0 20px var(--stage-glow, var(--glow-blue)), inset 0 0 20px rgba(255,255,255,0.02);
+      font-family: var(--font-mono);
+      direction: ltr;
+    }
+
+    /* ============================================================
+       PROJECTS SECTION
+    ============================================================ */
+    #projects { background: var(--bg-primary); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      transition: var(--transition);
+      position: relative; overflow: hidden;
+      cursor: default;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--proj-gradient, var(--gradient-1));
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,0.5); }
+    .project-card:hover::before { opacity: 1; }
+    .proj-header {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 16px;
+      margin-bottom: 20px;
+    }
+    .proj-icon {
+      width: 56px; height: 56px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px;
+      background: var(--proj-gradient, var(--gradient-1));
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      flex-shrink: 0;
+    }
+    .proj-badge {
+      font-size: 0.72rem; font-weight: 800;
+      padding: 4px 14px; border-radius: 100px;
+    }
+    .proj-title {
+      font-size: 1.125rem; font-weight: 800;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+    .proj-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 24px;
+    }
+    .proj-tech {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 24px;
+    }
+    .proj-tech-tag {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 4px 10px; border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      direction: ltr;
+    }
+    .proj-footer {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .proj-difficulty { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-muted); }
+    .proj-time { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); direction: ltr; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    footer {
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border);
+      padding: 72px 24px 40px;
+    }
+    .footer-inner { max-width: 1280px; margin: 0 auto; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted); line-height: 1.8;
+      max-width: 280px; margin-bottom: 24px; margin-top: 16px;
+    }
+    .social-links { display: flex; gap: 10px; }
+    .social-link {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none;
+      transition: var(--transition);
+      color: var(--text-muted);
+    }
+    .social-link:hover { border-color: var(--border-hover); color: var(--text-primary); transform: translateY(-2px); }
+    .footer-col-title {
+      font-size: 0.875rem; font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      padding-top: 32px;
+    }
+    .footer-copy { font-size: 0.875rem; color: var(--text-muted); }
+    .footer-copy span {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-weight: 700;
+    }
+    .footer-status {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; color: var(--text-muted);
+    }
+    .status-dot {
+      width: 7px; height: 7px;
+      background: var(--accent-green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    /* ============================================================
+       DIVIDER
+    ============================================================ */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ============================================================
+       UTILITIES
+    ============================================================ */
+    .gradient-text {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .mono { font-family: var(--font-mono); }
+    ::selection { background: rgba(79,142,247,0.3); color: white; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .path-stages { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 80px 20px; }
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: flex; }
+      .roadmap-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .path-stages { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-stats { gap: 24px; }
+      .tools-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
+    }
+    @media (max-width: 480px) {
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+      .tools-grid { grid-template-columns: repeat(3, 1fr); }
+      .hero-stats { flex-direction: column; gap: 16px; }
+      .hero-stats .stat-divider { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ============================================================
+       LOADING SCREEN
+  ============================================================ -->
+  <div id="loader">
+    <div class="loader-logo">⚙️ خارطة طريق DevOps</div>
+    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+    <p class="loader-text">Initializing roadmap system...</p>
+  </div>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">خارطة طريق DevOps</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#" class="nav-cta">ابدأ الآن</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#learning-path">مسار التعلم</a></li>
+        <li><a href="#tools">الأدوات</a></li>
+        <li><a href="#roadmap">خارطة الطريق</a></li>
+      </ul>
+      <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#roadmap" onclick="closeMobileMenu()">🗺️ خارطة الطريق</a>
+    <a href="#tools" onclick="closeMobileMenu()">🛠️ الأدوات</a>
+    <a href="#learning-path" onclick="closeMobileMenu()">🎯 مسار التعلم</a>
+    <a href="#projects" onclick="closeMobileMenu()">🚀 المشاريع</a>
+    <a href="#" onclick="closeMobileMenu()" style="color:var(--accent-blue);font-weight:800;">← ابدأ الآن</a>
+  </div>
+
+  <!-- ============================================================
+       HERO SECTION
+  ============================================================ -->
+  <section id="hero">
+    <canvas id="particles-canvas"></canvas>
+    <div class="hero-bg-glow glow-1"></div>
+    <div class="hero-bg-glow glow-2"></div>
+    <div class="hero-bg-glow glow-3"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        إصدار 2025 — محدّث ومكتمل
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line1">خارطة طريق</span>
+        <span class="line2">DevOps الشاملة</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        تعلّم Linux و Docker و Kubernetes و CI/CD و Cloud و Monitoring و Security
+        والبنية التحتية الحديثة — خطوة بخطوة، من الصفر حتى الاحتراف.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#roadmap" class="btn-primary">
+          <span>🚀</span> ابدأ التعلم الآن
+        </a>
+        <a href="#learning-path" class="btn-secondary">
+          <span>🗺️</span> استكشف خارطة الطريق
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number" data-target="14">14</div>
+          <div class="hero-stat-label">مرحلة تعليمية</div>
+        </div>
+        <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" data-target="60">60+</div>
+          <div class="hero-stat-label">تقنية واداة</div>
+        </div>
+        <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" data-target="6">6</div>
+          <div class="hero-stat-label">مشروع عملي</div>
+        </div>
+        <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-number">∞</div>
+          <div class="hero-stat-label">نمو مهني</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <span class="hero-scroll-text">مرر للأسفل</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ROADMAP SECTION
+  ============================================================ -->
+  <section id="roadmap">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">🗺️ خارطة الطريق</div>
+        <h2 class="section-title">١٤ مرحلة نحو <span class="gradient-text">الاحتراف</span></h2>
+        <p class="section-desc">منهج تدريجي ومتسلسل يأخذك من أساسيات البرمجة حتى هندسة البنية التحتية على مستوى المؤسسات.</p>
+      </div>
+      <div class="roadmap-grid" id="roadmapGrid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       TOOLS SECTION
+  ============================================================ -->
+  <section id="tools">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">🛠️ منظومة الأدوات</div>
+        <h2 class="section-title">أدوات <span class="gradient-text">معيار الصناعة</span></h2>
+        <p class="section-desc">أشهر وأقوى أدوات DevOps التي ستتقنها خلال هذه الخارطة.</p>
+      </div>
+      <div class="tools-grid" id="toolsGrid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       LEARNING PATH SECTION
+  ============================================================ -->
+  <section id="learning-path">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">🎯 رحلتك</div>
+        <h2 class="section-title">مستويات <span class="gradient-text">مسار التعلم</span></h2>
+        <p class="section-desc">تقدّم عبر أربع مراحل متميزة، كل مرحلة تبني على السابقة — من الأساسيات حتى الاحتراف الكامل.</p>
+      </div>
+      <div class="path-stages" id="pathStages"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       PROJECTS SECTION
+  ============================================================ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-eyebrow">🚀 التطبيق العملي</div>
+        <h2 class="section-title">مشاريع <span class="gradient-text">حقيقية</span></h2>
+        <p class="section-desc">ابنِ مشاريع على مستوى الإنتاج تُثبت مهاراتك لأصحاب العمل والعملاء.</p>
+      </div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <div class="nav-logo-icon">⚙️</div>
+            <span class="nav-logo-text">خارطة طريق DevOps</span>
+          </a>
+          <p class="footer-brand-desc">
+            أشمل خارطة طريق عربية لتعلم DevOps، مُصمَّمة للمهندسين الراغبين في الوصول إلى مستوى احترافي في هندسة البنية التحتية.
+          </p>
+          <div class="social-links">
+            <a href="#" class="social-link" title="GitHub">🐙</a>
+            <a href="#" class="social-link" title="Twitter">🐦</a>
+            <a href="#" class="social-link" title="LinkedIn">💼</a>
+            <a href="#" class="social-link" title="YouTube">📺</a>
+            <a href="#" class="social-link" title="Discord">💬</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">خارطة الطريق</div>
+          <ul class="footer-links">
+            <li><a href="#roadmap">Linux & Bash</a></li>
+            <li><a href="#roadmap">Docker & Containers</a></li>
+            <li><a href="#roadmap">Kubernetes</a></li>
+            <li><a href="#roadmap">CI/CD Pipelines</a></li>
+            <li><a href="#roadmap">Cloud Platforms</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">المصادر</div>
+          <ul class="footer-links">
+            <li><a href="#">التوثيق</a></li>
+            <li><a href="#">المشاريع العملية</a></li>
+            <li><a href="#">أوراق المراجعة</a></li>
+            <li><a href="#">المجتمع</a></li>
+            <li><a href="#">المدونة</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">تواصل معنا</div>
+          <ul class="footer-links">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter / X</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">YouTube</a></li>
+            <li><a href="#">Discord</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          © 2025 <span>خارطة طريق DevOps</span>. صُنع بـ ❤️ لمجتمع DevOps العربي.
+        </p>
+        <div class="footer-status">
+          <div class="status-dot"></div>
+          <span>جميع الأنظمة تعمل</span>
+          <span style="color:var(--border)">•</span>
+          <span class="mono" style="font-size:0.75rem;direction:ltr">v2.0.25</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ============================================================
+    // DATA — Arabic content, technical terms kept in English
+    // ============================================================
+    const roadmapData = [
+      {
+        num: "01",
+        icon: "💻",
+        title: "البرمجة و Bash",
+        desc: "ابنِ مهارات الأتمتة باستخدام لغات السكريبت. الأساس الذي يحتاجه كل مهندس DevOps.",
+        difficulty: "beginner",
+        diffLabel: "مبتدئ",
+        progress: 30,
+        color: "#4f8ef7",
+        gradient: "linear-gradient(135deg, #4f8ef7 0%, #6c63ff 100%)",
+        skills: ["Bash scripting", "Python basics", "APIs", "JSON/YAML", "Automation"],
+        tools: ["Bash", "Python", "curl", "jq"]
+      },
+      {
+        num: "02",
+        icon: "🐧",
+        title: "أساسيات Linux",
+        desc: "أتقن نظام التشغيل الذي يُشغّل ٩٠٪ من خوادم العالم. ضروري لكل دور في مجال DevOps.",
+        difficulty: "beginner",
+        diffLabel: "مبتدئ",
+        progress: 40,
+        color: "#f59e0b",
+        gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)",
+        skills: ["Terminal", "SSH", "File permissions", "Processes", "Systemd", "Networking"],
+        tools: ["Ubuntu", "CentOS", "systemctl", "iptables"]
+      },
+      {
+        num: "03",
+        icon: "🌿",
+        title: "Git و GitHub",
+        desc: "إتقان التحكم بالإصدارات — استراتيجيات التفريع وطلبات السحب وسير العمل التعاوني.",
+        difficulty: "beginner",
+        diffLabel: "مبتدئ",
+        progress: 45,
+        color: "#10b981",
+        gradient: "linear-gradient(135deg, #10b981 0%, #06b6d4 100%)",
+        skills: ["Branching", "Merge/Rebase", "Pull Requests", "GitHub Actions", "Git Flow"],
+        tools: ["Git", "GitHub", "GitLab", "pre-commit"]
+      },
+      {
+        num: "04",
+        icon: "🌐",
+        title: "الشبكات",
+        desc: "افهم البروتوكولات والمفاهيم التي تجعل البنية التحتية الحديثة تتواصل بكفاءة.",
+        difficulty: "intermediate",
+        diffLabel: "متوسط",
+        progress: 50,
+        color: "#06b6d4",
+        gradient: "linear-gradient(135deg, #06b6d4 0%, #4f8ef7 100%)",
+        skills: ["IP/DNS", "HTTP/HTTPS", "Reverse Proxy", "SSL/TLS", "Load Balancer"],
+        tools: ["Nginx", "Traefik", "Cloudflare", "Let's Encrypt"]
+      },
+      {
+        num: "05",
+        icon: "🐳",
+        title: "Docker",
+        desc: "احجز كل شيء في حاويات. ابنِ بيئات تطبيق محمولة وقابلة للتكرار بسهولة.",
+        difficulty: "intermediate",
+        diffLabel: "متوسط",
+        progress: 60,
+        color: "#0ea5e9",
+        gradient: "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)",
+        skills: ["Containers", "Images", "Dockerfile", "Volumes", "Networks", "Compose"],
+        tools: ["Docker", "Docker Compose", "Docker Hub", "Podman"]
+      },
+      {
+        num: "06",
+        icon: "🔒",
+        title: "إدارة الخوادم",
+        desc: "آمِّن خوادم الإنتاج وراقبها وصُنها كمسؤول نظام محترف.",
+        difficulty: "intermediate",
+        diffLabel: "متوسط",
+        progress: 55,
+        color: "#ec4899",
+        gradient: "linear-gradient(135deg, #ec4899 0%, #a855f7 100%)",
+        skills: ["UFW", "Fail2Ban", "Monitoring", "Logs", "Backups", "Security"],
+        tools: ["UFW", "Fail2Ban", "rsync", "cron", "logrotate"]
+      },
+      {
+        num: "07",
+        icon: "⚡",
+        title: "CI/CD",
+        desc: "أتمت خط التسليم بالكامل — بنِ واختبر وانشر بدون أي خطوات يدوية.",
+        difficulty: "intermediate",
+        diffLabel: "متوسط",
+        progress: 65,
+        color: "#a855f7",
+        gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
+        skills: ["Pipelines", "Auto Deploy", "Testing", "Build Systems", "GitHub Actions"],
+        tools: ["GitHub Actions", "Jenkins", "GitLab CI", "CircleCI"]
+      },
+      {
+        num: "08",
+        icon: "🗄️",
+        title: "قواعد البيانات",
+        desc: "إدارة قواعد البيانات في الإنتاج — النسخ المتماثل والنسخ الاحتياطي والتحسين والتوسع.",
+        difficulty: "intermediate",
+        diffLabel: "متوسط",
+        progress: 58,
+        color: "#f97316",
+        gradient: "linear-gradient(135deg, #f97316 0%, #f59e0b 100%)",
+        skills: ["PostgreSQL", "MySQL", "Redis", "Replication", "Optimization"],
+        tools: ["PostgreSQL", "MySQL", "Redis", "pgBackRest"]
+      },
+      {
+        num: "09",
+        icon: "☸️",
+        title: "Kubernetes",
+        desc: "نَسِّق الحاويات على نطاق واسع. المعيار الصناعي لأعباء عمل الإنتاج.",
+        difficulty: "advanced",
+        diffLabel: "متقدم",
+        progress: 75,
+        color: "#4f8ef7",
+        gradient: "linear-gradient(135deg, #4f8ef7 0%, #06b6d4 100%)",
+        skills: ["Pods", "Deployments", "Services", "Ingress", "Helm", "ConfigMaps"],
+        tools: ["kubectl", "Helm", "k9s", "Lens", "kind"]
+      },
+      {
+        num: "10",
+        icon: "🏗️",
+        title: "البنية التحتية كـ Code",
+        desc: "وفِّر البنية التحتية وأدِرها برمجياً. لا مزيد من إعداد الخوادم اليدوي.",
+        difficulty: "advanced",
+        diffLabel: "متقدم",
+        progress: 70,
+        color: "#8b5cf6",
+        gradient: "linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)",
+        skills: ["Terraform", "Ansible", "Automation", "Provisioning", "State Management"],
+        tools: ["Terraform", "Ansible", "Pulumi", "Chef"]
+      },
+      {
+        num: "11",
+        icon: "📊",
+        title: "المراقبة والسجلات",
+        desc: "شاهد كل ما يحدث في بنيتك التحتية بشكل فوري. تنبيهات ولوحات تحكم وسجلات.",
+        difficulty: "advanced",
+        diffLabel: "متقدم",
+        progress: 72,
+        color: "#10b981",
+        gradient: "linear-gradient(135deg, #10b981 0%, #4f8ef7 100%)",
+        skills: ["Grafana", "Prometheus", "Loki", "ELK Stack", "Alerting"],
+        tools: ["Grafana", "Prometheus", "Loki", "Elasticsearch"]
+      },
+      {
+        num: "12",
+        icon: "☁️",
+        title: "منصات السحابة",
+        desc: "صمِّم وانشر وأدِر البنية التحتية السحابية على AWS وفق أفضل ممارسات المؤسسات.",
+        difficulty: "advanced",
+        diffLabel: "متقدم",
+        progress: 78,
+        color: "#f59e0b",
+        gradient: "linear-gradient(135deg, #f59e0b 0%, #f97316 100%)",
+        skills: ["AWS EC2", "S3", "IAM", "VPC", "RDS", "Cloud Networking"],
+        tools: ["AWS", "AWS CLI", "CloudFormation", "Route 53"]
+      },
+      {
+        num: "13",
+        icon: "🛡️",
+        title: "DevSecOps",
+        desc: "الأمان ليس فكرة لاحقة. ادمج الأمان في كل مرحلة من مراحل خط الأنابيب.",
+        difficulty: "advanced",
+        diffLabel: "متقدم",
+        progress: 80,
+        color: "#ef4444",
+        gradient: "linear-gradient(135deg, #ef4444 0%, #ec4899 100%)",
+        skills: ["Docker security", "Secrets mgmt", "Vuln scanning", "Vault", "CrowdSec"],
+        tools: ["HashiCorp Vault", "Trivy", "CrowdSec", "Falco"]
+      },
+      {
+        num: "14",
+        icon: "🔮",
+        title: "أدوات DevOps المتقدمة",
+        desc: "الأدوات المتطورة التي يستخدمها مهندسو DevOps المحترفون في شركات التقنية الحديثة.",
+        difficulty: "advanced",
+        diffLabel: "متقدم",
+        progress: 85,
+        color: "#a855f7",
+        gradient: "linear-gradient(135deg, #a855f7 0%, #4f8ef7 100%)",
+        skills: ["Coolify", "Portainer", "Traefik", "ArgoCD", "Rancher", "Kestra"],
+        tools: ["Coolify", "ArgoCD", "Rancher", "Portainer"]
+      }
+    ];
+
+    const toolsData = [
+      { icon: "🐳", name: "Docker",      gradient: "linear-gradient(135deg,#0ea5e9,#06b6d4)" },
+      { icon: "☸️", name: "Kubernetes",  gradient: "linear-gradient(135deg,#4f8ef7,#6c63ff)" },
+      { icon: "☁️", name: "AWS",         gradient: "linear-gradient(135deg,#f59e0b,#f97316)" },
+      { icon: "🏗️", name: "Terraform",   gradient: "linear-gradient(135deg,#8b5cf6,#a855f7)" },
+      { icon: "📊", name: "Grafana",     gradient: "linear-gradient(135deg,#f97316,#ef4444)" },
+      { icon: "⚙️", name: "Jenkins",     gradient: "linear-gradient(135deg,#ec4899,#a855f7)" },
+      { icon: "🐙", name: "GitHub",      gradient: "linear-gradient(135deg,#6b7280,#374151)" },
+      { icon: "🐧", name: "Linux",       gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
+      { icon: "🔀", name: "Nginx",       gradient: "linear-gradient(135deg,#10b981,#4f8ef7)" },
+      { icon: "🐘", name: "PostgreSQL",  gradient: "linear-gradient(135deg,#4f8ef7,#06b6d4)" },
+      { icon: "🔴", name: "Redis",       gradient: "linear-gradient(135deg,#ef4444,#f97316)" },
+      { icon: "🚀", name: "Coolify",     gradient: "linear-gradient(135deg,#a855f7,#ec4899)" },
+      { icon: "🔥", name: "Prometheus",  gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" }
+    ];
+
+    const pathStages = [
+      {
+        num: "المرحلة 01",
+        icon: "🌱",
+        title: "مبتدئ",
+        titleEn: "Beginner",
+        color: "#10b981",
+        glow: "rgba(16,185,129,0.3)",
+        desc: "المهارات الأساسية لكل مهندس DevOps",
+        items: ["Linux Terminal", "Bash Scripting", "Git Basics", "Networking 101", "Python Intro"],
+        badge: "0 – 3 أشهر"
+      },
+      {
+        num: "المرحلة 02",
+        icon: "⚡",
+        title: "متوسط",
+        titleEn: "Intermediate",
+        color: "#4f8ef7",
+        glow: "rgba(79,142,247,0.3)",
+        desc: "أدوات DevOps الأساسية والأتمتة",
+        items: ["Docker & Compose", "CI/CD Pipelines", "Server Security", "Databases", "GitHub Actions"],
+        badge: "3 – 8 أشهر"
+      },
+      {
+        num: "المرحلة 03",
+        icon: "🚀",
+        title: "متقدم",
+        titleEn: "Advanced",
+        color: "#a855f7",
+        glow: "rgba(168,85,247,0.3)",
+        desc: "البنية التحتية للمؤسسات والتنسيق",
+        items: ["Kubernetes", "Terraform/Ansible", "Cloud (AWS)", "Monitoring Stack", "DevSecOps"],
+        badge: "8 – 16 شهر"
+      },
+      {
+        num: "المرحلة 04",
+        icon: "🔮",
+        title: "محترف",
+        titleEn: "Professional",
+        color: "#f59e0b",
+        glow: "rgba(245,158,11,0.3)",
+        desc: "أدوات وهندسة المستوى المتقدم",
+        items: ["ArgoCD / GitOps", "Advanced K8s", "Multi-Cloud", "Cost Optimization", "Team Leadership"],
+        badge: "+16 شهر"
+      }
+    ];
+
+    const projectsData = [
+      {
+        icon: "🚢",
+        title: "نشر Laravel مع Docker",
+        desc: "احجز تطبيق Laravel كاملاً مع Nginx و PHP-FPM و PostgreSQL و Redis وعمال قائمة الانتظار باستخدام Docker Compose.",
+        tech: ["Docker", "Nginx", "PHP", "PostgreSQL", "Redis", "Docker Compose"],
+        gradient: "linear-gradient(135deg, #4f8ef7, #06b6d4)",
+        badge: "مبتدئ",
+        badgeBg: "rgba(16,185,129,0.15)",
+        badgeColor: "#10b981",
+        difficulty: "⭐⭐",
+        time: "~2 days"
+      },
+      {
+        icon: "⚡",
+        title: "خط أنابيب CI/CD كامل",
+        desc: "ابنِ خط أنابيب CI/CD كاملاً مع GitHub Actions — اختبار تلقائي وبناء صور Docker ونشر بدون توقف.",
+        tech: ["GitHub Actions", "Docker", "SSH Deploy", "Tests", "Secrets"],
+        gradient: "linear-gradient(135deg, #a855f7, #ec4899)",
+        badge: "متوسط",
+        badgeBg: "rgba(245,158,11,0.15)",
+        badgeColor: "#f59e0b",
+        difficulty: "⭐⭐⭐",
+        time: "~3 days"
+      },
+      {
+        icon: "☸️",
+        title: "مجموعة Kubernetes في الإنتاج",
+        desc: "أنشئ مجموعة K8s متعددة العقد مع Ingress و TLS و Helm ومقياس تلقائي لتطبيق ويب حقيقي.",
+        tech: ["Kubernetes", "Helm", "Ingress", "cert-manager", "HPA"],
+        gradient: "linear-gradient(135deg, #0ea5e9, #4f8ef7)",
+        badge: "متقدم",
+        badgeBg: "rgba(239,68,68,0.15)",
+        badgeColor: "#ef4444",
+        difficulty: "⭐⭐⭐⭐",
+        time: "~1 week"
+      },
+      {
+        icon: "📊",
+        title: "منظومة مراقبة متكاملة",
+        desc: "انشر Prometheus و Grafana و Loki و Alertmanager لمراقبة الخوادم والحاويات والتطبيقات بلوحات تحكم مخصصة.",
+        tech: ["Grafana", "Prometheus", "Loki", "Alertmanager", "Node Exporter"],
+        gradient: "linear-gradient(135deg, #10b981, #4f8ef7)",
+        badge: "متقدم",
+        badgeBg: "rgba(239,68,68,0.15)",
+        badgeColor: "#ef4444",
+        difficulty: "⭐⭐⭐⭐",
+        time: "~5 days"
+      },
+      {
+        icon: "🔀",
+        title: "إعداد Traefik Reverse Proxy",
+        desc: "اضبط Traefik كـ Reverse Proxy ديناميكي مع SSL تلقائي واكتشاف الخدمات و Middleware وتكامل Docker.",
+        tech: ["Traefik", "Docker", "Let's Encrypt", "Middleware", "DNS"],
+        gradient: "linear-gradient(135deg, #f97316, #f59e0b)",
+        badge: "متوسط",
+        badgeBg: "rgba(245,158,11,0.15)",
+        badgeColor: "#f59e0b",
+        difficulty: "⭐⭐⭐",
+        time: "~2 days"
+      },
+      {
+        icon: "🔒",
+        title: "تأمين VPS الاحترافي",
+        desc: "أمِّن خادم VPS في الإنتاج باستخدام UFW و Fail2Ban وتصلب SSH و CrowdSec والتحديثات التلقائية وكشف التسلل.",
+        tech: ["UFW", "Fail2Ban", "CrowdSec", "SSH", "auditd", "logwatch"],
+        gradient: "linear-gradient(135deg, #ef4444, #ec4899)",
+        badge: "متوسط",
+        badgeBg: "rgba(245,158,11,0.15)",
+        badgeColor: "#f59e0b",
+        difficulty: "⭐⭐⭐",
+        time: "~2 days"
+      }
+    ];
+
+    const roadmapPages = [
+      'devops-tech/bash.html',
+      'devops-tech/linux.html',
+      'devops-tech/git.html',
+      'devops-tech/networking.html',
+      'devops-tech/docker.html',
+      'devops-tech/server-admin.html',
+      'devops-tech/cicd.html',
+      'devops-tech/databases.html',
+      'devops-tech/kubernetes.html',
+      'devops-tech/iac.html',
+      'devops-tech/monitoring.html',
+      'devops-tech/cloud.html',
+      'devops-tech/devsecops.html',
+      'devops-tech/advanced-tools.html'
+    ];
+
+    // ============================================================
+    // RENDER FUNCTIONS
+    // ============================================================
+    function renderRoadmap() {
+      const grid = document.getElementById('roadmapGrid');
+      grid.innerHTML = roadmapData.map((card, i) => `
+        <div class="roadmap-card reveal"
+             style="--card-color:${card.color};--card-gradient:${card.gradient};transition-delay:${(i % 3) * 0.08}s"
+             data-progress="${card.progress}"
+             onclick="window.location.href='${roadmapPages[i]}'"
+             role="link" tabindex="0">
+          <div class="card-top">
+            <div class="card-icon-wrap" style="background:${card.gradient}">${card.icon}</div>
+            <span class="card-number">${card.num}</span>
+          </div>
+          <div class="card-title">${card.title}</div>
+          <div class="card-desc">${card.desc}</div>
+          <div class="card-skills">
+            ${card.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
+          </div>
+          <div class="card-difficulty">
+            <span class="difficulty-label">مستوى الصعوبة</span>
+            <span class="difficulty-badge diff-${card.difficulty}">${card.diffLabel}</span>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="background:${card.gradient}"></div>
+          </div>
+          <div class="card-tools">
+            <span class="tools-label">الأدوات:</span>
+            <div class="tools-list">
+              ${card.tools.map(t => `<span class="tool-chip">${t}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderTools() {
+      const grid = document.getElementById('toolsGrid');
+      grid.innerHTML = toolsData.map((tool, i) => `
+        <div class="tool-card reveal" style="--tool-gradient:${tool.gradient};transition-delay:${(i % 6) * 0.06}s">
+          <div class="tool-icon">${tool.icon}</div>
+          <div class="tool-name">${tool.name}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderPathStages() {
+      const container = document.getElementById('pathStages');
+      container.innerHTML = pathStages.map((stage, i) => `
+        <div class="path-stage reveal"
+             style="--stage-color:${stage.color};--stage-glow:${stage.glow};transition-delay:${i * 0.14}s">
+          <span class="stage-number">${stage.num}</span>
+          <div class="stage-icon" style="animation-delay:${i * 0.5}s">${stage.icon}</div>
+          <div class="stage-title">${stage.title}</div>
+          <div class="stage-desc">${stage.desc}</div>
+          <ul class="stage-items">
+            ${stage.items.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+          <span class="neon-badge" style="color:${stage.color}">${stage.badge}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderProjects() {
+      const grid = document.getElementById('projectsGrid');
+      grid.innerHTML = projectsData.map((proj, i) => `
+        <div class="project-card reveal"
+             style="--proj-gradient:${proj.gradient};transition-delay:${(i % 3) * 0.08}s">
+          <div class="proj-header">
+            <div class="proj-icon" style="background:${proj.gradient}">${proj.icon}</div>
+            <span class="proj-badge" style="background:${proj.badgeBg};color:${proj.badgeColor}">${proj.badge}</span>
+          </div>
+          <div class="proj-title">${proj.title}</div>
+          <div class="proj-desc">${proj.desc}</div>
+          <div class="proj-tech">
+            ${proj.tech.map(t => `<span class="proj-tech-tag">${t}</span>`).join('')}
+          </div>
+          <div class="proj-footer">
+            <div class="proj-difficulty">${proj.difficulty} ${proj.badge}</div>
+            <div class="proj-time">⏱ ${proj.time}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ============================================================
+    // PARTICLES SYSTEM
+    // ============================================================
+    function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+
+      class Particle {
+        constructor() { this.reset(); }
+        reset() {
+          this.x = Math.random() * canvas.width;
+          this.y = Math.random() * canvas.height;
+          this.size = Math.random() * 1.5 + 0.3;
+          this.speedX = (Math.random() - 0.5) * 0.28;
+          this.speedY = (Math.random() - 0.5) * 0.28;
+          this.opacity = Math.random() * 0.5 + 0.1;
+          this.color = ['#4f8ef7','#a855f7','#06b6d4','#10b981'][Math.floor(Math.random() * 4)];
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+        }
+        draw() {
+          ctx.save();
+          ctx.globalAlpha = this.opacity;
+          ctx.fillStyle = this.color;
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function init() {
+        resize();
+        particles = Array.from({ length: 130 }, () => new Particle());
+      }
+
+      function drawConnections() {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+              ctx.save();
+              ctx.globalAlpha = (1 - dist / 100) * 0.07;
+              ctx.strokeStyle = '#4f8ef7';
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+              ctx.restore();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        drawConnections();
+        requestAnimationFrame(animate);
+      }
+
+      init();
+      animate();
+      window.addEventListener('resize', resize);
+    }
+
+    // ============================================================
+    // SCROLL REVEAL
+    // ============================================================
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            const fill = entry.target.querySelector('.progress-fill');
+            if (fill) {
+              const progress = entry.target.dataset.progress;
+              setTimeout(() => { fill.style.width = progress + '%'; }, 250);
+            }
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+    }
+
+    // ============================================================
+    // CUSTOM CURSOR
+    // ============================================================
+    function initCursor() {
+      const cursor = document.getElementById('cursor');
+      const follower = document.getElementById('cursorFollower');
+      let fx = 0, fy = 0, cx = 0, cy = 0;
+
+      document.addEventListener('mousemove', e => {
+        cx = e.clientX; cy = e.clientY;
+        cursor.style.left = cx + 'px';
+        cursor.style.top = cy + 'px';
+      });
+
+      function follow() {
+        fx += (cx - fx) * 0.12;
+        fy += (cy - fy) * 0.12;
+        follower.style.left = fx + 'px';
+        follower.style.top = fy + 'px';
+        requestAnimationFrame(follow);
+      }
+      follow();
+
+      document.querySelectorAll('a, button, .roadmap-card, .tool-card, .path-stage, .project-card').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
+      });
+
+      document.querySelectorAll('.roadmap-card').forEach(card => {
+        card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
+      });
+
+      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; follower.style.opacity = '0'; });
+      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; follower.style.opacity = '1'; });
+    }
+
+    // ============================================================
+    // NAVBAR SCROLL
+    // ============================================================
+    function initNavbar() {
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+      });
+    }
+
+    // ============================================================
+    // MOBILE MENU
+    // ============================================================
+    function initMobileMenu() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        const spans = btn.querySelectorAll('span');
+        if (menu.classList.contains('open')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+          spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        }
+      });
+    }
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileMenuBtn');
+      menu.classList.remove('open');
+      btn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+
+    // ============================================================
+    // COUNTER ANIMATION
+    // ============================================================
+    function animateCounters() {
+      document.querySelectorAll('.hero-stat-number[data-target]').forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const suffix = counter.textContent.replace(/[0-9]/g, '');
+        let current = 0;
+        const increment = target / 45;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            counter.textContent = target + suffix;
+            clearInterval(timer);
+          } else {
+            counter.textContent = Math.floor(current) + suffix;
+          }
+        }, 35);
+      });
+    }
+
+    // ============================================================
+    // PARALLAX
+    // ============================================================
+    function initParallax() {
+      const glows = document.querySelectorAll('.hero-bg-glow');
+      window.addEventListener('mousemove', e => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 28;
+        const y = (e.clientY / window.innerHeight - 0.5) * 28;
+        glows.forEach((glow, i) => {
+          const f = (i + 1) * 0.4;
+          glow.style.transform = `translate(${x * f}px, ${y * f}px)`;
+        });
+      });
+    }
+
+    // ============================================================
+    // SMOOTH SCROLL
+    // ============================================================
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const href = a.getAttribute('href');
+          if (href === '#') return;
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const top = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+    }
+
+    // ============================================================
+    // LOADER
+    // ============================================================
+    function initLoader() {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+        animateCounters();
+      }, 2000);
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderRoadmap();
+      renderTools();
+      renderPathStages();
+      renderProjects();
+      initLoader();
+      initParticles();
+      initScrollReveal();
+      initCursor();
+      initNavbar();
+      initMobileMenu();
+      initParallax();
+      initSmoothScroll();
+    });
+  </script>
+</body>
+</html>

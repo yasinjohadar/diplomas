@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git & GitHub — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>Git & GitHub</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(16,185,129,0.3);">
+      <div class="tech-icon-large">🌿</div>
+      <h1 class="tech-title">Git & GitHub</h1>
+      <p class="tech-subtitle">نظام التحكم بالإصدارات — العمود الفقري لكل مشروع برمجي. تعلّم إدارة الكود والتعاون مع الفريق.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">أساسي</span>
+        <span class="tech-badge green">Microsoft / Open Source</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو Git؟</h2>
+      <div class="info-card">
+        <h3>نظام تحكم بالإصدارات موزّع</h3>
+        <p>Git هو نظام يتتبع التغييرات في ملفات الكود، صممه Linus Torvalds عام 2005. يتيح لك حفظ نسخ من مشروعك والعودة لأي نقطة سابقة، والتعاون مع فريق بدون تعارضات.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📸</div>
+          <h4>Commit (لقطة)</h4>
+          <p>حفظ حالة المشروع في نقطة زمنية مع رسالة وصفية.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🌿</div>
+          <h4>Branch (فرع)</h4>
+          <p>نسخة مستقلة من الكود للتطوير بدون التأثير على الرئيسي.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔀</div>
+          <h4>Merge (دمج)</h4>
+          <p>دمج التغييرات من فرع لآخر بعد المراجعة.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔄</div>
+          <h4>Pull / Push</h4>
+          <p>سحب التحديثات من الريبو البعيد أو دفع تغييراتك إليه.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🚀</span> الأوامر الأساسية</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Git Basics</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># إعداد Git أول مرة</span>
+<span class="command">git</span> config --global user.name <span class="string">"Your Name"</span>
+<span class="command">git</span> config --global user.email <span class="string">"you@email.com"</span>
+
+<span class="comment"># إنشاء ريبو جديد</span>
+<span class="command">git</span> init my-project
+<span class="command">cd</span> my-project
+
+<span class="comment"># استنساخ ريبو موجود</span>
+<span class="command">git</span> clone https://github.com/user/repo.git
+
+<span class="comment"># فحص الحالة</span>
+<span class="command">git</span> status
+
+<span class="comment"># إضافة ملفات للـ staging</span>
+<span class="command">git</span> add .           <span class="comment"># كل الملفات</span>
+<span class="command">git</span> add file.txt    <span class="comment"># ملف محدد</span>
+
+<span class="comment"># حفظ التغييرات (commit)</span>
+<span class="command">git</span> commit <span class="flag">-m</span> <span class="string">"إضافة صفحة تسجيل الدخول"</span>
+
+<span class="comment"># عرض السجل</span>
+<span class="command">git</span> log --oneline --graph</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🌿</span> الفروع والدمج</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Branching</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># إنشاء فرع جديد والتبديل إليه</span>
+<span class="command">git</span> checkout <span class="flag">-b</span> feature/login-page
+
+<span class="comment"># أو بالأمر الحديث</span>
+<span class="command">git</span> switch <span class="flag">-c</span> feature/login-page
+
+<span class="comment"># التبديل لفرع آخر</span>
+<span class="command">git</span> checkout main
+
+<span class="comment"># دمج فرع في الحالي</span>
+<span class="command">git</span> merge feature/login-page
+
+<span class="comment"># حذف فرع بعد الدمج</span>
+<span class="command">git</span> branch <span class="flag">-d</span> feature/login-page
+
+<span class="comment"># عرض الفروع</span>
+<span class="command">git</span> branch <span class="flag">-a</span></div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <span>استخدم تسمية واضحة للفروع: <code>feature/</code> للميزات، <code>fix/</code> للإصلاحات، <code>hotfix/</code> للحالات الطارئة.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">☁️</span> التعاون مع GitHub</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Remote Operations</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># ربط الريبو البعيد</span>
+<span class="command">git</span> remote add origin https://github.com/user/repo.git
+
+<span class="comment"># دفع التغييرات</span>
+<span class="command">git</span> push <span class="flag">-u</span> origin main
+
+<span class="comment"># سحب التحديثات</span>
+<span class="command">git</span> pull origin main
+
+<span class="comment"># Push لفرع جديد</span>
+<span class="command">git</span> push <span class="flag">-u</span> origin feature/login-page
+
+<span class="comment"># إنشاء Pull Request من CLI</span>
+<span class="command">gh</span> pr create <span class="flag">--title</span> <span class="string">"إضافة صفحة تسجيل الدخول"</span> <span class="flag">--body</span> <span class="string">"وصف التغييرات"</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔧</span> Git Flow — سير العمل الاحترافي</h2>
+      <ol class="step-list">
+        <li><div class="step-content"><h4>أنشئ فرع من main</h4><p><code>git checkout -b feature/new-feature</code></p></div></li>
+        <li><div class="step-content"><h4>طوّر وأضف commits</h4><p><code>git add . && git commit -m "feat: إضافة الميزة"</code></p></div></li>
+        <li><div class="step-content"><h4>ادفع الفرع للـ remote</h4><p><code>git push -u origin feature/new-feature</code></p></div></li>
+        <li><div class="step-content"><h4>افتح Pull Request</h4><p>من GitHub أو عبر <code>gh pr create</code></p></div></li>
+        <li><div class="step-content"><h4>راجع التغييرات (Code Review)</h4><p>فريقك يراجع الكود ويطلب تعديلات إن لزم</p></div></li>
+        <li><div class="step-content"><h4>ادمج في main</h4><p>بعد الموافقة، Merge إلى الفرع الرئيسي</p></div></li>
+      </ol>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> اكتب رسائل commit واضحة ومختصرة<br>
+          <strong>2.</strong> استخدم Conventional Commits: <code>feat:</code> <code>fix:</code> <code>docs:</code><br>
+          <strong>3.</strong> لا تدفع لـ main مباشرة — استخدم Pull Requests<br>
+          <strong>4.</strong> استخدم <code>.gitignore</code> لتجاهل الملفات غير المهمة<br>
+          <strong>5.</strong> راجع التغييرات قبل الـ commit: <code>git diff</code><br>
+          <strong>6.</strong> استخدم <code>git stash</code> لحفظ التغييرات مؤقتاً
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="linux.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: أساسيات Linux</span></a>
+      <a href="networking.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: الشبكات</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

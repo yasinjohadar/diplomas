@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المرحلة 3 — البرمجة والأتمتة | Cyber Diploma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/phase.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><i class="fas fa-shield-halved"></i><span class="nav-logo-text">CyberDiploma</span></a>
+      <div class="nav-breadcrumb"><a href="../index.html">الرئيسية</a><span class="sep">/</span><span>المرحلة 3</span></div>
+      <a href="../index.html" class="nav-back"><i class="fas fa-arrow-right"></i> العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="phase-hero reveal" style="--glow: rgba(245,158,11,0.3);">
+      <div class="phase-icon"><i class="fab fa-python" style="color:var(--orange)"></i></div>
+      <h1 class="phase-title">البرمجة والأتمتة</h1>
+      <p class="phase-subtitle">تعلم Python وBash لأتمتة مهام الأمن وكتابة سكريبتات الاختراق وتطوير أدوات مخصصة.</p>
+      <div class="phase-badges">
+        <span class="phase-badge">المرحلة 03</span>
+        <span class="phase-badge green">5 أسابيع</span>
+        <span class="phase-badge orange">متوسط</span>
+      </div>
+      <div class="phase-stats">
+        <div class="p-stat"><div class="p-stat-num">10</div><div class="p-stat-label">دروس</div></div>
+        <div class="p-stat"><div class="p-stat-num">4</div><div class="p-stat-label">أدوات رئيسية</div></div>
+        <div class="p-stat"><div class="p-stat-num">20+</div><div class="p-stat-label">مهارة مكتسبة</div></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> نظرة عامة</h2>
+      <div class="info-card">
+        <h3>لماذا يحتاج مختص الأمن للبرمجة؟</h3>
+        <p>البرمجة تتيح لك أتمتة المهام المتكررة، كتابة أدوات اختبار مخصصة، تحليل البيانات الضخمة، وفهم الكود الخبيث. Python هي اللغة الأولى في الأمن السيبراني.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="fi-icon">🐍</div><h4>Python للأمن</h4><p>كتابة سكريبتات فحص، تحليل ملفات، والتعامل مع الشبكات.</p></div>
+        <div class="feature-item"><div class="fi-icon">📜</div><h4>Bash Scripting</h4><p>أتمتة المهام على Linux — النسخ الاحتياطي، المراقبة، الفحص.</p></div>
+        <div class="feature-item"><div class="fi-icon">🔗</div><h4>APIs</h4><p>التعامل مع APIs لجمع المعلومات من مصادر متعددة.</p></div>
+        <div class="feature-item"><div class="fi-icon">🕷️</div><h4>Web Scraping</h4><p>جمع البيانات من المواقع تلقائياً لأغراض OSINT.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> المحاور التفصيلية</h2>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>المحور</th><th>المدة</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>أساسيات Python 3 — المتغيرات، الحلقات، الشروط</td><td>3 أيام</td></tr>
+          <tr><td>02</td><td>الدوال والكائنات (OOP) في Python</td><td>3 أيام</td></tr>
+          <tr><td>03</td><td>التعامل مع الملفات والنصوص</td><td>2 أيام</td></tr>
+          <tr><td>04</td><td>Regular Expressions للبحث في النصوص</td><td>2 أيام</td></tr>
+          <tr><td>05</td><td>التعامل مع APIs (Requests, JSON)</td><td>3 أيام</td></tr>
+          <tr><td>06</td><td>Network Programming — Sockets</td><td>3 أيام</td></tr>
+          <tr><td>07</td><td>Web Scraping بـ BeautifulSoup</td><td>2 أيام</td></tr>
+          <tr><td>08</td><td>Bash Scripting للأتمتة</td><td>3 أيام</td></tr>
+          <tr><td>09</td><td>مشروع: Port Scanner بـ Python</td><td>2 أيام</td></tr>
+          <tr><td>10</td><td>مشروع: أداة فحص ثغرات ويب</td><td>3 أيام</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💻</span> Port Scanner بـ Python</h2>
+      <div class="code-block">
+        <div class="code-header"><span>scanner.py</span><button class="code-copy">Copy</button></div>
+        <div class="code-content"><span class="kw">import</span> socket
+<span class="kw">from</span> datetime <span class="kw">import</span> datetime
+
+target = <span class="str">"192.168.1.100"</span>
+<span class="cmd">print</span>(<span class="str">f"Scanning {target}..."</span>)
+start = datetime.now()
+
+<span class="kw">for</span> port <span class="kw">in</span> <span class="cmd">range</span>(<span class="flag">1</span>, <span class="flag">1025</span>):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket.setdefaulttimeout(<span class="flag">1</span>)
+    result = s.connect_ex((target, port))
+    <span class="kw">if</span> result == <span class="flag">0</span>:
+        <span class="cmd">print</span>(<span class="str">f"Port {port}: OPEN"</span>)
+    s.close()
+
+<span class="cmd">print</span>(<span class="str">f"Done in {datetime.now() - start}"</span>)</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📜</span> Bash Script — فاحص الملفات</h2>
+      <div class="code-block">
+        <div class="code-header"><span>file_checker.sh</span><button class="code-copy">Copy</button></div>
+        <div class="code-content"><span class="kw">#!/bin/bash</span>
+<span class="cmt"># فحص الملفات المعدلة في آخر 24 ساعة</span>
+
+<span class="kw">TARGET</span>=<span class="str">"/var/www"</span>
+<span class="kw">OUTPUT</span>=<span class="str">"/tmp/changed_files.txt"</span>
+
+<span class="cmd">find</span> <span class="flag">$TARGET</span> <span class="flag">-mtime -1 -type f</span> > <span class="flag">$OUTPUT</span>
+
+<span class="kw">COUNT</span>=$(<span class="cmd">wc</span> <span class="flag">-l</span> < <span class="flag">$OUTPUT</span>)
+<span class="cmd">echo</span> <span class="str">"تم العثور على $COUNT ملف معدل"</span>
+
+<span class="kw">if</span> [ <span class="flag">$COUNT</span> -gt <span class="flag">0</span> ]; <span class="kw">then</span>
+    <span class="cmd">cat</span> <span class="flag">$OUTPUT</span>
+<span class="kw">fi</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> ما يجب إتقانه</h2>
+      <div class="alert alert-ok">
+        <span class="a-icon">🎯</span>
+        <span>
+          <strong>1.</strong> كتابة سكريبتات Python للأمن<br>
+          <strong>2.</strong> التعامل مع Sockets وAPIs<br>
+          <strong>3.</strong> Web Scraping لجمع المعلومات<br>
+          <strong>4.</strong> Bash Scripting لأتمتة المهام<br>
+          <strong>5.</strong> Regular Expressions<br>
+          <strong>6.</strong> بناء أدوات فحص بسيطة
+        </span>
+      </div>
+    </div>
+
+    <div class="phase-nav reveal">
+      <a href="phase2.html" class="phase-nav-link"><i class="fas fa-arrow-right"></i> المرحلة 2</a>
+      <a href="phase4.html" class="phase-nav-link">المرحلة 4: الأمن الدفاعي <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>CyberDiploma Academy</span> — جميع الحقوق محفوظة</p></footer>
+  <script src="js/phase.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المرحلة 8 — أمن السحاب والـ APIs | Cyber Diploma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/phase.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><i class="fas fa-shield-halved"></i><span class="nav-logo-text">CyberDiploma</span></a>
+      <div class="nav-breadcrumb"><a href="../index.html">الرئيسية</a><span class="sep">/</span><span>المرحلة 8</span></div>
+      <a href="../index.html" class="nav-back"><i class="fas fa-arrow-right"></i> العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="phase-hero reveal" style="--glow: rgba(245,158,11,0.3);">
+      <div class="phase-icon"><i class="fas fa-cloud-bolt" style="color:var(--orange)"></i></div>
+      <h1 class="phase-title">أمن السحاب والـ APIs</h1>
+      <p class="phase-subtitle">تأمين البيئات السحابية، حماية APIs، إدارة الهويات، والامتثال للمعايير.</p>
+      <div class="phase-badges">
+        <span class="phase-badge">المرحلة 08</span>
+        <span class="phase-badge green">4 أسابيع</span>
+        <span class="phase-badge red">متقدم</span>
+      </div>
+      <div class="phase-stats">
+        <div class="p-stat"><div class="p-stat-num">8</div><div class="p-stat-label">دروس</div></div>
+        <div class="p-stat"><div class="p-stat-num">4</div><div class="p-stat-label">أدوات رئيسية</div></div>
+        <div class="p-stat"><div class="p-stat-num">16+</div><div class="p-stat-label">مهارة مكتسبة</div></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> نظرة عامة</h2>
+      <div class="info-card">
+        <h3>Cloud Security</h3>
+        <p>مع انتقال الشركات للسحابة، أصبح أمن AWS/Azure/GCP من أهم المهارات المطلوبة. ستتعلم كيف تؤمن البنية السحابية وتحمي APIs.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="fi-icon">☁️</div><h4>AWS Security</h4><p>IAM, Security Groups, KMS, CloudTrail, GuardDuty.</p></div>
+        <div class="feature-item"><div class="fi-icon">🔑</div><h4>Identity & Access</h4><p>IAM Policies, Roles, MFA, Zero Trust Architecture.</p></div>
+        <div class="feature-item"><div class="fi-icon">🔗</div><h4>API Security</h4><p>OAuth 2.0, JWT, Rate Limiting, API Gateway.</p></div>
+        <div class="feature-item"><div class="fi-icon">📋</div><h4>Compliance</h4><p>ISO 27001, SOC 2, GDPR, PCI DSS.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> المحاور التفصيلية</h2>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>المحور</th><th>المدة</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Cloud Security Fundamentals — Shared Responsibility</td><td>2 أيام</td></tr>
+          <tr><td>02</td><td>AWS IAM — Users, Roles, Policies</td><td>3 أيام</td></tr>
+          <tr><td>03</td><td>AWS Security Services — GuardDuty, Inspector, Macie</td><td>3 أيام</td></tr>
+          <tr><td>04</td><td>Zero Trust Architecture</td><td>2 أيام</td></tr>
+          <tr><td>05</td><td>API Security — OAuth 2.0 وJWT</td><td>3 أيام</td></tr>
+          <tr><td>06</td><td>HashiCorp Vault — إدارة الأسرار</td><td>2 أيام</td></tr>
+          <tr><td>07</td><td>Cloud Misconfigurations — S3 Buckets, Security Groups</td><td>2 أيام</td></tr>
+          <tr><td>08</td><td>Compliance — ISO 27001, SOC 2, GDPR</td><td>2 أيام</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💻</span> AWS IAM Policy</h2>
+      <div class="code-block">
+        <div class="code-header"><span>policy.json — Least Privilege</span><button class="code-copy">Copy</button></div>
+        <div class="code-content">{
+  <span class="kw">"Version"</span>: <span class="str">"2012-10-17"</span>,
+  <span class="kw">"Statement"</span>: [
+    {
+      <span class="kw">"Effect"</span>: <span class="str">"Allow"</span>,
+      <span class="kw">"Action"</span>: [
+        <span class="str">"s3:GetObject"</span>,
+        <span class="str">"s3:ListBucket"</span>
+      ],
+      <span class="kw">"Resource"</span>: [
+        <span class="str">"arn:aws:s3:::my-bucket"</span>,
+        <span class="str">"arn:aws:s3:::my-bucket/*"</span>
+      ]
+    }
+  ]
+}</div>
+      </div>
+      <div class="alert alert-warn">
+        <span class="a-icon">⚠️</span>
+        <span>اتبع مبدأ أقل صلاحية (Least Privilege) — امنح فقط ما يحتاجه المستخدم ولا شيء أكثر.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> ما يجب إتقانه</h2>
+      <div class="alert alert-ok">
+        <span class="a-icon">🎯</span>
+        <span>
+          <strong>1.</strong> Shared Responsibility Model<br>
+          <strong>2.</strong> AWS IAM وSecurity Groups<br>
+          <strong>3.</strong> OAuth 2.0 وJWT<br>
+          <strong>4.</strong> Zero Trust Architecture<br>
+          <strong>5.</strong> HashiCorp Vault<br>
+          <strong>6.</strong> المعايير الامتثالية
+        </span>
+      </div>
+    </div>
+
+    <div class="phase-nav reveal">
+      <a href="phase7.html" class="phase-nav-link"><i class="fas fa-arrow-right"></i> المرحلة 7</a>
+      <a href="phase9.html" class="phase-nav-link">المرحلة 9: التطبيق العملي <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>CyberDiploma Academy</span> — جميع الحقوق محفوظة</p></footer>
+  <script src="js/phase.js"></script>
+</body>
+</html>

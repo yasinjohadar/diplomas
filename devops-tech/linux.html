@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أساسيات Linux — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>أساسيات Linux</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="tech-hero reveal" style="--hero-glow: rgba(245,158,11,0.3);">
+      <div class="tech-icon-large">🐧</div>
+      <h1 class="tech-title">أساسيات Linux</h1>
+      <p class="tech-subtitle">نظام التشغيل الذي يُشغّل 90% من خوادم العالم. إتقان Linux هو حجر الأساس لكل مهندس DevOps ناجح.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">أساسي</span>
+        <span class="tech-badge green">مفتوح المصدر</span>
+        <span class="tech-badge orange">كل التوزيعات</span>
+      </div>
+    </div>
+
+    <!-- ما هو Linux -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو Linux؟</h2>
+      <div class="info-card">
+        <h3>نظام تشغيل مفتوح المصدر</h3>
+        <p>Linux هو نواة (Kernel) نظام تشغيل طوره Linus Torvalds عام 1991. يُستخدم في الخوادم والسحابة والأجهزة المدمجة والهواتف (Android). معظم البنية التحتية للإنترنت تعمل على Linux.</p>
+      </div>
+      <table class="tech-table">
+        <thead>
+          <tr><th>التوزيعة</th><th>الاستخدام</th><th>مبني على</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>Ubuntu</code></td><td>خوادم + سطح مكتب</td><td>Debian</td></tr>
+          <tr><td><code>CentOS / Rocky</code></td><td>خوادم المؤسسات</td><td>RHEL</td></tr>
+          <tr><td><code>Debian</code></td><td>خوادم مستقرة</td><td>مستقل</td></tr>
+          <tr><td><code>Alpine</code></td><td>حاويات Docker</td><td>مستقل</td></tr>
+          <tr><td><code>Amazon Linux</code></td><td>سحابة AWS</td><td>RHEL/Fedora</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- هيكلية النظام -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🏗️</span> هيكلية نظام Linux</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🔲</div>
+          <h4>Kernel (النواة)</h4>
+          <p>قلب النظام — يدير المعالج والذاكرة والأجهزة والاتصالات.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🖥️</div>
+          <h4>Shell (صدفة الأوامر)</h4>
+          <p>واجهة سطر الأوامر للتفاعل مع النواة. Bash هو الأشهر.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📁</div>
+          <h4>Filesystem (نظام الملفات)</h4>
+          <p>كل شيء في Linux هو ملف. الهيكل يبدأ من <code>/</code> (الجذر).</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">⚙️</div>
+          <h4>Daemons (الخدمات)</h4>
+          <p>عمليات تعمل في الخلفية مثل Nginx و SSH و Cron.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- هيكل المجلدات -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📂</span> هيكل المجلدات الرئيسي</h2>
+      <table class="tech-table">
+        <thead>
+          <tr><th>المسار</th><th>الوصف</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>/</code></td><td>المجلد الجذر (Root)</td></tr>
+          <tr><td><code>/home</code></td><td>مجلدات المستخدمين</td></tr>
+          <tr><td><code>/etc</code></td><td>ملفات الإعدادات</td></tr>
+          <tr><td><code>/var</code></td><td>ملفات متغيرة (سجلات، بيانات)</td></tr>
+          <tr><td><code>/var/log</code></td><td>سجلات النظام والتطبيقات</td></tr>
+          <tr><td><code>/usr</code></td><td>برامج ومكتبات المستخدم</td></tr>
+          <tr><td><code>/tmp</code></td><td>ملفات مؤقتة</td></tr>
+          <tr><td><code>/opt</code></td><td>برامج اختيارية إضافية</td></tr>
+          <tr><td><code>/bin</code></td><td>أوامر أساسية</td></tr>
+          <tr><td><code>/sbin</code></td><td>أوامر النظام (للأدمن)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- إدارة المستخدمين -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">👤</span> إدارة المستخدمين والصلاحيات</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>Terminal — إدارة المستخدمين</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment"># إنشاء مستخدم جديد</span>
+<span class="command">useradd</span> <span class="flag">-m -s /bin/bash</span> devops
+
+<span class="comment"># تعيين كلمة مرور</span>
+<span class="command">passwd</span> devops
+
+<span class="comment"># إضافة لمجموعة sudo</span>
+<span class="command">usermod</span> <span class="flag">-aG sudo</span> devops
+
+<span class="comment"># عرض المستخدمين</span>
+<span class="command">cat</span> /etc/passwd
+
+<span class="comment"># الصلاحيات (r=4, w=2, x=1)</span>
+<span class="command">chmod</span> <span class="flag">755</span> script.sh    <span class="comment"># rwxr-xr-x</span>
+<span class="command">chmod</span> <span class="flag">600</span> config.yml   <span class="comment"># rw-------</span>
+<span class="command">chown</span> <span class="flag">devops:devops</span> app/ <span class="comment"># تغيير المالك</span></div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <span>لا تستخدم <code>root</code> مباشرة! أنشئ مستخدم عادي وأضفه لـ <code>sudo</code> للأمان.</span>
+      </div>
+    </div>
+
+    <!-- إدارة الخدمات -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔄</span> إدارة الخدمات (Systemd)</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>Terminal — أوامر systemctl</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment"># بدء خدمة</span>
+<span class="command">systemctl</span> start nginx
+
+<span class="comment"># إيقاف خدمة</span>
+<span class="command">systemctl</span> stop nginx
+
+<span class="comment"># إعادة تشغيل</span>
+<span class="command">systemctl</span> restart nginx
+
+<span class="comment"># حالة الخدمة</span>
+<span class="command">systemctl</span> status nginx
+
+<span class="comment"># تشغيل تلقائي عند الإقلاع</span>
+<span class="command">systemctl</span> enable nginx
+
+<span class="comment"># عرض كل الخدمات النشطة</span>
+<span class="command">systemctl</span> list-units --type=service</div>
+      </div>
+    </div>
+
+    <!-- إدارة الحزم -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📦</span> إدارة الحزم</h2>
+      <table class="tech-table">
+        <thead>
+          <tr><th>الأمر</th><th>Debian/Ubuntu</th><th>RHEL/CentOS</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>تثبيت</td><td><code>apt install nginx</code></td><td><code>yum install nginx</code></td></tr>
+          <tr><td>تحديث القائمة</td><td><code>apt update</code></td><td><code>yum check-update</code></td></tr>
+          <tr><td>ترقية الكل</td><td><code>apt upgrade -y</code></td><td><code>yum update -y</code></td></tr>
+          <tr><td>حذف</td><td><code>apt remove nginx</code></td><td><code>yum remove nginx</code></td></tr>
+          <tr><td>بحث</td><td><code>apt search nginx</code></td><td><code>yum search nginx</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- الشبكات -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🌐</span> أوامر الشبكات الأساسية</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>Terminal — تشخيص الشبكة</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment"># عرض عناوين IP</span>
+<span class="command">ip</span> addr show
+
+<span class="comment"># فحص الاتصال</span>
+<span class="command">ping</span> <span class="flag">-c 4</span> google.com
+
+<span class="comment"># فحص المنافذ المفتوحة</span>
+<span class="command">ss</span> <span class="flag">-tlnp</span>
+
+<span class="comment"># فحص DNS</span>
+<span class="command">dig</span> example.com
+<span class="command">nslookup</span> example.com
+
+<span class="comment"># تتبع المسار</span>
+<span class="command">traceroute</span> google.com
+
+<span class="comment"># فحص المنصاف (بديل netstat)</span>
+<span class="command">netstat</span> <span class="flag">-tlnp</span></div>
+      </div>
+    </div>
+
+    <!-- الفحص والمراقبة -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📊</span> فحص ومراقبة النظام</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>Terminal — مراقبة الأداء</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment"># استخدام المعالج والذاكرة (مباشر)</span>
+<span class="command">top</span>
+<span class="command">htop</span>  <span class="comment"># نسخة أجمل (تحتاج تثبيت)</span>
+
+<span class="comment"># معلومات الذاكرة</span>
+<span class="command">free</span> <span class="flag">-h</span>
+
+<span class="comment"># مساحة الأقراص</span>
+<span class="command">df</span> <span class="flag">-h</span>
+
+<span class="comment"># حجم المجلدات</span>
+<span class="command">du</span> <span class="flag">-sh</span> /var/log
+
+<span class="comment"># عرض آخر 50 سطر من سجل</span>
+<span class="command">tail</span> <span class="flag">-n 50 -f</span> /var/log/nginx/access.log
+
+<span class="comment"># معلومات النظام</span>
+<span class="command">uname</span> <span class="flag">-a</span>
+<span class="command">lscpu</span>
+<span class="command">uptime</span></div>
+      </div>
+    </div>
+
+    <!-- أفضل الممارسات -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> لا تعمل كمستخدم root — استخدم <code>sudo</code> فقط عند الحاجة<br>
+          <strong>2.</strong> عطّل تسجيل الدخول بكلمة مرور لـ SSH واستخدم المفاتيح<br>
+          <strong>3.</strong> فعّل جدار الحماية <code>ufw</code> أو <code>firewalld</code><br>
+          <strong>4.</strong> حدّث النظام بانتظام: <code>apt update && apt upgrade -y</code><br>
+          <strong>5.</strong> راقب السجلات: <code>/var/log/</code> هو أول مكان للفحص<br>
+          <strong>6.</strong> استخدم <code>tmux</code> أو <code>screen</code> للجلسات البعيدة الطويلة
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="bash.html" class="tech-nav-link">
+        <span class="arrow">→</span>
+        <span>السابق: Bash Scripting</span>
+      </a>
+      <a href="git.html" class="tech-nav-link">
+        <span class="arrow">←</span>
+        <span>التالي: Git & GitHub</span>
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p>
+  </footer>
+
+  <script src="js/tech.js"></script>
+</body>
+</html>

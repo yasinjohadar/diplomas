@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>قواعد البيانات — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>قواعد البيانات</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(249,115,22,0.3);">
+      <div class="tech-icon-large">🗄️</div>
+      <h1 class="tech-title">قواعد البيانات (Databases)</h1>
+      <p class="tech-subtitle">إدارة قواعد البيانات في الإنتاج — النسخ المتماثل، النسخ الاحتياطي، التحسين، والتوسع.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متوسط</span>
+        <span class="tech-badge green">PostgreSQL</span>
+        <span class="tech-badge orange">Redis</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> أنواع قواعد البيانات</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📊</div>
+          <h4>Relational (SQL)</h4>
+          <p>جداول مترابطة بعلاقات. PostgreSQL, MySQL. مثالية للبيانات المهيكلة والمعاملات.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📄</div>
+          <h4>NoSQL (Document)</h4>
+          <p>مستندات مرنة. MongoDB. مناسبة للبيانات غير المهيكلة والتوسع الأفقي.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">⚡</div>
+          <h4>In-Memory (Cache)</h4>
+          <p>بيانات في الذاكرة. Redis, Memcached. سرعة فائقة للجلسات والبيانات المؤقتة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🐘</span> PostgreSQL — الأساسيات</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — PostgreSQL Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت</span>
+<span class="command">apt</span> install postgresql postgresql-contrib <span class="flag">-y</span>
+
+<span class="comment"># الدخول لـ psql</span>
+<span class="command">sudo</span> <span class="flag">-u postgres psql</span>
+
+<span class="comment"># إنشاء قاعدة بيانات ومستخدم</span>
+<span class="command">CREATE DATABASE</span> myapp;
+<span class="command">CREATE USER</span> devops <span class="keyword">WITH</span> PASSWORD <span class="string">'secret'</span>;
+<span class="command">GRANT ALL PRIVILEGES ON DATABASE</span> myapp <span class="keyword">TO</span> devops;
+
+<span class="comment"># عرض القواعد</span>
+<span class="command">\l</span>
+
+<span class="comment"># الاتصال بقاعدة</span>
+<span class="command">\c</span> myapp
+
+<span class="comment"># عرض الجداول</span>
+<span class="command">\dt</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔄</span> النسخ المتماثل (Replication)</h2>
+      <div class="info-card">
+        <h3>Primary → Replica</h3>
+        <p>النسخ المتماثل يسمح بنسخ البيانات من سيرفر رئيسي لآخر احتياطي. يضمن التوفر العالي ويوزع الحمل.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>postgresql.conf — Primary</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">wal_level</span> = replica
+<span class="keyword">max_wal_senders</span> = 3
+<span class="keyword">wal_keep_size</span> = 128
+<span class="keyword">hot_standby</span> = on
+
+<span class="comment"># pg_hba.conf — السماح للـ replica</span>
+<span class="keyword">host</span> replication replica 10.0.0.2/32 md5</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💾</span> النسخ الاحتياطي والاستعادة</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Backup & Restore</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># نسخ كامل</span>
+<span class="command">pg_dump</span> <span class="flag">-U postgres</span> mydb > backup.sql
+
+<span class="comment"># نسخ مضغوط</span>
+<span class="command">pg_dump</span> <span class="flag">-U postgres</span> mydb | <span class="command">gzip</span> > backup.sql.gz
+
+<span class="comment"># نسخ مخصص (أسرع للاستعادة الجزئية)</span>
+<span class="command">pg_dump</span> <span class="flag">-U postgres -Fc</span> mydb > backup.dump
+
+<span class="comment"># استعادة</span>
+<span class="command">psql</span> <span class="flag">-U postgres</span> mydb < backup.sql
+
+<span class="comment"># استعادة من ملف مخصص</span>
+<span class="command">pg_restore</span> <span class="flag">-U postgres -d</span> mydb backup.dump
+
+<span class="comment"># نسخ احتياطي تلقائي مع pgBackRest</span>
+<span class="command">pgbackrest</span> <span class="flag">--stanza=</span>main backup</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">⚡</span> Redis — التخزين المؤقت</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Redis Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت</span>
+<span class="command">apt</span> install redis-server <span class="flag">-y</span>
+
+<span class="comment"># الدخول</span>
+<span class="command">redis-cli</span>
+
+<span class="comment"># أوامر أساسية</span>
+<span class="command">SET</span> user:1 <span class="string">"Ahmed"</span>
+<span class="command">GET</span> user:1
+<span class="command">EXPIRE</span> user:1 3600    <span class="comment"># ينتهي بعد ساعة</span>
+<span class="command">HSET</span> user:1 name <span class="string">"Ahmed"</span> age 25
+<span class="command">HGETALL</span> user:1
+
+<span class="comment"># فحص الاتصال</span>
+<span class="command">PING</span>
+<span class="output">PONG</span>
+
+<span class="comment"># معلومات السيرفر</span>
+<span class="command">INFO</span> server</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>redis.conf — إعدادات أساسية</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># حماية بكلمة مرور</span>
+<span class="keyword">requirepass</span> mySecretPassword123
+
+<span class="comment"># عدم الاستماع على كل الواجهات</span>
+<span class="keyword">bind</span> 127.0.0.1
+
+<span class="comment"># سياسة الحذف عند امتلاء الذاكرة</span>
+<span class="keyword">maxmemory-policy</span> allkeys-lru</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🐳</span> قواعد البيانات في Docker</h2>
+      <div class="code-block">
+        <div class="code-header"><span>docker-compose.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">services</span>:
+  <span class="command">postgres</span>:
+    <span class="keyword">image</span>: postgres:16-alpine
+    <span class="keyword">environment</span>:
+      - <span class="string">POSTGRES_DB=myapp</span>
+      - <span class="string">POSTGRES_USER=devops</span>
+      - <span class="string">POSTGRES_PASSWORD=secret</span>
+    <span class="keyword">volumes</span>:
+      - pgdata:/var/lib/postgresql/data
+    <span class="keyword">ports</span>:
+      - <span class="string">"5432:5432"</span>
+
+  <span class="command">redis</span>:
+    <span class="keyword">image</span>: redis:7-alpine
+    <span class="keyword">command</span>: redis-server <span class="flag">--requirepass</span> secret
+    <span class="keyword">volumes</span>:
+      - redisdata:/data
+    <span class="keyword">ports</span>:
+      - <span class="string">"6379:6379"</span>
+
+<span class="keyword">volumes</span>:
+  <span class="command">pgdata</span>:
+  <span class="command">redisdata</span>:</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> استخدم Volumes لحفظ بيانات قاعدة البيانات<br>
+          <strong>2.</strong> فعّل النسخ الاحتياطي التلقائي يومياً<br>
+          <strong>3.</strong> استخدم كلمات مرور قوية ولا تعرضها في الكود<br>
+          <strong>4.</strong> راقب الأداء بـ <code>pg_stat_activity</code><br>
+          <strong>5.</strong> استخدم Connection Pooling (PgBouncer)<br>
+          <strong>6.</strong> فعّل الـ Indexes على الأعمدة المستخدمة في البحث
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="cicd.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: CI/CD</span></a>
+      <a href="kubernetes.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: Kubernetes</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

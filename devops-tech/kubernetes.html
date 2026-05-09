@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kubernetes — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>Kubernetes</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(79,142,247,0.3);">
+      <div class="tech-icon-large">☸️</div>
+      <h1 class="tech-title">Kubernetes (K8s)</h1>
+      <p class="tech-subtitle">منصة تنسيق الحاويات على نطاق واسع. المعيار الصناعي لإدارة أعباء عمل الإنتاج.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متقدم</span>
+        <span class="tech-badge green">CNCF</span>
+        <span class="tech-badge orange">Production</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو Kubernetes؟</h2>
+      <div class="info-card">
+        <h3>منصة تنسيق الحاويات</h3>
+        <p>Kubernetes (أو K8s) نظام مفتوح المصدر من Google لإدارة الحاويات. يتعامل مع النشر، التوسع، والاستعادة التلقائية. يدير مئات الحاويات عبر عدة خوادم كوحدة واحدة.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📦</div>
+          <h4>Pod</h4>
+          <p>أصغر وحدة في K8s. يحتوي حاوية واحدة أو أكثر تتشارك الشبكة والتخزين.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🎯</div>
+          <h4>Deployment</h4>
+          <p>يُعرّف الحالة المطلوبة للتطبيق. يدير Pods ويتعامل مع التحديثات.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔗</div>
+          <h4>Service</h4>
+          <p>يعرّف كيفية الوصول للـ Pods. يوفر IP ثابت و Load Balancing.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🚪</div>
+          <h4>Ingress</h4>
+          <p>يدير الوصول الخارجي للتطبيقات عبر HTTP/HTTPS مع SSL.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🏗️</span> هيكلية Kubernetes</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🧠</div>
+          <h4>Control Plane</h4>
+          <p>عقل K8s — يدير الكلاستر: API Server, etcd, Scheduler, Controller Manager.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">👷</div>
+          <h4>Worker Nodes</h4>
+          <p>الخوادم التي تشغّل الحاويات: kubelet, kube-proxy, Container Runtime.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">💾</div>
+          <h4>etcd</h4>
+          <p>قاعدة بيانات مفتاح-قيمة تخزن حالة الكلاستر بالكامل.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📋</div>
+          <h4>kubectl</h4>
+          <p>أداة سطر الأوامر للتحكم في K8s. كل التفاعل يمر عبر API Server.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🚀</span> الأوامر الأساسية</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — kubectl Basics</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># فحص الكلاستر</span>
+<span class="command">kubectl</span> cluster-info
+<span class="command">kubectl</span> get nodes
+
+<span class="comment"># عرض Pods</span>
+<span class="command">kubectl</span> get pods
+<span class="command">kubectl</span> get pods <span class="flag">-n</span> kube-system
+
+<span class="comment"># عرض Services</span>
+<span class="command">kubectl</span> get svc
+
+<span class="comment"># عرض Deployments</span>
+<span class="command">kubectl</span> get deployments
+
+<span class="comment"># سجلات Pod</span>
+<span class="command">kubectl</span> logs <span class="flag">-f</span> my-pod
+
+<span class="comment"># الدخول لـ Pod</span>
+<span class="command">kubectl</span> exec <span class="flag">-it</span> my-pod -- /bin/sh
+
+<span class="comment"># وصف مورد (للتشخيص)</span>
+<span class="command">kubectl</span> describe pod my-pod</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> Deployment YAML</h2>
+      <div class="code-block">
+        <div class="code-header"><span>deployment.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">apiVersion</span>: apps/v1
+<span class="keyword">kind</span>: Deployment
+<span class="keyword">metadata</span>:
+  <span class="keyword">name</span>: myapp
+<span class="keyword">spec</span>:
+  <span class="keyword">replicas</span>: 3
+  <span class="keyword">selector</span>:
+    <span class="keyword">matchLabels</span>:
+      <span class="keyword">app</span>: myapp
+  <span class="keyword">template</span>:
+    <span class="keyword">metadata</span>:
+      <span class="keyword">labels</span>:
+        <span class="keyword">app</span>: myapp
+    <span class="keyword">spec</span>:
+      <span class="keyword">containers</span>:
+      - <span class="keyword">name</span>: myapp
+        <span class="keyword">image</span>: myuser/myapp:latest
+        <span class="keyword">ports</span>:
+        - <span class="keyword">containerPort</span>: 3000
+        <span class="keyword">resources</span>:
+          <span class="keyword">requests</span>:
+            <span class="keyword">memory</span>: <span class="string">"128Mi"</span>
+            <span class="keyword">cpu</span>: <span class="string">"250m"</span>
+          <span class="keyword">limits</span>:
+            <span class="keyword">memory</span>: <span class="string">"256Mi"</span>
+            <span class="keyword">cpu</span>: <span class="string">"500m"</span></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>service.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">apiVersion</span>: v1
+<span class="keyword">kind</span>: Service
+<span class="keyword">metadata</span>:
+  <span class="keyword">name</span>: myapp-service
+<span class="keyword">spec</span>:
+  <span class="keyword">selector</span>:
+    <span class="keyword">app</span>: myapp
+  <span class="keyword">ports</span>:
+  - <span class="keyword">port</span>: 80
+    <span class="keyword">targetPort</span>: 3000
+  <span class="keyword">type</span>: ClusterIP</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — تطبيق الملفات</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تطبيق</span>
+<span class="command">kubectl</span> apply <span class="flag">-f</span> deployment.yml
+<span class="command">kubectl</span> apply <span class="flag">-f</span> service.yml
+
+<span class="comment"># التوسع</span>
+<span class="command">kubectl</span> scale deployment myapp <span class="flag">--replicas</span>=5
+
+<span class="comment"># تحديث الصورة</span>
+<span class="command">kubectl</span> set image deployment/myapp myapp=myuser/myapp:v2
+
+<span class="comment"># التراجع عن تحديث</span>
+<span class="command">kubectl</span> rollout undo deployment/myapp</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📦</span> Helm — مدير حزم Kubernetes</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Helm Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت Helm</span>
+<span class="command">curl</span> https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+<span class="comment"># إضافة repository</span>
+<span class="command">helm</span> repo add bitnami https://charts.bitnami.com/bitnami
+
+<span class="comment"># تثبيت حزمة</span>
+<span class="command">helm</span> install my-release bitnami/nginx
+
+<span class="comment"># عرض الحزم المثبتة</span>
+<span class="command">helm</span> list
+
+<span class="comment"># ترقية</span>
+<span class="command">helm</span> upgrade my-release bitnami/nginx
+
+<span class="comment"># إلغاء التثبيت</span>
+<span class="command">helm</span> uninstall my-release</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔧</span> ConfigMaps & Secrets</h2>
+      <div class="code-block">
+        <div class="code-header"><span>config.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">apiVersion</span>: v1
+<span class="keyword">kind</span>: ConfigMap
+<span class="keyword">metadata</span>:
+  <span class="keyword">name</span>: app-config
+<span class="keyword">data</span>:
+  <span class="keyword">APP_ENV</span>: <span class="string">"production"</span>
+  <span class="keyword">APP_PORT</span>: <span class="string">"3000"</span>
+  <span class="keyword">LOG_LEVEL</span>: <span class="string">"info"</span>
+---
+<span class="keyword">apiVersion</span>: v1
+<span class="keyword">kind</span>: Secret
+<span class="keyword">metadata</span>:
+  <span class="keyword">name</span>: app-secret
+<span class="keyword">type</span>: Opaque
+<span class="keyword">data</span>:
+  <span class="keyword">DB_PASSWORD</span>: c2VjcmV0MTIz  <span class="comment"># base64 encoded</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> حدد دائماً resource limits و requests<br>
+          <strong>2.</strong> استخدم Namespaces لعزل البيئات<br>
+          <strong>3.</strong> فعّل Health Checks (liveness & readiness)<br>
+          <strong>4.</strong> استخدم Helm لإدارة التطبيقات المعقدة<br>
+          <strong>5.</strong> لا تضع Secrets في YAML — استخدم Vault أو External Secrets<br>
+          <strong>6.</strong> فعّل RBAC للتحكم بالصلاحيات
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="databases.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: قواعد البيانات</span></a>
+      <a href="iac.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: البنية التحتية كـ Code</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

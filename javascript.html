@@ -3,180 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاور الجافا سكريبت</title>
-    <link rel="stylesheet" href="css/main.css?v=2.0">
-    <script src="js/theme.js?v=2.0" defer></script>
+    <title>دبلوم JavaScript — أكاديمية كلاود سوفت</title>
+    <link rel="stylesheet" href="css/diploma.css">
+    <style>
+      :root { --module-color: var(--accent-orange); --hero-glow: rgba(245,158,11,0.3); }
+    </style>
 </head>
 <body>
 
-    <div class="theme-toggle-container" style="top: 20px; left: 20px; display: flex; gap: 15px;">
-        <a href="index.html" class="theme-toggle-btn" aria-label="Back to Home" style="text-decoration:none; transform: scaleX(-1);">
-            🔙
-        </a>
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-            🌙
-        </button>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🎓</div>
+        <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <span class="separator">/</span>
+        <span>JavaScript</span>
+      </div>
+      <a href="index.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="diploma-hero reveal">
+      <div class="diploma-icon">⚡</div>
+      <h1 class="diploma-title">دبلوم JavaScript</h1>
+      <p class="diploma-subtitle">احتراف تطوير الواجهات المتقدمة مع React.js و Next.js و TypeScript وبناء تطبيقات ويب حديثة ومتكاملة.</p>
+      <div class="diploma-badges">
+        <span class="diploma-badge">المستوى الثاني</span>
+        <span class="diploma-badge green">React & Next.js</span>
+        <span class="diploma-badge orange">TypeScript</span>
+      </div>
+      <div class="diploma-stats">
+        <div class="d-stat"><div class="d-stat-num">4</div><div class="d-stat-label">أقسام رئيسية</div></div>
+        <div class="d-stat"><div class="d-stat-num">60+</div><div class="d-stat-label">درس تفصيلي</div></div>
+        <div class="d-stat"><div class="d-stat-num">5</div><div class="d-stat-label">مشاريع عملية</div></div>
+        <div class="d-stat"><div class="d-stat-num">12+</div><div class="d-stat-label">تقنية وأداة</div></div>
+      </div>
     </div>
 
-    <div class="container">
-        <header>
-            <a href="https://claudsoft.com" target="_blank">
-                <img src="images/logo.png" alt="ClaudSoft Logo" class="logo-header">
-            </a>
-            <div class="badge-pro">JavaScript - React js - Next js - MongoDB</div>
-            <h1>محاور كورس الفرونت إند المستوى الثاني</h1>
-            <p class="subtitle">كورس تصميم مواقع الويب الإحترافي</p>
-        </header>
+    <div class="modules-section">
+      <div class="section-header reveal">
+        <div class="section-title"><span class="icon">📖</span> محاور الدبلوم</div>
+        <p class="section-desc">من JavaScript الأساسية حتى بناء تطبيقات كاملة بـ React و Next.js.</p>
+      </div>
 
-        <div class="modules-container">
-            
-            <!-- Module 1 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">01</div>
-                    <div class="module-title">
-                        <h2>القسم الأول</h2>
-                        <p>أساسيات ومفاهيم الجافا سكريبت العميقة</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة وبيئة العمل</strong> — ما هي الجافاسكربت وأين تُستخدم، إعداد الأدوات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأساسيات</strong> — المتغيرات، الأنواع، العمليات، التعليقات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التحكم في التدفق</strong> — الجمل الشرطية والحلقات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الدوال</strong> — التعريف، الدوال السهمية، البراميترات، higher-order.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>النطاق والكلوزر</strong> — scope، closures.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الكائنات</strong> — الخصائص، الطرق، prototype.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>المصفوفات</strong> — التعامل مع العناصر وطرق مثل map وfilter وreduce.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>this وCall/Apply/Bind</strong> — فهم السياق والتحكم به.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>ميزات ES6+</strong> — let/const، destructuring، classes، modules.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الوحدات (Modules)</strong> — import/export وتنظيم الكود.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>DOM</strong> — التعديل على العناصر والسمات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأحداث</strong> — التعامل مع Event Listeners وdelegation.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>واجهات المتصفح</strong> — LocalStorage، Fetch API، Geolocation.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التواصل الشبكي</strong> — AJAX، Fetch، WebSockets.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>البرمجة غير المتزامنة</strong> — callbacks، promises، async/await.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>إدارة الحزم</strong> — npm، scripts، Babel.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأداء</strong> — تحسين السرعة واستخدام Web Workers.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الوصولية والتدويل</strong> — مبادئ A11y ودعم اللغات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Node.js</strong> — بناء خوادم والتعامل مع الملفات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مشاريع عملية</strong> — تطبيقات مثل ToDo أو متجر صغير.</div>
-                </div>
-            </div>
-
-            <!-- Module 2 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">02</div>
-                    <div class="module-title">
-                        <h2>القسم الثاني</h2>
-                        <p>احتراف مكتبة React.js</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى React</strong> — مفهوم الـ component-based UI، Virtual DOM، لماذا نستخدم React ومتى تكون مناسبة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>البيئة والأدوات</strong> — Node/npm، إنشاء المشاريع، React DevTools.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>JSX</strong> — كتابة JSX، الفروقات عن HTML، className وchildren.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>المكونات (Components)</strong> — الوظيفية والكلاس، تركيب وإعادة الاستخدام.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Props وState</strong> — تمرير البيانات، إدارة الحالة، رفع الحالة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>دورة حياة المكونات</strong> — lifecycle و useEffect.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأحداث والـ DOM</strong> — event handlers، النماذج، refs.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>القوائم والمفاتيح (Lists & Keys)</strong> — القوائم الديناميكية وأهمية الـ key.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>النماذج والتحقق</strong> — controlled components، Formik, React Hook Form.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Refs والـ Imperative Code</strong> — useRef، forwardRef.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الـ Hooks الأساسية</strong> — useState، useEffect، useRef، useContext.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الـ Hooks المتقدمة</strong> — useMemo، useCallback، useReducer.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الـ Custom Hooks</strong> — كتابة دوال قابلة لإعادة الاستخدام.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Context API</strong> — توفير البيانات بدون prop-drilling.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>إدارة الحالة المتقدمة</strong> — Redux / Zustand / Recoil.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>جلب البيانات</strong> — React Query أو SWR.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Suspense للبيانات</strong> — مفاهيم التزامن المتقدمة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>تقسيم الكود (Code Splitting)</strong> — التحميل الكسول للواجهات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التوجيه (Routing)</strong> — react-router، حماية المسارات (protected routes).</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التعامل مع الأخطاء</strong> — Error Boundaries.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأداء Optimization</strong> — تقليل إعادة التصيير.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الاختبار (Testing)</strong> — Unit tests, Cypress.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الستايلينغ وCSS</strong> — CSS Modules, Tailwind.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>العمل مع TypeScript</strong> — Components Typed.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مشاريع عملية مقترحة</strong> — ToDo مع CRUD، مدونة، لوحة تحكم، تطبيق دردشة.</div>
-                </div>
-            </div>
-
-            <!-- Module 3 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">03</div>
-                    <div class="module-title">
-                        <h2>القسم الثالث</h2>
-                        <p>شرح إطار العمل Next.js الشامل</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى Next.js</strong> — ما هو ولماذا يُستخدم؟ مميزات SSR, SSG.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>إعداد البيئة</strong> — التثبيت، وهيكل المشروع الافتراضي.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الصفحات (Pages)</strong> — ديناميكية وثابتة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التوجيه (Routing)</strong> — التوجيه التلقائي الديناميكي والمتداخل.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>جلب البيانات</strong> — getStaticProps، getServerSideProps، getStaticPaths.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التصيير (Rendering)</strong> — الفرق بين SSR, SSG, ISR.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الصور (Image Optimization)</strong> — next/image للتحميل الذكي للصور.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>API Routes</strong> — إنشاء واجهات برمجية داخل المشروع.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>المصادقة (Authentication)</strong> — NextAuth.js و JWTs.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الوسيطات (Middleware)</strong> — التحكم بالطلبات المركزية.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التدويل (i18n)</strong> — دعم اللغات المتعددة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>SEO</strong> — تحسين محركات البحث مع Next.js.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Next.js 13+ (App Router)</strong> — نظام المجلدات الجديد والمكونات المحسنة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>React Server Components</strong> — الفوارق عن المكونات العادية.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>Streaming وSuspense</strong> — التصيير الجزئي.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>النشر (Deployment)</strong> — على منصات سحابية مثل Vercel.</div>
-                </div>
-            </div>
-
-            <!-- Module 4 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">04</div>
-                    <div class="module-title">
-                        <h2>القسم الرابع</h2>
-                        <p>قواعد بيانات الـ NoSQL عبر MongoDB</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى MongoDB</strong> — مفهوم NoSQL والمميزات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>تثبيت وإعداد البيئة</strong> — MongoDB Atlas و Compass.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>المفاهيم الأساسية</strong> — قواعد، مجموعات، ووثائق.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>أنواع البيانات</strong> — هيكلة الوثائق الداخلية.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الأوامر الأساسية والاستعلامات</strong> — CRUD وعوامل التصفية.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>الفهارس (Indexes)</strong> — تحسين الأداء.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التجميع (Aggregation)</strong> — معالجة خطوط الإنتاج.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>العلاقات بين البيانات</strong> — التضمين أو الإشارة (Embedding vs Referencing).</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>النسخ المتماثل والمجزأ</strong> — Replication و Sharding.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التكامل عبر Mongoose</strong> — ربط قواعد البيانات و Node.js.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التكامل مع Next.js</strong> — بناء API Routes مع MongoDB.</div>
-                </div>
-            </div>
-
-            <!-- Module 5 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">05</div>
-                    <div class="module-title">
-                        <h2>القسم الخامس</h2>
-                        <p>تطوير واجهات خلفية سريعة مع Strapi</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>مقدمة إلى Strapi</strong> — ما هو الـ Headless CMS ومميزاته.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>إعداد البيئة</strong> — التثبيت وهيكلة المشاريع.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>إنشاء Content Types</strong> — واجهات الحقول والعلاقات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>REST API & GraphQL API</strong> — التصفية، الترتيب، واستهلاك الواجهات.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>المصادقة والصلاحيات</strong> — JWT، تكامل OAuth وإدارة الأدوار.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>رفع الملفات</strong> — إدارة الوسائط عبر الأنظمة السحابية الداعمة.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التخصيص (Customization)</strong> — تعديل الـ Controllers و Middleware.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>النشر السحابي</strong> — Vercel، Heroku و DigitalOcean.</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>التكامل مع Frontend</strong> — مشاريع مدونة ومتجر مع Strapi و Next.js.</div>
-                </div>
-            </div>
-
+      <!-- JS Basics -->
+      <div class="module-card reveal" style="--module-color: var(--accent-orange);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">01</div>
+          <div class="module-title">
+            <h2>أساسيات JavaScript</h2>
+            <p>لغة البرمجة الأساسية للويب — من الصفر للاحتراف</p>
+          </div>
         </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في JavaScript وكيف تعمل في المتصفح</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">المتغيرات وأنواع البيانات (Variables & Data Types)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الشروط والحلقات (Conditions & Loops)</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الدوال (Functions) والنطاق (Scope)</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">المصفوفات والكائنات (Arrays & Objects)</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">التعامل مع DOM — تعديل العناصر ديناميكياً</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">الأحداث (Events) والتفاعل مع المستخدم</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">التخزين المحلي (LocalStorage & SessionStorage)</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">البرمجة غير المتزامنة (Async/Await, Promises)</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">جلب البيانات من APIs (Fetch API)</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">ES6+ — الميزات الحديثة</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">مشروع عملي: تطبيق إدارة المهام</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TypeScript -->
+      <div class="module-card reveal" style="--module-color: var(--accent-orange);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">02</div>
+          <div class="module-title">
+            <h2>TypeScript</h2>
+            <p>JavaScript بأمان الأنواع — المعيار الصناعي الحديث</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في TypeScript ولماذا نحتاجه</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">الأنواع الأساسية (Types & Interfaces)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Generics و Utility Types</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Enums و Tuples</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Type Guards و Type Narrowing</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">إعداد tsconfig.json والبيئة</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- React -->
+      <div class="module-card reveal" style="--module-color: var(--accent-orange);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">03</div>
+          <div class="module-title">
+            <h2>React.js</h2>
+            <p>مكتبة بناء واجهات المستخدم الأكثر طلباً في السوق</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في React و JSX</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">المكونات (Components) والخصائص (Props)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الحالة (State) و Hooks الأساسية</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">useState, useEffect, useContext, useReducer</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">التوجيه بـ React Router</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">إدارة الحالة بـ Zustand / Redux</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع Forms والتحقق</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Custom Hooks</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">الاستعلام عن البيانات بـ React Query</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">مشروع: تطبيق متجر إلكتروني بـ React</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next.js -->
+      <div class="module-card reveal" style="--module-color: var(--accent-orange);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">04</div>
+          <div class="module-title">
+            <h2>Next.js & MongoDB</h2>
+            <p>إطار العمل الكامل — SSR, SSG, API Routes وقواعد بيانات</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في Next.js والفرق عن React</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">التوجيه بـ App Router</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Server Components vs Client Components</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Server-Side Rendering (SSR) و Static Generation (SSG)</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">API Routes وبناء Backend</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">التعامل مع MongoDB و Mongoose</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">المصادقة (Authentication) بـ NextAuth</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">تحسين الأداء والـ SEO</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">النشر على Vercel</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text"><strong>المشروع الختامي:</strong> منصة متكاملة بـ Next.js</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="modules-section reveal">
+      <div class="section-header">
+        <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item"><div class="feature-icon">⚛️</div><h4>React.js كامل</h4><p>من الأساسيات حتى المشاريع المتقدمة مع Hooks.</p></div>
+        <div class="feature-item"><div class="feature-icon">🔷</div><h4>TypeScript</h4><p>أمان الأنواع — المعيار المطلوب في كل الشركات.</p></div>
+        <div class="feature-item"><div class="feature-icon">▲</div><h4>Next.js</h4><p>إطار العمل الكامل للـ Full-Stack.</p></div>
+        <div class="feature-item"><div class="feature-icon">🗄️</div><h4>MongoDB</h4><p>قاعدة بيانات NoSQL للمشاريع الحديثة.</p></div>
+      </div>
+    </div>
+
+    <div class="alert alert-success reveal">
+      <span class="alert-icon">🚀</span>
+      <span>بعد إتمام هذا الدبلوم ستكون جاهزاً للعمل كمطور Front-End محترف أو الانتقال لدبلوم PHP للـ Full-Stack!</span>
+    </div>
+
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>أكاديمية كلاود سوفت</span> — جميع الحقوق محفوظة</p></footer>
+
+  <script src="js/diploma.js"></script>
 </body>
 </html>

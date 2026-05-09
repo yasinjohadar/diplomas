@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المراقبة والسجلات — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>المراقبة والسجلات</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(16,185,129,0.3);">
+      <div class="tech-icon-large">📊</div>
+      <h1 class="tech-title">المراقبة والسجلات (Monitoring & Logging)</h1>
+      <p class="tech-subtitle">راقب كل شيء في بنيتك التحتية. تنبيهات فورية، لوحات تحكم تفاعلية، وسجلات مركزية.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متقدم</span>
+        <span class="tech-badge green">Prometheus</span>
+        <span class="tech-badge orange">Grafana</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> لماذا المراقبة؟</h2>
+      <div class="info-card">
+        <h3>Observability — الرؤية الكاملة</h3>
+        <p>بدون مراقبة، أنت أعمى. المراقبة تتيح لك اكتشاف المشاكل قبل أن يلاحظها المستخدمون، فهم أداء النظام، واتخاذ قرارات مبنية على بيانات.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📈</div>
+          <h4>Metrics (المقاييس)</h4>
+          <p>أرقام رقمية: استخدام CPU، الذاكرة، الطلبات/ثانية. Prometheus يجمعها.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📋</div>
+          <h4>Logs (السجلات)</h4>
+          <p>نصوص تفصيلية: أخطاء، تحذيرات، أحداث. Loki و Elasticsearch يخزنانها.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔔</div>
+          <h4>Alerts (التنبيهات)</h4>
+          <p>إشعارات فورية عند تجاوز الحدود. عبر Slack, Email, PagerDuty.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📊</div>
+          <h4>Dashboards (اللوحات)</h4>
+          <p>عرض مرئي لكل المقاييس. Grafana يوفر لوحات جميلة وقابلة للتخصيص.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔥</span> Prometheus</h2>
+      <div class="info-card">
+        <h3>قاعدة بيانات المقاييس</h3>
+        <p>Prometheus يجمع المقاييس من التطبيقات والبنية التحتية عبر scraping. يستخدم PromQL للاستعلام.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>prometheus.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">global</span>:
+  <span class="keyword">scrape_interval</span>: 15s
+
+<span class="keyword">scrape_configs</span>:
+  - <span class="keyword">job_name</span>: <span class="string">'prometheus'</span>
+    <span class="keyword">static_configs</span>:
+      - <span class="keyword">targets</span>: [<span class="string">'localhost:9090'</span>]
+
+  - <span class="keyword">job_name</span>: <span class="string">'node-exporter'</span>
+    <span class="keyword">static_configs</span>:
+      - <span class="keyword">targets</span>: [<span class="string">'localhost:9100'</span>]
+
+  - <span class="keyword">job_name</span>: <span class="string">'nginx'</span>
+    <span class="keyword">static_configs</span>:
+      - <span class="keyword">targets</span>: [<span class="string">'localhost:9113'</span>]</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>PromQL — أمثلة استعلامات</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># استخدام CPU (متوسط 5 دقائق)</span>
+<span class="command">rate</span>(node_cpu_seconds_total{mode="idle"}[5m])
+
+<span class="comment"># استخدام الذاكرة</span>
+<span class="command">node_memory_MemAvailable_bytes</span> / node_memory_MemTotal_bytes * 100
+
+<span class="comment"># طلبات HTTP في الثانية</span>
+<span class="command">rate</span>(http_requests_total[5m])
+
+<span class="comment"># معدل الأخطاء 5xx</span>
+<span class="command">rate</span>(http_requests_total{status=~"5.."}[5m])</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📊</span> Grafana</h2>
+      <div class="info-card">
+        <h3>لوحات تحكم مرئية</h3>
+        <p>Grafana يتصل بـ Prometheus (ومصادر أخرى) ويعرض البيانات في لوحات تحكم جميلة. يدعم التنبيهات والمشاركة.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>docker-compose.yml — Monitoring Stack</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">services</span>:
+  <span class="command">prometheus</span>:
+    <span class="keyword">image</span>: prom/prometheus:latest
+    <span class="keyword">volumes</span>:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    <span class="keyword">ports</span>:
+      - <span class="string">"9090:9090"</span>
+
+  <span class="command">grafana</span>:
+    <span class="keyword">image</span>: grafana/grafana:latest
+    <span class="keyword">volumes</span>:
+      - grafana-data:/var/lib/grafana
+    <span class="keyword">ports</span>:
+      - <span class="string">"3000:3000"</span>
+    <span class="keyword">environment</span>:
+      - <span class="string">GF_SECURITY_ADMIN_PASSWORD=admin</span>
+
+  <span class="command">node-exporter</span>:
+    <span class="keyword">image</span>: prom/node-exporter:latest
+    <span class="keyword">ports</span>:
+      - <span class="string">"9100:9100"</span>
+
+<span class="keyword">volumes</span>:
+  <span class="command">prometheus-data</span>:
+  <span class="command">grafana-data</span>:</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> Loki — إدارة السجلات</h2>
+      <div class="info-card">
+        <h3>سجلات خفيفة ومركزية</h3>
+        <p>Loki من نفس شركة Grafana. يجمع السجلات من كل الخوادم والتطبيقات في مكان واحد. يستخدم LogQL للاستعلام.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>LogQL — أمثلة استعلامات</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># كل سجلات Nginx</span>
+{<span class="keyword">job</span>=<span class="string">"nginx"</span>}
+
+<span class="comment"># أخطاء فقط</span>
+{<span class="keyword">job</span>=<span class="string">"nginx"</span>} |= <span class="string">"error"</span>
+
+<span class="comment"># عدد الأخطاء في الساعة</span>
+<span class="command">count_over_time</span>({job="nginx"} |= "error" [1h])
+
+<span class="comment"># سجلات تطبيق معين</span>
+{<span class="keyword">app</span>=<span class="string">"myapp"</span>, <span class="keyword">level</span>=<span class="string">"error"</span>}</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔔</span> التنبيهات (Alerting)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>alerts.yml — Prometheus Alert Rules</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">groups</span>:
+  - <span class="keyword">name</span>: <span class="string">server-alerts</span>
+    <span class="keyword">rules</span>:
+      - <span class="keyword">alert</span>: <span class="string">HighCPUUsage</span>
+        <span class="keyword">expr</span>: 100 - (avg by(instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        <span class="keyword">for</span>: 5m
+        <span class="keyword">labels</span>:
+          <span class="keyword">severity</span>: warning
+        <span class="keyword">annotations</span>:
+          <span class="keyword">summary</span>: <span class="string">"CPU usage > 80% on {{ $labels.instance }}"</span>
+
+      - <span class="keyword">alert</span>: <span class="string">HighMemoryUsage</span>
+        <span class="keyword">expr</span>: (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 > 90
+        <span class="keyword">for</span>: 5m
+        <span class="keyword">labels</span>:
+          <span class="keyword">severity</span>: critical
+        <span class="keyword">annotations</span>:
+          <span class="keyword">summary</span>: <span class="string">"Memory usage > 90% on {{ $labels.instance }}"</span>
+
+      - <span class="keyword">alert</span>: <span class="string">ServiceDown</span>
+        <span class="keyword">expr</span>: up == 0
+        <span class="keyword">for</span>: 1m
+        <span class="keyword">labels</span>:
+          <span class="keyword">severity</span>: critical
+        <span class="keyword">annotations</span>:
+          <span class="keyword">summary</span>: <span class="string">"{{ $labels.job }} is down"</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> راقب Golden Signals: Latency, Traffic, Errors, Saturation<br>
+          <strong>2.</strong> لا ترسل تنبيهات لكل شيء — فقط لما يحتاج تدخل<br>
+          <strong>3.</strong> استخدم Dashboards جاهزة من Grafana Community<br>
+          <strong>4.</strong> فعّل Retention Policy للسجلات القديمة<br>
+          <strong>5.</strong> اختبر التنبيهات بشكل دوري<br>
+          <strong>6.</strong> استخدم SLIs و SLOs لقياس جودة الخدمة
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="iac.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: البنية التحتية كـ Code</span></a>
+      <a href="cloud.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: منصات السحابة</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

@@ -3,125 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاور كورس الفرونت إند</title>
-    <link rel="stylesheet" href="css/main.css?v=2.0">
-    <script src="js/theme.js?v=2.0" defer></script>
+    <title>دبلوم Front-End — أكاديمية كلاود سوفت</title>
+    <link rel="stylesheet" href="css/diploma.css">
+    <style>
+      :root { --module-color: var(--accent-cyan); --hero-glow: rgba(6,182,212,0.3); }
+    </style>
 </head>
 <body>
 
-    <div class="theme-toggle-container" style="top: 20px; left: 20px; display: flex; gap: 15px;">
-        <a href="index.html" class="theme-toggle-btn" aria-label="Back to Home" style="text-decoration:none; transform: scaleX(-1);">
-            🔙
-        </a>
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-            🌙
-        </button>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🎓</div>
+        <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <span class="separator">/</span>
+        <span>Front-End</span>
+      </div>
+      <a href="index.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="diploma-hero reveal">
+      <div class="diploma-icon">🎨</div>
+      <h1 class="diploma-title">دبلوم الـ Front-End</h1>
+      <p class="diploma-subtitle">إتقان تصميم وبناء واجهات الويب الاحترافية من الصفر حتى المشاريع المتكاملة مع أحدث التقنيات.</p>
+      <div class="diploma-badges">
+        <span class="diploma-badge">المستوى الأول</span>
+        <span class="diploma-badge green">قسم مجاني</span>
+        <span class="diploma-badge orange">معسكر متقدم</span>
+      </div>
+      <div class="diploma-stats">
+        <div class="d-stat"><div class="d-stat-num">3</div><div class="d-stat-label">أقسام رئيسية</div></div>
+        <div class="d-stat"><div class="d-stat-num">50+</div><div class="d-stat-label">درس تفصيلي</div></div>
+        <div class="d-stat"><div class="d-stat-num">6</div><div class="d-stat-label">مشاريع عملية</div></div>
+        <div class="d-stat"><div class="d-stat-num">15+</div><div class="d-stat-label">تقنية وأداة</div></div>
+      </div>
     </div>
 
-    <div class="container">
-        <header>
-            <a href="https://claudsoft.com" target="_blank">
-                <img src="images/logo.png" alt="ClaudSoft Logo" class="logo-header">
-            </a>
-            <div class="badge-pro">القسم المجاني والمعسكر المدفوع</div>
-            <h1>محاور كورس الفرونت إند (المستوى الأول)</h1>
-            <p class="subtitle">كورس تصميم مواقع الويب الإحترافي من الصفر وحتى بناء واجهات متجاوبة ومتكاملة</p>
-        </header>
+    <!-- HTML5 Module -->
+    <div class="modules-section">
+      <div class="section-header reveal">
+        <div class="section-title"><span class="icon">📖</span> محاور الدبلوم</div>
+        <p class="section-desc">منهج تدريجي يأخذك من أساسيات HTML حتى بناء مشاريع احترافية متكاملة.</p>
+      </div>
 
-        <div class="modules-container">
-            
-            <!-- Module 1 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">01</div>
-                    <div class="module-title">
-                        <h2>القسم الأول (المجاني) - HTML5</h2>
-                        <p>دراسة لغة بناء وهيكلة صفحات الويب بالكامل</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> مقدمة للغة HTML وأساسيات البناء والوسوم</div>
-                    <div class="topic-item"><span class="topic-icon"></span> العناوين الرئيسية، الفرعية، والفقرات النصية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إدراج الروابط التشعبية والصور الديناميكية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> القوائم المنظمة والغير منظمة (Lists)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> النماذج (Forms) وحقول الإدخال المتعددة</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء وتخصيص الجداول (Tables) لعرض البيانات</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التنسيق التأسيسي والأنماط الأولية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دمج ملفات الصوت والفيديو وتشغيلها في المتصفح</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الجداول المتقدمة والنماذج المعقدة</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الوسوم الشائعة والأدوات المساعدة لتهيئة الموقع</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تضمين الخرائط الجغرافية (Google Maps)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تجهيز الموقع للتجاوب (Responsive Concepts) وتصميم الواجهات</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الأمان السيبراني للواجهات وأفضل الممارسات (Best Practices)</div>
-                </div>
-            </div>
-
-            <!-- Module 2 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">02</div>
-                    <div class="module-title">
-                        <h2>القسم الأول (المجاني) - CSS3</h2>
-                        <p>تجميل وتنسيق المواقع الإلكترونية باحترافية وبناء مشروع متكامل</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> مقدمة (Introduction) عن أساسيات التصميم بالمحددات</div>
-                    <div class="topic-item"><span class="topic-icon"></span> القواعد الكتابية (Syntax) والتعليقات (Comments)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> أنظمة وملفات الألوان المتعددة (Colors: Hex, RGB, HSL)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تخصيص حواف وحدود العناصر (Borders)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الهوامش الخارجية والداخلية (Margin & Padding)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التحكم التفصيلي في الأبعاد (Width & Height)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> استيراد وتخصيص الخطوط وأحجامها (Fonts)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> استخدام مكتبات الأيقونات العالمية (Icons)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنسيق وتجميل الروابط التفاعلية (Links)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> جدولة الواجهات الاستعراضية (Tables Styling)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> طرق عرض العناصر الانسيابية (Display: Block, Inline, Matrix)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> مواقع وتمحور العناصر على الشاشة (Positions)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> ترتيب المحاور وشفافية الطبقات (Z-index & Opacity)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المحاذاة الجانبية والمركزية (Alignment)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> العناصر التكميلية الوهمية (Pseudo Elements & Classes)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> فلاتر وتأثيرات الصور (Photos Filters)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> وحدات القياس المتجاوبة والمرنة (Units: px, em, rem, vh)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> محددات العناصر الشجرية (Advanced Selectors)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تأثيرات النصوص والظلال (Text Shadow & Transitions)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تصميم وتنفيذ الخلفيات المتعددة (Backgrounds & Gradients)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنسيق وتجميل القوائم التصفحية (Lists styling)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> هندسة توزيع العناصر الحديثة باستخدام (Flexbox)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء التخطيط الشبكي ثنائي الأبعاد (Grid Layout)</div>
-                    <div class="topic-item" style="border-right-color: var(--secondary); background: var(--topic-hover-bg);"><span class="topic-icon"></span> <strong>المشروع الختامي:</strong> بناء مشروع متكامل لشركة لتوظيف كل ما سبق</div>
-                </div>
-            </div>
-
-            <!-- Module 3 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">03</div>
-                    <div class="module-title">
-                        <h2>القسم الثاني - المعسكر</h2>
-                        <p>أطر العمل، المشاريع الاحترافية، التحكم بالإصدارات وإدارة الاستضافة المتقدمة</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> دراسة إطار العمل (Bootstrap) بالكامل لهيكلة مرنة</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء مشروع متجر الكتروني متكامل باستخدام HTML + CSS + Bootstrap</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء مشروع لوحة تحكم (Dashboard) متكاملة باستخدام Bootstrap</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنفيذ تحدي شامل ومتقدم لبناء موقع لإدارة الوجبات داخل المطاعم</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دراسة وتطبيق إطار العمل الوظيفي (Tailwind CSS) بالكامل</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء مشروع منصة تعليمية (LMS - موقع إدارة وبيع الكورسات)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنفيذ تحدي شامل لبناء متجر رقمي كامل باستخدام Tailwind CSS</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دراسة وتطبيق معالج الـ CSS المتقدم (SASS) بالكامل</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء مشروع مخصص لموقع التسويق العقاري باستخدام الـ SASS</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنفيذ تحدي شامل لبناء منصة وساطة للبحث عن الوظائف</div>
-                    <div class="topic-item"><span class="topic-icon"></span> احتراف مجموعة من أهم المكتبات الديناميكية (Libraries) اللازمة لسوق العمل</div>
-                    <div class="topic-item"><span class="topic-icon"></span> شرح وأساسيات (Git and Github) وإدارة المشاريع برمجياً وعزل الإصدارات</div>
-                    <div class="topic-item"><span class="topic-icon"></span> شرح التحكم بالسيرفرات (CPanel)، النطاقات، ورفع المواقع بأحدث الطرق</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>ميزة:</strong> يحصل كل طالب على حساب (كانفا برو) مجاناً لمدة عام كامل</div>
-                    <div class="topic-item"><span class="topic-icon"></span> <strong>ميزة:</strong> يحصل كل طالب على مكتبة قوالب (مدفوعة) ضخمة لمشاريع متعددة</div>
-                </div>
-            </div>
-
+      <div class="module-card reveal" style="--module-color: var(--accent-cyan);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">01</div>
+          <div class="module-title">
+            <h2>أساسيات HTML5 <span class="topic-badge free">مجاني</span></h2>
+            <p>لغة بناء وهيكلة صفحات الويب بالكامل</p>
+          </div>
         </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة للغة HTML وأساسيات البناء والوسوم</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">العناوين الرئيسية والفرعية والفقرات النصية</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">إدراج الروابط التشعبية والصور الديناميكية</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">القوائم المنظمة والغير منظمة (Lists)</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">النماذج (Forms) وحقول الإدخال المتعددة</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">بناء وتخصيص الجداول (Tables) لعرض البيانات</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">دمج ملفات الصوت والفيديو وتشغيلها في المتصفح</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">الجداول المتقدمة والنماذج المعقدة</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">تضمين الخرائط الجغرافية (Google Maps)</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">تجهيز الموقع للتجاوب (Responsive Concepts)</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">الأمان السيبراني للواجهات وأفضل الممارسات</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CSS3 Module -->
+      <div class="module-card reveal" style="--module-color: var(--accent-cyan);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">02</div>
+          <div class="module-title">
+            <h2>احتراف CSS3 <span class="topic-badge free">مجاني</span></h2>
+            <p>تجميل وتنسيق المواقع باحترافية وبناء مشروع متكامل</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة عن أساسيات التصميم بالمحددات (Selectors)</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">أنظمة الألوان المتعددة (Hex, RGB, HSL)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الحواف والحدود (Borders) والهوامش (Margin & Padding)</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">استيراد وتخصيص الخطوط وأحجامها (Fonts)</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">مكتبات الأيقونات العالمية (Icons)</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">طرق عرض العناصر (Display: Block, Inline, Flex)</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">تمحور العناصر على الشاشة (Positions)</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">العناصر الوهمية (Pseudo Elements & Classes)</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">فلاتر وتأثيرات الصور (Filters)</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">وحدات القياس المتجاوبة (px, em, rem, vh, vw)</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">تأثيرات النصوص والظلال والانتقالات</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">الخلفيات المتعددة والتدرجات (Gradients)</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">هندسة توزيع العناصر بـ Flexbox</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">التخطيط الشبكي ثنائي الأبعاد (Grid Layout)</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text"><strong>المشروع الختامي:</strong> بناء موقع شركة متكامل</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bootcamp Module -->
+      <div class="module-card reveal" style="--module-color: var(--accent-cyan);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">03</div>
+          <div class="module-title">
+            <h2>المعسكر المتقدم <span class="topic-badge paid">مدفوع</span></h2>
+            <p>أطر العمل، المشاريع الاحترافية، Git والاستضافة</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إطار العمل Bootstrap بالكامل</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">مشروع متجر إلكتروني (HTML + CSS + Bootstrap)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">مشروع لوحة تحكم (Dashboard) متكاملة</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">تحدي: موقع إدارة وجبات المطاعم</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">إطار العمل Tailwind CSS بالكامل</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">مشروع منصة تعليمية (LMS)</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">تحدي: متجر رقمي بـ Tailwind CSS</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">معالج CSS المتقدم SASS</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">مشروع موقع التسويق العقاري بـ SASS</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">تحدي: منصة وساطة للبحث عن الوظائف</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">المكتبات الديناميكية لسوق العمل</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Git & GitHub — إدارة المشاريع</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">CPanel والنطاقات ورفع المواقع</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text"><span class="topic-badge bonus">ميزة</span> حساب Canva Pro مجاناً لمدة عام</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text"><span class="topic-badge bonus">ميزة</span> مكتبة قوالب مدفوعة ضخمة</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <!-- Features -->
+    <div class="modules-section reveal">
+      <div class="section-header">
+        <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item"><div class="feature-icon">🆓</div><h4>قسم مجاني كامل</h4><p>تعلم HTML5 و CSS3 بالكامل بدون أي تكلفة.</p></div>
+        <div class="feature-item"><div class="feature-icon">🏗️</div><h4>6 مشاريع عملية</h4><p>متجر إلكتروني، لوحة تحكم، منصة تعليمية والمزيد.</p></div>
+        <div class="feature-item"><div class="feature-icon">🎯</div><h4>أحدث التقنيات</h4><p>Bootstrap, Tailwind CSS, SASS, Git.</p></div>
+        <div class="feature-item"><div class="feature-icon">🎁</div><h4>هدايا حصرية</h4><p>Canva Pro + مكتبة قوالب مدفوعة مجاناً.</p></div>
+      </div>
+    </div>
+
+    <div class="alert alert-success reveal">
+      <span class="alert-icon">🚀</span>
+      <span>ابدأ بالقسم المجاني الآن ثم انتقل للمعسكر المتقدم لبناء مشاريع احترافية حقيقية!</span>
+    </div>
+
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>أكاديمية كلاود سوفت</span> — جميع الحقوق محفوظة</p></footer>
+
+  <script src="js/diploma.js"></script>
 </body>
 </html>

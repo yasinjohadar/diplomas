@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docker — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>Docker</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(14,165,233,0.3);">
+      <div class="tech-icon-large">🐳</div>
+      <h1 class="tech-title">Docker & Containers</h1>
+      <p class="tech-subtitle">تغليف التطبيقات في حاويات محمولة وقابلة للتكرار. ثورة في طريقة بناء ونشر البرمجيات.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متوسط</span>
+        <span class="tech-badge green">Open Source</span>
+        <span class="tech-badge orange">أساس Kubernetes</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو Docker؟</h2>
+      <div class="info-card">
+        <h3>الحاويات (Containers)</h3>
+        <p>Docker يتيح لك تغليف التطبيق مع كل اعتمادياته (مكتبات، إعدادات، كود) في "حاوية" واحدة تعمل على أي نظام. بخلاف الآلات الافتراضية، الحاويات تشارك نفس نواة النظام أخف وأسرع.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📦</div>
+          <h4>Image (الصورة)</h4>
+          <p>قالب جاهز يحتوي التطبيق والاعتماديات. يُبنى من Dockerfile.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🏃</div>
+          <h4>Container (الحاوية)</h4>
+          <p>نسخة قيد التشغيل من الصورة. يمكن تشغيل عدة حاويات من صورة واحدة.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📋</div>
+          <h4>Dockerfile</h4>
+          <p>ملف نصي يحتوي تعليمات بناء الصورة خطوة بخطوة.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🎼</div>
+          <h4>Docker Compose</h4>
+          <p>ملف YAML لتشغيل عدة حاويات معاً كخدمة متكاملة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔧</span> الأوامر الأساسية</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Docker Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تشغيل حاوية</span>
+<span class="command">docker</span> run <span class="flag">-d -p</span> 8080:80 <span class="flag">--name</span> myapp nginx
+
+<span class="comment"># عرض الحاويات النشطة</span>
+<span class="command">docker</span> ps
+
+<span class="comment"># عرض كل الحاويات (حتى المتوقفة)</span>
+<span class="command">docker</span> ps <span class="flag">-a</span>
+
+<span class="comment"># إيقاف حاوية</span>
+<span class="command">docker</span> stop myapp
+
+<span class="comment"># حذف حاوية</span>
+<span class="command">docker</span> rm myapp
+
+<span class="comment"># عرض الصور</span>
+<span class="command">docker</span> images
+
+<span class="comment"># حذف صورة</span>
+<span class="command">docker</span> rmi nginx
+
+<span class="comment"># عرض السجلات</span>
+<span class="command">docker</span> logs <span class="flag">-f</span> myapp
+
+<span class="comment"># الدخول لداخل الحاوية</span>
+<span class="command">docker</span> exec <span class="flag">-it</span> myapp /bin/bash</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> كتابة Dockerfile</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Dockerfile — Node.js App</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># صورة الأساس</span>
+<span class="keyword">FROM</span> node:20-alpine
+
+<span class="comment"># مجلد العمل</span>
+<span class="keyword">WORKDIR</span> /app
+
+<span class="comment"># نسخ ملفات الاعتماديات</span>
+<span class="keyword">COPY</span> package*.json ./
+
+<span class="comment"># تثبيت الاعتماديات</span>
+<span class="keyword">RUN</span> npm ci --production
+
+<span class="comment"># نسخ كود التطبيق</span>
+<span class="keyword">COPY</span> . .
+
+<span class="comment"># المنفذ</span>
+<span class="keyword">EXPOSE</span> 3000
+
+<span class="comment"># أمر التشغيل</span>
+<span class="keyword">CMD</span> [<span class="string">"node"</span>, <span class="string">"server.js"</span>]</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — بناء وتشغيل</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># بناء الصورة</span>
+<span class="command">docker</span> build <span class="flag">-t</span> myapp:latest .
+
+<span class="comment"># تشغيل الحاوية</span>
+<span class="command">docker</span> run <span class="flag">-d -p</span> 3000:3000 <span class="flag">--name</span> app myapp:latest
+
+<span class="comment"># فحص حجم الصورة</span>
+<span class="command">docker</span> images myapp</div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <span>استخدم صور Alpine الصغيرة لتقليل الحجم. <code>node:20-alpine</code> أصغر بـ 10x من <code>node:20</code>.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🎼</span> Docker Compose</h2>
+      <div class="code-block">
+        <div class="code-header"><span>docker-compose.yml — Full Stack</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">version</span>: <span class="string">'3.8'</span>
+
+<span class="keyword">services</span>:
+  <span class="command">app</span>:
+    <span class="keyword">build</span>: .
+    <span class="keyword">ports</span>:
+      - <span class="string">"3000:3000"</span>
+    <span class="keyword">environment</span>:
+      - <span class="string">DB_HOST=database</span>
+      - <span class="string">DB_PASSWORD=secret</span>
+    <span class="keyword">depends_on</span>:
+      - database
+    <span class="keyword">volumes</span>:
+      - ./src:/app/src
+
+  <span class="command">database</span>:
+    <span class="keyword">image</span>: postgres:16-alpine
+    <span class="keyword">environment</span>:
+      - <span class="string">POSTGRES_PASSWORD=secret</span>
+    <span class="keyword">volumes</span>:
+      - pgdata:/var/lib/postgresql/data
+
+  <span class="command">redis</span>:
+    <span class="keyword">image</span>: redis:7-alpine
+    <span class="keyword">ports</span>:
+      - <span class="string">"6379:6379"</span>
+
+<span class="keyword">volumes</span>:
+  <span class="command">pgdata</span>:</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Compose Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تشغيل كل الخدمات</span>
+<span class="command">docker compose up</span> <span class="flag">-d</span>
+
+<span class="comment"># عرض الخدمات</span>
+<span class="command">docker compose</span> ps
+
+<span class="comment"># عرض السجلات</span>
+<span class="command">docker compose</span> logs <span class="flag">-f</span> app
+
+<span class="comment"># إيقاف وحذف</span>
+<span class="command">docker compose down</span>
+
+<span class="comment"># إيقاف وحذف البيانات</span>
+<span class="command">docker compose down</span> <span class="flag">-v</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💾</span> Volumes و Networks</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">💿</div>
+          <h4>Volumes (التخزين)</h4>
+          <p>حفظ البيانات خارج الحاوية. تبقى حتى بعد حذف الحاوية. مثال: قواعد البيانات.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔗</div>
+          <h4>Networks (الشبكات)</h4>
+          <p>عزل الحاويات عن بعضها. الحاويات في نفس الشبكة تتواصل بالأسماء.</p>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Volumes & Networks</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># إنشاء volume</span>
+<span class="command">docker</span> volume create mydata
+
+<span class="comment"># استخدام volume</span>
+<span class="command">docker</span> run <span class="flag">-v</span> mydata:/data nginx
+
+<span class="comment"># إنشاء شبكة</span>
+<span class="command">docker</span> network create mynet
+
+<span class="comment"># تشغيل حاوية في شبكة</span>
+<span class="command">docker</span> run <span class="flag">--network</span> mynet <span class="flag">--name</span> web nginx</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> استخدم صور Alpine لتقليل الحجم<br>
+          <strong>2.</strong> استخدم Multi-stage builds للفصل بين البناء والتشغيل<br>
+          <strong>3.</strong> لا تشغل الحاوية كـ root — استخدم <code>USER</code><br>
+          <strong>4.</strong> استخدم <code>.dockerignore</code> مثل <code>.gitignore</code><br>
+          <strong>5.</strong> ثبّت إصدارات محددة: <code>node:20-alpine</code> وليس <code>node:latest</code><br>
+          <strong>6.</strong> استخدم Docker Compose للبيئة المحلية
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="networking.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: الشبكات</span></a>
+      <a href="server-admin.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: إدارة الخوادم</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

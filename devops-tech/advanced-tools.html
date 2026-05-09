@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>أدوات DevOps المتقدمة — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>أدوات متقدمة</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(168,85,247,0.3);">
+      <div class="tech-icon-large">🔮</div>
+      <h1 class="tech-title">أدوات DevOps المتقدمة</h1>
+      <p class="tech-subtitle">الأدوات الحديثة التي يستخدمها المحترفون في الشركات الكبرى لتبسيط العمليات وتسريع التسليم.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متقدم</span>
+        <span class="tech-badge green">Coolify</span>
+        <span class="tech-badge orange">ArgoCD</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🚀</span> Coolify — بديل Vercel/Heroku</h2>
+      <div class="info-card">
+        <h3>استضافة ذاتية سهلة</h3>
+        <p>Coolify منصة مفتوحة المصدر تتيح لك استضافة تطبيقاتك وقواعد البيانات على سيرفرك الخاص بواجهة سهلة تشبه Vercel و Heroku.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Install Coolify</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت على سيرفر جديد</span>
+<span class="command">curl</span> <span class="flag">-fsSL</span> https://cdn.coollabs.io/coollabs-io/coollabs.sh | bash
+
+<span class="comment"># الدخول للواجهة</span>
+<span class="output">http://your-server-ip:8000</span></div>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🐳</div>
+          <h4>دعم Docker</h4>
+          <p>تشغيل أي تطبيق Docker بضغطة زر.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔄</div>
+          <h4>Auto Deploy</h4>
+          <p>نشر تلقائي عند كل Push لـ GitHub.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔄</span> ArgoCD — GitOps</h2>
+      <div class="info-card">
+        <h3>Continuous Delivery لـ Kubernetes</h3>
+        <p>ArgoCD يتأكد أن حالة الكلاستر تطابق ما في Git. إذا غيّر أحد شيئاً يدوياً، يعيده تلقائياً للحالة المطلوبة.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — ArgoCD App</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت ArgoCD</span>
+<span class="command">kubectl</span> create namespace argocd
+<span class="command">kubectl</span> apply <span class="flag">-n</span> argocd <span class="flag">-f</span> https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+<span class="comment"># إنشاء تطبيق</span>
+<span class="command">argocd</span> app create myapp \
+  <span class="flag">--repo</span> https://github.com/user/repo.git \
+  <span class="flag">--path</span> k8s/overlays/prod \
+  <span class="flag">--dest-server</span> https://kubernetes.default.svc \
+  <span class="flag">--dest-namespace</span> default
+
+<span class="comment"># مزامنة</span>
+<span class="command">argocd</span> app sync myapp</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🐳</span> Portainer — إدارة Docker</h2>
+      <div class="info-card">
+        <h4>واجهة رسومية لـ Docker</h4>
+        <p>Portainer يسهل إدارة الحاويات، الصور، الشبكات، و Volumes عبر واجهة ويب بدلاً من سطر الأوامر.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Install Portainer</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت Portainer CE</span>
+<span class="command">docker</span> volume create portainer_data
+<span class="command">docker</span> run <span class="flag">-d -p</span> 8000:8000 <span class="flag">-p</span> 9443:9443 \
+  <span class="flag">--name</span> portainer <span class="flag">--restart</span> always \
+  <span class="flag">-v</span> /var/run/docker.sock:/var/run/docker.sock \
+  <span class="flag">-v</span> portainer_data:/data \
+  portainer/portainer-ce:latest</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> ملخص المسار</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎉</span>
+        <span>
+          مبروك! لقد غطيت كل المراحل الأساسية في خارطة طريق DevOps.<br>
+          الآن دور التطبيق العملي وبناء المشاريع الحقيقية.<br>
+          استمر في التعلم والتجربة ولا تتوقف أبداً!
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="devsecops.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: DevSecOps</span></a>
+      <a href="../devOps.html" class="tech-nav-link"><span class="arrow">🏠</span><span>خارطة الطريق</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

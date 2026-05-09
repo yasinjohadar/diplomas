@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bash Scripting — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>Bash Scripting</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="tech-hero reveal" style="--hero-glow: var(--glow-blue);">
+      <div class="tech-icon-large">💻</div>
+      <h1 class="tech-title">Bash Scripting</h1>
+      <p class="tech-subtitle">لغة الأتمتة الأساسية لكل مهندس DevOps. تعلّم كتابة سكريبتات قوية لإدارة الخوادم وأتمتة المهام المتكررة.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">أساسي</span>
+        <span class="tech-badge green">مفتوح المصدر</span>
+        <span class="tech-badge orange">Linux & macOS</span>
+      </div>
+    </div>
+
+    <!-- ما هو Bash -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو Bash؟</h2>
+      <div class="info-card">
+        <h3>Bourne Again Shell</h3>
+        <p>Bash هو مترجم أوامر (Shell) لنظام Unix/Linux، وهو الخيار الافتراضي في معظم التوزيعات. يتيح لك التفاعل مع النظام عبر سطر الأوامر وكتابة سكريبتات لأتمتة المهام المعقدة. كل مهندس DevOps يحتاج إتقان Bash لأنه الأداة الأساسية للتعامل مع الخوادم.</p>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <span>Bash ليس مجرد أوامر — إنه لغة برمجة كاملة تدعم المتغيرات، الحلقات، الشروط، والدوال.</span>
+      </div>
+    </div>
+
+    <!-- الأوامر الأساسية -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔧</span> الأوامر الأساسية</h2>
+      <table class="tech-table">
+        <thead>
+          <tr><th>الأمر</th><th>الوظيفة</th><th>مثال</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>ls</code></td><td>عرض محتويات المجلد</td><td><code>ls -la /home</code></td></tr>
+          <tr><td><code>cd</code></td><td>تغيير المجلد</td><td><code>cd /var/log</code></td></tr>
+          <tr><td><code>pwd</code></td><td>عرض المسار الحالي</td><td><code>pwd</code></td></tr>
+          <tr><td><code>cp</code></td><td>نسخ ملفات</td><td><code>cp file.txt /backup/</code></td></tr>
+          <tr><td><code>mv</code></td><td>نقل/إعادة تسمية</td><td><code>mv old.txt new.txt</code></td></tr>
+          <tr><td><code>rm</code></td><td>حذف ملفات</td><td><code>rm -rf /tmp/old</code></td></tr>
+          <tr><td><code>chmod</code></td><td>تغيير الصلاحيات</td><td><code>chmod 755 script.sh</code></td></tr>
+          <tr><td><code>chown</code></td><td>تغيير المالك</td><td><code>chown user:group file</code></td></tr>
+          <tr><td><code>grep</code></td><td>البحث في النصوص</td><td><code>grep "error" /var/log/syslog</code></td></tr>
+          <tr><td><code>find</code></td><td>البحث عن ملفات</td><td><code>find / -name "*.conf"</code></td></tr>
+          <tr><td><code>tar</code></td><td>ضغط/فك ضغط</td><td><code>tar -czvf backup.tar.gz /data</code></td></tr>
+          <tr><td><code>curl</code></td><td>طلب HTTP</td><td><code>curl -s https://api.example.com</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- كتابة أول سكريبت -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📝</span> كتابة أول سكريبت</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>hello.sh</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment">#!/bin/bash</span>
+<span class="comment"># أول سكريبت Bash</span>
+
+<span class="command">echo</span> <span class="string">"مرحباً بك في عالم DevOps!"</span>
+
+<span class="comment"># استخدام المتغيرات</span>
+<span class="keyword">NAME</span>=<span class="string">"DevOps Engineer"</span>
+<span class="command">echo</span> <span class="string">"أهلاً $NAME"</span>
+
+<span class="comment"># العمليات الحسابية</span>
+<span class="keyword">A</span>=10
+<span class="keyword">B</span>=20
+<span class="command">echo</span> <span class="string">"المجموع: $((A + B))"</span></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">
+          <span>Terminal — تشغيل السكريبت</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment"># إعطاء صلاحية التنفيذ</span>
+<span class="command">chmod</span> <span class="flag">+x</span> hello.sh
+
+<span class="comment"># تشغيل السكريبت</span>
+<span class="command">./hello.sh</span>
+
+<span class="output">مرحباً بك في عالم DevOps!
+أهلاً DevOps Engineer
+المجموع: 30</span></div>
+      </div>
+    </div>
+
+    <!-- الشروط والحلقات -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔀</span> الشروط والحلقات</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>conditions.sh</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment">#!/bin/bash</span>
+
+<span class="comment"># شرط if/else</span>
+<span class="keyword">AGE</span>=25
+<span class="keyword">if</span> [ <span class="flag">$AGE</span> -ge 18 ]; <span class="keyword">then</span>
+    <span class="command">echo</span> <span class="string">"بالغ"</span>
+<span class="keyword">else</span>
+    <span class="command">echo</span> <span class="string">"قاصر"</span>
+<span class="keyword">fi</span>
+
+<span class="comment"># حلقة for</span>
+<span class="keyword">for</span> i <span class="keyword">in</span> 1 2 3 4 5; <span class="keyword">do</span>
+    <span class="command">echo</span> <span class="string">"الرقم: $i"</span>
+<span class="keyword">done</span>
+
+<span class="comment"># حلقة while</span>
+<span class="keyword">COUNT</span>=0
+<span class="keyword">while</span> [ <span class="flag">$COUNT</span> -lt 5 ]; <span class="keyword">do</span>
+    <span class="command">echo</span> <span class="string">"العد: $COUNT"</span>
+    ((COUNT++))
+<span class="keyword">done</span>
+
+<span class="comment"># شرط case</span>
+<span class="keyword">case</span> <span class="flag">$1</span> <span class="keyword">in</span>
+    start)   <span class="command">echo</span> <span class="string">"بدء الخدمة..."</span> ;;
+    stop)    <span class="command">echo</span> <span class="string">"إيقاف الخدمة..."</span> ;;
+    restart) <span class="command">echo</span> <span class="string">"إعادة تشغيل الخدمة..."</span> ;;
+    *)       <span class="command">echo</span> <span class="string">"استخدام: $0 {start|stop|restart}"</span> ;;
+<span class="keyword">esac</span></div>
+      </div>
+    </div>
+
+    <!-- الدوال -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">⚡</span> الدوال (Functions)</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>functions.sh</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment">#!/bin/bash</span>
+
+<span class="comment"># تعريف دالة</span>
+<span class="keyword">log_message</span>() {
+    <span class="keyword">TIMESTAMP</span>=$(date <span class="flag">+"%Y-%m-%d %H:%M:%S"</span>)
+    <span class="command">echo</span> <span class="string">"[$TIMESTAMP] $1"</span>
+}
+
+<span class="comment"># دالة مع قيمة مرجعة</span>
+<span class="keyword">check_service</span>() {
+    <span class="keyword">if</span> systemctl is-active --quiet <span class="flag">$1</span>; <span class="keyword">then</span>
+        <span class="keyword">return</span> 0  <span class="comment"># نشط</span>
+    <span class="keyword">else</span>
+        <span class="keyword">return</span> 1  <span class="comment"># غير نشط</span>
+    <span class="keyword">fi</span>
+}
+
+<span class="comment"># استخدام الدوال</span>
+log_message <span class="string">"بدء الفحص..."</span>
+
+<span class="keyword">if</span> check_service nginx; <span class="keyword">then</span>
+    log_message <span class="string">"Nginx يعمل بشكل طبيعي ✓"</span>
+<span class="keyword">else</span>
+    log_message <span class="string">"Nginx متوقف ✗"</span>
+<span class="keyword">fi</span></div>
+      </div>
+    </div>
+
+    <!-- سكريبت عملي -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🚀</span> سكريبت عملي — نسخ احتياطي تلقائي</h2>
+      <div class="code-block">
+        <div class="code-header">
+          <span>backup.sh</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment">#!/bin/bash</span>
+<span class="comment"># سكريبت نسخ احتياطي تلقائي للمواقع</span>
+
+<span class="keyword">BACKUP_DIR</span>=<span class="string">"/backup/website"</span>
+<span class="keyword">DATE</span>=$(date <span class="flag">+%Y%m%d_%H%M%S</span>)
+<span class="keyword">SOURCE</span>=<span class="string">"/var/www/html"</span>
+<span class="keyword">RETENTION</span>=7  <span class="comment"># الاحتفاظ بـ 7 أيام</span>
+
+<span class="comment"># إنشاء مجلد النسخ الاحتياطي</span>
+<span class="command">mkdir</span> <span class="flag">-p</span> <span class="flag">$BACKUP_DIR</span>
+
+<span class="comment"># إنشاء النسخة الاحتياطية</span>
+<span class="command">tar</span> <span class="flag">-czf</span> <span class="flag">$BACKUP_DIR</span>/backup_<span class="flag">$DATE</span>.tar.gz <span class="flag">$SOURCE</span>
+
+<span class="comment"># حذف النسخ القديمة</span>
+<span class="command">find</span> <span class="flag">$BACKUP_DIR</span> <span class="flag">-name</span> <span class="string">"backup_*.tar.gz"</span> <span class="flag">-mtime</span> +<span class="flag">$RETENTION</span> <span class="flag">-delete</span>
+
+<span class="command">echo</span> <span class="string">"✓ تم النسخ الاحتياطي: backup_$DATE.tar.gz"</span></div>
+      </div>
+      <div class="code-block">
+        <div class="code-header">
+          <span>Terminal — إضافة إلى crontab للتشغيل اليومي</span>
+          <button class="code-copy-btn">Copy</button>
+        </div>
+        <div class="code-content"><span class="comment"># فتح محرر crontab</span>
+<span class="command">crontab</span> <span class="flag">-e</span>
+
+<span class="comment"># إضافة السطر التالي (تشغيل يومياً الساعة 2 صباحاً)</span>
+<span class="output">0 2 * * * /path/to/backup.sh >> /var/log/backup.log 2>&1</span></div>
+      </div>
+    </div>
+
+    <!-- Pipes & Redirection -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔗</span> الأنابيب وإعادة التوجيه</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">➡️</div>
+          <h4>Pipe <code>|</code></h4>
+          <p>تمرير مخرج أمر كمدخل لأمر آخر. مثال: <code>cat access.log | grep "404" | wc -l</code></p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📄</div>
+          <h4>Redirect <code>></code></h4>
+          <p>إعادة توجيه المخرج لملف (يكتب فوق المحتوى). مثال: <code>echo "data" > file.txt</code></p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📎</div>
+          <h4>Append <code>>></code></h4>
+          <p>إضافة للملف بدون حذف المحتوى القديم. مثال: <code>echo "log" >> app.log</code></p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">⚠️</div>
+          <h4>Error <code>2></code></h4>
+          <p>إعادة توجيه الأخطاء فقط. مثال: <code>command 2> errors.log</code></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- أفضل الممارسات -->
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> ابدأ دائماً بـ <code>#!/bin/bash</code> (Shebang)<br>
+          <strong>2.</strong> استخدم <code>set -euo pipefail</code> في بداية السكريبتات المهمة<br>
+          <strong>3.</strong> استخدم علامات التنصيص المزدوجة للمتغيرات: <code>"$VAR"</code><br>
+          <strong>4.</strong> تحقق من وجود الأوامر قبل استخدامها: <code>command -v docker</code><br>
+          <strong>5.</strong> استخدم <code>shellcheck</code> لفحص السكريبتات: <code>shellcheck script.sh</code><br>
+          <strong>6.</strong> أضف تعليقات توضيحية لكل قسم<br>
+          <strong>7.</strong> تعامل مع الأخطاء بشكل واضح
+        </span>
+      </div>
+    </div>
+
+    <!-- التنقل بين التقنيات -->
+    <div class="tech-nav reveal">
+      <a href="linux.html" class="tech-nav-link">
+        <span class="arrow">←</span>
+        <span>التالي: أساسيات Linux</span>
+      </a>
+      <a href="../devOps.html" class="tech-nav-link">
+        <span class="arrow">🏠</span>
+        <span>خارطة الطريق</span>
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p>
+  </footer>
+
+  <script src="js/tech.js"></script>
+</body>
+</html>

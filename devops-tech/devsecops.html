@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DevSecOps — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>DevSecOps</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(239,68,68,0.3);">
+      <div class="tech-icon-large">🛡️</div>
+      <h1 class="tech-title">DevSecOps</h1>
+      <p class="tech-subtitle">ادمج الأمان في كل مرحلة من خط الأنابيب. الأمان ليس فكرة لاحقة — هو جزء من كل قرار.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متقدم</span>
+        <span class="tech-badge green">Security First</span>
+        <span class="tech-badge orange">Shift Left</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو DevSecOps؟</h2>
+      <div class="info-card">
+        <h3>Security as Code</h3>
+        <p>DevSecOps يدمج ممارسات الأمان في خط أنابيب DevOps. بدلاً من فحص الأمان في النهاية (Late Stage)، يُفحص في كل مرحلة من البداية (Shift Left).</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🔍</div>
+          <h4>SAST</h4>
+          <p>تحليل الكود المصدري بحثاً عن ثغرات أمنية. SonarQube, Semgrep.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📦</div>
+          <h4>SCA</h4>
+          <p>فحص الاعتماديات (Dependencies) بحثاً عن ثغرات معروفة. Trivy, Dependabot.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🐳</div>
+          <h4>Container Security</h4>
+          <p>فحص صور Docker بحثاً عن ثغرات وإعدادات خاطئة. Trivy, Grype.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔑</div>
+          <h4>Secrets Management</h4>
+          <p>إدارة آمنة لكلمات المرور والمفاتيح. HashiCorp Vault, AWS Secrets Manager.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔍</span> فحص الحاويات بـ Trivy</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Trivy Scan</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت Trivy</span>
+<span class="command">apt</span> install wget apt-transport-https gnupg
+<span class="command">wget</span> -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor > /usr/share/keyrings/trivy.gpg
+<span class="command">echo</span> <span class="string">"deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main"</span> > /etc/apt/sources.list.d/trivy.list
+<span class="command">apt</span> update && <span class="command">apt</span> install trivy
+
+<span class="comment"># فحص صورة Docker</span>
+<span class="command">trivy</span> image nginx:latest
+
+<span class="comment"># فحص مجلد</span>
+<span class="command">trivy</span> fs .
+
+<span class="comment"># فحص مع فشل على ثغرات CRITICAL</span>
+<span class="command">trivy</span> image <span class="flag">--severity</span> CRITICAL <span class="flag">--exit-code</span> 1 nginx:latest
+
+<span class="comment"># توليد تقرير JSON</span>
+<span class="command">trivy</span> image <span class="flag">-f json</span> <span class="flag">-o</span> report.json nginx:latest</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔑</span> HashiCorp Vault</h2>
+      <div class="info-card">
+        <h3>إدارة الأسرار بشكل آمن</h3>
+        <p>Vault يخزن ويدير كلمات المرور، API Keys، الشهادات، وأي بيانات حساسة. يوفر وصول مشفر ومدقق.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Vault Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تشغيل Vault (تطوير)</span>
+<span class="command">vault</span> server <span class="flag">-dev</span>
+
+<span class="comment"># تعيين العنوان</span>
+<span class="keyword">export</span> VAULT_ADDR=<span class="string">'http://127.0.0.1:8200'</span>
+
+<span class="comment"># تسجيل الدخول</span>
+<span class="command">vault</span> login
+
+<span class="comment"># تخزين سر</span>
+<span class="command">vault</span> kv put secret/db password=<span class="string">"s3cr3t"</span> username=<span class="string">"admin"</span>
+
+<span class="comment"># قراءة سر</span>
+<span class="command">vault</span> kv get secret/db
+
+<span class="comment"># توليد ديناميكي (Dynamic Secrets)</span>
+<span class="command">vault</span> read database/creds/readonly</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🐙</span> الأمان في CI/CD</h2>
+      <div class="code-block">
+        <div class="code-header"><span>.github/workflows/security.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">name</span>: <span class="string">Security Scan</span>
+
+<span class="keyword">on</span>:
+  <span class="command">push</span>:
+    <span class="keyword">branches</span>: [<span class="string">main</span>]
+  <span class="command">pull_request</span>:
+    <span class="keyword">branches</span>: [<span class="string">main</span>]
+
+<span class="keyword">jobs</span>:
+  <span class="command">sast</span>:
+    <span class="keyword">runs-on</span>: ubuntu-latest
+    <span class="keyword">steps</span>:
+      - <span class="keyword">uses</span>: actions/checkout@v4
+      - <span class="keyword">name</span>: <span class="string">Run Semgrep</span>
+        <span class="keyword">uses</span>: returntocorp/semgrep-action@v1
+
+  <span class="command">container-scan</span>:
+    <span class="keyword">runs-on</span>: ubuntu-latest
+    <span class="keyword">steps</span>:
+      - <span class="keyword">uses</span>: actions/checkout@v4
+      - <span class="keyword">name</span>: <span class="string">Build image</span>
+        <span class="keyword">run</span>: docker build <span class="flag">-t</span> myapp .
+      - <span class="keyword">name</span>: <span class="string">Run Trivy</span>
+        <span class="keyword">uses</span>: aquasecurity/trivy-action@master
+        <span class="keyword">with</span>:
+          <span class="keyword">image-ref</span>: <span class="string">'myapp'</span>
+          <span class="keyword">format</span>: <span class="string">'table'</span>
+          <span class="keyword">exit-code</span>: <span class="string">'1'</span>
+          <span class="keyword">severity</span>: <span class="string">'CRITICAL,HIGH'</span>
+
+  <span class="command">secret-scan</span>:
+    <span class="keyword">runs-on</span>: ubuntu-latest
+    <span class="keyword">steps</span>:
+      - <span class="keyword">uses</span>: actions/checkout@v4
+      - <span class="keyword">name</span>: <span class="string">TruffleHog</span>
+        <span class="keyword">uses</span>: trufflesecurity/trufflehog@main</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🛡️</span> CrowdSec — حماية الخادم</h2>
+      <div class="info-card">
+        <h3>بديل Fail2Ban الذكي</h3>
+        <p>CrowdSec نظام أمان تعاوني. يكتشف الهجمات ويحظر المهاجمين. يشارك التهديدات مع المجتمع لتحسين الحماية للجميع.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — CrowdSec Setup</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت</span>
+<span class="command">apt</span> install crowdsec
+
+<span class="comment"># عرض القرارات النشطة</span>
+<span class="command">cscli</span> decisions list
+
+<span class="comment"># عرض السيناريوهات</span>
+<span class="command">cscli</span> scenarios list
+
+<span class="comment"># تثبيت bouncer لـ Nginx</span>
+<span class="command">apt</span> install crowdsec-nginx-bouncer
+
+<span class="comment"># عرض السجلات</span>
+<span class="command">cscli</span> metrics</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> فعّل فحص الأمان في CI/CD pipeline<br>
+          <strong>2.</strong> استخدم Vault أو AWS Secrets Manager<br>
+          <strong>3.</strong> لا تضع Secrets في الكود أو Git<br>
+          <strong>4.</strong> حدّث الصور والاعتماديات بانتظام<br>
+          <strong>5.</strong> فعّل MFA على كل الحسابات<br>
+          <strong>6.</strong> استخدم Network Policies في Kubernetes<br>
+          <strong>7.</strong> راجع صلاحيات IAM دورياً
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="cloud.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: منصات السحابة</span></a>
+      <a href="advanced-tools.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: أدوات DevOps المتقدمة</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

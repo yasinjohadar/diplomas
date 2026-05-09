@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المرحلة 7 — الفريق الأزرق والتقارير | Cyber Diploma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/phase.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><i class="fas fa-shield-halved"></i><span class="nav-logo-text">CyberDiploma</span></a>
+      <div class="nav-breadcrumb"><a href="../index.html">الرئيسية</a><span class="sep">/</span><span>المرحلة 7</span></div>
+      <a href="../index.html" class="nav-back"><i class="fas fa-arrow-right"></i> العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="phase-hero reveal" style="--glow: rgba(79,142,247,0.3);">
+      <div class="phase-icon"><i class="fas fa-eye" style="color:var(--blue)"></i></div>
+      <h1 class="phase-title">الفريق الأزرق والتقارير</h1>
+      <p class="phase-subtitle">بناء مهارات الدفاع والمراقبة، الاستجابة للحوادث، الطب الشرعي الرقمي.</p>
+      <div class="phase-badges">
+        <span class="phase-badge">المرحلة 07</span>
+        <span class="phase-badge green">4 أسابيع</span>
+        <span class="phase-badge orange">متقدم</span>
+      </div>
+      <div class="phase-stats">
+        <div class="p-stat"><div class="p-stat-num">8</div><div class="p-stat-label">دروس</div></div>
+        <div class="p-stat"><div class="p-stat-num">4</div><div class="p-stat-label">أدوات رئيسية</div></div>
+        <div class="p-stat"><div class="p-stat-num">18+</div><div class="p-stat-label">مهارة مكتسبة</div></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> نظرة عامة</h2>
+      <div class="info-card">
+        <h3>Blue Team Operations</h3>
+        <p>الفريق الأزرق هو خط الدفاع الأول. ستتعلم كيف تراقب الشبكة، تكتشف الهجمات، تستجيب للحوادث، وتحلل الأدلة الرقمية.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="fi-icon">🏢</div><h4>SOC Operations</h4><p>مركز عمليات الأمن — المراقبة المستمرة والكشف عن التهديدات.</p></div>
+        <div class="feature-item"><div class="fi-icon">🚨</div><h4>Incident Response</h4><p>خطة الاستجابة للحوادث — Preparation, Detection, Containment, Recovery.</p></div>
+        <div class="feature-item"><div class="fi-icon">🔬</div><h4>Digital Forensics</h4><p>التحقيق الجنائي الرقمي — جمع الأدلة وتحليلها بشكل قانوني.</p></div>
+        <div class="feature-item"><div class="fi-icon">🎯</div><h4>MITRE ATT&CK</h4><p>إطار عمل لتصنيف تكتيكات المهاجمين وتقنياتهم.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> المحاور التفصيلية</h2>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>المحور</th><th>المدة</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>SOC — مركز عمليات الأمن</td><td>3 أيام</td></tr>
+          <tr><td>02</td><td>ELK Stack — Elasticsearch, Logstash, Kibana</td><td>4 أيام</td></tr>
+          <tr><td>03</td><td>Incident Response — المنهجية والأدوات</td><td>3 أيام</td></tr>
+          <tr><td>04</td><td>Digital Forensics — Autopsy وFTK</td><td>3 أيام</td></tr>
+          <tr><td>05</td><td>Threat Hunting — البحث عن التهديدات</td><td>3 أيام</td></tr>
+          <tr><td>06</td><td>MITRE ATT&CK Framework</td><td>2 أيام</td></tr>
+          <tr><td>07</td><td>Velociraptor — الاستجابة عن بعد</td><td>2 أيام</td></tr>
+          <tr><td>08</td><td>كتابة التقارير الأمنية الاحترافية</td><td>2 أيام</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💻</span> Incident Response</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Forensic Commands</span><button class="code-copy">Copy</button></div>
+        <div class="code-content"><span class="cmt"># إنشاء صورة قرص (Forensic Image)</span>
+<span class="cmd">dd</span> if=/dev/sda of=/evidence/disk.img bs=4M status=progress
+
+<span class="cmt"># حساب Hash للتحقق من السلامة</span>
+<span class="cmd">sha256sum</span> /evidence/disk.img > disk.sha256
+
+<span class="cmt"># فحص العمليات المشبوهة</span>
+<span class="cmd">ps</span> aux | <span class="cmd">grep</span> <span class="flag">-E</span> <span class="str">"nc|ncat|socat|reverse"</span>
+
+<span class="cmt"># فحص الاتصالات النشطة</span>
+<span class="cmd">netstat</span> <span class="flag">-tulpn</span>
+
+<span class="cmt"># فحص الملفات المعدلة حديثاً</span>
+<span class="cmd">find</span> / <span class="flag">-mtime -7 -type f</span> 2>/dev/null</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> ما يجب إتقانه</h2>
+      <div class="alert alert-ok">
+        <span class="a-icon">🎯</span>
+        <span>
+          <strong>1.</strong> عمليات SOC والمراقبة<br>
+          <strong>2.</strong> الاستجابة للحوادث (6 مراحل)<br>
+          <strong>3.</strong> الطب الشرعي الرقمي<br>
+          <strong>4.</strong> MITRE ATT&CK<br>
+          <strong>5.</strong> استخدام ELK Stack<br>
+          <strong>6.</strong> كتابة تقارير أمنية
+        </span>
+      </div>
+    </div>
+
+    <div class="phase-nav reveal">
+      <a href="phase6.html" class="phase-nav-link"><i class="fas fa-arrow-right"></i> المرحلة 6</a>
+      <a href="phase8.html" class="phase-nav-link">المرحلة 8: أمن السحاب <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>CyberDiploma Academy</span> — جميع الحقوق محفوظة</p></footer>
+  <script src="js/phase.js"></script>
+</body>
+</html>

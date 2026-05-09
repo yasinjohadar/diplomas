@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الشبكات — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>الشبكات</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(6,182,212,0.3);">
+      <div class="tech-icon-large">🌐</div>
+      <h1 class="tech-title">الشبكات (Networking)</h1>
+      <p class="tech-subtitle">فهم البروتوكولات والمفاهيم التي تجعل الخوادم والتطبيقات تتواصل. أساس لا غنى عنه لكل DevOps.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متوسط</span>
+        <span class="tech-badge green">HTTP / DNS / TCP</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> نموذج OSI</h2>
+      <div class="info-card">
+        <h3>الطبقات السبع للتواصل</h3>
+        <p>نموذج OSI يوضح كيف تنتقل البيانات عبر الشبكة من التطبيق إلى الكابل والعكس. كمهندس DevOps، ستتعامل غالباً مع الطبقات 4-7.</p>
+      </div>
+      <table class="tech-table">
+        <thead><tr><th>الطبقة</th><th>الاسم</th><th>أمثلة</th></tr></thead>
+        <tbody>
+          <tr><td>7</td><td>Application</td><td><code>HTTP</code> <code>DNS</code> <code>SSH</code> <code>FTP</code></td></tr>
+          <tr><td>6</td><td>Presentation</td><td><code>SSL/TLS</code> <code>JSON</code> <code>XML</code></td></tr>
+          <tr><td>5</td><td>Session</td><td><code>NetBIOS</code> <code>RPC</code></td></tr>
+          <tr><td>4</td><td>Transport</td><td><code>TCP</code> <code>UDP</code></td></tr>
+          <tr><td>3</td><td>Network</td><td><code>IP</code> <code>ICMP</code> <code>Routing</code></td></tr>
+          <tr><td>2</td><td>Data Link</td><td><code>Ethernet</code> <code>MAC</code> <code>Switch</code></td></tr>
+          <tr><td>1</td><td>Physical</td><td><code>Cables</code> <code>WiFi</code> <code>Fiber</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔌</span> TCP vs UDP</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📞</div>
+          <h4>TCP (موثوق)</h4>
+          <p>يضمن وصول البيانات بالترتيب. يستخدم في HTTP و SSH و FTP. أبطأ لكن آمن.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📡</div>
+          <h4>UDP (سريع)</h4>
+          <p>يرسل بدون تأكيد. يستخدم في البث المباشر والألعاب. أسرع لكن قد يفقد بيانات.</p>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — فحص المنافذ</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># فحص المنافذ المفتوحة</span>
+<span class="command">ss</span> <span class="flag">-tlnp</span>
+
+<span class="output">State  Recv-Q Send-Q  Local Address:Port   Process
+LISTEN 0      0       0.0.0.0:80           nginx
+LISTEN 0      0       0.0.0.0:443          nginx
+LISTEN 0      0       0.0.0.0:22           sshd</span>
+
+<span class="comment"># فحص منفذ معين</span>
+<span class="command">curl</span> <span class="flag">-v</span> http://localhost:80
+
+<span class="comment"># فحص الاتصال بمنفذ</span>
+<span class="command">nc</span> <span class="flag">-zv</span> server.com 443</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🌍</span> DNS — نظام أسماء النطاقات</h2>
+      <div class="info-card">
+        <h3>كيف يعمل DNS؟</h3>
+        <p>DNS يحوّل أسماء النطاقات (مثل google.com) إلى عناوين IP. العملية: المتصفح → DNS المحلي → DNS الجذر → TLD → Nameserver → IP.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — أوامر DNS</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># فحص سجلات DNS</span>
+<span class="command">dig</span> example.com
+<span class="command">dig</span> example.com MX     <span class="comment"># سجلات البريد</span>
+<span class="command">dig</span> example.com TXT    <span class="comment"># سجلات TXT (SPF, DKIM)</span>
+<span class="command">dig</span> example.com CNAME  <span class="comment"># الأسماء المستعارة</span>
+
+<span class="comment"># تتبع حل DNS</span>
+<span class="command">nslookup</span> example.com
+
+<span class="comment"># فحص من سيرفر DNS محدد</span>
+<span class="command">dig</span> @8.8.8.8 example.com</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔒</span> HTTP/HTTPS و SSL/TLS</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">📄</div>
+          <h4>HTTP Methods</h4>
+          <p><code>GET</code> جلب، <code>POST</code> إرسال، <code>PUT</code> تحديث، <code>DELETE</code> حذف، <code>PATCH</code> تعديل جزئي.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔐</div>
+          <h4>HTTPS (TLS)</h4>
+          <p>نسخة مشفرة من HTTP. تستخدم شهادة SSL لتشفير البيانات بين المتصفح والسيرفر.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">📊</div>
+          <h4>HTTP Status Codes</h4>
+          <p><code>200</code> نجاح، <code>301</code> تحويل دائم، <code>404</code> غير موجود، <code>500</code> خطأ سيرفر.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔄</div>
+          <h4>Reverse Proxy</h4>
+          <p>سيرفر وسيط يستقبل الطلبات ويوزعها. Nginx و Traefik أشهر الأمثلة.</p>
+        </div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — فحص HTTP</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># طلب GET مع عرض الهيدرز</span>
+<span class="command">curl</span> <span class="flag">-vI</span> https://example.com
+
+<span class="output">HTTP/2 200
+content-type: text/html
+server: cloudflare
+strict-transport-security: max-age=31536000</span>
+
+<span class="comment"># فحص شهادة SSL</span>
+<span class="command">openssl</span> s_client <span class="flag">-connect</span> example.com:443 <span class="flag">-servername</span> example.com</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">⚖️</span> Load Balancing</h2>
+      <div class="info-card">
+        <h3>توزيع الحمل</h3>
+        <p>Load Balancer يوزع الطلبات على عدة خوادم لمنع الحمل الزائد وتحسين الأداء والتوفر. الأنواع: Round Robin, Least Connections, IP Hash.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>nginx.conf — Load Balancer</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">upstream</span> backend {
+    <span class="command">server</span> 10.0.0.1:8080;
+    <span class="command">server</span> 10.0.0.2:8080;
+    <span class="command">server</span> 10.0.0.3:8080;
+}
+
+<span class="keyword">server</span> {
+    <span class="command">listen</span> 80;
+    <span class="command">location</span> / {
+        <span class="command">proxy_pass</span> http://backend;
+    }
+}</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> استخدم HTTPS دائماً — Let's Encrypt مجاني<br>
+          <strong>2.</strong> فعّل HSTS لتوجيه المتصفح لـ HTTPS تلقائياً<br>
+          <strong>3.</strong> استخدم Reverse Proxy أمام تطبيقاتك<br>
+          <strong>4.</strong> راقب استجابة الشبكة بـ <code>ping</code> و <code>traceroute</code><br>
+          <strong>5.</strong> استخدم CDN (مثل Cloudflare) لتسريع المحتوى
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="git.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: Git & GitHub</span></a>
+      <a href="docker.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: Docker</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

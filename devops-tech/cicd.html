@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CI/CD — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>CI/CD</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(168,85,247,0.3);">
+      <div class="tech-icon-large">⚡</div>
+      <h1 class="tech-title">CI/CD Pipelines</h1>
+      <p class="tech-subtitle">أتمتة البناء والاختبار والنشر. كل تغيير يمر بخط أنابيب موثوق يصل للإنتاج بدون تدخل يدوي.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متوسط</span>
+        <span class="tech-badge green">GitHub Actions</span>
+        <span class="tech-badge orange">Jenkins</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو CI/CD؟</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🔨</div>
+          <h4>CI — التكامل المستمر</h4>
+          <p>كل Push للريبو يُشغّل بناء تلقائي + اختبارات. يكتشف الأخطاء مبكراً.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🚀</div>
+          <h4>CD — التسليم المستمر</h4>
+          <p>بعد نجاح CI، التطبيق يُجهّز للنشر تلقائياً في بيئة الاختبار.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🎯</div>
+          <h4>CD — النشر المستمر</h4>
+          <p>النشر المباشر للإنتاج بدون تدخل بشري. كل تغيير ناجح يصل للمستخدمين.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🐙</span> GitHub Actions</h2>
+      <div class="info-card">
+        <h3>أشهر أداة CI/CD مجانية</h3>
+        <p>GitHub Actions مدمجة في GitHub. تعرّف ملفات YAML في <code>.github/workflows/</code> لت定义 خط الأنابيب.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>.github/workflows/ci.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">name</span>: <span class="string">CI Pipeline</span>
+
+<span class="keyword">on</span>:
+  <span class="command">push</span>:
+    <span class="keyword">branches</span>: [<span class="string">main</span>]
+  <span class="command">pull_request</span>:
+    <span class="keyword">branches</span>: [<span class="string">main</span>]
+
+<span class="keyword">jobs</span>:
+  <span class="command">test</span>:
+    <span class="keyword">runs-on</span>: ubuntu-latest
+    <span class="keyword">steps</span>:
+      - <span class="keyword">uses</span>: actions/checkout@v4
+
+      - <span class="keyword">name</span>: <span class="string">Setup Node.js</span>
+        <span class="keyword">uses</span>: actions/setup-node@v4
+        <span class="keyword">with</span>:
+          <span class="keyword">node-version</span>: <span class="string">'20'</span>
+
+      - <span class="keyword">name</span>: <span class="string">Install dependencies</span>
+        <span class="keyword">run</span>: npm ci
+
+      - <span class="keyword">name</span>: <span class="string">Run tests</span>
+        <span class="keyword">run</span>: npm test
+
+      - <span class="keyword">name</span>: <span class="string">Build</span>
+        <span class="keyword">run</span>: npm run build</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🐳</span> CI/CD مع Docker</h2>
+      <div class="code-block">
+        <div class="code-header"><span>.github/workflows/deploy.yml</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">name</span>: <span class="string">Build & Deploy</span>
+
+<span class="keyword">on</span>:
+  <span class="command">push</span>:
+    <span class="keyword">branches</span>: [<span class="string">main</span>]
+
+<span class="keyword">jobs</span>:
+  <span class="command">build-and-push</span>:
+    <span class="keyword">runs-on</span>: ubuntu-latest
+    <span class="keyword">steps</span>:
+      - <span class="keyword">uses</span>: actions/checkout@v4
+
+      - <span class="keyword">name</span>: <span class="string">Login to Docker Hub</span>
+        <span class="keyword">uses</span>: docker/login-action@v3
+        <span class="keyword">with</span>:
+          <span class="keyword">username</span>: <span class="string">${{ secrets.DOCKER_USER }}</span>
+          <span class="keyword">password</span>: <span class="string">${{ secrets.DOCKER_PASS }}</span>
+
+      - <span class="keyword">name</span>: <span class="string">Build & Push</span>
+        <span class="keyword">uses</span>: docker/build-push-action@v5
+        <span class="keyword">with</span>:
+          <span class="keyword">push</span>: true
+          <span class="keyword">tags</span>: <span class="string">myuser/myapp:latest,myuser/myapp:${{ github.sha }}</span>
+
+  <span class="command">deploy</span>:
+    <span class="keyword">needs</span>: build-and-push
+    <span class="keyword">runs-on</span>: ubuntu-latest
+    <span class="keyword">steps</span>:
+      - <span class="keyword">name</span>: <span class="string">Deploy to server</span>
+        <span class="keyword">uses</span>: appleboy/ssh-action@v1
+        <span class="keyword">with</span>:
+          <span class="keyword">host</span>: <span class="string">${{ secrets.SERVER_HOST }}</span>
+          <span class="keyword">username</span>: <span class="string">${{ secrets.SERVER_USER }}</span>
+          <span class="keyword">key</span>: <span class="string">${{ secrets.SSH_KEY }}</span>
+          <span class="keyword">script</span>: |
+            <span class="command">docker</span> pull myuser/myapp:latest
+            <span class="command">docker compose down</span>
+            <span class="command">docker compose up</span> <span class="flag">-d</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">⚙️</span> Jenkins Pipeline</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Jenkinsfile — Declarative Pipeline</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">pipeline</span> {
+    <span class="keyword">agent</span> any
+
+    <span class="keyword">stages</span> {
+        <span class="keyword">stage</span>(<span class="string">'Build'</span>) {
+            <span class="keyword">steps</span> {
+                <span class="command">sh</span> <span class="string">'npm ci'</span>
+                <span class="command">sh</span> <span class="string">'npm run build'</span>
+            }
+        }
+        <span class="keyword">stage</span>(<span class="string">'Test'</span>) {
+            <span class="keyword">steps</span> {
+                <span class="command">sh</span> <span class="string">'npm test'</span>
+            }
+        }
+        <span class="keyword">stage</span>(<span class="string">'Deploy'</span>) {
+            <span class="keyword">steps</span> {
+                <span class="command">sh</span> <span class="string">'docker build -t myapp .'</span>
+                <span class="command">sh</span> <span class="string">'docker push myapp:latest'</span>
+            }
+        }
+    }
+
+    <span class="keyword">post</span> {
+        <span class="keyword">success</span> {
+            <span class="command">echo</span> <span class="string">'✓ Deployment successful!'</span>
+        }
+        <span class="keyword">failure</span> {
+            <span class="command">echo</span> <span class="string">'✗ Deployment failed!'</span>
+        }
+    }
+}</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔐</span> إدارة الأسرار (Secrets)</h2>
+      <div class="alert alert-danger">
+        <span class="alert-icon">🚨</span>
+        <span>لا تضع كلمات المرور أو API Keys في ملفات الـ workflow! استخدم GitHub Secrets أو HashiCorp Vault.</span>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — إضافة Secrets</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># من إعدادات الريبو: Settings → Secrets → Actions</span>
+<span class="comment"># أو عبر GitHub CLI:</span>
+<span class="command">gh</span> secret set DOCKER_USER <span class="flag">--body</span> <span class="string">"myuser"</span>
+<span class="command">gh</span> secret set DOCKER_PASS <span class="flag">--body</span> <span class="string">"mypass"</span>
+<span class="command">gh</span> secret set SERVER_HOST <span class="flag">--body</span> <span class="string">"192.168.1.100"</span>
+
+<span class="comment"># في الـ workflow:</span>
+<span class="output">${{ secrets.DOCKER_USER }}</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> اجعل الـ pipeline سريعاً (أقل من 10 دقائق)<br>
+          <strong>2.</strong> استخدم caching لتسريع البناء<br>
+          <strong>3.</strong> نفّذ الاختبارات قبل البناء<br>
+          <strong>4.</strong> استخدم Secrets لكل المعلومات الحساسة<br>
+          <strong>5.</strong> فعّل إشعارات Slack/Email عند الفشل<br>
+          <strong>6.</strong> استخدم بيئات منفصلة (staging → production)
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="server-admin.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: إدارة الخوادم</span></a>
+      <a href="databases.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: قواعد البيانات</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>البنية التحتية كـ Code — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>البنية التحتية كـ Code</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(139,92,246,0.3);">
+      <div class="tech-icon-large">🏗️</div>
+      <h1 class="tech-title">البنية التحتية كـ Code (IaC)</h1>
+      <p class="tech-subtitle">وفّر وأدِر البنية التحتية برمجياً. لا مزيد من إعداد الخوادم اليدوي — كل شيء كود قابل للتكرار.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متقدم</span>
+        <span class="tech-badge green">Terraform</span>
+        <span class="tech-badge orange">Ansible</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> ما هو IaC؟</h2>
+      <div class="info-card">
+        <h3>Infrastructure as Code</h3>
+        <p>بدلاً من إعداد الخوادم يدوياً عبر واجهات، تعرّف كل شيء (خوادم، شبكات، قواعد بيانات) في ملفات كود. يمكنك مراجعتها، نسخها، وإعادة بناء البنية بالكامل بأمر واحد.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🏗️</div>
+          <h4>Terraform (توفير)</h4>
+          <p>يُنشئ البنية التحتية من الصفر: خوادم، شبكات، قواعد بيانات عبر APIs.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">⚙️</div>
+          <h4>Ansible (إعداد)</h4>
+          <p>يُعدّ الخوادم بعد إنشائها: تثبيت برامج، إعدادات، نشر تطبيقات.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🏗️</span> Terraform — الأساسيات</h2>
+      <div class="code-block">
+        <div class="code-header"><span>main.tf — AWS EC2 Instance</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">terraform</span> {
+  <span class="keyword">required_providers</span> {
+    <span class="command">aws</span> = {
+      <span class="keyword">source</span>  = <span class="string">"hashicorp/aws"</span>
+      <span class="keyword">version</span> = <span class="string">"~> 5.0"</span>
+    }
+  }
+}
+
+<span class="keyword">provider</span> <span class="string">"aws"</span> {
+  <span class="keyword">region</span> = <span class="string">"us-east-1"</span>
+}
+
+<span class="keyword">resource</span> <span class="string">"aws_instance"</span> <span class="string">"web"</span> {
+  <span class="keyword">ami</span>           = <span class="string">"ami-0c55b159cbfafe1f0"</span>
+  <span class="keyword">instance_type</span> = <span class="string">"t3.micro"</span>
+
+  <span class="keyword">tags</span> = {
+    <span class="keyword">Name</span> = <span class="string">"web-server"</span>
+    <span class="keyword">Env</span>  = <span class="string">"production"</span>
+  }
+}
+
+<span class="keyword">output</span> <span class="string">"public_ip"</span> {
+  <span class="keyword">value</span> = aws_instance.web.public_ip
+}</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Terraform Workflow</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تهيئة Terraform</span>
+<span class="command">terraform</span> init
+
+<span class="comment"># معاينة التغييرات</span>
+<span class="command">terraform</span> plan
+
+<span class="comment"># تطبيق التغييرات</span>
+<span class="command">terraform</span> apply <span class="flag">-auto-approve</span>
+
+<span class="comment"># عرض الموارد</span>
+<span class="command">terraform</span> show
+
+<span class="comment"># حذف كل شيء</span>
+<span class="command">terraform</span> destroy</div>
+      </div>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <span>ملف <code>terraform.tfstate</code> يحتوي معلومات حساسة. احفظه في remote backend (S3 + DynamoDB) وليس محلياً.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> Terraform — بنية متقدمة</h2>
+      <div class="code-block">
+        <div class="code-header"><span>variables.tf</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">variable</span> <span class="string">"instance_type"</span> {
+  <span class="keyword">description</span> = <span class="string">"EC2 instance type"</span>
+  <span class="keyword">type</span>        = string
+  <span class="keyword">default</span>     = <span class="string">"t3.micro"</span>
+}
+
+<span class="keyword">variable</span> <span class="string">"env"</span> {
+  <span class="keyword">description</span> = <span class="string">"Environment name"</span>
+  <span class="keyword">type</span>        = string
+  <span class="keyword">default</span>     = <span class="string">"production"</span>
+}</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>terraform.tfvars</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">instance_type</span> = <span class="string">"t3.medium"</span>
+<span class="keyword">env</span>           = <span class="string">"staging"</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">⚙️</span> Ansible — الأساسيات</h2>
+      <div class="info-card">
+        <h3>إعداد الخوادم بدون Agent</h3>
+        <p>Ansible يتصل بالخوادم عبر SSH وينفّذ المهام. لا يحتاج تثبيت عميل على الخوادم المستهدفة.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>inventory.ini</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">[webservers]</span>
+web1 ansible_host=10.0.1.10
+web2 ansible_host=10.0.1.11
+
+<span class="keyword">[dbservers]</span>
+db1 ansible_host=10.0.2.10
+
+<span class="keyword">[all:vars]</span>
+ansible_user=devops
+ansible_ssh_private_key_file=~/.ssh/id_ed25519</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>playbook.yml — Web Server Setup</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">---
+- name</span>: <span class="string">Setup Web Servers</span>
+  <span class="keyword">hosts</span>: webservers
+  <span class="keyword">become</span>: yes
+
+  <span class="keyword">tasks</span>:
+    - <span class="keyword">name</span>: <span class="string">Update apt cache</span>
+      <span class="keyword">apt</span>:
+        <span class="keyword">update_cache</span>: yes
+        <span class="keyword">cache_valid_time</span>: 3600
+
+    - <span class="keyword">name</span>: <span class="string">Install Nginx</span>
+      <span class="keyword">apt</span>:
+        <span class="keyword">name</span>: nginx
+        <span class="keyword">state</span>: present
+
+    - <span class="keyword">name</span>: <span class="string">Start Nginx</span>
+      <span class="keyword">service</span>:
+        <span class="keyword">name</span>: nginx
+        <span class="keyword">state</span>: started
+        <span class="keyword">enabled</span>: yes
+
+    - <span class="keyword">name</span>: <span class="string">Deploy app config</span>
+      <span class="keyword">template</span>:
+        <span class="keyword">src</span>: templates/nginx.conf.j2
+        <span class="keyword">dest</span>: /etc/nginx/sites-available/default
+      <span class="keyword">notify</span>: restart nginx
+
+  <span class="keyword">handlers</span>:
+    - <span class="keyword">name</span>: <span class="string">restart nginx</span>
+      <span class="keyword">service</span>:
+        <span class="keyword">name</span>: nginx
+        <span class="keyword">state</span>: restarted</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Ansible Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># فحص الاتصال</span>
+<span class="command">ansible</span> all <span class="flag">-m</span> ping
+
+<span class="comment"># تشغيل playbook</span>
+<span class="command">ansible-playbook</span> playbook.yml
+
+<span class="comment"># تشغيل مع تحديد hosts</span>
+<span class="command">ansible-playbook</span> playbook.yml <span class="flag">--limit</span> webservers
+
+<span class="comment"># فحص syntax</span>
+<span class="command">ansible-playbook</span> playbook.yml <span class="flag">--syntax-check</span>
+
+<span class="comment"># Dry run (معاينة بدون تنفيذ)</span>
+<span class="command">ansible-playbook</span> playbook.yml <span class="flag">--check</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> استخدم remote backend لـ Terraform state<br>
+          <strong>2.</strong> لا تضع Secrets في الكود — استخدم Vault أو Variables<br>
+          <strong>3.</strong> نفّذ <code>terraform plan</code> قبل <code>apply</code><br>
+          <strong>4.</strong> استخدم modules لإعادة الاستخدام<br>
+          <strong>5.</strong> اجعل Ansible playbooks idempotent (قابلة للتكرار بأمان)<br>
+          <strong>6.</strong> استخدم Git لتتبع تغييرات البنية التحتية
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="kubernetes.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: Kubernetes</span></a>
+      <a href="monitoring.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: المراقبة والسجلات</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

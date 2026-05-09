@@ -3,146 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدبلوم الشامل في تطبيقات الموبايل (Dart & Flutter)</title>
-    <link rel="stylesheet" href="css/main.css?v=2.0">
-    <script src="js/theme.js?v=2.0" defer></script>
+    <title>دبلوم الموبايل الشامل — أكاديمية كلاود سوفت</title>
+    <link rel="stylesheet" href="css/diploma.css">
+    <style>
+      :root { --module-color: var(--accent-green); --hero-glow: rgba(16,185,129,0.3); }
+    </style>
 </head>
 <body>
 
-    <div class="theme-toggle-container" style="top: 20px; left: 20px; display: flex; gap: 15px;">
-        <a href="index.html" class="theme-toggle-btn" aria-label="Back to Home" style="text-decoration:none; transform: scaleX(-1);">
-            🔙
-        </a>
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-            🌙
-        </button>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🎓</div>
+        <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <span class="separator">/</span>
+        <span>Flutter</span>
+      </div>
+      <a href="index.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="diploma-hero reveal">
+      <div class="diploma-icon">📱</div>
+      <h1 class="diploma-title">دبلوم الموبايل الشامل</h1>
+      <p class="diploma-subtitle">من الصفر للغة Dart وحتى برمجة ونشر تطبيقات أندرويد و iOS متكاملة بـ Flutter.</p>
+      <div class="diploma-badges">
+        <span class="diploma-badge">Dart & Flutter</span>
+        <span class="diploma-badge green">Android & iOS</span>
+        <span class="diploma-badge orange">Firebase</span>
+      </div>
+      <div class="diploma-stats">
+        <div class="d-stat"><div class="d-stat-num">4</div><div class="d-stat-label">أقسام رئيسية</div></div>
+        <div class="d-stat"><div class="d-stat-num">55+</div><div class="d-stat-label">درس تفصيلي</div></div>
+        <div class="d-stat"><div class="d-stat-num">5</div><div class="d-stat-label">تطبيقات عملية</div></div>
+        <div class="d-stat"><div class="d-stat-num">14+</div><div class="d-stat-label">تقنية وأداة</div></div>
+      </div>
     </div>
 
-    <div class="container">
-        <header>
-            <a href="https://claudsoft.com" target="_blank">
-                <img src="images/logo.png" alt="ClaudSoft Logo" class="logo-header">
-            </a>
-            <div class="badge-pro">الخطة الدراسية التفصيلية المرقمة</div>
-            <h1>الدبلوم الشامل في تطبيقات الموبايل (Dart & Flutter)</h1>
-            <p class="subtitle">تعلم تطوير تطبيقات أصيلة وعالية الأداء لمنصتي Android و iOS بنسخة كود واحدة (Single Codebase)، انطلاقاً من صفر خبرة برمجية وحتى الاحتراف المتكامل.</p>
-        </header>
+    <div class="modules-section">
+      <div class="section-header reveal">
+        <div class="section-title"><span class="icon">📖</span> محاور الدبلوم</div>
+        <p class="section-desc">من أساسيات Dart حتى نشر تطبيقات Flutter احترافية على المتاجر.</p>
+      </div>
 
-        <div class="modules-container">
-            
-            <!-- Module 1 -->
-            <div class="module-card active">
-                <div class="module-header">
-                    <div class="module-number">01</div>
-                    <div class="module-title">
-                        <h2>الأساسيات والبرمجة بـ Dart</h2>
-                        <p>بناء التفكير البرمجي وإتقان لغة Dart كقاعدة رئيسية</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item">مقدمة عن لغة Dart وإعداد بيئة العمل (SDK & IDEs)</div>
-                    <div class="topic-item">المتغيرات (Variables) وأنواع البيانات (Data Types) والنطاقات</div>
-                    <div class="topic-item">الجمل الشرطية (If, Switch, Assert)</div>
-                    <div class="topic-item">حلقات التكرار (For, While, Do While) لتنظيم البيانات</div>
-                    <div class="topic-item">الدوال (Functions) بأنواعها والمعاملات الافتراضية والمسماة</div>
-                    <div class="topic-item">المجموعات: القوائم (Lists)، المجموعات (Sets)، والقواميس (Maps)</div>
-                    <div class="topic-item">البرمجة الكينونية (OOP): الفئات (Classes) والكائنات (Objects)</div>
-                    <div class="topic-item">مبادئ الوراثة والتعددية (Inheritance & Polymorphism) والتغليف</div>
-                    <div class="topic-item">الفئات المجردة (Abstract Classes) والواجهات (Interfaces) والمكسين (Mixins)</div>
-                    <div class="topic-item">التعامل مع الأخطاء والاستثناءات (Exception Handling)</div>
-                    <div class="topic-item">البرمجة غير المتزامنة (Asynchronous) باستخدام (Future, Async/Await)</div>
-                    <div class="topic-item">الجداول الزمنية والتدفقات (Streams & Yield)</div>
-                </div>
-            </div>
-
-            <!-- Module 2 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">02</div>
-                    <div class="module-title">
-                        <h2>أساسيات واجهة المستخدم في Flutter</h2>
-                        <p>تصميم الواجهات الرسومية الجذابة (UI) خطوة بخطوة</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item">مفهوم وهندسة المكونات (Widgets Tree & Stateless vs Stateful)</div>
-                    <div class="topic-item">الهياكل الأساسية (Scaffold, AppBar, Container)</div>
-                    <div class="topic-item">ترتيب واصطفاف العناصر (Row, Column, Stack)</div>
-                    <div class="topic-item">إضافة النصوص، الصور المدمجة وعبر الشبكة، والأيقونات</div>
-                    <div class="topic-item">العناصر التفاعلية: الأزرار بأنواعها وحقول الإدخال (TextFields)</div>
-                    <div class="topic-item">بناء القوائم وعرض العناصر المتعددة (ListView & GridView)</div>
-                    <div class="topic-item">التنقل بين الصفحات وتمرير البيانات (Navigation & Routing)</div>
-                    <div class="topic-item">شريط التصفح السفلي (Bottom Navigation Bar) والقوائم الجانبية (Drawers)</div>
-                    <div class="topic-item">تصميم الـ Dialogs, Snackbars, and Bottom Sheets</div>
-                    <div class="topic-item">التحريك الأساسي والرسوم المتحركة المدمجة (Implicit Animations)</div>
-                    <div class="topic-item">تصميم واجهات متجاوبة (Responsive Design) مع كافة الأجهزة</div>
-                </div>
-            </div>
-
-            <!-- Module 3 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">03</div>
-                    <div class="module-title">
-                        <h2>المكونات المتقدمة وإدارة الحالة (State Management)</h2>
-                        <p>احتراف منطق التطبيقات وإدارة البيانات باحترافية وتحديث الواجهات</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item">فهم معمارية إدارة الحالة وأهميتها في التطبيقات الكبيرة</div>
-                    <div class="topic-item">التدريب على أساسيات (SetState & Inherited Widgets) كمدخل</div>
-                    <div class="topic-item">التعمق في مكتبة إدارة الحالة العالمية (Provider Architecture) بالكامل</div>
-                    <div class="topic-item">دراسة إطار (Bloc / Cubit) لإدارة الحالات المعقدة باحترافية (أشهر مطلوب بسوق العمل)</div>
-                    <div class="topic-item">التعامل مع ملفات البيانات المحلية وتخزين المفضلة والتفضيلات (SharedPreferences)</div>
-                    <div class="topic-item">قواعد البيانات المحلية باستخدام (SQLite & Hive)</div>
-                    <div class="topic-item">التعامل الوظيفي مع النماذج المعقدة (Form Validation)</div>
-                    <div class="topic-item">هندسة وتنظيم الملفات باحتراف بطريقة الخبراء (Clean Architecture Concepts)</div>
-                </div>
-            </div>
-
-            <!-- Module 4 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">04</div>
-                    <div class="module-title">
-                        <h2>الاتصال الخارجي، Firebase، ونشر التطبيق</h2>
-                        <p>بناء تطبيقات متصلة بالإنترنت والتمهيد للإطلاق النهائي في المتاجر</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item">مقدمة لـ (HTTP Requests & RESTful APIs) وتطبيقها العملي</div>
-                    <div class="topic-item">تحليل استجابة السيرفرات (JSON Parsing & Serialization) في لغة Dart</div>
-                    <div class="topic-item">إعداد وربط منصة (Firebase Cloud Services) بمشروع Flutter</div>
-                    <div class="topic-item">توثيق وتسجيل المستخدمين (Firebase Authentication & Social Login)</div>
-                    <div class="topic-item">التعامل مع قاعدة البيانات السحابية الحية (Firestore & Realtime DB)</div>
-                    <div class="topic-item">رفع واختبار الصور والملفات السحابية عبر (Firebase Storage)</div>
-                    <div class="topic-item">إرسال إشعارات الدفع الذكية (Push Notifications) عبر Firebase Cloud Messaging</div>
-                    <div class="topic-item">تكامل التطبيقات مع خرائط قوقل لتحديد المواقع (Google Maps Integration)</div>
-                    <div class="topic-item">تهيئة وإعدادات المتجر لإصدار نسختي (APK و AAB) للأندرويد</div>
-                    <div class="topic-item">تجهيز نسخة الـ (IPA - iOS App) وإعدادات حقوق متجر Apple</div>
-                    <div class="topic-item">رفع التطبيقات رسمياً على (Google Play Console) و (Apple App Store)</div>
-                </div>
-            </div>
-            
-            <!-- Final Project -->
-            <div class="module-card">
-                <div class="module-header" style="background: rgba(244,148,36,0.1);">
-                    <div class="module-number" style="border-color: var(--secondary);">🏆</div>
-                    <div class="module-title">
-                        <h2>المشروع النهائي: تطبيق متجر إلكتروني شامل ومتكامل</h2>
-                        <p>توظيف كل ما تم دراسته لبناء تطبيق تخرج فعلي متكامل من A إلى Z</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item">بناء واجهة مستخدم احترافية وتجاوبية متكاملة لبيئة الموبايل</div>
-                    <div class="topic-item">نظام توثيق وحساب مستخدمين وسلة مشتريات وقوائم مفضلة</div>
-                    <div class="topic-item">ربط واجهات التطبيق بسيرفر قواعد بيانات مركزي لتلقي وعرض المنتجات لحظياً</div>
-                    <div class="topic-item">إدارة حالة التطبيق باستخدام (Bloc / Provider) لضمان أعلى استقرار وأداء</div>
-                    <div class="topic-item">استكمال نشر التطبيق وجعله جاهزاً كسابقة أعمال لك كمهندس برمجيات حقيقي</div>
-                </div>
-            </div>
-
+      <!-- Dart -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">01</div>
+          <div class="module-title">
+            <h2>لغة Dart</h2>
+            <p>اللغة الأساسية لبناء تطبيقات Flutter</p>
+          </div>
         </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في Dart وإعداد البيئة</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">المتغيرات وأنواع البيانات</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الشروط والحلقات</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الدوال (Functions) والـ Closures</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">البرمجة الكائنية OOP في Dart</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">الـ Mixins و Extensions</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع الأخطاء (Try/Catch)</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">البرمجة غير المتزامنة (async/await, Futures, Streams)</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Null Safety والتعامل مع القيم الفارغة</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Flutter Basics -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">02</div>
+          <div class="module-title">
+            <h2>أساسيات Flutter</h2>
+            <p>بناء واجهات المستخدم الجميلة والمتجاوبة</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إعداد بيئة Flutter و VS Code / Android Studio</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">مفهوم Widgets — كل شيء Widget</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Stateless vs Stateful Widgets</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">التخطيط بـ Row, Column, Stack, Container</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">ListView و GridView و ScrollView</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">التنقل بين الشاشات (Navigation)</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع الصور والأيقونات</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Forms والتحقق من المدخلات</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">الثيمات والتصميم المتجاوب</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Animations و Hero Transitions</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">مشروع: تطبيق الطقس</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advanced Flutter -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">03</div>
+          <div class="module-title">
+            <h2>Flutter المتقدم</h2>
+            <p>إدارة الحالة، APIs، قواعد البيانات المحلية</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إدارة الحالة — Provider و Riverpod</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">التعامل مع REST APIs (http, Dio)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">JSON Parsing و Serialization</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">قواعد البيانات المحلية (SQLite, Hive)</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">التخزين المحلي (SharedPreferences)</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">الإشعارات (Notifications)</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">الكاميرا والمعرض (Image Picker)</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">الخرائط والموقع (Google Maps & Geolocator)</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">المصادقة (Login, Register, Social Auth)</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">مشروع: تطبيق متجر إلكتروني</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Firebase & Publishing -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">04</div>
+          <div class="module-title">
+            <h2>Firebase & النشر</h2>
+            <p>ربط التطبيقات بـ Firebase ونشرها على المتاجر</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إعداد Firebase مع Flutter</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Firebase Authentication</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Firestore — قاعدة البيانات السحابية</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Firebase Storage — رفع الملفات</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Firebase Cloud Messaging (Push Notifications)</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Firebase Analytics</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">اختبار التطبيق (Debugging & Testing)</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">بناء APK و App Bundle</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">نشر على Google Play Store</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">نشر على Apple App Store</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text"><strong>المشروع الختامي:</strong> تطبيق تواصل اجتماعي كامل</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="modules-section reveal">
+      <div class="section-header">
+        <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item"><div class="feature-icon">📱</div><h4>Android & iOS</h4><p>تطبيق واحد يعمل على كل المنصات.</p></div>
+        <div class="feature-item"><div class="feature-icon">🔥</div><h4>Firebase كامل</h4><p>Auth, Firestore, Storage, Notifications.</p></div>
+        <div class="feature-item"><div class="feature-icon">🎨</div><h4>واجهات جميلة</h4><p>Animations, Transitions, Custom Widgets.</p></div>
+        <div class="feature-item"><div class="feature-icon">🚀</div><h4>نشر على المتاجر</h4><p>Google Play + App Store خطوة بخطوة.</p></div>
+      </div>
+    </div>
+
+    <div class="alert alert-success reveal">
+      <span class="alert-icon">🚀</span>
+      <span>بعد هذا الدبلوم ستكون قادر على بناء ونشر تطبيقات موبايل احترافية على Android و iOS!</span>
+    </div>
+
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>أكاديمية كلاود سوفت</span> — جميع الحقوق محفوظة</p></footer>
+
+  <script src="js/diploma.js"></script>
 </body>
 </html>

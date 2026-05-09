@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المرحلة 4 — إدارة الأنظمة والأمن الدفاعي | Cyber Diploma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/phase.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><i class="fas fa-shield-halved"></i><span class="nav-logo-text">CyberDiploma</span></a>
+      <div class="nav-breadcrumb"><a href="../index.html">الرئيسية</a><span class="sep">/</span><span>المرحلة 4</span></div>
+      <a href="../index.html" class="nav-back"><i class="fas fa-arrow-right"></i> العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="phase-hero reveal" style="--glow: rgba(239,68,68,0.3);">
+      <div class="phase-icon"><i class="fas fa-fire-flame-curved" style="color:var(--red)"></i></div>
+      <h1 class="phase-title">إدارة الأنظمة والأمن الدفاعي</h1>
+      <p class="phase-subtitle">تأمين الأنظمة والخوادم، إدارة السياسات الأمنية، تحليل السجلات، وإعداد آليات الدفاع.</p>
+      <div class="phase-badges">
+        <span class="phase-badge">المرحلة 04</span>
+        <span class="phase-badge green">4 أسابيع</span>
+        <span class="phase-badge orange">متوسط</span>
+      </div>
+      <div class="phase-stats">
+        <div class="p-stat"><div class="p-stat-num">8</div><div class="p-stat-label">دروس</div></div>
+        <div class="p-stat"><div class="p-stat-num">4</div><div class="p-stat-label">أدوات رئيسية</div></div>
+        <div class="p-stat"><div class="p-stat-num">16+</div><div class="p-stat-label">مهارة مكتسبة</div></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> نظرة عامة</h2>
+      <div class="info-card">
+        <h3>Blue Team Fundamentals</h3>
+        <p>قبل أن تهاجم، يجب أن تعرف كيف تدافع. هذه المرحلة تعلمك كيف تؤمن الأنظمة، تكتشف التسلل، وتحلل السجلات لاكتشاف الأنشطة المشبوهة.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="fi-icon">🔒</div><h4>System Hardening</h4><p>تأمين Linux وWindows — تعطيل الخدمات غير الضرورية، إعداد جدران الحماية.</p></div>
+        <div class="feature-item"><div class="fi-icon">📊</div><h4>SIEM</h4><p>مركز عمليات الأمن — جمع وتحليل السجلات من مصادر متعددة.</p></div>
+        <div class="feature-item"><div class="fi-icon">🚨</div><h4>IDS/IPS</h4><p>أنظمة كشف ومنع التسلل — Snort وSuricata.</p></div>
+        <div class="feature-item"><div class="fi-icon">🏢</div><h4>Active Directory</h4><p>إدارة الهويات والصلاحيات في بيئات المؤسسات.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> المحاور التفصيلية</h2>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>المحور</th><th>المدة</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>Linux Hardening — تأمين النظام</td><td>3 أيام</td></tr>
+          <tr><td>02</td><td>Windows Server Security وGroup Policy</td><td>3 أيام</td></tr>
+          <tr><td>03</td><td>إعداد جدار الحماية (UFW, iptables, firewalld)</td><td>2 أيام</td></tr>
+          <tr><td>04</td><td>تحليل السجلات — /var/log, Event Viewer</td><td>3 أيام</td></tr>
+          <tr><td>05</td><td>مقدمة في SIEM — Splunk</td><td>3 أيام</td></tr>
+          <tr><td>06</td><td>IDS/IPS — Snort وSuricata</td><td>3 أيام</td></tr>
+          <tr><td>07</td><td>Active Directory — إدارة المستخدمين والصلاحيات</td><td>3 أيام</td></tr>
+          <tr><td>08</td><td>Fail2Ban وCrowdSec — الحماية من الهجمات</td><td>2 أيام</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💻</span> تأمين Linux</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Hardening Commands</span><button class="code-copy">Copy</button></div>
+        <div class="code-content"><span class="cmt"># تعطيل root login</span>
+<span class="cmd">sudo</span> passwd <span class="flag">-l</span> root
+
+<span class="cmt"># إعداد جدار الحماية</span>
+<span class="cmd">ufw</span> default deny incoming
+<span class="cmd">ufw</span> allow 22/tcp
+<span class="cmd">ufw</span> allow 80/tcp
+<span class="cmd">ufw</span> allow 443/tcp
+<span class="cmd">ufw</span> enable
+
+<span class="cmt"># فحص الملفات المعدلة</span>
+<span class="cmd">find</span> / <span class="flag">-perm -4000 -type f</span> 2>/dev/null
+
+<span class="cmt"># عرض المستخدمين المسجلين</span>
+<span class="cmd">who</span>
+<span class="cmd">last</span> <span class="flag">-a</span>
+
+<span class="cmt"># تثبيت التحديثات الأمنية تلقائياً</span>
+<span class="cmd">apt</span> install unattended-upgrades <span class="flag">-y</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📊</span> Splunk — بحث السجلات</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Splunk — Search Queries</span><button class="code-copy">Copy</button></div>
+        <div class="code-content"><span class="cmt"># بحث عن محاولات فاشلة</span>
+index=main <span class="str">"Failed password"</span> | stats count by src_ip
+
+<span class="cmt"># عرض أكثر IPs محاولة</span>
+index=main <span class="str">"Failed password"</span> | top limit=10 src_ip
+
+<span class="cmt"># تنبيه عند أكثر من 10 محاولات</span>
+index=main <span class="str">"Failed password"</span> | stats count by src_ip | where count > 10</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> ما يجب إتقانه</h2>
+      <div class="alert alert-ok">
+        <span class="a-icon">🎯</span>
+        <span>
+          <strong>1.</strong> تأمين Linux وWindows Server<br>
+          <strong>2.</strong> إعداد جدران الحماية<br>
+          <strong>3.</strong> تحليل السجلات لاكتشاف الهجمات<br>
+          <strong>4.</strong> استخدام SIEM (Splunk)<br>
+          <strong>5.</strong> إعداد IDS/IPS<br>
+          <strong>6.</strong> إدارة Active Directory
+        </span>
+      </div>
+    </div>
+
+    <div class="phase-nav reveal">
+      <a href="phase3.html" class="phase-nav-link"><i class="fas fa-arrow-right"></i> المرحلة 3</a>
+      <a href="phase5.html" class="phase-nav-link">المرحلة 5: أمن الويب <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>CyberDiploma Academy</span> — جميع الحقوق محفوظة</p></footer>
+  <script src="js/phase.js"></script>
+</body>
+</html>

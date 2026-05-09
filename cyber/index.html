@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دبلوم الأمن السيبراني الشامل</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+</head>
+<body>
+
+<!-- ===================== LOADER ===================== -->
+<div id="loader">
+  <i class="fas fa-shield-halved loader-icon"></i>
+  <span class="loader-text">جاري التحميل...</span>
+</div>
+
+<!-- ===================== MOBILE MENU ===================== -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
+  <a href="#hero" onclick="closeMobile()">الرئيسية</a>
+  <a href="#roadmap" onclick="closeMobile()">المراحل</a>
+  <a href="#tools" onclick="closeMobile()">الأدوات</a>
+  <a href="#cta" onclick="closeMobile()">الالتحاق</a>
+</div>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav id="navbar">
+  <div class="container nav-inner">
+    <a href="#hero" class="nav-logo">
+      <i class="fas fa-shield-halved"></i>
+      <span>CyberDiploma</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="active">الرئيسية</a></li>
+      <li><a href="#counters">الإحصائيات</a></li>
+      <li><a href="#roadmap">المراحل</a></li>
+      <li><a href="#tools">الأدوات</a></li>
+      <li><a href="#cta" class="nav-cta">سجّل الآن</a></li>
+    </ul>
+    <button class="nav-burger" id="navBurger"><i class="fas fa-bars"></i></button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="cyber-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="particles" id="particles"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <!-- Text Side -->
+      <div>
+        <div class="hero-badge">
+          <span class="dot"></span>
+          تسجيل الدفعة الجديدة متاح الآن
+        </div>
+        <h1 class="hero-title">
+          <span class="line1">دبلوم</span>
+          <span class="line2">الأمن السيبراني</span>
+          <span class="line1">الشامل</span>
+        </h1>
+        <p class="hero-desc">
+          رحلة تعليمية متكاملة من الصفر حتى الاحتراف — تغطي 9 مراحل متخصصة في أمن المعلومات، اختبار الاختراق، الفريق الأزرق، وأمن السحابة. ابنِ مستقبلك في عالم الأمن السيبراني.
+        </p>
+        <div class="hero-btns">
+          <a href="#roadmap" class="btn-primary">
+            <i class="fas fa-rocket"></i>
+            استكشف المنهاج
+          </a>
+          <a href="#cta" class="btn-secondary">
+            <i class="fas fa-play-circle"></i>
+            سجّل الآن مجاناً
+          </a>
+        </div>
+      </div>
+      <!-- Visual Side -->
+      <div class="hero-visual">
+        <div class="shield-container">
+          <div class="shield-ring"><div class="shield-dot"></div></div>
+          <div class="shield-ring"></div>
+          <div class="shield-ring"></div>
+          <div class="shield-icon">
+            <i class="fas fa-shield-halved"></i>
+          </div>
+          <div class="floating-icons">
+            <div class="fi"><i class="fab fa-linux"></i></div>
+            <div class="fi"><i class="fas fa-network-wired"></i></div>
+            <div class="fi"><i class="fab fa-python"></i></div>
+            <div class="fi"><i class="fas fa-bug"></i></div>
+            <div class="fi"><i class="fas fa-lock"></i></div>
+            <div class="fi"><i class="fas fa-cloud"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== COUNTERS ===================== -->
+<section id="counters">
+  <div class="container">
+    <div class="counters-grid">
+      <div class="counter-card reveal">
+        <div class="counter-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div class="counter-num" data-target="9" data-suffix="+">0</div>
+        <div class="counter-label">أشهر دراسة</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:.1s">
+        <div class="counter-icon"><i class="fas fa-layer-group"></i></div>
+        <div class="counter-num" data-target="9" data-suffix="">0</div>
+        <div class="counter-label">مراحل متخصصة</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:.2s">
+        <div class="counter-icon"><i class="fas fa-tools"></i></div>
+        <div class="counter-num" data-target="40" data-suffix="+">0</div>
+        <div class="counter-label">أداة احترافية</div>
+      </div>
+      <div class="counter-card reveal" style="transition-delay:.3s">
+        <div class="counter-icon"><i class="fas fa-star"></i></div>
+        <div class="counter-num" data-target="120" data-suffix="+">0</div>
+        <div class="counter-label">مهارة مكتسبة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ROADMAP ===================== -->
+<section id="roadmap" class="section">
+  <div class="container">
+    <div class="glow-divider reveal"></div>
+    <h2 class="section-title reveal">مراحل المنهاج الدراسي</h2>
+    <p class="section-subtitle reveal">
+      تسع مراحل متكاملة ومتدرجة تأخذك من أساسيات التقنية إلى عالم الأمن السيبراني الاحترافي
+    </p>
+
+    <div class="phases-grid">
+
+      <!-- Phase 1 -->
+      <a href="phases/phase1.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">01</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p1"><i class="fab fa-linux"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة الأولى</span>
+              <div class="phase-name">أساسيات التقنية والبيئة السحابية</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 4 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            بناء أساس قوي في بيئة Linux والسحابة الحاسوبية وفهم البنية التحتية للأنظمة قبل الدخول في عالم الأمن السيبراني.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">Linux CLI</span>
+            <span class="skill-tag">إدارة الملفات</span>
+            <span class="skill-tag">الأوامر الأساسية</span>
+            <span class="skill-tag">SSH</span>
+            <span class="skill-tag">AWS Basics</span>
+            <span class="skill-tag">Virtualization</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fab fa-linux"></i> Linux</span>
+            <span class="tool-tag"><i class="fas fa-terminal"></i> Terminal</span>
+            <span class="tool-tag"><i class="fas fa-cloud"></i> AWS / GCP</span>
+            <span class="tool-tag"><i class="fas fa-server"></i> VirtualBox</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 2 -->
+      <a href="phases/phase2.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.1s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">02</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p2"><i class="fas fa-network-wired"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة الثانية</span>
+              <div class="phase-name">الشبكات المتقدمة والتشفير</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 4 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            فهم عميق لبروتوكولات الشبكات، التشفير، وكيفية تحليل حركة البيانات لاكتشاف التهديدات والهجمات المحتملة.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">TCP/IP</span>
+            <span class="skill-tag">DNS / DHCP</span>
+            <span class="skill-tag">Subnetting</span>
+            <span class="skill-tag">PKI / TLS</span>
+            <span class="skill-tag">Packet Analysis</span>
+            <span class="skill-tag">VPN</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fas fa-shield-alt"></i> Wireshark</span>
+            <span class="tool-tag"><i class="fas fa-lock"></i> OpenSSL</span>
+            <span class="tool-tag"><i class="fas fa-network-wired"></i> Cisco Packet Tracer</span>
+            <span class="tool-tag"><i class="fas fa-search"></i> Nmap</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 3 -->
+      <a href="phases/phase3.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.15s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">03</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p3"><i class="fab fa-python"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة الثالثة</span>
+              <div class="phase-name">البرمجة والأتمتة</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 5 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            تعلم البرمجة بـ Python وBash لأتمتة مهام الأمن، كتابة سكريبتات الاختراق، وتطوير أدوات مخصصة للحماية.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">Python 3</span>
+            <span class="skill-tag">Bash Scripting</span>
+            <span class="skill-tag">Regular Expressions</span>
+            <span class="skill-tag">API Calls</span>
+            <span class="skill-tag">File Automation</span>
+            <span class="skill-tag">Web Scraping</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fab fa-python"></i> Python</span>
+            <span class="tool-tag"><i class="fas fa-terminal"></i> Bash</span>
+            <span class="tool-tag"><i class="fas fa-code"></i> VS Code</span>
+            <span class="tool-tag"><i class="fas fa-cogs"></i> Automation</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 4 -->
+      <a href="phases/phase4.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.2s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">04</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p4"><i class="fas fa-fire-flame-curved"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة الرابعة</span>
+              <div class="phase-name">إدارة الأنظمة والأمن الدفاعي</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 4 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            تعلم كيفية تأمين الأنظمة والخوادم، إدارة السياسات الأمنية، تحليل السجلات، وإعداد آليات الدفاع ضد الهجمات.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">Hardening</span>
+            <span class="skill-tag">Group Policy</span>
+            <span class="skill-tag">Log Analysis</span>
+            <span class="skill-tag">IDS / IPS</span>
+            <span class="skill-tag">SIEM Basics</span>
+            <span class="skill-tag">Active Directory</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fas fa-fire"></i> UFW / iptables</span>
+            <span class="tool-tag"><i class="fas fa-server"></i> Windows Server</span>
+            <span class="tool-tag"><i class="fas fa-chart-line"></i> Splunk</span>
+            <span class="tool-tag"><i class="fas fa-shield-alt"></i> Snort</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 5 -->
+      <a href="phases/phase5.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.25s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">05</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p5"><i class="fas fa-globe"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة الخامسة</span>
+              <div class="phase-name">أمن الويب وقواعد البيانات</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 5 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            اكتشاف ثغرات تطبيقات الويب وفق OWASP Top 10، حماية قواعد البيانات، ومنع هجمات SQL Injection وXSS وغيرها.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">OWASP Top 10</span>
+            <span class="skill-tag">SQL Injection</span>
+            <span class="skill-tag">XSS</span>
+            <span class="skill-tag">CSRF</span>
+            <span class="skill-tag">Authentication Bypass</span>
+            <span class="skill-tag">Web Fuzzing</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fas fa-bug"></i> Burp Suite</span>
+            <span class="tool-tag"><i class="fas fa-database"></i> SQLMap</span>
+            <span class="tool-tag"><i class="fas fa-spider"></i> OWASP ZAP</span>
+            <span class="tool-tag"><i class="fas fa-code"></i> Nikto</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 6 -->
+      <a href="phases/phase6.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.3s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">06</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p6"><i class="fas fa-user-secret"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة السادسة</span>
+              <div class="phase-name">اختبار الاختراق</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 6 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            تعلم منهجية Penetration Testing الاحترافية، اختراق الأنظمة بطرق أخلاقية، استخراج المعلومات، ورفع الصلاحيات.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">Reconnaissance</span>
+            <span class="skill-tag">Exploitation</span>
+            <span class="skill-tag">Privilege Escalation</span>
+            <span class="skill-tag">Post Exploitation</span>
+            <span class="skill-tag">Report Writing</span>
+            <span class="skill-tag">CVE Research</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fas fa-terminal"></i> Metasploit</span>
+            <span class="tool-tag"><i class="fas fa-search"></i> Nmap</span>
+            <span class="tool-tag"><i class="fas fa-user-ninja"></i> Kali Linux</span>
+            <span class="tool-tag"><i class="fas fa-key"></i> John the Ripper</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 7 -->
+      <a href="phases/phase7.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.35s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">07</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p7"><i class="fas fa-eye"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة السابعة</span>
+              <div class="phase-name">الفريق الأزرق والتقارير</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 4 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            بناء مهارات الدفاع والمراقبة، الاستجابة للحوادث، الطب الشرعي الرقمي، وكتابة تقارير أمنية احترافية.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">SOC Operations</span>
+            <span class="skill-tag">Incident Response</span>
+            <span class="skill-tag">Digital Forensics</span>
+            <span class="skill-tag">Threat Hunting</span>
+            <span class="skill-tag">MITRE ATT&CK</span>
+            <span class="skill-tag">Security Reports</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fas fa-chart-bar"></i> Splunk</span>
+            <span class="tool-tag"><i class="fas fa-bell"></i> ELK Stack</span>
+            <span class="tool-tag"><i class="fas fa-shield-alt"></i> Velociraptor</span>
+            <span class="tool-tag"><i class="fas fa-file-alt"></i> TheHive</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 8 -->
+      <a href="phases/phase8.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.4s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">08</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p8"><i class="fas fa-cloud-bolt"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة الثامنة</span>
+              <div class="phase-name">أمن السحاب والـ APIs</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 4 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            تأمين البيئات السحابية على AWS/Azure/GCP، حماية الـ APIs، إدارة الهويات والوصول، والامتثال للمعايير الدولية.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">Cloud Security</span>
+            <span class="skill-tag">IAM Policies</span>
+            <span class="skill-tag">API Security</span>
+            <span class="skill-tag">Zero Trust</span>
+            <span class="skill-tag">MFA / 2FA</span>
+            <span class="skill-tag">Compliance</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fab fa-aws"></i> AWS Security</span>
+            <span class="tool-tag"><i class="fas fa-cloud"></i> Azure Defender</span>
+            <span class="tool-tag"><i class="fas fa-lock"></i> HashiCorp Vault</span>
+            <span class="tool-tag"><i class="fas fa-key"></i> OAuth 2.0</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Phase 9 -->
+      <a href="phases/phase9.html" class="phase-card-link reveal" style="text-decoration:none;color:inherit;display:block;transition-delay:.45s">
+      <div class="phase-card">
+        <div class="phase-inner">
+          <div class="phase-number">09</div>
+          <div class="phase-header">
+            <div class="phase-icon-wrap p9"><i class="fas fa-trophy"></i></div>
+            <div class="phase-meta">
+              <span class="phase-tag">المرحلة التاسعة</span>
+              <div class="phase-name">التطبيق العملي وبناء البورتفوليو</div>
+              <div class="phase-duration"><i class="fas fa-clock"></i> 6 أسابيع</div>
+            </div>
+          </div>
+          <p class="phase-desc">
+            تطبيق جميع المهارات المكتسبة عبر تحديات CTF، مشاريع عملية حقيقية، وبناء بورتفوليو احترافي يفتح أبواب سوق العمل.
+          </p>
+          <div class="phase-section-title"><i class="fas fa-check-circle"></i> المهارات المكتسبة</div>
+          <div class="phase-skills">
+            <span class="skill-tag">CTF Challenges</span>
+            <span class="skill-tag">Real Projects</span>
+            <span class="skill-tag">Portfolio Building</span>
+            <span class="skill-tag">Resume Writing</span>
+            <span class="skill-tag">Interview Prep</span>
+            <span class="skill-tag">Bug Bounty</span>
+          </div>
+          <div class="phase-section-title"><i class="fas fa-wrench"></i> الأدوات والتقنيات</div>
+          <div class="phase-tools">
+            <span class="tool-tag"><i class="fab fa-github"></i> GitHub</span>
+            <span class="tool-tag"><i class="fas fa-flag"></i> TryHackMe</span>
+            <span class="tool-tag"><i class="fas fa-cube"></i> HackTheBox</span>
+            <span class="tool-tag"><i class="fas fa-award"></i> Certifications</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+    </div><!-- .phases-grid -->
+  </div>
+</section>
+
+<!-- ===================== TOOLS ===================== -->
+<section id="tools" class="section">
+  <div class="container">
+    <div class="glow-divider reveal"></div>
+    <h2 class="section-title reveal">الأدوات التي ستتعلمها</h2>
+    <p class="section-subtitle reveal">
+      مجموعة من أقوى الأدوات الاحترافية المستخدمة في صناعة الأمن السيبراني العالمية
+    </p>
+    <div class="tools-grid">
+      <a href="technologies/linux.html" class="tool-card tc-linux reveal" style="text-decoration:none;color:inherit;">
+        <div class="tool-icon ti-linux"><i class="fab fa-linux"></i></div>
+        <div class="tool-name">Linux</div>
+        <div class="tool-desc">بيئة العمل الأساسية</div>
+      </a>
+      <a href="technologies/nmap.html" class="tool-card tc-nmap reveal" style="text-decoration:none;color:inherit;transition-delay:.05s">
+        <div class="tool-icon ti-nmap"><i class="fas fa-search"></i></div>
+        <div class="tool-name">Nmap</div>
+        <div class="tool-desc">مسح الشبكات والمنافذ</div>
+      </a>
+      <a href="technologies/wireshark.html" class="tool-card tc-wire reveal" style="text-decoration:none;color:inherit;transition-delay:.1s">
+        <div class="tool-icon ti-wire"><i class="fas fa-wave-square"></i></div>
+        <div class="tool-name">Wireshark</div>
+        <div class="tool-desc">تحليل حركة الشبكة</div>
+      </a>
+      <a href="technologies/burp-suite.html" class="tool-card tc-burp reveal" style="text-decoration:none;color:inherit;transition-delay:.15s">
+        <div class="tool-icon ti-burp"><i class="fas fa-bug"></i></div>
+        <div class="tool-name">Burp Suite</div>
+        <div class="tool-desc">اختبار أمان الويب</div>
+      </a>
+      <a href="technologies/metasploit.html" class="tool-card tc-meta reveal" style="text-decoration:none;color:inherit;transition-delay:.2s">
+        <div class="tool-icon ti-meta"><i class="fas fa-rocket"></i></div>
+        <div class="tool-name">Metasploit</div>
+        <div class="tool-desc">منصة الاختراق الاحترافية</div>
+      </a>
+      <a href="technologies/python.html" class="tool-card tc-python reveal" style="text-decoration:none;color:inherit;transition-delay:.25s">
+        <div class="tool-icon ti-python"><i class="fab fa-python"></i></div>
+        <div class="tool-name">Python</div>
+        <div class="tool-desc">البرمجة والأتمتة</div>
+      </a>
+      <a href="technologies/docker.html" class="tool-card tc-docker reveal" style="text-decoration:none;color:inherit;transition-delay:.3s">
+        <div class="tool-icon ti-docker"><i class="fab fa-docker"></i></div>
+        <div class="tool-name">Docker</div>
+        <div class="tool-desc">عزل البيئات والحاويات</div>
+      </a>
+      <a href="technologies/github.html" class="tool-card tc-github reveal" style="text-decoration:none;color:inherit;transition-delay:.35s">
+        <div class="tool-icon ti-github"><i class="fab fa-github"></i></div>
+        <div class="tool-name">GitHub</div>
+        <div class="tool-desc">إدارة الكود والبورتفوليو</div>
+      </a>
+      <a href="technologies/tryhackme.html" class="tool-card tc-thm reveal" style="text-decoration:none;color:inherit;transition-delay:.4s">
+        <div class="tool-icon ti-thm"><i class="fas fa-flag"></i></div>
+        <div class="tool-name">TryHackMe</div>
+        <div class="tool-desc">تدريب عملي تفاعلي</div>
+      </a>
+      <a href="technologies/hackthebox.html" class="tool-card tc-htb reveal" style="text-decoration:none;color:inherit;transition-delay:.45s">
+        <div class="tool-icon ti-htb"><i class="fas fa-cube"></i></div>
+        <div class="tool-name">HackTheBox</div>
+        <div class="tool-desc">تحديات اختراق متقدمة</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section id="cta">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="container">
+    <div class="cta-inner reveal">
+      <span class="cta-badge"><i class="fas fa-bolt"></i> ابدأ رحلتك الآن</span>
+      <h2 class="cta-title">
+        <span class="grad-cyan">هل أنت مستعد لتصبح</span><br/>
+        <span>خبير أمن سيبراني؟</span>
+      </h2>
+      <p class="cta-desc">
+        انضم إلى مئات الطلاب الذين حولوا شغفهم بالتقنية إلى مسيرة مهنية ناجحة في الأمن السيبراني. المقاعد محدودة — سجّل الآن.
+      </p>
+      <div class="cta-btns">
+        <a href="#" class="btn-primary">
+          <i class="fas fa-user-plus"></i>
+          سجّل الآن مجاناً
+        </a>
+        <a href="#roadmap" class="btn-secondary">
+          <i class="fas fa-map"></i>
+          تصفح المنهاج
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand reveal">
+        <div class="footer-logo">
+          <i class="fas fa-shield-halved"></i>
+          <span>CyberDiploma Academy</span>
+        </div>
+        <p class="footer-tagline">
+          أكاديميتك نحو الاحتراف في الأمن السيبراني. نبني المحترفين، نحمي الفضاء الرقمي، ونصنع الفارق في عالم التقنية.
+        </p>
+        <div class="social-links">
+          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <!-- Quick Links -->
+      <div class="footer-col reveal" style="transition-delay:.1s">
+        <h4>روابط سريعة</h4>
+        <ul class="footer-links">
+          <li><a href="#hero"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
+          <li><a href="#roadmap"><i class="fas fa-chevron-left"></i> المراحل الدراسية</a></li>
+          <li><a href="#tools"><i class="fas fa-chevron-left"></i> الأدوات</a></li>
+          <li><a href="#counters"><i class="fas fa-chevron-left"></i> الإحصائيات</a></li>
+          <li><a href="#cta"><i class="fas fa-chevron-left"></i> التسجيل</a></li>
+        </ul>
+      </div>
+      <!-- Program Info -->
+      <div class="footer-col reveal" style="transition-delay:.2s">
+        <h4>التقنيات والأدوات</h4>
+        <ul class="footer-links">
+          <li><a href="technologies/linux.html"><i class="fas fa-chevron-left"></i> Linux</a></li>
+          <li><a href="technologies/nmap.html"><i class="fas fa-chevron-left"></i> Nmap</a></li>
+          <li><a href="technologies/wireshark.html"><i class="fas fa-chevron-left"></i> Wireshark</a></li>
+          <li><a href="technologies/burp-suite.html"><i class="fas fa-chevron-left"></i> Burp Suite</a></li>
+          <li><a href="technologies/metasploit.html"><i class="fas fa-chevron-left"></i> Metasploit</a></li>
+        </ul>
+      </div>
+      <!-- More Tech -->
+      <div class="footer-col reveal" style="transition-delay:.25s">
+        <h4>المزيد</h4>
+        <ul class="footer-links">
+          <li><a href="technologies/python.html"><i class="fas fa-chevron-left"></i> Python</a></li>
+          <li><a href="technologies/docker.html"><i class="fas fa-chevron-left"></i> Docker</a></li>
+          <li><a href="technologies/github.html"><i class="fas fa-chevron-left"></i> GitHub</a></li>
+          <li><a href="technologies/tryhackme.html"><i class="fas fa-chevron-left"></i> TryHackMe</a></li>
+          <li><a href="technologies/hackthebox.html"><i class="fas fa-chevron-left"></i> HackTheBox</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2025 CyberDiploma Academy — جميع الحقوق محفوظة</span>
+      <span class="footer-motto">
+        <i class="fas fa-heart"></i>
+        صُنع بشغف لحماية الفضاء الرقمي العربي
+        <i class="fas fa-shield-halved" style="color:var(--cyan)"></i>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="backTop" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
+
+<!-- Custom JS -->
+<script src="js/main.js"></script>
+</body>
+</html>

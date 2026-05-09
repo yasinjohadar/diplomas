@@ -3,284 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدبلوم الاحترافي الشامل في PHP وقواعد البيانات - الإصدار المفصل جداً</title>
-    <link rel="stylesheet" href="css/main.css?v=2.0">
-    <script src="js/theme.js?v=2.0" defer></script>
+    <title>دبلوم PHP وقواعد البيانات — أكاديمية كلاود سوفت</title>
+    <link rel="stylesheet" href="css/diploma.css">
+    <style>
+      :root { --module-color: var(--accent-purple); --hero-glow: rgba(168,85,247,0.3); }
+    </style>
 </head>
 <body>
 
-    <div class="theme-toggle-container" style="top: 20px; left: 20px; display: flex; gap: 15px;">
-        <a href="index.html" class="theme-toggle-btn" aria-label="Back to Home" style="text-decoration:none; transform: scaleX(-1);">
-            🔙
-        </a>
-        <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-            🌙
-        </button>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">🎓</div>
+        <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <span class="separator">/</span>
+        <span>PHP</span>
+      </div>
+      <a href="index.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="diploma-hero reveal">
+      <div class="diploma-icon">🐘</div>
+      <h1 class="diploma-title">دبلوم PHP وقواعد البيانات</h1>
+      <p class="diploma-subtitle">موسوعة احتراف برمجة خلفيات الويب — هندسة البيانات، الأمان المتقدم، هندسة MVC و APIs.</p>
+      <div class="diploma-badges">
+        <span class="diploma-badge">المستوى الثالث</span>
+        <span class="diploma-badge green">Laravel</span>
+        <span class="diploma-badge orange">Full-Stack</span>
+      </div>
+      <div class="diploma-stats">
+        <div class="d-stat"><div class="d-stat-num">5</div><div class="d-stat-label">أقسام رئيسية</div></div>
+        <div class="d-stat"><div class="d-stat-num">70+</div><div class="d-stat-label">درس تفصيلي</div></div>
+        <div class="d-stat"><div class="d-stat-num">4</div><div class="d-stat-label">مشاريع عملية</div></div>
+        <div class="d-stat"><div class="d-stat-num">18+</div><div class="d-stat-label">تقنية وأداة</div></div>
+      </div>
     </div>
 
-    <div class="container">
-        <header>
-            <a href="https://claudsoft.com" target="_blank">
-                <img src="images/logo.png" alt="ClaudSoft Logo" class="logo-header">
-            </a>
-            <div class="badge-pro">الخطة الدراسية التفصيلية المرقمة</div>
-            <h1>موسوعة احتراف برمجة الويب (PHP & Databases)</h1>
-            <p class="subtitle">استجابةً لطلبك، هذا هو التفصيل العميق والكامل لكل نقطة سيتم دراستها خطوة بخطوة في الدبلوم، مقسمة ومرقمة لضمان الاحتراف المطلق وانعدام الفجوات المعرفية.</p>
-        </header>
+    <div class="modules-section">
+      <div class="section-header reveal">
+        <div class="section-title"><span class="icon">📖</span> محاور الدبلوم</div>
+        <p class="section-desc">من أساسيات PHP حتى بناء أنظمة متكاملة بـ Laravel مع APIs وقواعد بيانات متقدمة.</p>
+      </div>
 
-        <div class="modules-container">
-            
-            <!-- Module 1 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">01</div>
-                    <div class="module-title">
-                        <h2>الأسس والمنطق البرمجي السليم</h2>
-                        <p>بناء الأعمدة الأساسية المتينة وفهم محرك اللغة من الداخل</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> مقدمة شاملة في تاريخ وعمل محرك خوادم PHP</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التثبيت وإعداد بيئة التطوير المحلية (XAMPP / Laragon)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> البنية اللغوية (Syntax) وطباعة المخرجات (echo, print)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التعليقات التنظيمية والاحترافية (DocBlocks)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المتغيرات، قواعد التسمية، والحساسية لحالة الأحرف</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دراسة أنواع البيانات بدقة (String, Int, Float, Bool, null)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التحويل الإجباري والمرن بين أنواع البيانات (Type Casting)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الثوابت (define) و (const) واستخدامات الثوابت السحرية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المعاملات الحسابية المتقدمة (Arithmetic Operators)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> معاملات الإسناد الشائعة (Assignment Operators)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> معاملات المقارنة (Comparison) والفرق بين == و ===</div>
-                    <div class="topic-item"><span class="topic-icon"></span> العمليات المنطقية (Logical AND, OR, XOR, NOT)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> معاملات تجميع وتنسيق النصوص المتعددة</div>
-                </div>
-            </div>
-
-            <!-- Module 2 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">02</div>
-                    <div class="module-title">
-                        <h2>التحكم في التدفق وهيكلة سير العمليات</h2>
-                        <p>السيطرة المطلقة على مسار الكود واتخاذ القرارات البرمجية</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> الجمل الشرطية المتدرجة (If / ElseIf / Else)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الجملة الشرطية المتعددة (Switch) وحالات الاستخدام</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التعبير المتقدم (Match) المدعوم حديثاً في PHP 8+</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المعامل الثلاثي (Ternary Operator) للاختصار</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المعامل المدمج (Null Coalescing Operator ??)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> حلقة التكرار المحددة (For Loop)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> حلقة التكرار المشروطة (While) و (Do...While)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التكرار المخصص للمصفوفات (Foreach Loop)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> أوامر إيقاف التكرار وتخطيه (Break & Continue)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تضمين الملفات الخارجية (include, require)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الفروقات الدقيقة لمعالجة الأخطاء (include_once, require_once)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> النطاق المتغير (Variable Scope - Local, Global)</div>
-                </div>
-            </div>
-
-            <!-- Module 3 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">03</div>
-                    <div class="module-title">
-                        <h2>هياكل البيانات: المصفوفات ومعالجة النصوص</h2>
-                        <p>التعامل العميق مع البيانات المعقدة وترتيبها وحفظها</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> دوال النصوص الاستكشافية (strlen, strpos, str_contains)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التقطيع والاستبدال والاستخراج (substr, str_replace)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المصفوفات الرقمية البسيطة (Indexed Arrays)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المصفوفات الترابطية القائمة على المفاتيح (Associative Arrays)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المصفوفات متعددة الأبعاد (Multidimensional Arrays)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إضافة المستندات وطردها (array_push, pop, shift, unshift)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دمج المصفوفات وتقسيمها (Merge & Slice)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> خوارزميات ترتيب المصفوفات المدمجة (sort, asort, ksort)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دوال التصفية الدقيقة (array_map, array_filter)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تجميع البيانات المعقدة المتقدمة (array_reduce)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تفكيك المصفوفات إلى متغيرات مستقلة (Destructuring)</div>
-                </div>
-            </div>
-
-            <!-- Module 4 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">04</div>
-                    <div class="module-title">
-                        <h2>الدوال البرمجية (Functions) والأنماط المتقدمة</h2>
-                        <p>تجزئة الكود، إعادة الاستخدام، وتقنيات الإغلاق (Closures)</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> تعريف الدوال وإنشائها وتمرير المعطيات (Parameters)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المعطيات ذات القيم الافتراضية والمرجعية (Pass by Reference)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تحديد أنواع المعطيات وأنواع الإرجاع (Strict Types Hinting)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تمرير عدد غير محدود من المعطيات (Variadic Functions)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> المتغيرات المعرفة داخلياً والثابتة (Static Variables)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الدوال المجهولة التي لا تملك اسماً (Anonymous Functions)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الإغلاق واستخدام المتغيرات الخارجية (Closures & use)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الدوال السهمية المختصرة المدعومة حديثاً (Arrow Functions)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الدوال الرياضية العميقة واستخراج الأرقام العشوائية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التعابير النمطية (Regular Expressions - PCRE) باحترافية</div>
-                </div>
-            </div>
-
-            <!-- Module 5 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">05</div>
-                    <div class="module-title">
-                        <h2>التفاعل مع الويب والنظام والملفات</h2>
-                        <p>التقاط الطلبات، حفظ الحالات، وإدارة مساحة التخزين</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> فك رموز بروتوكول HTTP والفرق الجذري بين GET و POST</div>
-                    <div class="topic-item"><span class="topic-icon"></span> استقبال ومعالجة النماذج (Forms Processing)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دوال تنقية البيانات والتحقق من صحتها (Validation & Sanitization)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> برمجة نظام رفع ملفات آمن فردي ومتعدد (File Upload)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> فتح، قراءة، وكتابة الملفات المباشرة والتنقل داخلها</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دوال نظام التشغيل (unlink, file_exists, rename, chmod)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التعامل الحثيث مع المجلدات والمسارات الإنشائية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بدء وإدارة الجلسات الحفظية (Sessions) وحل مشاكلها</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إرسال وقراءة وتأمين ملفات تعريف الارتباط (Cookies)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دوال إدارة التواريخ، الفروق الزمنية، و (DateTime Class)</div>
-                </div>
-            </div>
-
-            <!-- Module 6 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">06</div>
-                    <div class="module-title">
-                        <h2>البرمجة كائنية التوجه (OOP)</h2>
-                        <p>الانتقال للمستوى المعماري: كلاسات، كائنات، والمبادئ الصلبة (SOLID)</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> المفاهيم العامة والفوارق بين الإجرائية والكائنية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> هندسة الفئات (Classes) وتكوين الكائنات (Objects)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الخصائص والدوال (Properties & Methods) واستخدام $this</div>
-                    <div class="topic-item"><span class="topic-icon"></span> محددات الوصول الأمنية الدقيقة (Public, Private, Protected)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الدوال البانية والهادمة الأوتوماتيكية (__construct & __destruct)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الوراثة العميقة (Inheritance) وتجاوز الدوال (Overriding)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التجريد الهندسي المتقدم (Abstract Classes & Methods)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الواجهات وإلزام التطبيق وتعدد الأشكال (Interfaces & Polymorphism)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إدراج السمات لحل مشكلة الوراثة المتعددة (Traits)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الخصائص والدوال الاستاتيكية للوصول المباشر (Static)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الدوال السحرية للمراقبة (Magic Methods: __get, __set, __call)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنظيم وتشعب الكود عبر مساحات الأسماء (Namespaces)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التحميل التلقائي للملفات الديناميكي باستخدام (Composer)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> شرح مفصل وتطبيقي لمبادئ (SOLID) الخمسة عالمياً</div>
-                </div>
-            </div>
-
-            <!-- Module 7 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">07</div>
-                    <div class="module-title">
-                        <h2>احتراف قواعد البيانات العلاقية (MySQL & PDO)</h2>
-                        <p>هندسة البيانات من الأساسيات مروراً بالربط المتقدم إلى إدارة المعاملات</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> تصميم المخططات الصحيحة وقواعد التطبيع (1NF, 2NF, 3NF)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الفروق الجوهرية لأنواع البيانات في MySQL وتأثيرها على الأداء</div>
-                    <div class="topic-item"><span class="topic-icon"></span> عمليات (DDL) وهيكلة الجداول وإضافة القيود والمفاتيح الأجنبية</div>
-                    <div class="topic-item"><span class="topic-icon"></span> عمليات (DML) والاستعلامات المتقدمة (INSERT, UPDATE, DELETE)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دوال الوظائف الشرطية والتصفية الدلالية (WHERE, LIKE, BETWEEN, IN)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تطبيق الترتيب وتحديد النطاق لإنشاء (Pagination) (ORDER BY, LIMIT, OFFSET)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دوال التجميع الرياضية (COUNT, SUM, AVG, MAX, MIN)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دمج ومعالجة التجميع الشامل (GROUP BY) وتكملة (HAVING)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> دراسة وتطبيق أنواع العلاقات كاملة (1:1, 1:N, N:M)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> استعلامات الربط العميقة الشاملة (INNER, LEFT, RIGHT, FULL, CROSS)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء الاستعلامات المدمجة المتداخلة (Subqueries & Nested Queries)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> بناء الفهارس الحقلية (Indexes) لسرعة استجابات قواعد البيانات الضخمة</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تصميم العروض البصرية المؤقتة والجداول الوهمية (Views & Temp Tables)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إنشاء وتشغيل الإجراءات المخزنة (Stored Procedures) للحماية وتخفيف العبء</div>
-                    <div class="topic-item"><span class="topic-icon"></span> صناعة المشغلات (Triggers) لمراقبة الأحداث وتفعيلها ذاتيًا</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الاتصال القياسي والآمن كلياً بقواعد البيانات عبر كائنات (PDO)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> استخدام الاستعلامات المحضرة الإلزامية (Prepared Statements)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إدارة الاستثناءات المتعددة والأخطاء التنبيهية في PDO</div>
-                    <div class="topic-item"><span class="topic-icon"></span> ضمان سلامة التداولات البنكية والرقمية (Transactions: Commit, Rollback)</div>
-                </div>
-            </div>
-
-            <!-- Module 8 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">08</div>
-                    <div class="module-title">
-                        <h2>الأمان السيبراني لمطوري الويب</h2>
-                        <p>سد الثغرات وتأمين التطبيقات ضد أخطر هجمات الاختراق</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> عزل وتأمين ملفات الإعدادات وتأمين خوادم الملفات</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الحماية القصوى ضد حقن قواعد البيانات (SQL Injection) بالكامل</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الدفاع ضد ثغرات البرمجة عبر المواقع (XSS) باستخدام التشفير الإخراجي</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تفادي هجمات تزوير الطلبات العابرة للمواقع بمولدات (CSRF Tokens)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التشفير القياسي العميق لكلمات المرور بلمسات (Argon2 / Bcrypt)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> صد هجمات اختطاف وتثبيت الجلسات (Session Hijacking & Fixation)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> جدار ناري برمجي أمني صارم لرفع الملفات (تأمين MIME type والتنفيذ اللحظي)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> برمجة استراتيجيات التقييد وإيقاف الهجمات المتعمدة (Rate Limiting)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تأمين رأسيات الخوادم عالميًا (CSP, HSTS, X-Frame-Options)</div>
-                </div>
-            </div>
-
-            <!-- Module 9 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">09</div>
-                    <div class="module-title">
-                        <h2>هندسة الـ MVC وبناء واجهات الـ RESTful APIs</h2>
-                        <p>تطبيق المعمارية النظيفة ومشاركة البيانات مع تطبيقات الموبايل</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> تشريح نمط الهندسة البرمجية الشهير MVC (Model-View-Controller)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> البناء الإنشائي لوحدة توجيه الروابط المخصصة بالكامل (Custom Router)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> فصل واجهات الاستعلامات وبناء المعماريات التحتية المتينة</div>
-                    <div class="topic-item"><span class="topic-icon"></span> الأسس الجوهرية لبناء واجهات برمجية خالية من الحالات (RESTful Services)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> فهم وتوجيه أنواع الطلبات (HTTP Methods: GET, POST, PUT, PATCH, DELETE)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إدارة الرموز التصريحية العالمية (HTTP Status Codes)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنسيق وتهيئة الردود الإلكترونية وتصديرها بصيغ (JSON Responses)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تأمين الروابط والمفاتيح المبرمجة للمستخدمين وتعيين الصلاحيات (API Keys)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التطبيق الفعلي والمتقدم وتشفير توكنز (JWT - JSON Web Tokens)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التوثيق الشامل لمعلومات الـ API وتقديمها للعملاء عبر منصة (Swagger/OpenAPI)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> استدعاء واجهات البرمجة الخارجية واستهلاكها عبر دوال (cURL)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التعامل مع الأطر الخدمية المتطورة لطلبات الـ HTTP باستخدام (Guzzle Client)</div>
-                </div>
-            </div>
-
-            <!-- Module 10 -->
-            <div class="module-card">
-                <div class="module-header">
-                    <div class="module-number">10</div>
-                    <div class="module-title">
-                        <h2>الاحتراف النهائي، المقاييس الفائقة، والتجهيز للنشر (DevOps)</h2>
-                        <p>الأداء العالي، العمليات المتزامنة في الخلفية، وسير العمل المؤسسي</p>
-                    </div>
-                </div>
-                <div class="module-content">
-                    <div class="topic-item"><span class="topic-icon"></span> استراتيجيات حفظ المؤقتات السريعة وتقنيات الأداء باستخدام (Redis / Memcached)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تسليم وتوجيه المهام إلى الخلفية عبر طوابير الانتظار المتقدمة (Queues Integration)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تنظيم وبرمجة المهام المجدولة دورياً في خوادم لينكس والبرمجيات (Cron Jobs)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إدارة المشاريع الجماعية، إصدار السجلات والتفرع مع أنظمة (Git & GitHub)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> التعرف على مفاهيم كتابة الاختبارات قبل البرمجة وأثناءها (TDD vs BDD)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إعداد وكتابة وتغليف اختبارات الوحدة المتكررة باستخدام بيئة (PHPUnit)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> أدوات التنقيح الشمولية ومعرفة نقاط الضعف والمشاكل اللحظية باستخدام (Xdebug)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> تغليف البيئات وتشغيل تطبيقات الويب المعزولة بشكل كامل وتهيئة (Docker Containers)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> خطوط أنابيب التكامل السلس وإرسال الأكواد مباشرة للمستضيف عبر (CI/CD Pipelines)</div>
-                    <div class="topic-item"><span class="topic-icon"></span> إستراتيجيات وسيناريوهات رفع التطبيقات المعتمدة عالمياً (VPS, Cloud Deployment, Shared)</div>
-                </div>
-            </div>
-
+      <!-- PHP Basics -->
+      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">01</div>
+          <div class="module-title">
+            <h2>أساسيات PHP</h2>
+            <p>لغة برمجة خلفيات الويب الأكثر انتشاراً</p>
+          </div>
         </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في PHP وكيف تعمل على السيرفر</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">المتغيرات وأنواع البيانات والثوابت</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الشروط والحلقات (if, switch, for, while, foreach)</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الدوال (Functions) وتمرير المعاملات</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">المصفوفات (Arrays) بجميع أنواعها</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">التعامل مع النصوص (String Functions)</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع الملفات (File Handling)</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Cookies و Sessions</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">النماذج والتحقق من البيانات (Form Validation)</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">البرمجة الكائنية OOP — Classes & Objects</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">Namespaces و Autoloading و Composer</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MySQL -->
+      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">02</div>
+          <div class="module-title">
+            <h2>قواعد البيانات MySQL</h2>
+            <p>تصميم وإدارة قواعد البيانات العلائقية</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في قواعد البيانات العلائقية</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">تصميم الجداول والعلاقات (ERD)</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">استعلامات SQL الأساسية (SELECT, INSERT, UPDATE, DELETE)</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">JOINs والاستعلامات المتقدمة</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Indexes وتحسين الأداء</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">PDO — الاتصال الآمن بقواعد البيانات</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">الحماية من SQL Injection</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Transactions و ACID</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MVC -->
+      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">03</div>
+          <div class="module-title">
+            <h2>هندسة MVC</h2>
+            <p>بناء إطار عمل خاص بك من الصفر</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مفهوم MVC — Model, View, Controller</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">بناء Router مخصص</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">نظام القوالب (Templating Engine)</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">نظام Middleware</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">نظام المصادقة والصلاحيات</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">بناء CRUD كامل</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">مشروع: نظام إدارة محتوى (CMS)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Laravel -->
+      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">04</div>
+          <div class="module-title">
+            <h2>Laravel Framework</h2>
+            <p>أقوى إطار عمل PHP — بناء تطبيقات ويب حديثة</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">تثبيت Laravel وهيكلية المشروع</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Routing و Controllers</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Blade Templates و Components</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Eloquent ORM والعلاقات</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Migrations و Seeders و Factories</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Form Requests و Validation</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Authentication و Authorization</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">API Resources و API Development</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Queues و Jobs و Scheduling</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Testing و PHPUnit</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">مشروع: نظام إدارة متكامل بـ Laravel</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APIs & Security -->
+      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">05</div>
+          <div class="module-title">
+            <h2>APIs & الأمان المتقدم</h2>
+            <p>بناء RESTful APIs آمنة وتأمين التطبيقات</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مبادئ RESTful API Design</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Laravel Sanctum — المصادقة عبر Tokens</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">بناء API كاملة مع توثيق Swagger</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الحماية من XSS و CSRF</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">تشفير البيانات و Hashing</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Rate Limiting و Throttling</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">النشر على سيرفر حقيقي (DigitalOcean / AWS)</span></div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <div class="modules-section reveal">
+      <div class="section-header">
+        <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item"><div class="feature-icon">🐘</div><h4>PHP 8 كامل</h4><p>أحدث إصدار مع كل الميزات الحديثة.</p></div>
+        <div class="feature-item"><div class="feature-icon">🏗️</div><h4>هندسة MVC</h4><p>ابنِ إطار عملك الخاص من الصفر.</p></div>
+        <div class="feature-item"><div class="feature-icon">🚀</div><h4>Laravel</h4><p>أقوى إطار عمل PHP في العالم.</p></div>
+        <div class="feature-item"><div class="feature-icon">🔒</div><h4>أمان متقدم</h4><p>حماية شاملة ضد كل أنواع الهجمات.</p></div>
+      </div>
+    </div>
+
+    <div class="alert alert-success reveal">
+      <span class="alert-icon">🚀</span>
+      <span>بعد هذا الدبلوم ستكون Full-Stack Developer قادر على بناء أي نظام ويب من الصفر حتى النشر!</span>
+    </div>
+
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>أكاديمية كلاود سوفت</span> — جميع الحقوق محفوظة</p></footer>
+
+  <script src="js/diploma.js"></script>
 </body>
 </html>

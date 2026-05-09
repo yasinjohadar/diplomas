@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>منصات السحابة — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>منصات السحابة</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(245,158,11,0.3);">
+      <div class="tech-icon-large">☁️</div>
+      <h1 class="tech-title">منصات السحابة (Cloud Platforms)</h1>
+      <p class="tech-subtitle">صمّم وانشر وأدِر البنية التحتية السحابية. AWS هو الأشهر والأكثر طلباً في سوق العمل.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متقدم</span>
+        <span class="tech-badge green">AWS</span>
+        <span class="tech-badge orange">Cloud</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> خدمات AWS الأساسية</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feat-icon">🖥️</div>
+          <h4>EC2</h4>
+          <p>خوادم افتراضية قابلة للتوسع. اختر نوع وحجم السيرفر حسب الحاجة.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">💾</div>
+          <h4>S3</h4>
+          <p>تخزين كائنات (Objects) غير محدود. ملفات، صور، نسخ احتياطية.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🔐</div>
+          <h4>IAM</h4>
+          <p>إدارة الهويات والصلاحيات. مستخدمين، مجموعات، أدوار (Roles).</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🌐</div>
+          <h4>VPC</h4>
+          <p>شبكة افتراضية معزولة. Subnets, Route Tables, NAT Gateway.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">🗄️</div>
+          <h4>RDS</h4>
+          <p>قواعد بيانات مُدارة. PostgreSQL, MySQL, MariaDB مع نسخ تلقائي.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feat-icon">⚖️</div>
+          <h4>ELB/ALB</h4>
+          <p>موازن حمل مُدار. يوزع الطلبات على EC2 instances متعددة.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔧</span> AWS CLI</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — AWS CLI Commands</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># إعداد AWS CLI</span>
+<span class="command">aws</span> configure
+
+<span class="comment"># عرض EC2 instances</span>
+<span class="command">aws</span> ec2 describe-instances <span class="flag">--query</span> <span class="string">'Reservations[].Instances[].InstanceId'</span>
+
+<span class="comment"># إنشاء instance</span>
+<span class="command">aws</span> ec2 run-instances \
+  <span class="flag">--image-id</span> ami-0c55b159cbfafe1f0 \
+  <span class="flag">--instance-type</span> t3.micro \
+  <span class="flag">--key-name</span> mykey \
+  <span class="flag">--security-group-ids</span> sg-12345
+
+<span class="comment"># رفع ملف لـ S3</span>
+<span class="command">aws</span> s3 cp myfile.txt s3://my-bucket/
+
+<span class="comment"># عرض محتويات S3</span>
+<span class="command">aws</span> s3 ls s3://my-bucket/
+
+<span class="comment"># عرض سجلات CloudWatch</span>
+<span class="command">aws</span> logs tail /aws/lambda/my-function <span class="flag">--follow</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🌐</span> VPC — الشبكة الافتراضية</h2>
+      <div class="info-card">
+        <h3>Virtual Private Cloud</h3>
+        <p>VPC هي شبكتك الخاصة في AWS. تحتوي Subnets عامة وخاصة، Internet Gateway، NAT Gateway، و Security Groups.</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>main.tf — VPC مع Terraform</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="keyword">resource</span> <span class="string">"aws_vpc"</span> <span class="string">"main"</span> {
+  <span class="keyword">cidr_block</span> = <span class="string">"10.0.0.0/16"</span>
+  <span class="keyword">tags</span> = { <span class="keyword">Name</span> = <span class="string">"main-vpc"</span> }
+}
+
+<span class="keyword">resource</span> <span class="string">"aws_subnet"</span> <span class="string">"public"</span> {
+  <span class="keyword">vpc_id</span>            = aws_vpc.main.id
+  <span class="keyword">cidr_block</span>        = <span class="string">"10.0.1.0/24"</span>
+  <span class="keyword">map_public_ip_on_launch</span> = true
+  <span class="keyword">availability_zone</span> = <span class="string">"us-east-1a"</span>
+}
+
+<span class="keyword">resource</span> <span class="string">"aws_internet_gateway"</span> <span class="string">"main"</span> {
+  <span class="keyword">vpc_id</span> = aws_vpc.main.id
+}
+
+<span class="keyword">resource</span> <span class="string">"aws_security_group"</span> <span class="string">"web"</span> {
+  <span class="keyword">vpc_id</span> = aws_vpc.main.id
+
+  <span class="keyword">ingress</span> {
+    <span class="keyword">from_port</span>   = 80
+    <span class="keyword">to_port</span>     = 80
+    <span class="keyword">protocol</span>    = <span class="string">"tcp"</span>
+    <span class="keyword">cidr_blocks</span> = [<span class="string">"0.0.0.0/0"</span>]
+  }
+
+  <span class="keyword">egress</span> {
+    <span class="keyword">from_port</span>   = 0
+    <span class="keyword">to_port</span>     = 0
+    <span class="keyword">protocol</span>    = <span class="string">"-1"</span>
+    <span class="keyword">cidr_blocks</span> = [<span class="string">"0.0.0.0/0"</span>]
+  }
+}</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔐</span> IAM — إدارة الصلاحيات</h2>
+      <div class="code-block">
+        <div class="code-header"><span>policy.json — S3 Read Only</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content">{
+  <span class="keyword">"Version"</span>: <span class="string">"2012-10-17"</span>,
+  <span class="keyword">"Statement"</span>: [
+    {
+      <span class="keyword">"Effect"</span>: <span class="string">"Allow"</span>,
+      <span class="keyword">"Action"</span>: [
+        <span class="string">"s3:GetObject"</span>,
+        <span class="string">"s3:ListBucket"</span>
+      ],
+      <span class="keyword">"Resource"</span>: [
+        <span class="string">"arn:aws:s3:::my-bucket"</span>,
+        <span class="string">"arn:aws:s3:::my-bucket/*"</span>
+      ]
+    }
+  ]
+}</div>
+      </div>
+      <div class="alert alert-danger">
+        <span class="alert-icon">🚨</span>
+        <span>اتبع مبدأ أقل صلاحية (Least Privilege). امنح فقط الصلاحيات المطلوبة ولا شيء أكثر.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💰</span> إدارة التكلفة</h2>
+      <div class="alert alert-warning">
+        <span class="alert-icon">⚠️</span>
+        <span>
+          <strong>1.</strong> فعّل AWS Budgets للتنبيه عند تجاوز الميزانية<br>
+          <strong>2.</strong> استخدم Spot Instances لتوفير حتى 90%<br>
+          <strong>3.</strong> أوقف الموارد غير المستخدمة<br>
+          <strong>4.</strong> استخدم Reserved Instances للأحمال الثابتة<br>
+          <strong>5.</strong> راجع Cost Explorer شهرياً
+        </span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> أفضل الممارسات</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> استخدم Infrastructure as Code (Terraform)<br>
+          <strong>2.</strong> فعّل Multi-AZ للتوفر العالي<br>
+          <strong>3.</strong> استخدم IAM Roles بدلاً من Access Keys<br>
+          <strong>4.</strong> فعّل CloudTrail لتدقيق كل العمليات<br>
+          <strong>5.</strong> استخدم Auto Scaling للتكيف مع الحمل<br>
+          <strong>6.</strong> ضع البيانات الحساسة في Private Subnets
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="monitoring.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: المراقبة والسجلات</span></a>
+      <a href="devsecops.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: DevSecOps</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>

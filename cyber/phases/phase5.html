@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>المرحلة 5 — أمن الويب وقواعد البيانات | Cyber Diploma</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/phase.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../index.html" class="nav-logo"><i class="fas fa-shield-halved"></i><span class="nav-logo-text">CyberDiploma</span></a>
+      <div class="nav-breadcrumb"><a href="../index.html">الرئيسية</a><span class="sep">/</span><span>المرحلة 5</span></div>
+      <a href="../index.html" class="nav-back"><i class="fas fa-arrow-right"></i> العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="phase-hero reveal" style="--glow: rgba(236,72,153,0.3);">
+      <div class="phase-icon"><i class="fas fa-globe" style="color:var(--pink)"></i></div>
+      <h1 class="phase-title">أمن الويب وقواعد البيانات</h1>
+      <p class="phase-subtitle">اكتشاف ثغرات تطبيقات الويب وفق OWASP Top 10 وحماية قواعد البيانات.</p>
+      <div class="phase-badges">
+        <span class="phase-badge">المرحلة 05</span>
+        <span class="phase-badge green">5 أسابيع</span>
+        <span class="phase-badge red">متقدم</span>
+      </div>
+      <div class="phase-stats">
+        <div class="p-stat"><div class="p-stat-num">10</div><div class="p-stat-label">دروس</div></div>
+        <div class="p-stat"><div class="p-stat-num">4</div><div class="p-stat-label">أدوات رئيسية</div></div>
+        <div class="p-stat"><div class="p-stat-num">20+</div><div class="p-stat-label">مهارة مكتسبة</div></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📖</span> نظرة عامة</h2>
+      <div class="info-card">
+        <h3>OWASP Top 10</h3>
+        <p>أكثر 10 ثغرات خطورة في تطبيقات الويب. ستتعلم كيف تكتشف وتستغل وتحمي من كل نوع — SQL Injection, XSS, CSRF, وغيرها.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-item"><div class="fi-icon">💉</div><h4>SQL Injection</h4><p>حقن أوامر SQL لسرقة أو تعديل البيانات من قواعد البيانات.</p></div>
+        <div class="feature-item"><div class="fi-icon">📝</div><h4>XSS</h4><p>حقن سكربتات خبيثة في صفحات الويب لسرقة الجلسات.</p></div>
+        <div class="feature-item"><div class="fi-icon">🔄</div><h4>CSRF</h4><p>إجبار المستخدم على تنفيذ إجراءات غير مرغوبة.</p></div>
+        <div class="feature-item"><div class="fi-icon">🐛</div><h4>Burp Suite</h4><p>أداة الاعتراض والفحص — الأهم في اختبار أمان الويب.</p></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> المحاور التفصيلية</h2>
+      <table class="tech-table">
+        <thead><tr><th>#</th><th>المحور</th><th>المدة</th></tr></thead>
+        <tbody>
+          <tr><td>01</td><td>OWASP Top 10 — نظرة شاملة</td><td>3 أيام</td></tr>
+          <tr><td>02</td><td>SQL Injection — الأنواع والاستغلال</td><td>4 أيام</td></tr>
+          <tr><td>03</td><td>XSS — Stored, Reflected, DOM-based</td><td>3 أيام</td></tr>
+          <tr><td>04</td><td>CSRF وAuthentication Bypass</td><td>2 أيام</td></tr>
+          <tr><td>05</td><td>File Upload Vulnerabilities</td><td>2 أيام</td></tr>
+          <tr><td>06</td><td>Web Fuzzing وDirectory Bruteforce</td><td>2 أيام</td></tr>
+          <tr><td>07</td><td>Burp Suite — Intercept, Repeater, Intruder</td><td>4 أيام</td></tr>
+          <tr><td>08</td><td>SQLMap — أتمتة استغلال SQLi</td><td>2 أيام</td></tr>
+          <tr><td>09</td><td>OWASP ZAP — بديل مفتوح المصدر</td><td>2 أيام</td></tr>
+          <tr><td>10</td><td>مشروع: اختبار أمان تطبيق ويب كامل</td><td>4 أيام</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💻</span> SQL Injection</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — SQLMap</span><button class="code-copy">Copy</button></div>
+        <div class="code-content"><span class="cmt"># فحص URL بحثاً عن SQLi</span>
+<span class="cmd">sqlmap</span> <span class="flag">-u</span> <span class="str">"http://target.com/page?id=1"</span>
+
+<span class="cmt"># استخراج قواعد البيانات</span>
+<span class="cmd">sqlmap</span> <span class="flag">-u</span> <span class="str">"http://target.com/page?id=1"</span> <span class="flag">--dbs</span>
+
+<span class="cmt"># استخراج الجداول</span>
+<span class="cmd">sqlmap</span> <span class="flag">-u</span> <span class="str">"http://target.com/page?id=1"</span> <span class="flag">-D</span> mydb <span class="flag">--tables</span>
+
+<span class="cmt"># استخراج البيانات</span>
+<span class="cmd">sqlmap</span> <span class="flag">-u</span> <span class="str">"http://target.com/page?id=1"</span> <span class="flag">-D</span> mydb <span class="flag">-T</span> users <span class="flag">--dump</span></div>
+      </div>
+      <div class="alert alert-danger">
+        <span class="a-icon">🚨</span>
+        <span>استخدم هذه الأدوات فقط على أنظمة تملك تصريحاً باختبارها. الاختبار غير المصرح به جريمة إلكترونية.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> ما يجب إتقانه</h2>
+      <div class="alert alert-ok">
+        <span class="a-icon">🎯</span>
+        <span>
+          <strong>1.</strong> OWASP Top 10 بالكامل<br>
+          <strong>2.</strong> استغلال SQL Injection يدوياً وبـ SQLMap<br>
+          <strong>3.</strong> XSS بأنواعه الثلاثة<br>
+          <strong>4.</strong> استخدام Burp Suite باحتراف<br>
+          <strong>5.</strong> حماية التطبيقات من الثغرات<br>
+          <strong>6.</strong> كتابة تقرير اختبار اختراق ويب
+        </span>
+      </div>
+    </div>
+
+    <div class="phase-nav reveal">
+      <a href="phase4.html" class="phase-nav-link"><i class="fas fa-arrow-right"></i> المرحلة 4</a>
+      <a href="phase6.html" class="phase-nav-link">المرحلة 6: اختبار الاختراق <i class="fas fa-arrow-left"></i></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>CyberDiploma Academy</span> — جميع الحقوق محفوظة</p></footer>
+  <script src="js/phase.js"></script>
+</body>
+</html>

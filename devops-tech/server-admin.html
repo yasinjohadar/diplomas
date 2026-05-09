@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إدارة الخوادم — دليل شامل | DevOps Roadmap</title>
+  <link rel="stylesheet" href="css/tech.css" />
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="../devOps.html" class="nav-logo">
+        <div class="nav-logo-icon">⚙️</div>
+        <span class="nav-logo-text">DevOps Tech</span>
+      </a>
+      <div class="nav-breadcrumb">
+        <a href="../devOps.html">خارطة الطريق</a>
+        <span class="separator">/</span>
+        <span>إدارة الخوادم</span>
+      </div>
+      <a href="../devOps.html" class="nav-back-btn">→ العودة</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="tech-hero reveal" style="--hero-glow: rgba(236,72,153,0.3);">
+      <div class="tech-icon-large">🔒</div>
+      <h1 class="tech-title">إدارة الخوادم (Server Admin)</h1>
+      <p class="tech-subtitle">تأمين ومراقبة وصيانة خوادم الإنتاج كمحترف. حماية، نسخ احتياطي، وأداء مستقر.</p>
+      <div class="tech-badges">
+        <span class="tech-badge">متوسط</span>
+        <span class="tech-badge green">Security</span>
+        <span class="tech-badge orange">Production</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🛡️</span> جدار الحماية (UFW)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — UFW Setup</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت UFW</span>
+<span class="command">apt</span> install ufw <span class="flag">-y</span>
+
+<span class="comment"># السماح بـ SSH أولاً (مهم!)</span>
+<span class="command">ufw</span> allow 22/tcp
+
+<span class="comment"># السماح بـ HTTP و HTTPS</span>
+<span class="command">ufw</span> allow 80/tcp
+<span class="command">ufw</span> allow 443/tcp
+
+<span class="comment"># تفعيل الجدار</span>
+<span class="command">ufw</span> enable
+
+<span class="comment"># عرض القواعد</span>
+<span class="command">ufw</span> status verbose
+
+<span class="comment"># حظر IP معين</span>
+<span class="command">ufw</span> deny from 192.168.1.100</div>
+      </div>
+      <div class="alert alert-danger">
+        <span class="alert-icon">🚨</span>
+        <span>احذر! تأكد من السماح بـ SSH (منفذ 22) قبل تفعيل UFW وإلا ستفقد الاتصال بالسيرفر.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🚫</span> Fail2Ban — الحماية من الهجمات</h2>
+      <div class="info-card">
+        <h3>حظر المحاولات المتكررة</h3>
+        <p>Fail2Ban يراقب سجلات الخادم ويحظر عناوين IP التي تحاول الدخول بشكل متكرر (مثل هجمات القوة الغاشمة على SSH).</p>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Fail2Ban Setup</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تثبيت</span>
+<span class="command">apt</span> install fail2ban <span class="flag">-y</span>
+
+<span class="comment"># إنشاء إعداد مخصص</span>
+<span class="command">cp</span> /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+<span class="comment"># تعديل الإعدادات</span>
+<span class="command">nano</span> /etc/fail2ban/jail.local
+
+<span class="output">[sshd]
+enabled = true
+port = 22
+maxretry = 3
+bantime = 3600
+findtime = 600</span>
+
+<span class="comment"># إعادة التشغيل</span>
+<span class="command">systemctl</span> restart fail2ban
+
+<span class="comment"># عرض المحظورين</span>
+<span class="command">fail2ban-client</span> status sshd</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">🔑</span> تأمين SSH</h2>
+      <div class="code-block">
+        <div class="code-header"><span>/etc/ssh/sshd_config</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># تعطيل الدخول بكلمة مرور</span>
+<span class="keyword">PasswordAuthentication</span> no
+
+<span class="comment"># تعطيل الدخول لـ root</span>
+<span class="keyword">PermitRootLogin</span> no
+
+<span class="comment"># تغيير المنفذ الافتراضي</span>
+<span class="keyword">Port</span> 2222
+
+<span class="comment"># السماح لمستخدمين محددين</span>
+<span class="keyword">AllowUsers</span> devops admin
+
+<span class="comment"># إعادة تشغيل SSH</span>
+<span class="command">systemctl</span> restart sshd</div>
+      </div>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — إنشاء مفتاح SSH</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># إنشاء زوج مفاتيح</span>
+<span class="command">ssh-keygen</span> <span class="flag">-t ed25519 -C</span> <span class="string">"devops@company.com"</span>
+
+<span class="comment"># نسخ المفتاح للسيرفر</span>
+<span class="command">ssh-copy-id</span> <span class="flag">-p 2222</span> devops@server.com
+
+<span class="comment"># الدخول بالمفتاح</span>
+<span class="command">ssh</span> <span class="flag">-p 2222</span> devops@server.com</div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">💾</span> النسخ الاحتياطي (Backups)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — rsync Backup</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># نسخ محلي</span>
+<span class="command">rsync</span> <span class="flag">-avz --delete</span> /var/www/ /backup/www/
+
+<span class="comment"># نسخ لسيرفر بعيد</span>
+<span class="command">rsync</span> <span class="flag">-avz -e ssh</span> /var/www/ user@backup:/data/www/
+
+<span class="comment"># نسخ قاعدة بيانات PostgreSQL</span>
+<span class="command">pg_dump</span> <span class="flag">-U postgres</span> mydb > /backup/db_$(date +%F).sql
+
+<span class="comment"># نسخ مضغوط</span>
+<span class="command">pg_dump</span> <span class="flag">-U postgres</span> mydb | <span class="command">gzip</span> > /backup/db_$(date +%F).sql.gz</div>
+      </div>
+      <div class="alert alert-info">
+        <span class="alert-icon">💡</span>
+        <span>استخدم قاعدة 3-2-1: 3 نسخ، على وسيطين مختلفين، 1 نسخة خارج الموقع.</span>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">📋</span> إدارة السجلات (Logs)</h2>
+      <div class="code-block">
+        <div class="code-header"><span>Terminal — Log Management</span><button class="code-copy-btn">Copy</button></div>
+        <div class="code-content"><span class="comment"># عرض سجلات خدمة</span>
+<span class="command">journalctl</span> <span class="flag">-u</span> nginx <span class="flag">-f</span>
+
+<span class="comment"># عرض آخر 100 سطر</span>
+<span class="command">journalctl</span> <span class="flag">-u</span> nginx <span class="flag">-n</span> 100
+
+<span class="comment"># عرض من وقت محدد</span>
+<span class="command">journalctl</span> <span class="flag">--since</span> <span class="string">"2025-01-01"</span> <span class="flag">--until</span> <span class="string">"2025-01-02"</span>
+
+<span class="comment"># تنظيف السجلات القديمة</span>
+<span class="command">journalctl</span> <span class="flag">--vacuum-time</span>=7d
+
+<span class="comment"># logrotate — إعداد تدوير السجلات</span>
+<span class="command">cat</span> /etc/logrotate.d/nginx
+
+<span class="output">/var/log/nginx/*.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+}</span></div>
+      </div>
+    </div>
+
+    <div class="content-section reveal">
+      <h2 class="section-title"><span class="icon">✅</span> قائمة فحص أمان السيرفر</h2>
+      <div class="alert alert-success">
+        <span class="alert-icon">🎯</span>
+        <span>
+          <strong>1.</strong> فعّل جدار الحماية (UFW/Firewalld)<br>
+          <strong>2.</strong> عطّل تسجيل الدخول بكلمة مرور لـ SSH<br>
+          <strong>3.</strong> ثبّت Fail2Ban<br>
+          <strong>4.</strong> عطّل المستخدم root<br>
+          <strong>5.</strong> حدّث النظام بانتظام<br>
+          <strong>6.</strong> فعّل النسخ الاحتياطي التلقائي<br>
+          <strong>7.</strong> راقب السجلات بشكل دوري<br>
+          <strong>8.</strong> استخدم unattended-upgrades للتحديثات الأمنية
+        </span>
+      </div>
+    </div>
+
+    <div class="tech-nav reveal">
+      <a href="docker.html" class="tech-nav-link"><span class="arrow">→</span><span>السابق: Docker</span></a>
+      <a href="cicd.html" class="tech-nav-link"><span class="arrow">←</span><span>التالي: CI/CD</span></a>
+    </div>
+  </div>
+
+  <footer><p class="footer-copy">© 2025 <span>DevOps Tech Docs</span> — خارطة طريق DevOps الشاملة</p></footer>
+  <script src="js/tech.js"></script>
+</body>
+</html>
