@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,7 @@
   <nav id="navbar">
     <div class="nav-inner">
       <a href="index.html" class="nav-logo">
-        <div class="nav-logo-icon">🎓</div>
+        <img src="images/logo.png" alt="CLAUD SOFT" class="nav-logo-img">
         <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
       </a>
       <div class="nav-breadcrumb">
@@ -34,12 +34,12 @@
       <p class="diploma-subtitle">من الصفر للغة Dart وحتى برمجة ونشر تطبيقات أندرويد و iOS متكاملة بـ Flutter.</p>
       <div class="diploma-badges">
         <span class="diploma-badge">Dart & Flutter</span>
-        <span class="diploma-badge green">Android & iOS</span>
-        <span class="diploma-badge orange">Firebase</span>
+        <span class="diploma-badge green">أساسيات — مجاني</span>
+        <span class="diploma-badge orange">متقدم — مدفوع</span>
       </div>
       <div class="diploma-stats">
-        <div class="d-stat"><div class="d-stat-num">4</div><div class="d-stat-label">أقسام رئيسية</div></div>
-        <div class="d-stat"><div class="d-stat-num">55+</div><div class="d-stat-label">درس تفصيلي</div></div>
+        <div class="d-stat"><div class="d-stat-num">9</div><div class="d-stat-label">أقسام رئيسية</div></div>
+        <div class="d-stat"><div class="d-stat-num">210+</div><div class="d-stat-label">درس تفصيلي</div></div>
         <div class="d-stat"><div class="d-stat-num">5</div><div class="d-stat-label">تطبيقات عملية</div></div>
         <div class="d-stat"><div class="d-stat-num">14+</div><div class="d-stat-label">تقنية وأداة</div></div>
       </div>
@@ -51,26 +51,92 @@
         <p class="section-desc">من أساسيات Dart حتى نشر تطبيقات Flutter احترافية على المتاجر.</p>
       </div>
 
-      <!-- Dart -->
+      <!-- Dart Basics -->
       <div class="module-card reveal" style="--module-color: var(--accent-green);">
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">01</div>
           <div class="module-title">
-            <h2>لغة Dart</h2>
-            <p>اللغة الأساسية لبناء تطبيقات Flutter</p>
+            <h2>لغة Dart — الأساسيات <span class="topic-badge free">مجاني</span></h2>
+            <p>25 درساً — المتغيرات، العمليات، الشروط، الحلقات، والمجموعات</p>
           </div>
         </div>
         <div class="module-content">
           <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في Dart وإعداد البيئة</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">المتغيرات وأنواع البيانات</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الشروط والحلقات</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الدوال (Functions) والـ Closures</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">البرمجة الكائنية OOP في Dart</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">الـ Mixins و Extensions</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع الأخطاء (Try/Catch)</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">البرمجة غير المتزامنة (async/await, Futures, Streams)</span></div>
-            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Null Safety والتعامل مع القيم الفارغة</span></div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Install and Env</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Print and Syntax</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Variables</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Data Type (1)</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Data Type (2)</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Data Conversion and Comments</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Arithmetic Operators</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Relational Operators</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Logical Operators</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Methods of String</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">If Statement</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Ternary Operator</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">Switch Case</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">For Loop</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text">While Loop</span></div>
+            <div class="topic-item"><span class="topic-num">16</span><span class="topic-text">List in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">17</span><span class="topic-text">List in Dart (2)</span></div>
+            <div class="topic-item"><span class="topic-num">18</span><span class="topic-text">Loop in List</span></div>
+            <div class="topic-item"><span class="topic-num">19</span><span class="topic-text">Multi List - Spread</span></div>
+            <div class="topic-item"><span class="topic-num">20</span><span class="topic-text">List Methods</span></div>
+            <div class="topic-item"><span class="topic-num">21</span><span class="topic-text">Set in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">22</span><span class="topic-text">Looping Set</span></div>
+            <div class="topic-item"><span class="topic-num">23</span><span class="topic-text">Map in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">24</span><span class="topic-text">Loop Map</span></div>
+            <div class="topic-item"><span class="topic-num">25</span><span class="topic-text">Functions</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dart Advanced -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">02</div>
+          <div class="module-title">
+            <h2>لغة Dart — المتقدم <span class="topic-badge paid">مدفوع</span></h2>
+            <p>35 درساً — OOP، Null Safety، Async، Streams، Generics، وميزات Dart 3</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Function in Dart (2)</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Scope in Function</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Null Safety in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Exception Handling</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Import in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Object-Oriented Programming (OOP)</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Class in OOP</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Constructor in OOP in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Encapsulation in OOP</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Inheritance in OOP in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">Super</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Polymorphism in OOP</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">Static Variable and Static Functions</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">Enum</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text">Abstract Class</span></div>
+            <div class="topic-item"><span class="topic-num">16</span><span class="topic-text">Interface (Implements)</span></div>
+            <div class="topic-item"><span class="topic-num">17</span><span class="topic-text">Mixin</span></div>
+            <div class="topic-item"><span class="topic-num">18</span><span class="topic-text">Asynchronous Programming</span></div>
+            <div class="topic-item"><span class="topic-num">19</span><span class="topic-text">Date and Time (1)</span></div>
+            <div class="topic-item"><span class="topic-num">20</span><span class="topic-text">Date and Time (2)</span></div>
+            <div class="topic-item"><span class="topic-num">21</span><span class="topic-text">Futures & async/await</span></div>
+            <div class="topic-item"><span class="topic-num">22</span><span class="topic-text">Streams in Dart</span></div>
+            <div class="topic-item"><span class="topic-num">23</span><span class="topic-text">Closures</span></div>
+            <div class="topic-item"><span class="topic-num">24</span><span class="topic-text">Extensions</span></div>
+            <div class="topic-item"><span class="topic-num">25</span><span class="topic-text">Generics</span></div>
+            <div class="topic-item"><span class="topic-num">26</span><span class="topic-text">Getters & Setters</span></div>
+            <div class="topic-item"><span class="topic-num">27</span><span class="topic-text">Factory & Named Constructors</span></div>
+            <div class="topic-item"><span class="topic-num">28</span><span class="topic-text">Typedef & Function Types</span></div>
+            <div class="topic-item"><span class="topic-num">29</span><span class="topic-text">Packages & pub.dev</span></div>
+            <div class="topic-item"><span class="topic-num">30</span><span class="topic-text">JSON Encode/Decode</span></div>
+            <div class="topic-item"><span class="topic-num">31</span><span class="topic-text">File I/O</span></div>
+            <div class="topic-item"><span class="topic-num">32</span><span class="topic-text">RegExp</span></div>
+            <div class="topic-item"><span class="topic-num">33</span><span class="topic-text">Isolates</span></div>
+            <div class="topic-item"><span class="topic-num">34</span><span class="topic-text">Records & Patterns (Dart 3)</span></div>
+            <div class="topic-item"><span class="topic-num">35</span><span class="topic-text">Sealed Classes (Dart 3)</span></div>
           </div>
         </div>
       </div>
@@ -78,76 +144,317 @@
       <!-- Flutter Basics -->
       <div class="module-card reveal" style="--module-color: var(--accent-green);">
         <div class="module-header" onclick="toggleModule(this)">
-          <div class="module-number">02</div>
-          <div class="module-title">
-            <h2>أساسيات Flutter</h2>
-            <p>بناء واجهات المستخدم الجميلة والمتجاوبة</p>
-          </div>
-        </div>
-        <div class="module-content">
-          <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إعداد بيئة Flutter و VS Code / Android Studio</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">مفهوم Widgets — كل شيء Widget</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Stateless vs Stateful Widgets</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">التخطيط بـ Row, Column, Stack, Container</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">ListView و GridView و ScrollView</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">التنقل بين الشاشات (Navigation)</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع الصور والأيقونات</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Forms والتحقق من المدخلات</span></div>
-            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">الثيمات والتصميم المتجاوب</span></div>
-            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Animations و Hero Transitions</span></div>
-            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">مشروع: تطبيق الطقس</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Advanced Flutter -->
-      <div class="module-card reveal" style="--module-color: var(--accent-green);">
-        <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">03</div>
           <div class="module-title">
-            <h2>Flutter المتقدم</h2>
-            <p>إدارة الحالة، APIs، قواعد البيانات المحلية</p>
+            <h2>أساسيات Flutter</h2>
+            <p>48 درساً — كل الودجات الأساسية من الصفر حتى بناء واجهات متكاملة</p>
           </div>
         </div>
         <div class="module-content">
           <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إدارة الحالة — Provider و Riverpod</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">التعامل مع REST APIs (http, Dio)</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">JSON Parsing و Serialization</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">قواعد البيانات المحلية (SQLite, Hive)</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">التخزين المحلي (SharedPreferences)</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">الإشعارات (Notifications)</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">الكاميرا والمعرض (Image Picker)</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">الخرائط والموقع (Google Maps & Geolocator)</span></div>
-            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">المصادقة (Login, Register, Social Auth)</span></div>
-            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">مشروع: تطبيق متجر إلكتروني</span></div>
+
+            <div class="topics-group-label">مقدمة وإعداد البيئة</div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Flutter Install & Environment Setup</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Project Structure & pubspec.yaml</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Everything is a Widget</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">StatelessWidget vs StatefulWidget</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">MaterialApp & Scaffold</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Hot Reload & Hot Restart</span></div>
+
+            <div class="topics-group-label">ودجات العرض — Display Widgets</div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Text Widget</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">RichText & TextSpan</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Icon Widget</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Image Widget — Asset & Network</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">CircleAvatar</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Placeholder & FadeInImage</span></div>
+
+            <div class="topics-group-label">ودجات التخطيط — Layout Widgets</div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">Container</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">Row & Column</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text">Expanded & Flexible</span></div>
+            <div class="topic-item"><span class="topic-num">16</span><span class="topic-text">Stack & Positioned</span></div>
+            <div class="topic-item"><span class="topic-num">17</span><span class="topic-text">SizedBox & Spacer</span></div>
+            <div class="topic-item"><span class="topic-num">18</span><span class="topic-text">Padding & Align</span></div>
+            <div class="topic-item"><span class="topic-num">19</span><span class="topic-text">Center & Wrap</span></div>
+            <div class="topic-item"><span class="topic-num">20</span><span class="topic-text">AspectRatio & FittedBox</span></div>
+            <div class="topic-item"><span class="topic-num">21</span><span class="topic-text">LayoutBuilder & MediaQuery</span></div>
+
+            <div class="topics-group-label">ودجات الأزرار — Button Widgets</div>
+            <div class="topic-item"><span class="topic-num">22</span><span class="topic-text">ElevatedButton</span></div>
+            <div class="topic-item"><span class="topic-num">23</span><span class="topic-text">TextButton</span></div>
+            <div class="topic-item"><span class="topic-num">24</span><span class="topic-text">OutlinedButton</span></div>
+            <div class="topic-item"><span class="topic-num">25</span><span class="topic-text">IconButton</span></div>
+            <div class="topic-item"><span class="topic-num">26</span><span class="topic-text">FloatingActionButton</span></div>
+            <div class="topic-item"><span class="topic-num">27</span><span class="topic-text">PopupMenuButton</span></div>
+
+            <div class="topics-group-label">ودجات الإدخال — Input Widgets</div>
+            <div class="topic-item"><span class="topic-num">28</span><span class="topic-text">TextField</span></div>
+            <div class="topic-item"><span class="topic-num">29</span><span class="topic-text">TextFormField & Form</span></div>
+            <div class="topic-item"><span class="topic-num">30</span><span class="topic-text">Checkbox, Radio & Switch</span></div>
+            <div class="topic-item"><span class="topic-num">31</span><span class="topic-text">Slider & DropdownButton</span></div>
+            <div class="topic-item"><span class="topic-num">32</span><span class="topic-text">Form Validation</span></div>
+
+            <div class="topics-group-label">ودجات التمرير والقوائم — Scrollable Widgets</div>
+            <div class="topic-item"><span class="topic-num">33</span><span class="topic-text">SingleChildScrollView</span></div>
+            <div class="topic-item"><span class="topic-num">34</span><span class="topic-text">ListView & ListView.builder</span></div>
+            <div class="topic-item"><span class="topic-num">35</span><span class="topic-text">ListView.separated</span></div>
+            <div class="topic-item"><span class="topic-num">36</span><span class="topic-text">GridView & GridView.builder</span></div>
+            <div class="topic-item"><span class="topic-num">37</span><span class="topic-text">PageView</span></div>
+
+            <div class="topics-group-label">هيكل التطبيق — App Structure Widgets</div>
+            <div class="topic-item"><span class="topic-num">38</span><span class="topic-text">AppBar</span></div>
+            <div class="topic-item"><span class="topic-num">39</span><span class="topic-text">Drawer</span></div>
+            <div class="topic-item"><span class="topic-num">40</span><span class="topic-text">BottomNavigationBar</span></div>
+            <div class="topic-item"><span class="topic-num">41</span><span class="topic-text">TabBar & TabBarView</span></div>
+            <div class="topic-item"><span class="topic-num">42</span><span class="topic-text">Card & ListTile</span></div>
+            <div class="topic-item"><span class="topic-num">43</span><span class="topic-text">Divider & Chip</span></div>
+            <div class="topic-item"><span class="topic-num">44</span><span class="topic-text">Dialog, BottomSheet & SnackBar</span></div>
+
+            <div class="topics-group-label">التنقل والثيم والتفاعل</div>
+            <div class="topic-item"><span class="topic-num">45</span><span class="topic-text">Navigator — push & pop</span></div>
+            <div class="topic-item"><span class="topic-num">46</span><span class="topic-text">Named Routes & Passing Data</span></div>
+            <div class="topic-item"><span class="topic-num">47</span><span class="topic-text">ThemeData, Colors & BoxDecoration</span></div>
+            <div class="topic-item"><span class="topic-num">48</span><span class="topic-text">GestureDetector, InkWell & Hero Widget</span></div>
+
           </div>
         </div>
       </div>
 
-      <!-- Firebase & Publishing -->
+      <!-- State Management -->
       <div class="module-card reveal" style="--module-color: var(--accent-green);">
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">04</div>
           <div class="module-title">
-            <h2>Firebase & النشر</h2>
-            <p>ربط التطبيقات بـ Firebase ونشرها على المتاجر</p>
+            <h2>Flutter المتقدم — إدارة الحالة <span class="topic-badge paid">مدفوع</span></h2>
+            <p>17 درساً — Provider, Riverpod, BLoC, Cubit، و GetX</p>
           </div>
         </div>
         <div class="module-content">
           <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">إعداد Firebase مع Flutter</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Firebase Authentication</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Firestore — قاعدة البيانات السحابية</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Firebase Storage — رفع الملفات</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Firebase Cloud Messaging (Push Notifications)</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Firebase Analytics</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">اختبار التطبيق (Debugging & Testing)</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">بناء APK و App Bundle</span></div>
-            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">نشر على Google Play Store</span></div>
-            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">نشر على Apple App Store</span></div>
-            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text"><strong>المشروع الختامي:</strong> تطبيق تواصل اجتماعي كامل</span></div>
+
+            <div class="topics-group-label">مقدمة إدارة الحالة</div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">State Management — لماذا نحتاجها؟</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">setState & قيوده</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">InheritedWidget & ValueNotifier</span></div>
+
+            <div class="topics-group-label">Provider</div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Provider — ChangeNotifier</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Provider — Consumer & Selector</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">MultiProvider & ProxyProvider</span></div>
+
+            <div class="topics-group-label">Riverpod</div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Riverpod — Provider Types</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Riverpod — StateNotifier & Notifier</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Riverpod — AsyncValue & FutureProvider</span></div>
+
+            <div class="topics-group-label">BLoC & Cubit</div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">BLoC Pattern — المفهوم والهيكلة</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">flutter_bloc — الإعداد والتثبيت</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Cubit — emit & States</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">Bloc — Events & States</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">BlocBuilder, BlocListener & BlocConsumer</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text">MultiBlocProvider & Repository Pattern</span></div>
+            <div class="topic-item"><span class="topic-num">16</span><span class="topic-text">Bloc — Equatable & Freezed</span></div>
+
+            <div class="topics-group-label">GetX</div>
+            <div class="topic-item"><span class="topic-num">17</span><span class="topic-text">GetX — Controller, Obx & Dependency Injection</span></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- REST API -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">05</div>
+          <div class="module-title">
+            <h2>REST API بالتفصيل <span class="topic-badge paid">مدفوع</span></h2>
+            <p>36 درساً — بناء API من الصفر بـ Strapi وربطها مع تطبيق Flutter</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+
+            <div class="topics-group-label">أساسيات REST API</div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">ما هي REST API؟ — المفهوم والهيكلة</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">HTTP Methods — GET, POST, PUT, PATCH, DELETE</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Status Codes — 200, 201, 400, 401, 404, 500</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Headers, Query Params & Request Body</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">JSON — Request & Response Structure</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Postman — اختبار وتجربة الـ Endpoints</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">API Design — تسمية Routes وأفضل الممارسات</span></div>
+
+            <div class="topics-group-label">بناء API من الصفر — Strapi</div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">ما هو Strapi؟ — Headless CMS & API Generator</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Strapi — التثبيت وإعداد المشروع</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Content Types — إنشاء Collection Types</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">Fields — أنواع الحقول والعلاقات (Relations)</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Single Types & Components</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">Media Library — إدارة الصور والملفات</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">REST API — Endpoints التلقائية (CRUD)</span></div>
+            <div class="topic-item"><span class="topic-num">15</span><span class="topic-text">Populate — جلب العلاقات والبيانات المرتبطة</span></div>
+            <div class="topic-item"><span class="topic-num">16</span><span class="topic-text">Filters, Sorting & Pagination في Strapi</span></div>
+            <div class="topic-item"><span class="topic-num">17</span><span class="topic-text">Users & Permissions — الأدوار والصلاحيات</span></div>
+            <div class="topic-item"><span class="topic-num">18</span><span class="topic-text">Authentication — تسجيل الدخول والتوكن</span></div>
+            <div class="topic-item"><span class="topic-num">19</span><span class="topic-text">Custom Routes & Controllers</span></div>
+            <div class="topic-item"><span class="topic-num">20</span><span class="topic-text">Lifecycle Hooks — منطق مخصص قبل/بعد العمليات</span></div>
+            <div class="topic-item"><span class="topic-num">21</span><span class="topic-text">رفع الملفات عبر API</span></div>
+            <div class="topic-item"><span class="topic-num">22</span><span class="topic-text">Deploy Strapi — نشر الـ API على السيرفر</span></div>
+
+            <div class="topics-group-label">ربط API مع تطبيق Flutter</div>
+            <div class="topic-item"><span class="topic-num">23</span><span class="topic-text">ربط التطبيق بـ Base URL</span></div>
+            <div class="topic-item"><span class="topic-num">24</span><span class="topic-text">إرسال طلبات GET — جلب البيانات</span></div>
+            <div class="topic-item"><span class="topic-num">25</span><span class="topic-text">إرسال طلبات POST — إنشاء بيانات جديدة</span></div>
+            <div class="topic-item"><span class="topic-num">26</span><span class="topic-text">إرسال طلبات PUT & DELETE — تعديل وحذف</span></div>
+            <div class="topic-item"><span class="topic-num">27</span><span class="topic-text">تحويل JSON إلى Models</span></div>
+            <div class="topic-item"><span class="topic-num">28</span><span class="topic-text">طبقة خدمة API — فصل منطق الشبكة</span></div>
+            <div class="topic-item"><span class="topic-num">29</span><span class="topic-text">Repository Pattern — إدارة مصادر البيانات</span></div>
+            <div class="topic-item"><span class="topic-num">30</span><span class="topic-text">تسجيل الدخول عبر API — Auth & Token</span></div>
+            <div class="topic-item"><span class="topic-num">31</span><span class="topic-text">حفظ التوكن وإرساله مع كل طلب</span></div>
+            <div class="topic-item"><span class="topic-num">32</span><span class="topic-text">معالجة الأخطاء — Loading, Success & Error</span></div>
+            <div class="topic-item"><span class="topic-num">33</span><span class="topic-text">عرض البيانات في الواجهة — Lists & Details</span></div>
+            <div class="topic-item"><span class="topic-num">34</span><span class="topic-text">عمليات CRUD كاملة من التطبيق</span></div>
+            <div class="topic-item"><span class="topic-num">35</span><span class="topic-text">رفع صورة من التطبيق إلى Strapi</span></div>
+            <div class="topic-item"><span class="topic-num">36</span><span class="topic-text"><strong>مشروع متكامل:</strong> Strapi API + تطبيق Flutter</span></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Databases -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">06</div>
+          <div class="module-title">
+            <h2>قواعد البيانات المحلية <span class="topic-badge paid">مدفوع</span></h2>
+            <p>12 درساً — SharedPreferences, Hive, SQLite، و Drift</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+
+            <div class="topics-group-label">التخزين المحلي</div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Local Storage — نظرة عامة</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">SharedPreferences — حفظ الإعدادات</span></div>
+
+            <div class="topics-group-label">Hive</div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Hive — Setup & Boxes</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Hive — Type Adapters</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Hive — CRUD Operations</span></div>
+
+            <div class="topics-group-label">SQLite</div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">sqflite — إنشاء قاعدة البيانات</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">sqflite — INSERT, SELECT, UPDATE, DELETE</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">sqflite — Joins & Transactions</span></div>
+
+            <div class="topics-group-label">Drift & أنماط متقدمة</div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Drift — Type-Safe SQLite</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Drift — Tables & Queries</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">Local vs Remote — Sync Strategy</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">مشروع: تطبيق ملاحظات محلي</span></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Firebase -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">07</div>
+          <div class="module-title">
+            <h2>Firebase <span class="topic-badge paid">مدفوع</span></h2>
+            <p>14 درساً — Auth, Firestore, Storage, FCM، و Analytics</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+
+            <div class="topics-group-label">الإعداد</div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Firebase Setup with Flutter</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Firebase CLI & flutterfire configure</span></div>
+
+            <div class="topics-group-label">Firebase Authentication</div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Email & Password Auth</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Google Sign-In</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Phone Auth & Social Login</span></div>
+
+            <div class="topics-group-label">Cloud Firestore</div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Firestore — Collections & Documents</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Firestore — CRUD Operations</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Firestore — Queries & Filters</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Firestore — Real-time Streams</span></div>
+
+            <div class="topics-group-label">خدمات Firebase الأخرى</div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Firebase Storage — Upload & Download</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">FCM — Push Notifications</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">Firebase Analytics & Crashlytics</span></div>
+            <div class="topic-item"><span class="topic-num">13</span><span class="topic-text">Firebase Security Rules</span></div>
+            <div class="topic-item"><span class="topic-num">14</span><span class="topic-text">مشروع: تطبيق Chat مع Firebase</span></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Supabase -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">08</div>
+          <div class="module-title">
+            <h2>Supabase <span class="topic-badge paid">مدفوع</span></h2>
+            <p>12 درساً — Auth, PostgreSQL, Realtime, Storage، و RLS</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+
+            <div class="topics-group-label">الإعداد</div>
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Supabase Setup with Flutter</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Supabase Project & supabase_flutter</span></div>
+
+            <div class="topics-group-label">Supabase Auth</div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Email & Password Authentication</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">OAuth — Google & Apple Sign-In</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Session Management & Auth State</span></div>
+
+            <div class="topics-group-label">قاعدة البيانات</div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">PostgreSQL — Tables & Relations</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Supabase — CRUD Operations</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Supabase — Filters & Pagination</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Supabase Realtime — Live Updates</span></div>
+
+            <div class="topics-group-label">Storage & الأمان</div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Supabase Storage — Buckets & Files</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">Row Level Security (RLS)</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text">مشروع: تطبيق Todo مع Supabase</span></div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Publishing -->
+      <div class="module-card reveal" style="--module-color: var(--accent-green);">
+        <div class="module-header" onclick="toggleModule(this)">
+          <div class="module-number">09</div>
+          <div class="module-title">
+            <h2>النشر والمشاريع <span class="topic-badge paid">مدفوع</span></h2>
+            <p>12 درساً — أدوات الجهاز، الاختبار، وبناء ونشر التطبيقات</p>
+          </div>
+        </div>
+        <div class="module-content">
+          <div class="module-topics">
+            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">Image Picker & Camera</span></div>
+            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Google Maps & Geolocator</span></div>
+            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Local Notifications — flutter_local_notifications</span></div>
+            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Permissions — permission_handler</span></div>
+            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Animations — AnimationController & Tween</span></div>
+            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Custom Painter & Canvas</span></div>
+            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Unit Testing & Widget Testing</span></div>
+            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Debugging & DevTools</span></div>
+            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Build APK & App Bundle</span></div>
+            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">App Signing & Keystore</span></div>
+            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">نشر على Google Play Store</span></div>
+            <div class="topic-item"><span class="topic-num">12</span><span class="topic-text"><strong>المشروع الختامي:</strong> تطبيق متكامل (Bloc + Firebase/Supabase)</span></div>
           </div>
         </div>
       </div>
@@ -158,9 +465,10 @@
         <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
       </div>
       <div class="features-grid">
-        <div class="feature-item"><div class="feature-icon">📱</div><h4>Android & iOS</h4><p>تطبيق واحد يعمل على كل المنصات.</p></div>
-        <div class="feature-item"><div class="feature-icon">🔥</div><h4>Firebase كامل</h4><p>Auth, Firestore, Storage, Notifications.</p></div>
-        <div class="feature-item"><div class="feature-icon">🎨</div><h4>واجهات جميلة</h4><p>Animations, Transitions, Custom Widgets.</p></div>
+        <div class="feature-item"><div class="feature-icon">🔗</div><h4>REST API & Strapi</h4><p>بناء API من الصفر بـ Strapi وربطها مع التطبيق.</p></div>
+        <div class="feature-item"><div class="feature-icon">🧩</div><h4>BLoC & Cubit</h4><p>إدارة حالة احترافية مع Provider و Riverpod و GetX.</p></div>
+        <div class="feature-item"><div class="feature-icon">🔥</div><h4>Firebase & Supabase</h4><p>قاعدتان سحابيتان كاملتان — Auth, DB, Storage, Realtime.</p></div>
+        <div class="feature-item"><div class="feature-icon">🎨</div><h4>48 ودجت Flutter</h4><p>تعلم كل الودجات الأساسية من Text حتى Navigation.</p></div>
         <div class="feature-item"><div class="feature-icon">🚀</div><h4>نشر على المتاجر</h4><p>Google Play + App Store خطوة بخطوة.</p></div>
       </div>
     </div>

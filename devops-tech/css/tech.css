@@ -96,6 +96,13 @@ nav.scrolled .nav-inner { border-bottom-color: var(--border); }
   font-size: 18px;
   flex-shrink: 0;
 }
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
 .nav-logo-text {
   font-weight: 800; font-size: 1rem;
   color: var(--text-primary);

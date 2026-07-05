@@ -3,10 +3,10 @@
 :root {
   --bg-primary: #050508;
   --bg-secondary: #0a0a0f;
-  --bg-card: rgba(255,255,255,0.03);
-  --bg-card-hover: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.07);
-  --border-hover: rgba(255,255,255,0.15);
+  --bg-card: #12121c;
+  --bg-card-hover: #181824;
+  --border: rgba(255,255,255,0.12);
+  --border-hover: rgba(255,255,255,0.2);
   --text-primary: #f0f0f5;
   --text-secondary: #8888a0;
   --text-muted: #4a4a60;
@@ -107,6 +107,12 @@ body {
   background-clip: text;
   font-family: var(--font-heading);
 }
+.loader-logo-img {
+  height: 56px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 .loader-bar {
   width: 200px; height: 2px;
   background: var(--border);
@@ -159,6 +165,13 @@ nav.scrolled {
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
   flex-shrink: 0;
+}
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
 }
 .nav-logo-text {
   font-weight: 800;
@@ -460,6 +473,7 @@ nav.scrolled {
   display: flex; flex-direction: column;
   min-height: clamp(250px, 30vw, 350px);
   cursor: pointer;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .course-card::before {
   content: '';
