@@ -62,13 +62,17 @@ body {
 /* NAVBAR */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 clamp(16px, 3vw, 24px); transition: var(--transition); }
 .nav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 68px; border-bottom: 1px solid transparent; transition: var(--transition); }
+.nav-inner--page { height: 76px; }
 nav.scrolled .nav-inner { border-bottom-color: var(--border); }
 nav.scrolled { background: rgba(5,5,8,0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
 .nav-logo-icon { width: 38px; height: 38px; background: var(--gradient-1); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
 .nav-logo-img { height: 40px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
+.nav-logo--img-only .nav-logo-img { height: 56px; max-width: 150px; }
 .nav-logo-text { font-weight: 800; font-size: clamp(0.85rem, 2vw, 1rem); color: var(--text-primary); font-family: var(--font-heading); }
-.nav-breadcrumb { display: flex; align-items: center; gap: 8px; font-size: clamp(0.75rem, 1.3vw, 0.85rem); color: var(--text-muted); }
+.nav-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; padding: 0 12px; }
+.nav-center-title { font-weight: 800; font-size: clamp(0.88rem, 1.6vw, 1rem); color: var(--text-primary); font-family: var(--font-heading); white-space: nowrap; }
+.nav-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: clamp(0.75rem, 1.3vw, 0.85rem); color: var(--text-muted); }
 .nav-breadcrumb a { color: var(--text-secondary); text-decoration: none; transition: var(--transition); }
 .nav-breadcrumb a:hover { color: var(--accent-blue); }
 .nav-breadcrumb .separator { color: var(--border); }
@@ -172,6 +176,7 @@ footer { background: var(--bg-secondary); border-top: 1px solid var(--border); p
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-breadcrumb { display: none; }
+  .nav-center-title { font-size: 0.82rem; }
   .nav-links { display: none; }
   .nav-mobile-btn { display: flex; }
   .diploma-stats { flex-direction: column; gap: 16px; }

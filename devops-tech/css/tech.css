@@ -82,6 +82,7 @@ nav.scrolled {
   border-bottom: 1px solid transparent;
   transition: var(--transition);
 }
+.nav-inner--page { height: 76px; }
 nav.scrolled .nav-inner { border-bottom-color: var(--border); }
 
 .nav-logo {
@@ -103,6 +104,10 @@ nav.scrolled .nav-inner { border-bottom-color: var(--border); }
   flex-shrink: 0;
   display: block;
 }
+.nav-logo--img-only .nav-logo-img { height: 56px; max-width: 150px; }
+.nav-center { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-width: 0; padding: 0 12px; }
+.nav-center-title { font-weight: 800; font-size: clamp(0.88rem, 1.6vw, 1rem); color: var(--text-primary); font-family: var(--font-heading); white-space: nowrap; }
+.nav-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 8px; }
 .nav-logo-text {
   font-weight: 800; font-size: 1rem;
   color: var(--text-primary);
