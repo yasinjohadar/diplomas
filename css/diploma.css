@@ -101,10 +101,19 @@ nav.scrolled { background: rgba(5,5,8,0.88); backdrop-filter: blur(20px); -webki
 .diploma-badge.orange { background: rgba(245,158,11,0.1); border-color: rgba(245,158,11,0.25); color: var(--accent-orange); }
 
 /* STATS */
-.diploma-stats { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: clamp(16px, 3vw, 32px); margin-top: clamp(28px, 4vw, 40px); padding-top: clamp(20px, 3vw, 32px); border-top: 1px solid var(--border); }
-.d-stat { text-align: center; }
-.d-stat-num { font-size: clamp(1.3rem, 3vw, 1.8rem); font-weight: 900; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: var(--font-mono); }
-.d-stat-label { font-size: clamp(0.7rem, 1.3vw, 0.8rem); color: var(--text-muted); margin-top: 4px; font-weight: 600; }
+.diploma-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: start;
+  gap: clamp(8px, 2vw, 24px);
+  margin-top: clamp(28px, 4vw, 40px);
+  padding-top: clamp(20px, 3vw, 32px);
+  border-top: 1px solid var(--border);
+  width: 100%;
+}
+.d-stat { text-align: center; min-width: 0; }
+.d-stat-num { font-size: clamp(1.05rem, 2.8vw, 1.8rem); font-weight: 900; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-family: var(--font-mono); }
+.d-stat-label { font-size: clamp(0.6rem, 1.5vw, 0.8rem); color: var(--text-muted); margin-top: 4px; font-weight: 600; line-height: 1.35; }
 
 /* SECTIONS */
 .modules-section { padding: clamp(40px, 6vh, 80px) 0; }
@@ -181,10 +190,9 @@ footer { background: var(--bg-secondary); border-top: 1px solid var(--border); p
   .nav-center-title { font-size: 0.82rem; }
   .nav-links { display: none; }
   .nav-mobile-btn { display: flex; }
-  .diploma-stats { flex-direction: row; flex-wrap: nowrap; gap: 8px; justify-content: space-between; }
-  .d-stat { flex: 1; min-width: 0; }
-  .d-stat-num { font-size: 1.1rem; }
-  .d-stat-label { font-size: 0.65rem; line-height: 1.3; }
+  .diploma-stats { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .d-stat-num { font-size: 1rem; }
+  .d-stat-label { font-size: 0.58rem; line-height: 1.3; }
   .module-header { flex-direction: row; }
   .features-grid { grid-template-columns: 1fr; }
 }
