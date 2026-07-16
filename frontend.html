@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دبلوم Front-End — أكاديمية كلاود سوفت</title>
-    <link rel="stylesheet" href="css/diploma.css?v=3.2">
+    <link rel="stylesheet" href="css/diploma.css?v=3.3">
     <style>
       :root { --module-color: var(--accent-cyan); --hero-glow: rgba(6,182,212,0.3); }
     </style>
@@ -32,11 +32,13 @@
       <h1 class="diploma-title">دبلوم الـ Front-End</h1>
       <p class="diploma-subtitle">إتقان تصميم وبناء واجهات الويب الاحترافية من الصفر حتى المشاريع المتكاملة مع أحدث التقنيات.</p>
       <div class="diploma-badges">
-        <span class="diploma-badge">المستوى الأول</span>
-        <span class="diploma-badge green">مجاني (انتساب 10$)</span>
-        <span class="diploma-badge orange">معسكر متقدم — مدفوع</span>
+        <span class="diploma-badge green">المستوى التأسيسي — انتساب 10$</span>
+        <span class="diploma-badge orange">المستوى المتقدم — مدفوع</span>
       </div>
-      <p class="fee-note">المحتوى التعليمي <strong>مجاني</strong> — رسوم الانتساب <strong>10$</strong> فقط لضمان جدية ومتابعة الطالب للدبلوم، وليست رسوم الدبلوم أو المحتوى.</p>
+      <p class="fee-note">
+        المستوى التأسيسي (HTML + CSS + المشروع التطبيقي) برسوم انتساب <strong>10$ مرة واحدة فقط</strong> للمستوى كاملاً — وليست رسوم لكل محور، وليست رسوم الدبلوم.
+        الهدف: ضمان جدية ومتابعة الطالب.
+      </p>
       <div class="diploma-stats">
         <div class="d-stat"><div class="d-stat-num">12</div><div class="d-stat-label">أقسام رئيسية</div></div>
         <div class="d-stat"><div class="d-stat-num">130+</div><div class="d-stat-label">درس تفصيلي</div></div>
@@ -45,19 +47,33 @@
       </div>
     </div>
 
-    <!-- HTML5 Module -->
+    <!-- محاور الدبلوم -->
     <div class="modules-section">
       <div class="section-header reveal">
         <div class="section-title"><span class="icon">📖</span> محاور الدبلوم</div>
         <p class="section-desc">منهج تدريجي يأخذك من أساسيات HTML حتى بناء مشاريع احترافية متكاملة.</p>
       </div>
 
-      <div class="module-card reveal" style="--module-color: var(--accent-cyan);">
+      <!-- ===== المستوى التأسيسي ===== -->
+      <div class="level-block reveal">
+        <div class="level-header foundational">
+          <div class="level-header-top">
+            <h3>المستوى التأسيسي</h3>
+            <span class="topic-badge free">انتساب 10$ للمستوى كاملاً</span>
+          </div>
+          <p>
+            يشمل محاور <strong>HTML5</strong> و <strong>CSS3</strong> و <strong>المشروع التطبيقي الأول</strong>.
+            رسوم الانتساب <strong>10$ مرة واحدة فقط</strong> تغطي المستوى التأسيسي بأكمله — وليست رسوم لكل محور على حدة، وليست رسوم الدبلوم.
+            الهدف ضمان جدية ومتابعة الطالب.
+          </p>
+        </div>
+
+      <div class="module-card" style="--module-color: var(--accent-cyan);">
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">01</div>
           <div class="module-title">
-            <h2>أساسيات HTML5 <span class="topic-badge free">مجاني (انتساب 10$)</span></h2>
-            <p>لغة بناء وهيكلة صفحات الويب بالكامل — رسوم الانتساب لضمان الجدية وليست رسوم الدبلوم</p>
+            <h2>أساسيات HTML5 <span class="topic-badge free">المستوى التأسيسي</span></h2>
+            <p>لغة بناء وهيكلة صفحات الويب بالكامل</p>
           </div>
         </div>
         <div class="module-content">
@@ -82,8 +98,8 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">02</div>
           <div class="module-title">
-            <h2>احتراف CSS3 <span class="topic-badge free">مجاني (انتساب 10$)</span></h2>
-            <p>تجميل وتنسيق المواقع باحترافية — رسوم الانتساب لضمان الجدية وليست رسوم الدبلوم</p>
+            <h2>احتراف CSS3 <span class="topic-badge free">المستوى التأسيسي</span></h2>
+            <p>تجميل وتنسيق المواقع باحترافية وبناء مشروع متكامل</p>
           </div>
         </div>
         <div class="module-content">
@@ -112,8 +128,8 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">03</div>
           <div class="module-title">
-            <h2>المشروع التطبيقي الأول <span class="topic-badge free">مجاني (انتساب 10$)</span></h2>
-            <p>17 درساً عملياً — رسوم الانتساب لضمان الجدية وليست رسوم الدبلوم</p>
+            <h2>المشروع التطبيقي الأول <span class="topic-badge free">المستوى التأسيسي</span></h2>
+            <p>17 درساً عملياً — بناء موقع شركة احترافي من الصفر حتى التسليم</p>
           </div>
         </div>
         <div class="module-content">
@@ -138,13 +154,29 @@
           </div>
         </div>
       </div>
+      </div><!-- /level-block foundational -->
+
+      <div class="level-divider">نهاية المستوى التأسيسي — بداية المستوى المتقدم</div>
+
+      <!-- ===== المستوى المتقدم ===== -->
+      <div class="level-block reveal">
+        <div class="level-header advanced">
+          <div class="level-header-top">
+            <h3>المستوى المتقدم</h3>
+            <span class="topic-badge paid">مدفوع</span>
+          </div>
+          <p>
+            يشمل <strong>Bootstrap</strong> و<strong>Tailwind</strong> و<strong>SASS</strong> والمشاريع الاحترافية و<strong>Git</strong> و<strong>السيرفرات</strong>.
+            هذا المستوى <strong>مدفوع بشكل منفصل</strong> عن رسوم انتساب المستوى التأسيسي.
+          </p>
+        </div>
 
       <!-- 04 Bootstrap -->
-      <div class="module-card reveal" style="--module-color: var(--accent-cyan);">
+      <div class="module-card" style="--module-color: var(--accent-cyan);">
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">04</div>
           <div class="module-title">
-            <h2>Bootstrap بالكامل <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>Bootstrap بالكامل <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>إطار العمل الأشهر لبناء واجهات متجاوبة بسرعة واحترافية</p>
           </div>
         </div>
@@ -176,7 +208,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">05</div>
           <div class="module-title">
-            <h2>مشروع متجر إلكتروني <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>مشروع متجر إلكتروني <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>HTML + CSS + Bootstrap — بناء متجر متكامل من الصفر</p>
           </div>
         </div>
@@ -204,7 +236,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">06</div>
           <div class="module-title">
-            <h2>Tailwind CSS بالكامل <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>Tailwind CSS بالكامل <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>أسلوب Utility-First لبناء واجهات حديثة وسريعة</p>
           </div>
         </div>
@@ -234,7 +266,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">07</div>
           <div class="module-title">
-            <h2>مشروع منصة تعليمية LMS <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>مشروع منصة تعليمية LMS <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>بناء مدرسة إلكترونية كاملة بـ Tailwind CSS</p>
           </div>
         </div>
@@ -262,7 +294,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">08</div>
           <div class="module-title">
-            <h2>SASS بالكامل <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>SASS بالكامل <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>معالج CSS المتقدم لتنظيم وتنسيق المشاريع الكبيرة</p>
           </div>
         </div>
@@ -289,7 +321,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">09</div>
           <div class="module-title">
-            <h2>مشروع موقع عقاري بـ SASS <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>مشروع موقع عقاري بـ SASS <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>بناء منصة تسويق عقاري احترافية باستخدام SASS</p>
           </div>
         </div>
@@ -317,7 +349,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">10</div>
           <div class="module-title">
-            <h2>Git & GitHub بالكامل <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>Git & GitHub بالكامل <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>إدارة المشاريع والتعاون الاحترافي — من أول commit حتى Pull Request</p>
           </div>
         </div>
@@ -350,7 +382,7 @@
         <div class="module-header" onclick="toggleModule(this)">
           <div class="module-number">11</div>
           <div class="module-title">
-            <h2>السيرفرات والاستضافة بالكامل <span class="topic-badge paid">مدفوع</span></h2>
+            <h2>السيرفرات والاستضافة بالكامل <span class="topic-badge paid">المستوى المتقدم</span></h2>
             <p>من شراء النطاق حتى رفع الموقع وتشغيله على السيرفر</p>
           </div>
         </div>
@@ -394,6 +426,7 @@
           </div>
         </div>
       </div>
+      </div><!-- /level-block advanced -->
     </div>
 
     <!-- Features -->
@@ -402,16 +435,16 @@
         <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
       </div>
       <div class="features-grid">
-        <div class="feature-item"><div class="feature-icon">🆓</div><h4>محتوى مجاني</h4><p>HTML5 و CSS3 والمشروع التطبيقي — انتساب 10$ لضمان الجدية والمتابعة، وليست رسوم الدبلوم.</p></div>
-        <div class="feature-item"><div class="feature-icon">🏗️</div><h4>مشاريع احترافية</h4><p>متجر Bootstrap + منصة LMS بـ Tailwind + موقع عقاري بـ SASS.</p></div>
-        <div class="feature-item"><div class="feature-icon">🎯</div><h4>أحدث التقنيات</h4><p>Bootstrap, Tailwind CSS, SASS, Git.</p></div>
+        <div class="feature-item"><div class="feature-icon">🌱</div><h4>المستوى التأسيسي</h4><p>HTML5 و CSS3 والمشروع التطبيقي — انتساب 10$ مرة واحدة للمستوى كاملاً (ليست لكل محور).</p></div>
+        <div class="feature-item"><div class="feature-icon">🏗️</div><h4>المستوى المتقدم</h4><p>متجر Bootstrap + منصة LMS بـ Tailwind + موقع عقاري بـ SASS.</p></div>
+        <div class="feature-item"><div class="feature-icon">🎯</div><h4>أحدث التقنيات</h4><p>Bootstrap, Tailwind CSS, SASS, Git والسيرفرات.</p></div>
         <div class="feature-item"><div class="feature-icon">🎁</div><h4>هدايا حصرية</h4><p>Canva Pro + مكتبة قوالب مدفوعة مجاناً.</p></div>
       </div>
     </div>
 
     <div class="alert alert-success reveal">
       <span class="alert-icon">🚀</span>
-      <span>المحتوى مجاني مع رسوم انتساب 10$ لضمان جدية ومتابعة الطالب (ليست رسوم الدبلوم) — ثم انتقل للمعسكر المتقدم!</span>
+      <span>ابدأ بالمستوى التأسيسي (انتساب 10$ للمستوى كاملاً) ثم انتقل للمستوى المتقدم المدفوع لبناء مشاريع احترافية!</span>
     </div>
 
   </div>
