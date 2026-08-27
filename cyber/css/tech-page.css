@@ -22,6 +22,47 @@
   --glow-blue:   0 0 20px rgba(0,102,255,0.45), 0 0 60px rgba(0,102,255,0.15);
   --radius:      16px;
   --transition:  0.35s cubic-bezier(.4,0,.2,1);
+
+  /* Real brand colors (sampled from images/logo.png) */
+  --brand-blue:        #0555a2;
+  --brand-blue-light:  #2f7fd1;
+  --brand-blue-dark:   #043d78;
+  --brand-orange:      #f29125;
+  --brand-orange-light:#f7ab55;
+
+  /* Nav / mobile-menu overlay backgrounds (theme-aware) */
+  --overlay-nav:          rgba(2, 4, 8, 0.7);
+  --overlay-nav-scrolled: rgba(2, 4, 8, 0.95);
+  --overlay-menu:         rgba(2, 4, 8, 0.97);
+}
+
+/* ===========================
+   Light mode ("الوضع النهاري")
+=========================== */
+:root[data-theme="light"] {
+  --black:        #f6f7fb;
+  --dark:         #eef1f7;
+  --dark-card:    rgba(255,255,255,0.9);
+  --glass:        rgba(5,25,60,0.04);
+  --glass-hover:  rgba(5,25,60,0.08);
+  --border:       rgba(5,25,60,0.12);
+  --border-hover: rgba(5,25,60,0.22);
+  --text-main:    #0c1524;
+  --text-muted:   #7b8494;
+
+  /* Neon triad darkened for legibility on a light background */
+  --cyan:   #0891b2;
+  --blue:   #0555a2;
+  --purple: #7c3aed;
+
+  /* brand-blue-light is used as bare heading/text color in several
+     places; the pale tint (#2f7fd1) is too low-contrast on a light
+     background, so darken it specifically for light mode. */
+  --brand-blue-light: #0b4f96;
+
+  --overlay-nav:          rgba(246,247,251,0.7);
+  --overlay-nav-scrolled: rgba(246,247,251,0.92);
+  --overlay-menu:         rgba(246,247,251,0.96);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,7 +91,7 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 1000;
   padding: 16px 0;
-  background: rgba(2, 4, 8, 0.7);
+  background: var(--overlay-nav);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--border);
@@ -58,7 +99,7 @@ nav {
 }
 nav.scrolled {
   padding: 10px 0;
-  background: rgba(2, 4, 8, 0.95);
+  background: var(--overlay-nav-scrolled);
 }
 .nav-inner {
   display: flex;
@@ -113,7 +154,7 @@ nav.scrolled {
 .nav-links a.active::after { transform: scaleX(1); }
 
 .nav-cta {
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  background: var(--brand-orange);
   color: #000 !important;
   padding: 8px 22px;
   border-radius: 50px;
@@ -124,6 +165,21 @@ nav.scrolled {
 }
 .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(0,245,255,0.6) !important; }
 .nav-cta::after { display: none !important; }
+
+.theme-toggle-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--dark-card);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle-btn:hover { border-color: var(--border-hover); background: var(--glass-hover); transform: translateY(-1px); }
 
 .nav-burger {
   display: none;
@@ -152,38 +208,26 @@ nav.scrolled {
 .cyber-grid {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(0,245,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,245,255,0.04) 1px, transparent 1px);
+  /* Grid-line texture removed: a pure-CSS grid pattern needs gradient
+     functions, which are disallowed site-wide. Deliberately simplified
+     to no background texture rather than approximated. */
   background-size: 50px 50px;
-  animation: gridMove 20s linear infinite;
-}
-@keyframes gridMove {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(50px); }
 }
 
 .orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  animation: orbFloat 8s ease-in-out infinite;
 }
 .orb-1 {
   width: 400px; height: 400px;
   background: rgba(0,245,255,0.12);
   top: -100px; right: -100px;
-  animation-delay: 0s;
 }
 .orb-2 {
   width: 300px; height: 300px;
   background: rgba(155,48,255,0.12);
   bottom: 0; left: -50px;
-  animation-delay: 3s;
-}
-@keyframes orbFloat {
-  0%, 100% { transform: translateY(0) scale(1); }
-  50%       { transform: translateY(-30px) scale(1.05); }
 }
 
 .tech-hero-content {
@@ -210,10 +254,7 @@ nav.scrolled {
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 900;
   margin-bottom: 16px;
-  background: linear-gradient(135deg, var(--cyan), var(--blue), var(--purple));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--brand-blue-light);
 }
 
 .tech-hero-subtitle {
@@ -238,10 +279,7 @@ nav.scrolled {
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 800;
   margin-bottom: 32px;
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--brand-blue-light);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -408,7 +446,7 @@ nav.scrolled {
 =========================== */
 #cta {
   padding: 80px 0;
-  background: linear-gradient(135deg, rgba(0,245,255,0.04), rgba(155,48,255,0.04));
+  background: color-mix(in srgb, var(--brand-blue-light) 5%, transparent);
   border-top: 1px solid var(--border);
   text-align: center;
 }
@@ -431,7 +469,7 @@ nav.scrolled {
   align-items: center;
   gap: 10px;
   padding: 14px 32px;
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  background: var(--brand-blue);
   color: #000;
   font-weight: 700;
   font-size: 1rem;
@@ -472,47 +510,13 @@ nav.scrolled {
 }
 
 /* ===========================
-   FOOTER
-=========================== */
-footer {
-  background: var(--dark);
-  border-top: 1px solid var(--border);
-  padding: 40px 0 24px;
-  text-align: center;
-}
-
-.footer-copy {
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.footer-links {
-  display: flex;
-  justify-content: center;
-  gap: 24px;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
-
-.footer-links a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: var(--transition);
-}
-
-.footer-links a:hover {
-  color: var(--cyan);
-}
-
-/* ===========================
    MOBILE NAV MENU
 =========================== */
 .mobile-menu {
   display: none;
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(2,4,8,0.97);
+  background: var(--overlay-menu);
   z-index: 999;
   flex-direction: column;
   align-items: center;
@@ -543,7 +547,7 @@ footer {
   position: fixed;
   bottom: 32px; left: 32px;
   width: 44px; height: 44px;
-  background: linear-gradient(135deg, var(--cyan), var(--blue));
+  background: var(--brand-blue-light);
   border: none;
   border-radius: 50%;
   color: #000;
@@ -562,27 +566,6 @@ footer {
 #backTop:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(0,245,255,0.7); }
 
 /* ===========================
-   LOADER
-=========================== */
-#loader {
-  position: fixed;
-  inset: 0;
-  background: var(--black);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 24px;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-#loader.hide { opacity: 0; visibility: hidden; }
-.loader-icon { font-size: 3rem; color: var(--cyan); animation: loaderSpin 1s linear infinite; filter: drop-shadow(0 0 20px var(--cyan)); }
-.loader-logo-img { height: 56px; width: auto; object-fit: contain; display: block; }
-@keyframes loaderSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-.loader-text { color: var(--text-muted); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; }
-
-/* ===========================
    RESPONSIVE
 =========================== */
 @media (max-width: 768px) {
@@ -597,13 +580,3 @@ footer {
   .tech-icon-large { width: 90px; height: 90px; font-size: 2.5rem; }
 }
 
-/* Reveal animation */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}

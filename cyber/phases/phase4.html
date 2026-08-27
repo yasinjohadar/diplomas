@@ -5,11 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>المرحلة 4 — إدارة الأنظمة والأمن الدفاعي | Cyber Diploma</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/png" href="../../images/logo.png">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
   <link rel="stylesheet" href="css/phase.css" />
 </head>
-<body>
+<body style="--accent: var(--brand-blue-light);">
   <nav id="navbar">
     <div class="nav-inner nav-inner--page">
+      <a href="../index.html" class="nav-logo nav-logo--img-only"><img src="../../images/logo.png" alt="كلاود سوفت" class="nav-logo-img"></a>
       <div class="nav-center">
         <span class="nav-center-title">أكاديمية كلاود سوفت</span>
         <div class="nav-breadcrumb">
@@ -19,6 +22,7 @@
         </div>
       </div>
       <a href="../index.html" class="nav-back"><i class="fas fa-arrow-right"></i> العودة</a>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
     </div>
   </nav>
 
@@ -132,7 +136,6 @@ index=main <span class="str">"Failed password"</span> | stats count by src_ip | 
     </div>
   </div>
 
-  <footer><p class="footer-copy">© 2025 <span>CyberDiploma Academy</span> — جميع الحقوق محفوظة</p></footer>
   <script src="js/phase.js"></script>
 </body>
 </html>

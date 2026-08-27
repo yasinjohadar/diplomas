@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محاور الجافا سكريبت</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
     <link rel="stylesheet" href="css/diploma.css?v=3.3">
     <style>
-      :root { --module-color: var(--accent-orange); --hero-glow: rgba(245,158,11,0.3); }
+      :root { --module-color: var(--accent-orange); --hero-glow: rgba(242,145,37,0.3); }
     </style>
 </head>
 <body>
 
   <nav id="navbar">
     <div class="nav-inner nav-inner--page">
+      <a href="index.html" class="nav-logo nav-logo--img-only">
+        <img src="images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
+      </a>
       <div class="nav-center">
         <span class="nav-center-title">أكاديمية كلاود سوفت</span>
         <div class="nav-breadcrumb">
@@ -21,6 +26,7 @@
         <span>JavaScript</span>
         </div>
       </div>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
       <a href="index.html" class="nav-back-btn">→ العودة</a>
     </div>
   </nav>
@@ -198,7 +204,6 @@
 
   </div>
 
-  <footer><p class="footer-copy">© 2025 <span>أكاديمية كلاود سوفت</span> — جميع الحقوق محفوظة</p></footer>
 
   <script src="js/diploma.js"></script>
 </body>

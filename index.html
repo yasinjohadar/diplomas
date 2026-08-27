@@ -4,25 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أكاديمية كلاود سوفت - الدبلومات الاحترافية</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
     <link rel="stylesheet" href="css/main.css?v=3.1">
 </head>
 <body>
-
-    <!-- CUSTOM CURSOR -->
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-follower" id="cursorFollower"></div>
-
-    <!-- LOADER -->
-    <div id="loader">
-        <div class="loader-logo">🎓 أكاديمية كلاود سوفت</div>
-        <div class="loader-bar"><div class="loader-bar-fill"></div></div>
-        <p class="loader-text">Loading diplomas...</p>
-    </div>
 
     <!-- NAVBAR -->
     <nav id="navbar">
         <div class="nav-inner">
             <a href="#" class="nav-logo">
+                <img src="images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
                 <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
             </a>
             <ul class="nav-links">
@@ -34,6 +26,7 @@
                 <li><a href="javascript.html">JavaScript</a></li>
                 <li><a href="frontend.html">Frontend</a></li>
             </ul>
+            <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
             <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="القائمة">
                 <span></span><span></span><span></span>
             </button>
@@ -53,7 +46,6 @@
 
     <!-- HERO -->
     <section id="hero">
-        <canvas id="particles-canvas"></canvas>
         <div class="hero-bg-glow glow-1"></div>
         <div class="hero-bg-glow glow-2"></div>
         <div class="hero-bg-glow glow-3"></div>
@@ -82,27 +74,6 @@
                 </a>
             </div>
 
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="hero-stat-number">6</div>
-                    <div class="hero-stat-label">دبلومات احترافية</div>
-                </div>
-                <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number">100+</div>
-                    <div class="hero-stat-label">تقنية وأداة</div>
-                </div>
-                <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
-                <div class="hero-stat">
-                    <div class="hero-stat-number">∞</div>
-                    <div class="hero-stat-label">نمو مهني</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="hero-scroll-indicator">
-            <span class="hero-scroll-text">مرر للأسفل</span>
-            <div class="scroll-line"></div>
         </div>
     </section>
 
@@ -119,10 +90,10 @@
 
                 <!-- Frontend -->
                 <a href="frontend.html" class="course-card reveal"
-                   style="--card-color: var(--accent-cyan); --card-gradient: var(--gradient-frontend);"
+                   style="--card-color: var(--brand-blue-light);"
                    data-delay="0">
                     <div class="card-top">
-                        <div class="card-icon-wrap" style="background: var(--gradient-frontend);">🎨</div>
+                        <div class="card-icon-wrap" style="background: var(--brand-blue-light);">🎨</div>
                         <span class="card-level">المستوى الأول</span>
                     </div>
                     <div class="card-title">دبلوم الـ Front-End</div>
@@ -141,10 +112,10 @@
 
                 <!-- JavaScript -->
                 <a href="javascript.html" class="course-card reveal"
-                   style="--card-color: var(--accent-orange); --card-gradient: var(--gradient-js);"
+                   style="--card-color: var(--brand-orange);"
                    data-delay="1">
                     <div class="card-top">
-                        <div class="card-icon-wrap" style="background: var(--gradient-js);">⚡</div>
+                        <div class="card-icon-wrap" style="background: var(--brand-orange);">⚡</div>
                         <span class="card-level">المستوى الثاني</span>
                     </div>
                     <div class="card-title">دبلوم JavaScript</div>
@@ -163,10 +134,10 @@
 
                 <!-- PHP -->
                 <a href="professional_php_diploma.html" class="course-card reveal"
-                   style="--card-color: var(--accent-purple); --card-gradient: var(--gradient-php);"
+                   style="--card-color: var(--brand-blue-dark);"
                    data-delay="2">
                     <div class="card-top">
-                        <div class="card-icon-wrap" style="background: var(--gradient-php);">🐘</div>
+                        <div class="card-icon-wrap" style="background: var(--brand-blue-dark);">🐘</div>
                         <span class="card-level">المستوى الثالث</span>
                     </div>
                     <div class="card-title">دبلوم PHP وقواعد البيانات</div>
@@ -185,10 +156,10 @@
 
                 <!-- Flutter -->
                 <a href="flutter.html" class="course-card reveal"
-                   style="--card-color: var(--accent-green); --card-gradient: var(--gradient-flutter);"
+                   style="--card-color: var(--brand-orange-light);"
                    data-delay="3">
                     <div class="card-top">
-                        <div class="card-icon-wrap" style="background: var(--gradient-flutter);">📱</div>
+                        <div class="card-icon-wrap" style="background: var(--brand-orange-light);">📱</div>
                         <span class="card-level">Dart & Flutter</span>
                     </div>
                     <div class="card-title">دبلوم الموبايل الشامل</div>
@@ -207,10 +178,10 @@
 
                 <!-- DevOps -->
                 <a href="devOps.html" class="course-card reveal"
-                   style="--card-color: var(--accent-blue); --card-gradient: var(--gradient-devops);"
+                   style="--card-color: var(--brand-blue);"
                    data-delay="4">
                     <div class="card-top">
-                        <div class="card-icon-wrap" style="background: var(--gradient-devops);">⚙️</div>
+                        <div class="card-icon-wrap" style="background: var(--brand-blue);">⚙️</div>
                         <span class="card-level">من الصفر للاحتراف</span>
                     </div>
                     <div class="card-title">دبلوم DevOps الشامل</div>
@@ -229,10 +200,10 @@
 
                 <!-- Cyber Security -->
                 <a href="cyber/index.html" class="course-card reveal"
-                   style="--card-color: var(--accent-red); --card-gradient: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);"
+                   style="--card-color: var(--brand-orange);"
                    data-delay="5">
                     <div class="card-top">
-                        <div class="card-icon-wrap" style="background: linear-gradient(135deg, #ef4444 0%, #ec4899 100%);">🛡️</div>
+                        <div class="card-icon-wrap" style="background: var(--brand-orange);">🛡️</div>
                         <span class="card-level">9 مراحل متخصصة</span>
                     </div>
                     <div class="card-title">دبلوم الأمن السيبراني</div>
@@ -253,154 +224,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-inner">
-            <div class="footer-top">
-                <div class="footer-brand">
-                    <a href="#" class="nav-logo">
-                <span class="nav-logo-text">أكاديمية كلاود سوفت</span>
-                    </a>
-                    <p class="footer-brand-desc">
-                        مسارات تعليمية متكاملة في البرمجة وتطوير الويب والموبايل و DevOps، مصممة لتأهيلك لسوق العمل.
-                    </p>
-                    <div class="social-links">
-                        <a href="https://claudsoft.com" target="_blank" class="social-link" title="الموقع">🌐</a>
-                        <a href="#" class="social-link" title="YouTube">📺</a>
-                        <a href="#" class="social-link" title="Discord">💬</a>
-                    </div>
-                </div>
-                <div>
-                    <div class="footer-col-title">الدبلومات</div>
-                    <ul class="footer-links">
-                        <li><a href="frontend.html">Front-End</a></li>
-                        <li><a href="javascript.html">JavaScript</a></li>
-                        <li><a href="professional_php_diploma.html">PHP</a></li>
-                        <li><a href="flutter.html">Flutter</a></li>
-                        <li><a href="devOps.html">DevOps</a></li>
-                        <li><a href="cyber/index.html">Cyber Security</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">تقنيات DevOps</div>
-                    <ul class="footer-links">
-                        <li><a href="devops-tech/bash.html">Bash</a></li>
-                        <li><a href="devops-tech/linux.html">Linux</a></li>
-                        <li><a href="devops-tech/docker.html">Docker</a></li>
-                        <li><a href="devops-tech/kubernetes.html">Kubernetes</a></li>
-                        <li><a href="devops-tech/cicd.html">CI/CD</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="footer-col-title">تواصل معنا</div>
-                    <ul class="footer-links">
-                        <li><a href="https://claudsoft.com" target="_blank">الموقع الرسمي</a></li>
-                        <li><a href="#">الدعم الفني</a></li>
-                        <li><a href="#">الأسئلة الشائعة</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p class="footer-copy">
-                    © 2025 <span>أكاديمية كلاود سوفت</span>. جميع الحقوق محفوظة.
-                </p>
-                <div class="footer-status">
-                    <div class="status-dot"></div>
-                    <span>جميع الأنظمة تعمل</span>
-                    <span style="color:var(--border)">•</span>
-                    <span style="font-family:var(--font-mono);font-size:0.75rem;direction:ltr">v3.0</span>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // PARTICLES
-        function initParticles() {
-            const canvas = document.getElementById('particles-canvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
-            function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
-            class Particle {
-                constructor() { this.reset(); }
-                reset() {
-                    this.x = Math.random() * canvas.width;
-                    this.y = Math.random() * canvas.height;
-                    this.size = Math.random() * 1.5 + 0.3;
-                    this.speedX = (Math.random() - 0.5) * 0.28;
-                    this.speedY = (Math.random() - 0.5) * 0.28;
-                    this.opacity = Math.random() * 0.5 + 0.1;
-                    this.color = ['#4f8ef7','#a855f7','#06b6d4','#10b981'][Math.floor(Math.random() * 4)];
-                }
-                update() {
-                    this.x += this.speedX; this.y += this.speedY;
-                    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-                }
-                draw() {
-                    ctx.save(); ctx.globalAlpha = this.opacity; ctx.fillStyle = this.color;
-                    ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); ctx.restore();
-                }
-            }
-            function init() { resize(); particles = Array.from({ length: 130 }, () => new Particle()); }
-            function drawConnections() {
-                for (let i = 0; i < particles.length; i++) {
-                    for (let j = i + 1; j < particles.length; j++) {
-                        const dx = particles[i].x - particles[j].x;
-                        const dy = particles[i].y - particles[j].y;
-                        const dist = Math.sqrt(dx * dx + dy * dy);
-                        if (dist < 100) {
-                            ctx.save(); ctx.globalAlpha = (1 - dist / 100) * 0.07;
-                            ctx.strokeStyle = '#4f8ef7'; ctx.lineWidth = 0.5;
-                            ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y);
-                            ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); ctx.restore();
-                        }
-                    }
-                }
-            }
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                particles.forEach(p => { p.update(); p.draw(); });
-                drawConnections();
-                requestAnimationFrame(animate);
-            }
-            init(); animate();
-            window.addEventListener('resize', resize);
-        }
-
-        // SCROLL REVEAL
-        function initScrollReveal() {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        }
-
-        // CUSTOM CURSOR
-        function initCursor() {
-            const cursor = document.getElementById('cursor');
-            const follower = document.getElementById('cursorFollower');
-            let fx = 0, fy = 0, cx = 0, cy = 0;
-            document.addEventListener('mousemove', e => {
-                cx = e.clientX; cy = e.clientY;
-                cursor.style.left = cx + 'px'; cursor.style.top = cy + 'px';
-            });
-            function follow() {
-                fx += (cx - fx) * 0.12; fy += (cy - fy) * 0.12;
-                follower.style.left = fx + 'px'; follower.style.top = fy + 'px';
-                requestAnimationFrame(follow);
-            }
-            follow();
-            const hoverEls = document.querySelectorAll('a, button, .course-card');
-            hoverEls.forEach(el => {
-                el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
-                el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
-            });
-        }
-
         // NAVBAR
         function initNavbar() {
             const navbar = document.getElementById('navbar');
@@ -433,18 +257,6 @@
         }
 
         // PARALLAX
-        function initParallax() {
-            const glows = document.querySelectorAll('.hero-bg-glow');
-            window.addEventListener('mousemove', e => {
-                const x = (e.clientX / window.innerWidth - 0.5) * 28;
-                const y = (e.clientY / window.innerHeight - 0.5) * 28;
-                glows.forEach((glow, i) => {
-                    const f = (i + 1) * 0.4;
-                    glow.style.transform = `translate(${x * f}px, ${y * f}px)`;
-                });
-            });
-        }
-
         // SMOOTH SCROLL
         function initSmoothScroll() {
             document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -461,22 +273,28 @@
             });
         }
 
-        // LOADER
-        function initLoader() {
-            setTimeout(() => {
-                document.getElementById('loader').classList.add('hidden');
-            }, 1800);
+        // THEME TOGGLE
+        function initThemeToggle() {
+            const toggleBtn = document.getElementById('themeToggle');
+            if (!toggleBtn) return;
+            const updateIcon = (theme) => {
+                toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+                toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي');
+            };
+            updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+            toggleBtn.addEventListener('click', () => {
+                const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
         }
 
         // INIT
         document.addEventListener('DOMContentLoaded', () => {
-            initLoader();
-            initParticles();
-            initScrollReveal();
-            initCursor();
+            initThemeToggle();
             initNavbar();
             initMobileMenu();
-            initParallax();
             initSmoothScroll();
         });
     </script>

@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>دبلوم الأمن السيبراني الشامل</title>
+  <link rel="icon" type="image/png" href="../images/logo.png">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
@@ -16,11 +18,6 @@
 </head>
 </head>
 <body>
-
-<!-- ===================== LOADER ===================== -->
-<div id="loader">
-  <span class="loader-text">جاري التحميل...</span>
-</div>
 
 <!-- ===================== MOBILE MENU ===================== -->
 <div class="mobile-menu" id="mobileMenu">
@@ -35,6 +32,7 @@
 <nav id="navbar">
   <div class="container nav-inner">
     <a href="#hero" class="nav-logo">
+      <img src="../images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
       <span>CyberDiploma</span>
     </a>
     <ul class="nav-links" id="navLinks">
@@ -44,6 +42,7 @@
       <li><a href="#tools">الأدوات</a></li>
       <li><a href="#cta" class="nav-cta">سجّل الآن</a></li>
     </ul>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
     <button class="nav-burger" id="navBurger"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
@@ -54,7 +53,6 @@
   <div class="orb orb-1"></div>
   <div class="orb orb-2"></div>
   <div class="orb orb-3"></div>
-  <div class="particles" id="particles"></div>
 
   <div class="container">
     <div class="hero-content">
@@ -563,74 +561,6 @@
     </div>
   </div>
 </section>
-
-<!-- ===================== FOOTER ===================== -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <!-- Brand -->
-      <div class="footer-brand reveal">
-        <div class="footer-logo">
-          <i class="fas fa-shield-halved"></i>
-          <span>CyberDiploma Academy</span>
-        </div>
-        <p class="footer-tagline">
-          أكاديميتك نحو الاحتراف في الأمن السيبراني. نبني المحترفين، نحمي الفضاء الرقمي، ونصنع الفارق في عالم التقنية.
-        </p>
-        <div class="social-links">
-          <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
-          <a href="#" class="social-link"><i class="fab fa-github"></i></a>
-        </div>
-      </div>
-      <!-- Quick Links -->
-      <div class="footer-col reveal" style="transition-delay:.1s">
-        <h4>روابط سريعة</h4>
-        <ul class="footer-links">
-          <li><a href="#hero"><i class="fas fa-chevron-left"></i> الرئيسية</a></li>
-          <li><a href="#roadmap"><i class="fas fa-chevron-left"></i> المراحل الدراسية</a></li>
-          <li><a href="#tools"><i class="fas fa-chevron-left"></i> الأدوات</a></li>
-          <li><a href="#counters"><i class="fas fa-chevron-left"></i> الإحصائيات</a></li>
-          <li><a href="#cta"><i class="fas fa-chevron-left"></i> التسجيل</a></li>
-        </ul>
-      </div>
-      <!-- Program Info -->
-      <div class="footer-col reveal" style="transition-delay:.2s">
-        <h4>التقنيات والأدوات</h4>
-        <ul class="footer-links">
-          <li><a href="technologies/linux.html"><i class="fas fa-chevron-left"></i> Linux</a></li>
-          <li><a href="technologies/nmap.html"><i class="fas fa-chevron-left"></i> Nmap</a></li>
-          <li><a href="technologies/wireshark.html"><i class="fas fa-chevron-left"></i> Wireshark</a></li>
-          <li><a href="technologies/burp-suite.html"><i class="fas fa-chevron-left"></i> Burp Suite</a></li>
-          <li><a href="technologies/metasploit.html"><i class="fas fa-chevron-left"></i> Metasploit</a></li>
-        </ul>
-      </div>
-      <!-- More Tech -->
-      <div class="footer-col reveal" style="transition-delay:.25s">
-        <h4>المزيد</h4>
-        <ul class="footer-links">
-          <li><a href="technologies/python.html"><i class="fas fa-chevron-left"></i> Python</a></li>
-          <li><a href="technologies/docker.html"><i class="fas fa-chevron-left"></i> Docker</a></li>
-          <li><a href="technologies/github.html"><i class="fas fa-chevron-left"></i> GitHub</a></li>
-          <li><a href="technologies/tryhackme.html"><i class="fas fa-chevron-left"></i> TryHackMe</a></li>
-          <li><a href="technologies/hackthebox.html"><i class="fas fa-chevron-left"></i> HackTheBox</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span class="footer-copy">© 2025 CyberDiploma Academy — جميع الحقوق محفوظة</span>
-      <span class="footer-motto">
-        <i class="fas fa-heart"></i>
-        صُنع بشغف لحماية الفضاء الرقمي العربي
-        <i class="fas fa-shield-halved" style="color:var(--cyan)"></i>
-      </span>
-    </div>
-  </div>
-</footer>
 
 <!-- Back to Top -->
 <button id="backTop" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>

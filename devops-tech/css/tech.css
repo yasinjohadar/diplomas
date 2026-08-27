@@ -16,20 +16,21 @@
   --text-primary: #f0f0f5;
   --text-secondary: #8888a0;
   --text-muted: #4a4a60;
-  --accent-blue: #4f8ef7;
+  --brand-blue: #0555a2;
+  --brand-blue-light: #2f7fd1;
+  --brand-blue-dark: #043d78;
+  --brand-orange: #f29125;
+  --brand-orange-light: #f7ab55;
+  --accent-blue: var(--brand-blue-light);
   --accent-purple: #a855f7;
   --accent-cyan: #06b6d4;
   --accent-green: #10b981;
-  --accent-orange: #f59e0b;
+  --accent-orange: var(--brand-orange);
   --accent-pink: #ec4899;
   --accent-red: #ef4444;
-  --glow-blue: rgba(79,142,247,0.3);
-  --glow-purple: rgba(168,85,247,0.3);
-  --glow-cyan: rgba(6,182,212,0.3);
-  --gradient-1: linear-gradient(135deg, #4f8ef7 0%, #a855f7 100%);
-  --gradient-2: linear-gradient(135deg, #06b6d4 0%, #4f8ef7 100%);
-  --gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-  --gradient-4: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+  --glow-blue: rgba(47,127,209,0.3);
+  --glow-purple: rgba(242,145,37,0.3);
+  --glow-cyan: rgba(5,85,162,0.3);
   --font-heading: 'Alexandria', sans-serif;
   --font-body: 'Cairo', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
@@ -38,6 +39,21 @@
   --radius-lg: 20px;
   --radius-xl: 28px;
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --overlay-88: rgba(5,5,8,0.88);
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #f6f7fb;
+  --bg-secondary: #eef1f7;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f2f4f9;
+  --border: rgba(5,25,60,0.12);
+  --border-hover: rgba(5,25,60,0.22);
+  --text-primary: #0c1524;
+  --text-secondary: #4b5568;
+  --text-muted: #7b8494;
+  --accent-blue: var(--brand-blue);
+  --overlay-88: rgba(246,247,251,0.88);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -71,7 +87,7 @@ nav {
   transition: var(--transition);
 }
 nav.scrolled {
-  background: rgba(5,5,8,0.88);
+  background: var(--overlay-88);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -91,7 +107,7 @@ nav.scrolled .nav-inner { border-bottom-color: var(--border); }
 }
 .nav-logo-icon {
   width: 38px; height: 38px;
-  background: var(--gradient-1);
+  background: var(--brand-blue-light);
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
   font-size: 18px;
@@ -143,6 +159,20 @@ nav.scrolled .nav-inner { border-bottom-color: var(--border); }
   background: var(--bg-card-hover);
   transform: translateY(-1px);
 }
+.theme-toggle-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+.theme-toggle-btn:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-1px); }
 
 /* ============================================================
    CONTAINER & SECTIONS
@@ -156,8 +186,9 @@ nav.scrolled .nav-inner { border-bottom-color: var(--border); }
 }
 .tech-hero::before {
   content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center top, var(--hero-glow, var(--glow-blue)), transparent 70%);
+  position: absolute; top: 0; left: 50%; width: 70%; height: 60%; transform: translateX(-50%);
+  background: var(--hero-glow, var(--glow-blue));
+  filter: blur(80px);
   opacity: 0.3;
   pointer-events: none;
 }
@@ -165,11 +196,6 @@ nav.scrolled .nav-inner { border-bottom-color: var(--border); }
   font-size: 4rem;
   margin-bottom: 24px;
   display: inline-block;
-  animation: floatIcon 3s ease-in-out infinite;
-}
-@keyframes floatIcon {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
 }
 .tech-title {
   font-size: clamp(2rem, 4vw, 3rem);
@@ -499,40 +525,6 @@ p code, li code, td code {
   transform: translateY(-2px);
 }
 .tech-nav-link .arrow { font-size: 1.2rem; }
-
-/* ============================================================
-   FOOTER
-============================================================ */
-footer {
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-  padding: 40px 24px;
-  text-align: center;
-}
-.footer-copy {
-  font-size: 0.875rem;
-  color: var(--text-muted);
-}
-.footer-copy span {
-  background: var(--gradient-1);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-weight: 700;
-}
-
-/* ============================================================
-   REVEAL ANIMATIONS
-============================================================ */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 /* ============================================================
    RESPONSIVE

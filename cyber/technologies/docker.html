@@ -6,13 +6,11 @@
   <title>Docker — دبلوم الأمن السيبراني</title>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="icon" type="image/png" href="../../images/logo.png">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
   <link rel="stylesheet" href="../css/tech-page.css" />
 </head>
 <body>
-
-<div id="loader">
-  <span class="loader-text">جاري التحميل...</span>
-</div>
 
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose"><i class="fas fa-times"></i></button>
@@ -24,6 +22,7 @@
 <nav id="navbar">
   <div class="container nav-inner">
     <a href="../index.html" class="nav-logo">
+      <img src="../../images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
       <span>CyberDiploma</span>
     </a>
     <ul class="nav-links" id="navLinks">
@@ -32,6 +31,7 @@
       <li><a href="../index.html#tools">الأدوات</a></li>
       <li><a href="../index.html#cta" class="nav-cta">سجّل الآن</a></li>
     </ul>
+    <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
     <button class="nav-burger" id="navBurger"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
@@ -153,23 +153,13 @@
 
 <section id="cta">
   <div class="container">
-    <h2 class="cta-title"><span style="background:linear-gradient(135deg,var(--cyan),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">ابدأ رحلتك مع Docker اليوم</span></h2>
+    <h2 class="cta-title"><span style="color:var(--brand-blue-light);">ابدأ رحلتك مع Docker اليوم</span></h2>
     <p class="cta-desc">انضم إلى دبلوم الأمن السيبراني الشامل وتعلّم Docker وغيرها من الأدوات والتقنيات الأساسية</p>
     <a href="../index.html#cta" class="btn-secondary"><i class="fas fa-arrow-right"></i> العودة للصفحة الرئيسية</a>
     <a href="../index.html#cta" class="btn-primary"><i class="fas fa-user-plus"></i> سجّل الآن</a>
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <p class="footer-copy">© 2025 CyberDiploma Academy — جميع الحقوق محفوظة</p>
-    <div class="footer-links">
-      <a href="../index.html">الرئيسية</a>
-      <a href="../index.html#roadmap">المراحل</a>
-      <a href="../index.html#tools">الأدوات</a>
-    </div>
-  </div>
-</footer>
 
 <button id="backTop" aria-label="العودة للأعلى"><i class="fas fa-arrow-up"></i></button>
 

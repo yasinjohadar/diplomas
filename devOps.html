@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>خارطة طريق DevOps — من الصفر إلى الاحتراف</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -21,20 +23,21 @@
       --text-primary: #f0f0f5;
       --text-secondary: #8888a0;
       --text-muted: #4a4a60;
-      --accent-blue: #4f8ef7;
+      --brand-blue: #0555a2;
+      --brand-blue-light: #2f7fd1;
+      --brand-blue-dark: #043d78;
+      --brand-orange: #f29125;
+      --brand-orange-light: #f7ab55;
+      --accent-blue: var(--brand-blue-light);
       --accent-purple: #a855f7;
       --accent-cyan: #06b6d4;
       --accent-green: #10b981;
-      --accent-orange: #f59e0b;
+      --accent-orange: var(--brand-orange);
       --accent-pink: #ec4899;
       --accent-red: #ef4444;
-      --glow-blue: rgba(79,142,247,0.3);
-      --glow-purple: rgba(168,85,247,0.3);
-      --glow-cyan: rgba(6,182,212,0.3);
-      --gradient-1: linear-gradient(135deg, #4f8ef7 0%, #a855f7 100%);
-      --gradient-2: linear-gradient(135deg, #06b6d4 0%, #4f8ef7 100%);
-      --gradient-3: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
-      --gradient-4: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+      --glow-blue: rgba(47,127,209,0.3);
+      --glow-purple: rgba(242,145,37,0.3);
+      --glow-cyan: rgba(5,85,162,0.3);
       --font-heading: 'Alexandria', sans-serif;
       --font-body: 'Cairo', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
@@ -42,8 +45,25 @@
       --radius-md: 12px;
       --radius-lg: 20px;
       --radius-xl: 28px;
-      --shadow-glow: 0 0 40px rgba(79,142,247,0.15);
+      --shadow-glow: 0 0 40px rgba(47,127,209,0.15);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --overlay-88: rgba(5,5,8,0.88);
+      --overlay-97: rgba(5,5,8,0.97);
+    }
+
+    :root[data-theme="light"] {
+      --bg-primary: #f6f7fb;
+      --bg-secondary: #eef1f7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f2f4f9;
+      --border: rgba(5,25,60,0.12);
+      --border-hover: rgba(5,25,60,0.22);
+      --text-primary: #0c1524;
+      --text-secondary: #4b5568;
+      --text-muted: #7b8494;
+      --accent-blue: var(--brand-blue);
+      --overlay-88: rgba(246,247,251,0.88);
+      --overlay-97: rgba(246,247,251,0.97);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -63,82 +83,7 @@
       color: var(--text-primary);
       line-height: 1.7;
       overflow-x: hidden;
-      cursor: none;
       direction: rtl;
-    }
-
-    /* ============================================================
-       CUSTOM CURSOR
-    ============================================================ */
-    .cursor {
-      position: fixed;
-      width: 12px; height: 12px;
-      background: var(--accent-blue);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99999;
-      transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background 0.2s;
-      mix-blend-mode: screen;
-    }
-    .cursor-follower {
-      position: fixed;
-      width: 36px; height: 36px;
-      border: 1px solid rgba(79,142,247,0.5);
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 99998;
-      transform: translate(-50%, -50%);
-      transition: transform 0.12s ease, width 0.3s, height 0.3s, border-color 0.3s;
-    }
-    .cursor.hover { width: 20px; height: 20px; background: var(--accent-purple); }
-    .cursor-follower.hover { width: 56px; height: 56px; border-color: rgba(168,85,247,0.4); }
-
-    /* ============================================================
-       LOADING SCREEN
-    ============================================================ */
-    #loader {
-      position: fixed; inset: 0;
-      background: var(--bg-primary);
-      z-index: 99990;
-      display: flex; align-items: center; justify-content: center;
-      flex-direction: column;
-      gap: 24px;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-    #loader.hidden { opacity: 0; visibility: hidden; }
-    .loader-logo {
-      font-size: 2rem; font-weight: 800;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: 0px;
-      font-family: var(--font-heading);
-    }
-    .loader-logo-img {
-      height: 56px;
-      width: auto;
-      object-fit: contain;
-      display: block;
-    }
-    .loader-bar {
-      width: 200px; height: 2px;
-      background: var(--border);
-      border-radius: 2px; overflow: hidden;
-    }
-    .loader-bar-fill {
-      height: 100%; width: 0%;
-      background: var(--gradient-1);
-      border-radius: 2px;
-      animation: loadFill 1.8s ease forwards;
-    }
-    @keyframes loadFill { to { width: 100%; } }
-    .loader-text {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      direction: ltr;
     }
 
     /* ============================================================
@@ -159,7 +104,7 @@
     }
     nav.scrolled .nav-inner { border-bottom-color: var(--border); }
     nav.scrolled {
-      background: rgba(5,5,8,0.88);
+      background: var(--overlay-88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -169,7 +114,7 @@
     }
     .nav-logo-icon {
       width: 38px; height: 38px;
-      background: var(--gradient-1);
+      background: var(--brand-blue-light);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       font-size: 18px;
@@ -204,11 +149,25 @@
     }
     .nav-links a:hover { color: var(--text-primary); background: var(--bg-card); }
     .nav-cta {
-      background: var(--gradient-1) !important;
+      background: var(--brand-orange) !important;
       color: white !important;
       padding: 8px 20px !important;
     }
     .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 24px var(--glow-blue); }
+    .theme-toggle-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-1px); }
     .nav-mobile-btn {
       display: none;
       flex-direction: column; gap: 5px;
@@ -225,7 +184,7 @@
     .mobile-menu {
       display: none;
       position: fixed; top: 68px; left: 0; right: 0;
-      background: rgba(5,5,8,0.97);
+      background: var(--overlay-97);
       backdrop-filter: blur(20px);
       padding: 20px 24px 28px;
       border-bottom: 1px solid var(--border);
@@ -247,14 +206,9 @@
        HERO SECTION
     ============================================================ */
     #hero {
-      min-height: 100vh;
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
-      padding: 120px 24px 80px;
-    }
-    #particles-canvas {
-      position: absolute; inset: 0;
-      pointer-events: none; z-index: 1;
+      padding: 120px 24px 84px;
     }
     .hero-bg-glow {
       position: absolute;
@@ -264,26 +218,19 @@
     }
     .glow-1 {
       width: 600px; height: 600px;
-      background: rgba(79,142,247,0.12);
+      background: rgba(47,127,209,0.12);
       top: -200px; right: -200px;
-      animation: floatGlow 8s ease-in-out infinite;
     }
     .glow-2 {
       width: 500px; height: 500px;
-      background: rgba(168,85,247,0.1);
+      background: rgba(242,145,37,0.1);
       bottom: -150px; left: -150px;
-      animation: floatGlow 10s ease-in-out infinite reverse;
     }
     .glow-3 {
       width: 300px; height: 300px;
-      background: rgba(6,182,212,0.08);
+      background: rgba(5,85,162,0.08);
       top: 50%; left: 50%;
       transform: translate(-50%,-50%);
-      animation: floatGlow 6s ease-in-out infinite 2s;
-    }
-    @keyframes floatGlow {
-      0%, 100% { transform: translate(0,0) scale(1); }
-      50% { transform: translate(30px,-30px) scale(1.1); }
     }
     .hero-content {
       position: relative; z-index: 2;
@@ -292,25 +239,19 @@
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(79,142,247,0.1);
-      border: 1px solid rgba(79,142,247,0.25);
+      background: rgba(47,127,209,0.1);
+      border: 1px solid rgba(47,127,209,0.25);
       border-radius: 100px;
       padding: 7px 20px;
       font-size: 0.875rem; font-weight: 700;
       color: var(--accent-blue);
       margin-bottom: 36px;
-      animation: fadeSlideDown 0.8s ease forwards;
     }
     .hero-badge-dot {
       width: 7px; height: 7px;
       background: var(--accent-blue);
       border-radius: 50%;
-      animation: pulse 2s infinite;
       flex-shrink: 0;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
     }
     .hero-title {
       font-size: clamp(2.6rem, 7vw, 5.2rem);
@@ -318,33 +259,27 @@
       letter-spacing: -1px;
       line-height: 1.15;
       margin-bottom: 28px;
-      animation: fadeSlideUp 0.8s ease 0.2s both;
       font-family: var(--font-heading);
     }
     .hero-title .line1 { display: block; color: var(--text-primary); }
     .hero-title .line2 {
       display: block;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent-blue);
     }
     .hero-subtitle {
       font-size: clamp(1rem, 2vw, 1.175rem);
       color: var(--text-secondary);
       max-width: 660px; margin: 0 auto 52px;
       line-height: 1.9; font-weight: 400;
-      animation: fadeSlideUp 0.8s ease 0.4s both;
       font-family: var(--font-body);
     }
     .hero-cta {
       display: flex; align-items: center; justify-content: center;
       flex-wrap: wrap; gap: 16px;
-      animation: fadeSlideUp 0.8s ease 0.6s both;
     }
     .btn-primary {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--gradient-1);
+      background: var(--brand-orange);
       color: white;
       padding: 14px 34px;
       border-radius: var(--radius-md);
@@ -355,14 +290,7 @@
       position: relative; overflow: hidden;
       font-family: var(--font-heading);
     }
-    .btn-primary::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .btn-primary:hover::before { opacity: 1; }
-    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px var(--glow-blue); }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 16px 40px var(--glow-blue); }
     .btn-secondary {
       display: inline-flex; align-items: center; gap: 10px;
       background: var(--bg-card);
@@ -380,45 +308,18 @@
     .hero-stats {
       display: flex; align-items: center; justify-content: center;
       flex-wrap: wrap; gap: 40px;
-      margin-top: 72px;
-      padding-top: 48px;
+      margin-top: 36px;
+      padding-top: 24px;
       border-top: 1px solid var(--border);
-      animation: fadeSlideUp 0.8s ease 0.8s both;
     }
     .hero-stat { text-align: center; }
     .hero-stat-number {
       font-size: 2.2rem; font-weight: 900;
       letter-spacing: -1px;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent-blue);
       font-family: var(--font-mono);
     }
     .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
-    .hero-scroll-indicator {
-      position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      animation: fadeSlideUp 1s ease 1.2s both;
-    }
-    .hero-scroll-text { font-size: 0.8rem; color: var(--text-muted); letter-spacing: 2px; }
-    .scroll-line {
-      width: 1px; height: 48px;
-      background: linear-gradient(to bottom, var(--accent-blue), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.2); }
-    }
-    @keyframes fadeSlideUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeSlideDown {
-      from { opacity: 0; transform: translateY(-16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
 
     /* ============================================================
        SECTION COMMONS
@@ -456,16 +357,6 @@
     .container { max-width: 1280px; margin: 0 auto; }
 
     /* ============================================================
-       REVEAL ANIMATIONS
-    ============================================================ */
-    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-left { opacity: 0; transform: translateX(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-left.visible { opacity: 1; transform: translateX(0); }
-    .reveal-right { opacity: 0; transform: translateX(-40px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal-right.visible { opacity: 1; transform: translateX(0); }
-
-    /* ============================================================
        ROADMAP SECTION
     ============================================================ */
     #roadmap { background: var(--bg-secondary); }
@@ -486,7 +377,7 @@
     .roadmap-card::before {
       content: '';
       position: absolute; inset: 0;
-      background: var(--card-gradient, var(--gradient-1));
+      background: var(--card-color, var(--brand-blue-light));
       opacity: 0;
       transition: opacity 0.4s ease;
       border-radius: inherit;
@@ -508,7 +399,7 @@
       border-radius: var(--radius-md);
       display: flex; align-items: center; justify-content: center;
       font-size: 24px;
-      background: var(--card-gradient, var(--gradient-1));
+      background: var(--card-color, var(--brand-blue-light));
       flex-shrink: 0;
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
@@ -552,7 +443,7 @@
     .roadmap-card:hover .skill-tag {
       border-color: var(--card-color, var(--accent-blue));
       color: var(--card-color, var(--accent-blue));
-      background: rgba(79,142,247,0.06);
+      background: rgba(47,127,209,0.06);
     }
     .card-difficulty {
       display: flex; align-items: center; justify-content: space-between;
@@ -579,9 +470,7 @@
     .progress-fill {
       height: 100%;
       border-radius: 4px;
-      background: var(--card-gradient, var(--gradient-1));
-      width: 0%;
-      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--card-color, var(--brand-blue-light));
     }
     .card-tools {
       display: flex; align-items: center; gap: 8px;
@@ -630,7 +519,7 @@
       content: '';
       position: absolute; bottom: 0; left: 0; right: 0;
       height: 2px;
-      background: var(--tool-gradient, var(--gradient-1));
+      background: var(--tool-color, var(--brand-blue-light));
       transform: scaleX(0);
       transition: transform 0.4s ease;
     }
@@ -677,7 +566,7 @@
       font-family: var(--font-mono);
       font-size: 0.75rem; font-weight: 700;
       color: var(--stage-color, var(--accent-blue));
-      background: rgba(79,142,247,0.08);
+      background: rgba(47,127,209,0.08);
       padding: 4px 14px; border-radius: 100px;
       border: 1px solid var(--stage-color, var(--accent-blue));
       direction: ltr;
@@ -685,11 +574,6 @@
     .stage-icon {
       font-size: 2.8rem;
       filter: drop-shadow(0 0 20px var(--stage-glow, var(--glow-blue)));
-      animation: iconFloat 4s ease-in-out infinite;
-    }
-    @keyframes iconFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
     }
     .stage-title {
       font-size: 1.25rem; font-weight: 900;
@@ -749,7 +633,7 @@
       content: '';
       position: absolute; top: 0; left: 0; right: 0;
       height: 1px;
-      background: var(--proj-gradient, var(--gradient-1));
+      background: var(--proj-color, var(--brand-blue-light));
       opacity: 0;
       transition: opacity 0.4s;
     }
@@ -765,7 +649,7 @@
       border-radius: var(--radius-md);
       display: flex; align-items: center; justify-content: center;
       font-size: 26px;
-      background: var(--proj-gradient, var(--gradient-1));
+      background: var(--proj-color, var(--brand-blue-light));
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
       flex-shrink: 0;
     }
@@ -806,102 +690,27 @@
     .proj-time { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); direction: ltr; }
 
     /* ============================================================
-       FOOTER
-    ============================================================ */
-    footer {
-      background: var(--bg-secondary);
-      border-top: 1px solid var(--border);
-      padding: 72px 24px 40px;
-    }
-    .footer-inner { max-width: 1280px; margin: 0 auto; }
-    .footer-top {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-      padding-bottom: 56px;
-      border-bottom: 1px solid var(--border);
-    }
-    .footer-brand-desc {
-      font-size: 0.9rem;
-      color: var(--text-muted); line-height: 1.8;
-      max-width: 280px; margin-bottom: 24px; margin-top: 16px;
-    }
-    .social-links { display: flex; gap: 10px; }
-    .social-link {
-      width: 40px; height: 40px;
-      border-radius: var(--radius-sm);
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; text-decoration: none;
-      transition: var(--transition);
-      color: var(--text-muted);
-    }
-    .social-link:hover { border-color: var(--border-hover); color: var(--text-primary); transform: translateY(-2px); }
-    .footer-col-title {
-      font-size: 0.875rem; font-weight: 800;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-    }
-    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .footer-links a {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: var(--transition);
-    }
-    .footer-links a:hover { color: var(--text-primary); }
-    .footer-bottom {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 16px;
-      padding-top: 32px;
-    }
-    .footer-copy { font-size: 0.875rem; color: var(--text-muted); }
-    .footer-copy span {
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 700;
-    }
-    .footer-status {
-      display: flex; align-items: center; gap: 8px;
-      font-size: 0.82rem; color: var(--text-muted);
-    }
-    .status-dot {
-      width: 7px; height: 7px;
-      background: var(--accent-green);
-      border-radius: 50%;
-      animation: pulse 2s infinite;
-      flex-shrink: 0;
-    }
-
-    /* ============================================================
        DIVIDER
     ============================================================ */
     .divider {
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      background: var(--border);
     }
 
     /* ============================================================
        UTILITIES
     ============================================================ */
     .gradient-text {
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--accent-blue);
     }
     .mono { font-family: var(--font-mono); }
-    ::selection { background: rgba(79,142,247,0.3); color: white; }
+    ::selection { background: rgba(47,127,209,0.3); color: white; }
 
     /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1100px) {
       .path-stages { grid-template-columns: repeat(2, 1fr); }
-      .footer-top { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 768px) {
       section { padding: 80px 20px; }
@@ -910,8 +719,6 @@
       .roadmap-grid { grid-template-columns: 1fr; }
       .projects-grid { grid-template-columns: 1fr; }
       .path-stages { grid-template-columns: 1fr; }
-      .footer-top { grid-template-columns: 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; text-align: center; }
       .hero-stats { gap: 24px; }
       .tools-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
     }
@@ -926,25 +733,13 @@
 </head>
 <body>
 
-  <!-- CUSTOM CURSOR -->
-  <div class="cursor" id="cursor"></div>
-  <div class="cursor-follower" id="cursorFollower"></div>
-
-  <!-- ============================================================
-       LOADING SCREEN
-  ============================================================ -->
-  <div id="loader">
-    <div class="loader-logo">⚙️ خارطة طريق DevOps</div>
-    <div class="loader-bar"><div class="loader-bar-fill"></div></div>
-    <p class="loader-text">Initializing roadmap system...</p>
-  </div>
-
   <!-- ============================================================
        NAVBAR
   ============================================================ -->
   <nav id="navbar">
     <div class="nav-inner">
       <a href="#" class="nav-logo">
+                <img src="images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
                 <span class="nav-logo-text">خارطة طريق DevOps</span>
       </a>
       <ul class="nav-links">
@@ -954,6 +749,7 @@
         <li><a href="#tools">الأدوات</a></li>
         <li><a href="#roadmap">خارطة الطريق</a></li>
       </ul>
+      <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
       <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="القائمة">
         <span></span><span></span><span></span>
       </button>
@@ -973,7 +769,6 @@
        HERO SECTION
   ============================================================ -->
   <section id="hero">
-    <canvas id="particles-canvas"></canvas>
     <div class="hero-bg-glow glow-1"></div>
     <div class="hero-bg-glow glow-2"></div>
     <div class="hero-bg-glow glow-3"></div>
@@ -1024,11 +819,6 @@
           <div class="hero-stat-label">نمو مهني</div>
         </div>
       </div>
-    </div>
-
-    <div class="hero-scroll-indicator">
-      <span class="hero-scroll-text">مرر للأسفل</span>
-      <div class="scroll-line"></div>
     </div>
   </section>
 
@@ -1095,72 +885,6 @@
   </section>
 
   <!-- ============================================================
-       FOOTER
-  ============================================================ -->
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="#" class="nav-logo">
-                <span class="nav-logo-text">خارطة طريق DevOps</span>
-          </a>
-          <p class="footer-brand-desc">
-            أشمل خارطة طريق عربية لتعلم DevOps، مُصمَّمة للمهندسين الراغبين في الوصول إلى مستوى احترافي في هندسة البنية التحتية.
-          </p>
-          <div class="social-links">
-            <a href="#" class="social-link" title="GitHub">🐙</a>
-            <a href="#" class="social-link" title="Twitter">🐦</a>
-            <a href="#" class="social-link" title="LinkedIn">💼</a>
-            <a href="#" class="social-link" title="YouTube">📺</a>
-            <a href="#" class="social-link" title="Discord">💬</a>
-          </div>
-        </div>
-        <div>
-          <div class="footer-col-title">خارطة الطريق</div>
-          <ul class="footer-links">
-            <li><a href="#roadmap">Linux & Bash</a></li>
-            <li><a href="#roadmap">Docker & Containers</a></li>
-            <li><a href="#roadmap">Kubernetes</a></li>
-            <li><a href="#roadmap">CI/CD Pipelines</a></li>
-            <li><a href="#roadmap">Cloud Platforms</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">المصادر</div>
-          <ul class="footer-links">
-            <li><a href="#">التوثيق</a></li>
-            <li><a href="#">المشاريع العملية</a></li>
-            <li><a href="#">أوراق المراجعة</a></li>
-            <li><a href="#">المجتمع</a></li>
-            <li><a href="#">المدونة</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">تواصل معنا</div>
-          <ul class="footer-links">
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">Twitter / X</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">YouTube</a></li>
-            <li><a href="#">Discord</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p class="footer-copy">
-          © 2025 <span>خارطة طريق DevOps</span>. صُنع بـ ❤️ لمجتمع DevOps العربي.
-        </p>
-        <div class="footer-status">
-          <div class="status-dot"></div>
-          <span>جميع الأنظمة تعمل</span>
-          <span style="color:var(--border)">•</span>
-          <span class="mono" style="font-size:0.75rem;direction:ltr">v2.0.25</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
   <script>
@@ -1176,8 +900,7 @@
         difficulty: "beginner",
         diffLabel: "مبتدئ",
         progress: 30,
-        color: "#4f8ef7",
-        gradient: "linear-gradient(135deg, #4f8ef7 0%, #6c63ff 100%)",
+        color: "#0555a2",
         skills: ["Bash scripting", "Python basics", "APIs", "JSON/YAML", "Automation"],
         tools: ["Bash", "Python", "curl", "jq"]
       },
@@ -1189,8 +912,7 @@
         difficulty: "beginner",
         diffLabel: "مبتدئ",
         progress: 40,
-        color: "#f59e0b",
-        gradient: "linear-gradient(135deg, #f59e0b 0%, #ef4444 100%)",
+        color: "#2f7fd1",
         skills: ["Terminal", "SSH", "File permissions", "Processes", "Systemd", "Networking"],
         tools: ["Ubuntu", "CentOS", "systemctl", "iptables"]
       },
@@ -1202,8 +924,7 @@
         difficulty: "beginner",
         diffLabel: "مبتدئ",
         progress: 45,
-        color: "#10b981",
-        gradient: "linear-gradient(135deg, #10b981 0%, #06b6d4 100%)",
+        color: "#043d78",
         skills: ["Branching", "Merge/Rebase", "Pull Requests", "GitHub Actions", "Git Flow"],
         tools: ["Git", "GitHub", "GitLab", "pre-commit"]
       },
@@ -1215,8 +936,7 @@
         difficulty: "intermediate",
         diffLabel: "متوسط",
         progress: 50,
-        color: "#06b6d4",
-        gradient: "linear-gradient(135deg, #06b6d4 0%, #4f8ef7 100%)",
+        color: "#f29125",
         skills: ["IP/DNS", "HTTP/HTTPS", "Reverse Proxy", "SSL/TLS", "Load Balancer"],
         tools: ["Nginx", "Traefik", "Cloudflare", "Let's Encrypt"]
       },
@@ -1228,8 +948,7 @@
         difficulty: "intermediate",
         diffLabel: "متوسط",
         progress: 60,
-        color: "#0ea5e9",
-        gradient: "linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%)",
+        color: "#f7ab55",
         skills: ["Containers", "Images", "Dockerfile", "Volumes", "Networks", "Compose"],
         tools: ["Docker", "Docker Compose", "Docker Hub", "Podman"]
       },
@@ -1241,8 +960,7 @@
         difficulty: "intermediate",
         diffLabel: "متوسط",
         progress: 55,
-        color: "#ec4899",
-        gradient: "linear-gradient(135deg, #ec4899 0%, #a855f7 100%)",
+        color: "#0555a2",
         skills: ["UFW", "Fail2Ban", "Monitoring", "Logs", "Backups", "Security"],
         tools: ["UFW", "Fail2Ban", "rsync", "cron", "logrotate"]
       },
@@ -1254,8 +972,7 @@
         difficulty: "intermediate",
         diffLabel: "متوسط",
         progress: 65,
-        color: "#a855f7",
-        gradient: "linear-gradient(135deg, #a855f7 0%, #ec4899 100%)",
+        color: "#2f7fd1",
         skills: ["Pipelines", "Auto Deploy", "Testing", "Build Systems", "GitHub Actions"],
         tools: ["GitHub Actions", "Jenkins", "GitLab CI", "CircleCI"]
       },
@@ -1267,8 +984,7 @@
         difficulty: "intermediate",
         diffLabel: "متوسط",
         progress: 58,
-        color: "#f97316",
-        gradient: "linear-gradient(135deg, #f97316 0%, #f59e0b 100%)",
+        color: "#043d78",
         skills: ["PostgreSQL", "MySQL", "Redis", "Replication", "Optimization"],
         tools: ["PostgreSQL", "MySQL", "Redis", "pgBackRest"]
       },
@@ -1280,8 +996,7 @@
         difficulty: "advanced",
         diffLabel: "متقدم",
         progress: 75,
-        color: "#4f8ef7",
-        gradient: "linear-gradient(135deg, #4f8ef7 0%, #06b6d4 100%)",
+        color: "#f29125",
         skills: ["Pods", "Deployments", "Services", "Ingress", "Helm", "ConfigMaps"],
         tools: ["kubectl", "Helm", "k9s", "Lens", "kind"]
       },
@@ -1293,8 +1008,7 @@
         difficulty: "advanced",
         diffLabel: "متقدم",
         progress: 70,
-        color: "#8b5cf6",
-        gradient: "linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%)",
+        color: "#f7ab55",
         skills: ["Terraform", "Ansible", "Automation", "Provisioning", "State Management"],
         tools: ["Terraform", "Ansible", "Pulumi", "Chef"]
       },
@@ -1306,8 +1020,7 @@
         difficulty: "advanced",
         diffLabel: "متقدم",
         progress: 72,
-        color: "#10b981",
-        gradient: "linear-gradient(135deg, #10b981 0%, #4f8ef7 100%)",
+        color: "#0555a2",
         skills: ["Grafana", "Prometheus", "Loki", "ELK Stack", "Alerting"],
         tools: ["Grafana", "Prometheus", "Loki", "Elasticsearch"]
       },
@@ -1319,8 +1032,7 @@
         difficulty: "advanced",
         diffLabel: "متقدم",
         progress: 78,
-        color: "#f59e0b",
-        gradient: "linear-gradient(135deg, #f59e0b 0%, #f97316 100%)",
+        color: "#2f7fd1",
         skills: ["AWS EC2", "S3", "IAM", "VPC", "RDS", "Cloud Networking"],
         tools: ["AWS", "AWS CLI", "CloudFormation", "Route 53"]
       },
@@ -1332,8 +1044,7 @@
         difficulty: "advanced",
         diffLabel: "متقدم",
         progress: 80,
-        color: "#ef4444",
-        gradient: "linear-gradient(135deg, #ef4444 0%, #ec4899 100%)",
+        color: "#043d78",
         skills: ["Docker security", "Secrets mgmt", "Vuln scanning", "Vault", "CrowdSec"],
         tools: ["HashiCorp Vault", "Trivy", "CrowdSec", "Falco"]
       },
@@ -1345,27 +1056,26 @@
         difficulty: "advanced",
         diffLabel: "متقدم",
         progress: 85,
-        color: "#a855f7",
-        gradient: "linear-gradient(135deg, #a855f7 0%, #4f8ef7 100%)",
+        color: "#f29125",
         skills: ["Coolify", "Portainer", "Traefik", "ArgoCD", "Rancher", "Kestra"],
         tools: ["Coolify", "ArgoCD", "Rancher", "Portainer"]
       }
     ];
 
     const toolsData = [
-      { icon: "🐳", name: "Docker",      gradient: "linear-gradient(135deg,#0ea5e9,#06b6d4)" },
-      { icon: "☸️", name: "Kubernetes",  gradient: "linear-gradient(135deg,#4f8ef7,#6c63ff)" },
-      { icon: "☁️", name: "AWS",         gradient: "linear-gradient(135deg,#f59e0b,#f97316)" },
-      { icon: "🏗️", name: "Terraform",   gradient: "linear-gradient(135deg,#8b5cf6,#a855f7)" },
-      { icon: "📊", name: "Grafana",     gradient: "linear-gradient(135deg,#f97316,#ef4444)" },
-      { icon: "⚙️", name: "Jenkins",     gradient: "linear-gradient(135deg,#ec4899,#a855f7)" },
-      { icon: "🐙", name: "GitHub",      gradient: "linear-gradient(135deg,#6b7280,#374151)" },
-      { icon: "🐧", name: "Linux",       gradient: "linear-gradient(135deg,#10b981,#06b6d4)" },
-      { icon: "🔀", name: "Nginx",       gradient: "linear-gradient(135deg,#10b981,#4f8ef7)" },
-      { icon: "🐘", name: "PostgreSQL",  gradient: "linear-gradient(135deg,#4f8ef7,#06b6d4)" },
-      { icon: "🔴", name: "Redis",       gradient: "linear-gradient(135deg,#ef4444,#f97316)" },
-      { icon: "🚀", name: "Coolify",     gradient: "linear-gradient(135deg,#a855f7,#ec4899)" },
-      { icon: "🔥", name: "Prometheus",  gradient: "linear-gradient(135deg,#f59e0b,#ef4444)" }
+      { icon: "🐳", name: "Docker",      color: "#0555a2" },
+      { icon: "☸️", name: "Kubernetes",  color: "#2f7fd1" },
+      { icon: "☁️", name: "AWS",         color: "#043d78" },
+      { icon: "🏗️", name: "Terraform",   color: "#f29125" },
+      { icon: "📊", name: "Grafana",     color: "#f7ab55" },
+      { icon: "⚙️", name: "Jenkins",     color: "#0555a2" },
+      { icon: "🐙", name: "GitHub",      color: "#2f7fd1" },
+      { icon: "🐧", name: "Linux",       color: "#043d78" },
+      { icon: "🔀", name: "Nginx",       color: "#f29125" },
+      { icon: "🐘", name: "PostgreSQL",  color: "#f7ab55" },
+      { icon: "🔴", name: "Redis",       color: "#0555a2" },
+      { icon: "🚀", name: "Coolify",     color: "#2f7fd1" },
+      { icon: "🔥", name: "Prometheus",  color: "#043d78" }
     ];
 
     const pathStages = [
@@ -1421,7 +1131,7 @@
         title: "نشر Laravel مع Docker",
         desc: "احجز تطبيق Laravel كاملاً مع Nginx و PHP-FPM و PostgreSQL و Redis وعمال قائمة الانتظار باستخدام Docker Compose.",
         tech: ["Docker", "Nginx", "PHP", "PostgreSQL", "Redis", "Docker Compose"],
-        gradient: "linear-gradient(135deg, #4f8ef7, #06b6d4)",
+        color: "#0555a2",
         badge: "مبتدئ",
         badgeBg: "rgba(16,185,129,0.15)",
         badgeColor: "#10b981",
@@ -1433,7 +1143,7 @@
         title: "خط أنابيب CI/CD كامل",
         desc: "ابنِ خط أنابيب CI/CD كاملاً مع GitHub Actions — اختبار تلقائي وبناء صور Docker ونشر بدون توقف.",
         tech: ["GitHub Actions", "Docker", "SSH Deploy", "Tests", "Secrets"],
-        gradient: "linear-gradient(135deg, #a855f7, #ec4899)",
+        color: "#2f7fd1",
         badge: "متوسط",
         badgeBg: "rgba(245,158,11,0.15)",
         badgeColor: "#f59e0b",
@@ -1445,7 +1155,7 @@
         title: "مجموعة Kubernetes في الإنتاج",
         desc: "أنشئ مجموعة K8s متعددة العقد مع Ingress و TLS و Helm ومقياس تلقائي لتطبيق ويب حقيقي.",
         tech: ["Kubernetes", "Helm", "Ingress", "cert-manager", "HPA"],
-        gradient: "linear-gradient(135deg, #0ea5e9, #4f8ef7)",
+        color: "#043d78",
         badge: "متقدم",
         badgeBg: "rgba(239,68,68,0.15)",
         badgeColor: "#ef4444",
@@ -1457,7 +1167,7 @@
         title: "منظومة مراقبة متكاملة",
         desc: "انشر Prometheus و Grafana و Loki و Alertmanager لمراقبة الخوادم والحاويات والتطبيقات بلوحات تحكم مخصصة.",
         tech: ["Grafana", "Prometheus", "Loki", "Alertmanager", "Node Exporter"],
-        gradient: "linear-gradient(135deg, #10b981, #4f8ef7)",
+        color: "#f29125",
         badge: "متقدم",
         badgeBg: "rgba(239,68,68,0.15)",
         badgeColor: "#ef4444",
@@ -1469,7 +1179,7 @@
         title: "إعداد Traefik Reverse Proxy",
         desc: "اضبط Traefik كـ Reverse Proxy ديناميكي مع SSL تلقائي واكتشاف الخدمات و Middleware وتكامل Docker.",
         tech: ["Traefik", "Docker", "Let's Encrypt", "Middleware", "DNS"],
-        gradient: "linear-gradient(135deg, #f97316, #f59e0b)",
+        color: "#f7ab55",
         badge: "متوسط",
         badgeBg: "rgba(245,158,11,0.15)",
         badgeColor: "#f59e0b",
@@ -1481,7 +1191,7 @@
         title: "تأمين VPS الاحترافي",
         desc: "أمِّن خادم VPS في الإنتاج باستخدام UFW و Fail2Ban وتصلب SSH و CrowdSec والتحديثات التلقائية وكشف التسلل.",
         tech: ["UFW", "Fail2Ban", "CrowdSec", "SSH", "auditd", "logwatch"],
-        gradient: "linear-gradient(135deg, #ef4444, #ec4899)",
+        color: "#0555a2",
         badge: "متوسط",
         badgeBg: "rgba(245,158,11,0.15)",
         badgeColor: "#f59e0b",
@@ -1514,12 +1224,12 @@
       const grid = document.getElementById('roadmapGrid');
       grid.innerHTML = roadmapData.map((card, i) => `
         <div class="roadmap-card reveal"
-             style="--card-color:${card.color};--card-gradient:${card.gradient};transition-delay:${(i % 3) * 0.08}s"
+             style="--card-color:${card.color};transition-delay:${(i % 3) * 0.08}s"
              data-progress="${card.progress}"
              onclick="window.location.href='${roadmapPages[i]}'"
              role="link" tabindex="0">
           <div class="card-top">
-            <div class="card-icon-wrap" style="background:${card.gradient}">${card.icon}</div>
+            <div class="card-icon-wrap" style="background:${card.color}">${card.icon}</div>
             <span class="card-number">${card.num}</span>
           </div>
           <div class="card-title">${card.title}</div>
@@ -1532,7 +1242,7 @@
             <span class="difficulty-badge diff-${card.difficulty}">${card.diffLabel}</span>
           </div>
           <div class="progress-bar">
-            <div class="progress-fill" style="background:${card.gradient}"></div>
+            <div class="progress-fill" style="background:${card.color};width:${card.progress}%"></div>
           </div>
           <div class="card-tools">
             <span class="tools-label">الأدوات:</span>
@@ -1547,7 +1257,7 @@
     function renderTools() {
       const grid = document.getElementById('toolsGrid');
       grid.innerHTML = toolsData.map((tool, i) => `
-        <div class="tool-card reveal" style="--tool-gradient:${tool.gradient};transition-delay:${(i % 6) * 0.06}s">
+        <div class="tool-card reveal" style="--tool-color:${tool.color};transition-delay:${(i % 6) * 0.06}s">
           <div class="tool-icon">${tool.icon}</div>
           <div class="tool-name">${tool.name}</div>
         </div>
@@ -1575,9 +1285,9 @@
       const grid = document.getElementById('projectsGrid');
       grid.innerHTML = projectsData.map((proj, i) => `
         <div class="project-card reveal"
-             style="--proj-gradient:${proj.gradient};transition-delay:${(i % 3) * 0.08}s">
+             style="--proj-color:${proj.color};transition-delay:${(i % 3) * 0.08}s">
           <div class="proj-header">
-            <div class="proj-icon" style="background:${proj.gradient}">${proj.icon}</div>
+            <div class="proj-icon" style="background:${proj.color}">${proj.icon}</div>
             <span class="proj-badge" style="background:${proj.badgeBg};color:${proj.badgeColor}">${proj.badge}</span>
           </div>
           <div class="proj-title">${proj.title}</div>
@@ -1594,137 +1304,12 @@
     }
 
     // ============================================================
-    // PARTICLES SYSTEM
+    // KEYBOARD ACTIVATION (roadmap cards are focusable, Enter triggers the link)
     // ============================================================
-    function initParticles() {
-      const canvas = document.getElementById('particles-canvas');
-      const ctx = canvas.getContext('2d');
-      let particles = [];
-
-      function resize() {
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
-      }
-
-      class Particle {
-        constructor() { this.reset(); }
-        reset() {
-          this.x = Math.random() * canvas.width;
-          this.y = Math.random() * canvas.height;
-          this.size = Math.random() * 1.5 + 0.3;
-          this.speedX = (Math.random() - 0.5) * 0.28;
-          this.speedY = (Math.random() - 0.5) * 0.28;
-          this.opacity = Math.random() * 0.5 + 0.1;
-          this.color = ['#4f8ef7','#a855f7','#06b6d4','#10b981'][Math.floor(Math.random() * 4)];
-        }
-        update() {
-          this.x += this.speedX;
-          this.y += this.speedY;
-          if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
-        }
-        draw() {
-          ctx.save();
-          ctx.globalAlpha = this.opacity;
-          ctx.fillStyle = this.color;
-          ctx.beginPath();
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-          ctx.fill();
-          ctx.restore();
-        }
-      }
-
-      function init() {
-        resize();
-        particles = Array.from({ length: 130 }, () => new Particle());
-      }
-
-      function drawConnections() {
-        for (let i = 0; i < particles.length; i++) {
-          for (let j = i + 1; j < particles.length; j++) {
-            const dx = particles[i].x - particles[j].x;
-            const dy = particles[i].y - particles[j].y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < 100) {
-              ctx.save();
-              ctx.globalAlpha = (1 - dist / 100) * 0.07;
-              ctx.strokeStyle = '#4f8ef7';
-              ctx.lineWidth = 0.5;
-              ctx.beginPath();
-              ctx.moveTo(particles[i].x, particles[i].y);
-              ctx.lineTo(particles[j].x, particles[j].y);
-              ctx.stroke();
-              ctx.restore();
-            }
-          }
-        }
-      }
-
-      function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => { p.update(); p.draw(); });
-        drawConnections();
-        requestAnimationFrame(animate);
-      }
-
-      init();
-      animate();
-      window.addEventListener('resize', resize);
-    }
-
-    // ============================================================
-    // SCROLL REVEAL
-    // ============================================================
-    function initScrollReveal() {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            const fill = entry.target.querySelector('.progress-fill');
-            if (fill) {
-              const progress = entry.target.dataset.progress;
-              setTimeout(() => { fill.style.width = progress + '%'; }, 250);
-            }
-          }
-        });
-      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
-    }
-
-    // ============================================================
-    // CUSTOM CURSOR
-    // ============================================================
-    function initCursor() {
-      const cursor = document.getElementById('cursor');
-      const follower = document.getElementById('cursorFollower');
-      let fx = 0, fy = 0, cx = 0, cy = 0;
-
-      document.addEventListener('mousemove', e => {
-        cx = e.clientX; cy = e.clientY;
-        cursor.style.left = cx + 'px';
-        cursor.style.top = cy + 'px';
-      });
-
-      function follow() {
-        fx += (cx - fx) * 0.12;
-        fy += (cy - fy) * 0.12;
-        follower.style.left = fx + 'px';
-        follower.style.top = fy + 'px';
-        requestAnimationFrame(follow);
-      }
-      follow();
-
-      document.querySelectorAll('a, button, .roadmap-card, .tool-card, .path-stage, .project-card').forEach(el => {
-        el.addEventListener('mouseenter', () => { cursor.classList.add('hover'); follower.classList.add('hover'); });
-        el.addEventListener('mouseleave', () => { cursor.classList.remove('hover'); follower.classList.remove('hover'); });
-      });
-
+    function initCardKeyboardActivation() {
       document.querySelectorAll('.roadmap-card').forEach(card => {
         card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
       });
-
-      document.addEventListener('mouseleave', () => { cursor.style.opacity = '0'; follower.style.opacity = '0'; });
-      document.addEventListener('mouseenter', () => { cursor.style.opacity = '1'; follower.style.opacity = '1'; });
     }
 
     // ============================================================
@@ -1769,32 +1354,7 @@
       document.querySelectorAll('.hero-stat-number[data-target]').forEach(counter => {
         const target = parseInt(counter.dataset.target);
         const suffix = counter.textContent.replace(/[0-9]/g, '');
-        let current = 0;
-        const increment = target / 45;
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            counter.textContent = target + suffix;
-            clearInterval(timer);
-          } else {
-            counter.textContent = Math.floor(current) + suffix;
-          }
-        }, 35);
-      });
-    }
-
-    // ============================================================
-    // PARALLAX
-    // ============================================================
-    function initParallax() {
-      const glows = document.querySelectorAll('.hero-bg-glow');
-      window.addEventListener('mousemove', e => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 28;
-        const y = (e.clientY / window.innerHeight - 0.5) * 28;
-        glows.forEach((glow, i) => {
-          const f = (i + 1) * 0.4;
-          glow.style.transform = `translate(${x * f}px, ${y * f}px)`;
-        });
+        counter.textContent = target + suffix;
       });
     }
 
@@ -1817,13 +1377,22 @@
     }
 
     // ============================================================
-    // LOADER
+    // THEME TOGGLE
     // ============================================================
-    function initLoader() {
-      setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-        animateCounters();
-      }, 2000);
+    function initThemeToggle() {
+      const toggleBtn = document.getElementById('themeToggle');
+      if (!toggleBtn) return;
+      const updateIcon = (theme) => {
+        toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي');
+      };
+      updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+      toggleBtn.addEventListener('click', () => {
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+      });
     }
 
     // ============================================================
@@ -1834,13 +1403,11 @@
       renderTools();
       renderPathStages();
       renderProjects();
-      initLoader();
-      initParticles();
-      initScrollReveal();
-      initCursor();
+      animateCounters();
+      initCardKeyboardActivation();
+      initThemeToggle();
       initNavbar();
       initMobileMenu();
-      initParallax();
       initSmoothScroll();
     });
   </script>

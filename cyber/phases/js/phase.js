@@ -3,12 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('navbar');
   if (nav) window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20));
 
-  const reveals = document.querySelectorAll('.reveal');
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => obs.observe(el));
-
   const btn = document.getElementById('burger');
   const menu = document.getElementById('mobileMenu');
   if (btn && menu) {
@@ -39,4 +33,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+    updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    toggleBtn.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+    });
+    function updateIcon(theme) {
+        if (theme === 'dark') { toggleBtn.textContent = '☀️'; toggleBtn.setAttribute('aria-label', 'تفعيل الوضع النهاري'); }
+        else { toggleBtn.textContent = '🌙'; toggleBtn.setAttribute('aria-label', 'تفعيل الوضع الليلي'); }
+    }
 });

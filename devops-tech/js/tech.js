@@ -12,18 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Reveal on scroll
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  reveals.forEach(el => revealObserver.observe(el));
-
   // Copy code button
   document.querySelectorAll('.code-copy-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -49,4 +37,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleBtn = document.getElementById('themeToggle');
+    if (!toggleBtn) return;
+    updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+    toggleBtn.addEventListener('click', () => {
+        const theme = document.documentElement.getAttribute('data-theme');
+        const newTheme = theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateIcon(newTheme);
+    });
+    function updateIcon(theme) {
+        if (theme === 'dark') { toggleBtn.textContent = '☀️'; toggleBtn.setAttribute('aria-label', 'تفعيل الوضع النهاري'); }
+        else { toggleBtn.textContent = '🌙'; toggleBtn.setAttribute('aria-label', 'تفعيل الوضع الليلي'); }
+    }
 });
