@@ -18,37 +18,30 @@
       --bg-secondary: #0a0a0f;
       --bg-card: rgba(255,255,255,0.03);
       --bg-card-hover: rgba(255,255,255,0.06);
+      --bg-chip: rgba(255,255,255,0.04);
       --border: rgba(255,255,255,0.07);
       --border-hover: rgba(255,255,255,0.15);
       --text-primary: #f0f0f5;
       --text-secondary: #8888a0;
-      --text-muted: #4a4a60;
+      --text-muted: #5a5a72;
       --brand-blue: #0555a2;
       --brand-blue-light: #2f7fd1;
       --brand-blue-dark: #043d78;
       --brand-orange: #f29125;
       --brand-orange-light: #f7ab55;
       --accent-blue: var(--brand-blue-light);
-      --accent-purple: #a855f7;
-      --accent-cyan: #06b6d4;
       --accent-green: #10b981;
-      --accent-orange: var(--brand-orange);
-      --accent-pink: #ec4899;
-      --accent-red: #ef4444;
       --glow-blue: rgba(47,127,209,0.3);
-      --glow-purple: rgba(242,145,37,0.3);
-      --glow-cyan: rgba(5,85,162,0.3);
       --font-heading: 'Alexandria', sans-serif;
       --font-body: 'Cairo', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
       --radius-sm: 8px;
       --radius-md: 12px;
       --radius-lg: 20px;
-      --radius-xl: 28px;
-      --shadow-glow: 0 0 40px rgba(47,127,209,0.15);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       --overlay-88: rgba(5,5,8,0.88);
       --overlay-97: rgba(5,5,8,0.97);
+      --shadow-card: 0 20px 60px rgba(0,0,0,0.4);
     }
 
     :root[data-theme="light"] {
@@ -56,14 +49,16 @@
       --bg-secondary: #eef1f7;
       --bg-card: #ffffff;
       --bg-card-hover: #f2f4f9;
+      --bg-chip: #f1f3f8;
       --border: rgba(5,25,60,0.12);
       --border-hover: rgba(5,25,60,0.22);
       --text-primary: #0c1524;
       --text-secondary: #4b5568;
-      --text-muted: #7b8494;
+      --text-muted: #6b7484;
       --accent-blue: var(--brand-blue);
       --overlay-88: rgba(246,247,251,0.88);
       --overlay-97: rgba(246,247,251,0.97);
+      --shadow-card: 0 16px 40px rgba(5,25,60,0.12);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -85,6 +80,7 @@
       overflow-x: hidden;
       direction: rtl;
     }
+    body.modal-open { overflow: hidden; }
 
     /* ============================================================
        NAVBAR
@@ -98,6 +94,7 @@
     .nav-inner {
       max-width: 1280px; margin: 0 auto;
       display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
       height: 68px;
       border-bottom: 1px solid transparent;
       transition: var(--transition);
@@ -108,52 +105,27 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
-    .nav-logo {
-      display: flex; align-items: center; gap: 10px;
-      text-decoration: none;
-    }
-    .nav-logo-icon {
-      width: 38px; height: 38px;
-      background: var(--brand-blue-light);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-    .nav-logo-img {
-      height: 40px;
-      width: auto;
-      object-fit: contain;
-      flex-shrink: 0;
-      display: block;
-    }
-    .nav-logo-text {
-      font-weight: 800; font-size: 1rem;
-      color: var(--text-primary);
-      font-family: var(--font-heading);
-    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-img { height: 40px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
+    .nav-logo-text { font-weight: 800; font-size: 1rem; color: var(--text-primary); font-family: var(--font-heading); }
     .nav-links {
-      display: flex; align-items: center; gap: 6px;
+      display: flex; align-items: center; gap: 4px;
       list-style: none;
       flex-direction: row-reverse;
+      margin-inline-start: auto;
     }
     .nav-links a {
       color: var(--text-secondary);
       text-decoration: none;
       font-size: 0.9rem; font-weight: 600;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: var(--radius-sm);
       transition: var(--transition);
       white-space: nowrap;
-      font-family: var(--font-body);
     }
     .nav-links a:hover { color: var(--text-primary); background: var(--bg-card); }
-    .nav-cta {
-      background: var(--brand-orange) !important;
-      color: white !important;
-      padding: 8px 20px !important;
-    }
-    .nav-cta:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 8px 24px var(--glow-blue); }
+    .nav-cta { background: var(--brand-orange) !important; color: white !important; padding: 8px 20px !important; }
+    .nav-cta:hover { opacity: 0.9; }
     .theme-toggle-btn {
       display: inline-flex; align-items: center; justify-content: center;
       width: 38px; height: 38px;
@@ -161,13 +133,12 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text-primary);
-      font-size: 16px;
-      line-height: 1;
+      font-size: 16px; line-height: 1;
       cursor: pointer;
       transition: var(--transition);
       flex-shrink: 0;
     }
-    .theme-toggle-btn:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-1px); }
+    .theme-toggle-btn:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
     .nav-mobile-btn {
       display: none;
       flex-direction: column; gap: 5px;
@@ -198,7 +169,6 @@
       font-size: 1rem; font-weight: 600;
       padding: 12px 16px;
       border-radius: var(--radius-sm);
-      transition: var(--transition);
     }
     .mobile-menu a:hover { color: var(--text-primary); background: var(--bg-card); }
 
@@ -208,35 +178,12 @@
     #hero {
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
-      padding: 120px 24px 84px;
+      padding: 130px 24px 84px;
     }
-    .hero-bg-glow {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(120px);
-      pointer-events: none;
-    }
-    .glow-1 {
-      width: 600px; height: 600px;
-      background: rgba(47,127,209,0.12);
-      top: -200px; right: -200px;
-    }
-    .glow-2 {
-      width: 500px; height: 500px;
-      background: rgba(242,145,37,0.1);
-      bottom: -150px; left: -150px;
-    }
-    .glow-3 {
-      width: 300px; height: 300px;
-      background: rgba(5,85,162,0.08);
-      top: 50%; left: 50%;
-      transform: translate(-50%,-50%);
-    }
-    .hero-content {
-      position: relative; z-index: 2;
-      max-width: 900px; margin: 0 auto;
-      text-align: center;
-    }
+    .hero-bg-glow { position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; }
+    .glow-1 { width: 600px; height: 600px; background: rgba(47,127,209,0.12); top: -200px; right: -200px; }
+    .glow-2 { width: 500px; height: 500px; background: rgba(242,145,37,0.1); bottom: -150px; left: -150px; }
+    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; text-align: center; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 10px;
       background: rgba(47,127,209,0.1);
@@ -245,87 +192,57 @@
       padding: 7px 20px;
       font-size: 0.875rem; font-weight: 700;
       color: var(--accent-blue);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
-    .hero-badge-dot {
-      width: 7px; height: 7px;
-      background: var(--accent-blue);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
+    .hero-badge-dot { width: 7px; height: 7px; background: var(--accent-blue); border-radius: 50%; flex-shrink: 0; }
     .hero-title {
-      font-size: clamp(2.6rem, 7vw, 5.2rem);
+      font-size: clamp(2.4rem, 7vw, 5rem);
       font-weight: 900;
       letter-spacing: -1px;
       line-height: 1.15;
-      margin-bottom: 28px;
+      margin-bottom: 26px;
       font-family: var(--font-heading);
     }
     .hero-title .line1 { display: block; color: var(--text-primary); }
-    .hero-title .line2 {
-      display: block;
-      color: var(--accent-blue);
-    }
+    .hero-title .line2 { display: block; color: var(--accent-blue); }
     .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.175rem);
+      font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--text-secondary);
-      max-width: 660px; margin: 0 auto 52px;
-      line-height: 1.9; font-weight: 400;
-      font-family: var(--font-body);
+      max-width: 700px; margin: 0 auto 44px;
+      line-height: 1.9;
     }
-    .hero-cta {
-      display: flex; align-items: center; justify-content: center;
-      flex-wrap: wrap; gap: 16px;
-    }
-    .btn-primary {
+    .hero-cta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; }
+    .btn-primary, .btn-secondary {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--brand-orange);
-      color: white;
-      padding: 14px 34px;
+      padding: 14px 32px;
       border-radius: var(--radius-md);
       font-size: 1rem; font-weight: 700;
-      text-decoration: none; border: none;
+      text-decoration: none;
       cursor: pointer;
       transition: var(--transition);
-      position: relative; overflow: hidden;
       font-family: var(--font-heading);
     }
+    .btn-primary { background: var(--brand-orange); color: white; border: none; }
     .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 16px 40px var(--glow-blue); }
-    .btn-secondary {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      color: var(--text-primary);
-      padding: 14px 34px;
-      border-radius: var(--radius-md);
-      font-size: 1rem; font-weight: 700;
-      text-decoration: none; cursor: pointer;
-      transition: var(--transition);
-      backdrop-filter: blur(10px);
-      font-family: var(--font-heading);
-    }
+    .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
     .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
     .hero-stats {
       display: flex; align-items: center; justify-content: center;
       flex-wrap: wrap; gap: 40px;
-      margin-top: 36px;
-      padding-top: 24px;
+      margin-top: 44px;
+      padding-top: 28px;
       border-top: 1px solid var(--border);
     }
     .hero-stat { text-align: center; }
-    .hero-stat-number {
-      font-size: 2.2rem; font-weight: 900;
-      letter-spacing: -1px;
-      color: var(--accent-blue);
-      font-family: var(--font-mono);
-    }
-    .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 6px; font-weight: 600; }
+    .hero-stat-number { font-size: 2.2rem; font-weight: 900; color: var(--accent-blue); font-family: var(--font-mono); }
+    .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 4px; font-weight: 600; }
+    .stat-divider { width: 1px; height: 40px; background: var(--border); }
 
     /* ============================================================
        SECTION COMMONS
     ============================================================ */
-    section { padding: 120px 24px; }
-    .section-header { text-align: center; margin-bottom: 72px; }
+    section { padding: 110px 24px; }
+    .section-header { text-align: center; margin-bottom: 56px; }
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 0.875rem; font-weight: 700;
@@ -333,401 +250,407 @@
       color: var(--accent-blue);
       margin-bottom: 16px;
     }
-    .section-eyebrow::before, .section-eyebrow::after {
-      content: '';
-      width: 28px; height: 1px;
-      background: var(--accent-blue);
-      opacity: 0.5;
-    }
+    .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--accent-blue); opacity: 0.5; }
     .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
       font-weight: 900;
-      letter-spacing: -0.5px;
       margin-bottom: 16px;
       color: var(--text-primary);
       font-family: var(--font-heading);
     }
-    .section-desc {
-      font-size: 1.05rem;
-      color: var(--text-secondary);
-      max-width: 580px; margin: 0 auto;
-      line-height: 1.9;
-      font-family: var(--font-body);
-    }
+    .section-desc { font-size: 1.05rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.9; }
     .container { max-width: 1280px; margin: 0 auto; }
+    .gradient-text { color: var(--accent-blue); }
+    .divider { height: 1px; background: var(--border); }
+    ::selection { background: rgba(47,127,209,0.3); color: white; }
 
     /* ============================================================
-       ROADMAP SECTION
+       STUDY ORDER STEPPER
     ============================================================ */
-    #roadmap { background: var(--bg-secondary); }
-    .roadmap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 20px;
+    #map { background: var(--bg-secondary); }
+    .order-title {
+      font-family: var(--font-heading);
+      font-weight: 800; font-size: 1.05rem;
+      margin-bottom: 14px;
+      color: var(--text-primary);
     }
-    .roadmap-card {
+    .order-stepper {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 48px;
+      counter-reset: step;
+    }
+    .order-step {
+      display: flex; align-items: flex-start; gap: 10px;
+      text-align: right;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      transition: var(--transition);
+    }
+    .order-step:hover { border-color: var(--lv); transform: translateY(-2px); }
+    .order-step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;
+      background: var(--lv); color: #fff;
+    }
+    .order-step-title { font-weight: 800; font-size: 0.9rem; font-family: var(--font-heading); line-height: 1.5; }
+    .order-step-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; margin-top: 2px; }
+
+    /* ============================================================
+       MAP TOOLBAR
+    ============================================================ */
+    .map-toolbar {
+      position: sticky; top: 76px; z-index: 50;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      background: var(--overlay-97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      margin-bottom: 36px;
+    }
+    .search-wrap { position: relative; flex: 1 1 320px; }
+    .search-wrap input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font: inherit; font-size: 0.95rem;
+      padding: 10px 40px 10px 14px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .search-wrap input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(47,127,209,0.15); }
+    .search-wrap::before { content: '🔍'; position: absolute; right: 13px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; opacity: 0.7; }
+    .search-result { font-size: 0.85rem; color: var(--text-secondary); min-width: 160px; }
+    .overall { display: flex; align-items: center; gap: 12px; flex: 0 1 340px; }
+    .overall-text { font-size: 0.82rem; color: var(--text-secondary); white-space: nowrap; }
+    .overall-text b { color: var(--text-primary); font-family: var(--font-mono); }
+    .bar { flex: 1; height: 6px; background: var(--border); border-radius: 6px; overflow: hidden; min-width: 80px; }
+    .bar > span { display: block; height: 100%; width: 0; background: var(--accent-green); border-radius: 6px; transition: width 0.4s ease; }
+    .link-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); font: inherit; font-size: 0.78rem;
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .link-btn:hover { color: var(--text-primary); }
+
+    /* ============================================================
+       LEVELS MAP
+    ============================================================ */
+    .levels { position: relative; }
+    .levels::before {
+      content: '';
+      position: absolute;
+      top: 24px; bottom: 24px; right: 23px;
+      width: 2px;
+      background: linear-gradient(to bottom, #10b981, #2f7fd1, #0891b2, #f29125, #a855f7, #6366f1, #ef4444, #db2777);
+      opacity: 0.45;
+    }
+    .level {
+      position: relative;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 28px;
+      padding: 28px 0;
+      scroll-margin-top: 170px;
+    }
+    .level + .level { border-top: 1px dashed var(--border); }
+    .level-rail { display: flex; gap: 16px; align-items: flex-start; }
+    .level-node {
+      position: relative; z-index: 1;
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem;
+      color: #fff;
+      background: var(--lv);
+      box-shadow: 0 0 0 6px var(--bg-secondary), 0 0 28px var(--lv);
+    }
+    .level-en { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--lv); letter-spacing: 1px; direction: ltr; display: inline-block; }
+    .level-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900; margin: 2px 0 8px; }
+    .level-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; }
+    .level-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      font-size: 0.74rem; font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--bg-chip);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .pill.lv { color: var(--lv); border-color: var(--lv); background: transparent; }
+    .level-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+      align-content: start;
+    }
+
+    /* Domain tile */
+    .domain-tile {
+      position: relative;
+      display: flex; flex-direction: column; gap: 8px;
+      text-align: right;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 28px;
+      padding: 18px;
+      color: inherit; font: inherit;
+      cursor: pointer;
       transition: var(--transition);
-      position: relative; overflow: hidden;
-      cursor: default;
     }
-    .roadmap-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: var(--card-color, var(--brand-blue-light));
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      border-radius: inherit;
-    }
-    .roadmap-card:hover {
-      border-color: var(--card-color, var(--accent-blue));
+    .domain-tile:hover, .domain-tile:focus-visible {
+      border-color: var(--lv);
       background: var(--bg-card-hover);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px var(--card-color, var(--accent-blue));
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card), 0 0 0 1px var(--lv);
+      outline: none;
     }
-    .roadmap-card:hover::before { opacity: 0.04; }
-    .card-top {
-      display: flex; align-items: flex-start;
-      justify-content: space-between; gap: 16px;
-      margin-bottom: 20px;
-    }
-    .card-icon-wrap {
-      width: 52px; height: 52px;
+    .domain-tile.dim { opacity: 0.28; }
+    .domain-tile.hit { border-color: var(--lv); }
+    .tile-top { display: flex; align-items: center; justify-content: space-between; }
+    .tile-icon {
+      width: 42px; height: 42px;
       border-radius: var(--radius-md);
       display: flex; align-items: center; justify-content: center;
-      font-size: 24px;
-      background: var(--card-color, var(--brand-blue-light));
-      flex-shrink: 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      font-size: 20px;
+      background: var(--lv);
     }
-    .card-number {
-      font-family: var(--font-mono);
-      font-size: 0.75rem; font-weight: 600;
+    .tile-num {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
       color: var(--text-muted);
-      padding: 4px 10px;
+      padding: 3px 9px; border-radius: 100px;
       background: var(--border);
-      border-radius: 100px;
-      white-space: nowrap;
       direction: ltr;
     }
-    .card-title {
-      font-size: 1.175rem; font-weight: 800;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-      font-family: var(--font-heading);
+    .tile-title { font-family: var(--font-heading); font-weight: 800; font-size: 1.02rem; line-height: 1.5; }
+    .tile-desc {
+      font-size: 0.8rem; color: var(--text-secondary); line-height: 1.7;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
-    .card-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.75; margin-bottom: 20px;
-      font-family: var(--font-body);
-    }
-    .card-skills {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      margin-bottom: 20px;
-    }
-    .skill-tag {
-      font-size: 0.75rem; font-weight: 500;
-      padding: 4px 10px;
-      border-radius: 100px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
-      transition: var(--transition);
-      font-family: var(--font-mono);
-      direction: ltr;
-    }
-    .roadmap-card:hover .skill-tag {
-      border-color: var(--card-color, var(--accent-blue));
-      color: var(--card-color, var(--accent-blue));
-      background: rgba(47,127,209,0.06);
-    }
-    .card-difficulty {
-      display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 10px;
-    }
-    .difficulty-label {
-      font-size: 0.8rem; font-weight: 700;
-      color: var(--text-muted);
-      font-family: var(--font-body);
-    }
-    .difficulty-badge {
-      font-size: 0.72rem; font-weight: 800;
-      padding: 3px 12px;
-      border-radius: 100px;
-    }
-    .diff-beginner { background: rgba(16,185,129,0.15); color: #10b981; }
-    .diff-intermediate { background: rgba(245,158,11,0.15); color: #f59e0b; }
-    .diff-advanced { background: rgba(239,68,68,0.15); color: #ef4444; }
-    .progress-bar {
-      height: 4px;
-      background: rgba(255,255,255,0.06);
-      border-radius: 4px; overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      border-radius: 4px;
-      background: var(--card-color, var(--brand-blue-light));
-    }
-    .card-tools {
-      display: flex; align-items: center; gap: 8px;
-      margin-top: 16px; padding-top: 16px;
-      border-top: 1px solid var(--border);
-      flex-wrap: wrap;
-    }
-    .tools-label {
-      font-size: 0.78rem; font-weight: 700;
-      color: var(--text-muted);
-      white-space: nowrap;
-      font-family: var(--font-body);
-    }
-    .tools-list { display: flex; flex-wrap: wrap; gap: 4px; }
-    .tool-chip {
-      font-size: 0.7rem; font-weight: 500;
-      padding: 3px 9px;
-      border-radius: 5px;
-      background: rgba(255,255,255,0.04);
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      direction: ltr;
+    .tile-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 4px; }
+    .tile-count { font-size: 0.76rem; font-weight: 700; color: var(--text-muted); }
+    .tile-lesson { font-size: 0.7rem; font-weight: 700; color: var(--brand-orange); }
+    .tile-bar { height: 4px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .tile-bar > span { display: block; height: 100%; width: 0; background: var(--lv); transition: width 0.4s ease; }
+    .tile-match {
+      position: absolute; top: -9px; left: 14px;
+      font-size: 0.7rem; font-weight: 800;
+      padding: 2px 9px; border-radius: 100px;
+      background: var(--brand-orange); color: #fff;
     }
 
     /* ============================================================
-       TOOLS GRID SECTION
+       DOMAIN MODAL
+    ============================================================ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 24px 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      width: 100%; max-width: 920px;
+      max-height: 100%;
+      display: flex; flex-direction: column;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-hover);
+      border-top: 4px solid var(--lv);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+    .modal-head { padding: 22px 24px 16px; border-bottom: 1px solid var(--border); }
+    .modal-head-row { display: flex; align-items: flex-start; gap: 14px; }
+    .modal-head .tile-icon { width: 50px; height: 50px; font-size: 24px; flex-shrink: 0; }
+    .modal-title-wrap { flex: 1; min-width: 0; }
+    .modal-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900; line-height: 1.4; }
+    .modal-sub { font-size: 0.86rem; color: var(--text-secondary); margin-top: 4px; line-height: 1.7; }
+    .modal-close {
+      flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--bg-card);
+      color: var(--text-primary); font-size: 18px; cursor: pointer;
+    }
+    .modal-close:hover { border-color: var(--border-hover); }
+    .modal-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    .modal-tools .search-wrap { flex: 1 1 220px; }
+    .modal-tools .search-wrap input { padding-top: 8px; padding-bottom: 8px; font-size: 0.88rem; }
+    .lesson-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--brand-orange); color: #fff;
+      text-decoration: none; font-weight: 700; font-size: 0.85rem;
+      padding: 8px 16px; border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+    .lesson-btn:hover { opacity: 0.9; }
+    .modal-body { overflow-y: auto; padding: 18px 24px 24px; }
+    .topic-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px;
+    }
+    .topic {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.88rem;
+    }
+    .topic:hover { border-color: var(--lv); }
+    .topic input { accent-color: var(--lv); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
+    .topic-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); flex-shrink: 0; min-width: 28px; }
+    .topic-text { flex: 1; unicode-bidi: plaintext; }
+    .topic.is-done .topic-text { color: var(--text-muted); text-decoration: line-through; }
+    mark { background: rgba(242,145,37,0.3); color: inherit; border-radius: 3px; padding: 0 2px; }
+    .empty { color: var(--text-muted); text-align: center; padding: 24px; font-size: 0.9rem; }
+
+    /* ============================================================
+       TRACKS
+    ============================================================ */
+    #tracks { background: var(--bg-primary); }
+    .tracks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+    .track-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--lv);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .track-icon { font-size: 2rem; }
+    .track-title { font-family: var(--font-heading); font-weight: 900; font-size: 1.1rem; }
+    .track-en { font-family: var(--font-mono); font-size: 0.72rem; color: var(--lv); direction: ltr; display: inline-block; }
+    .track-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.75; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+    .domain-chip {
+      font: inherit; font-size: 0.75rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--bg-chip); border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer; transition: var(--transition);
+    }
+    .domain-chip:hover { border-color: var(--lv); color: var(--text-primary); }
+
+    /* ============================================================
+       PROJECTS
+    ============================================================ */
+    #projects { background: var(--bg-secondary); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
+    .proj-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .proj-group-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .proj-group-title { font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; flex: 1; }
+    .diff-beginner { background: rgba(16,185,129,0.15); color: #10b981; }
+    .diff-intermediate { background: rgba(245,158,11,0.15); color: #d48806; }
+    .diff-advanced { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .proj-group .topic-list { grid-template-columns: 1fr; }
+    .proj-final {
+      margin-top: 18px;
+      background: linear-gradient(135deg, rgba(47,127,209,0.12), rgba(242,145,37,0.12));
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      text-align: center;
+    }
+    .proj-final h3 { font-family: var(--font-heading); font-weight: 900; font-size: 1.25rem; margin-bottom: 6px; }
+    .proj-final p { color: var(--text-secondary); font-size: 0.92rem; }
+
+    /* ============================================================
+       TOOLS GRID
     ============================================================ */
     #tools { background: var(--bg-primary); }
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 16px;
-    }
-    .tool-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 28px 16px;
-      display: flex; flex-direction: column;
-      align-items: center; gap: 12px;
-      transition: var(--transition);
-      cursor: default;
-      position: relative; overflow: hidden;
-    }
-    .tool-card::after {
-      content: '';
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--tool-color, var(--brand-blue-light));
-      transform: scaleX(0);
-      transition: transform 0.4s ease;
-    }
-    .tool-card:hover { border-color: var(--border-hover); transform: translateY(-4px); background: var(--bg-card-hover); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
-    .tool-card:hover::after { transform: scaleX(1); }
-    .tool-icon { font-size: 2.5rem; transition: var(--transition); }
-    .tool-card:hover .tool-icon { transform: scale(1.15); }
-    .tool-name {
-      font-size: 0.8125rem; font-weight: 700;
-      color: var(--text-secondary);
-      transition: var(--transition);
-      text-align: center;
-      font-family: var(--font-mono);
-    }
-    .tool-card:hover .tool-name { color: var(--text-primary); }
-
-    /* ============================================================
-       LEARNING PATH SECTION
-    ============================================================ */
-    #learning-path { background: var(--bg-secondary); overflow: hidden; }
-    .path-stages {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-      position: relative;
-    }
-    .path-stage {
-      display: flex; flex-direction: column;
-      align-items: center; gap: 18px;
-      padding: 36px 20px;
+    .tools-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .tools-group {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      transition: var(--transition);
-      text-align: center; cursor: default;
-      position: relative;
+      padding: 20px;
     }
-    .path-stage:hover {
-      border-color: var(--stage-color, var(--accent-blue));
-      transform: translateY(-6px);
-      box-shadow: 0 24px 64px rgba(0,0,0,0.5), 0 0 40px var(--stage-glow, var(--glow-blue));
-    }
-    .stage-number {
-      font-family: var(--font-mono);
-      font-size: 0.75rem; font-weight: 700;
-      color: var(--stage-color, var(--accent-blue));
-      background: rgba(47,127,209,0.08);
-      padding: 4px 14px; border-radius: 100px;
-      border: 1px solid var(--stage-color, var(--accent-blue));
-      direction: ltr;
-    }
-    .stage-icon {
-      font-size: 2.8rem;
-      filter: drop-shadow(0 0 20px var(--stage-glow, var(--glow-blue)));
-    }
-    .stage-title {
-      font-size: 1.25rem; font-weight: 900;
-      color: var(--stage-color, var(--accent-blue));
-      text-shadow: 0 0 30px currentColor;
-      font-family: var(--font-heading);
-    }
-    .stage-desc {
-      font-size: 0.875rem;
+    .tools-group-title { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; margin-bottom: 12px; }
+    .tool-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tool-chip {
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500;
+      padding: 4px 10px; border-radius: 6px;
+      background: var(--bg-chip); border: 1px solid var(--border);
       color: var(--text-secondary);
-      line-height: 1.75;
-      font-family: var(--font-body);
-    }
-    .stage-items { list-style: none; width: 100%; }
-    .stage-items li {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      padding: 7px 0;
-      border-bottom: 1px solid var(--border);
-      font-family: var(--font-mono);
-      transition: var(--transition);
-      direction: ltr;
-    }
-    .stage-items li:last-child { border-bottom: none; }
-    .path-stage:hover .stage-items li { color: var(--text-secondary); }
-    .neon-badge {
-      display: inline-block;
-      padding: 6px 22px;
-      border-radius: 100px;
-      font-size: 0.875rem; font-weight: 800;
-      text-shadow: 0 0 20px currentColor;
-      border: 1px solid currentColor;
-      box-shadow: 0 0 20px var(--stage-glow, var(--glow-blue)), inset 0 0 20px rgba(255,255,255,0.02);
-      font-family: var(--font-mono);
       direction: ltr;
     }
 
     /* ============================================================
-       PROJECTS SECTION
+       TIPS
     ============================================================ */
-    #projects { background: var(--bg-primary); }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 20px;
-    }
-    .project-card {
+    #tips { background: var(--bg-secondary); }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .tip {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 32px;
-      transition: var(--transition);
-      position: relative; overflow: hidden;
-      cursor: default;
+      padding: 22px;
     }
-    .project-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 1px;
-      background: var(--proj-color, var(--brand-blue-light));
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .project-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 24px 64px rgba(0,0,0,0.5); }
-    .project-card:hover::before { opacity: 1; }
-    .proj-header {
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 16px;
-      margin-bottom: 20px;
-    }
-    .proj-icon {
-      width: 56px; height: 56px;
-      border-radius: var(--radius-md);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 26px;
-      background: var(--proj-color, var(--brand-blue-light));
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      flex-shrink: 0;
-    }
-    .proj-badge {
-      font-size: 0.72rem; font-weight: 800;
-      padding: 4px 14px; border-radius: 100px;
-    }
-    .proj-title {
-      font-size: 1.125rem; font-weight: 800;
-      margin-bottom: 10px;
-      color: var(--text-primary);
-    }
-    .proj-desc {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      line-height: 1.75; margin-bottom: 24px;
-    }
-    .proj-tech {
-      display: flex; flex-wrap: wrap; gap: 6px;
-      margin-bottom: 24px;
-    }
-    .proj-tech-tag {
-      font-size: 0.72rem; font-weight: 600;
-      padding: 4px 10px; border-radius: var(--radius-sm);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      direction: ltr;
-    }
-    .proj-footer {
-      display: flex; align-items: center;
-      justify-content: space-between;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
-    }
-    .proj-difficulty { display: flex; align-items: center; gap: 6px; font-size: 0.85rem; color: var(--text-muted); }
-    .proj-time { font-size: 0.8rem; color: var(--text-muted); font-family: var(--font-mono); direction: ltr; }
-
-    /* ============================================================
-       DIVIDER
-    ============================================================ */
-    .divider {
-      height: 1px;
-      background: var(--border);
-    }
-
-    /* ============================================================
-       UTILITIES
-    ============================================================ */
-    .gradient-text {
-      color: var(--accent-blue);
-    }
-    .mono { font-family: var(--font-mono); }
-    ::selection { background: rgba(47,127,209,0.3); color: white; }
+    .tip-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .tip h3 { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+    .tip p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.8; }
 
     /* ============================================================
        RESPONSIVE
     ============================================================ */
     @media (max-width: 1100px) {
-      .path-stages { grid-template-columns: repeat(2, 1fr); }
+      .nav-links a { padding: 8px 8px; font-size: 0.85rem; }
+      .order-stepper { grid-template-columns: repeat(2, 1fr); }
+      .level { grid-template-columns: 1fr; gap: 18px; }
+      .level-tiles { padding-right: 64px; }
     }
-    @media (max-width: 768px) {
-      section { padding: 80px 20px; }
+    @media (max-width: 900px) {
       .nav-links { display: none; }
       .nav-mobile-btn { display: flex; }
-      .roadmap-grid { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .path-stages { grid-template-columns: 1fr; }
-      .hero-stats { gap: 24px; }
-      .tools-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
     }
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
+      section { padding: 80px 16px; }
+      #hero { padding: 110px 16px 64px; }
+      nav { padding: 0 16px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 22px; }
+      .map-toolbar { top: 72px; padding: 10px 12px; gap: 10px; }
+      .overall { flex: 1 1 100%; }
+      .search-result { min-width: 0; }
+      .modal-head, .modal-body { padding-left: 16px; padding-right: 16px; }
+    }
+    @media (max-width: 560px) {
+      .order-stepper { grid-template-columns: 1fr; }
+      .levels::before { display: none; }
+      .level-tiles { padding-right: 0; grid-template-columns: 1fr; }
       .hero-cta { flex-direction: column; align-items: stretch; }
       .btn-primary, .btn-secondary { justify-content: center; }
-      .tools-grid { grid-template-columns: repeat(3, 1fr); }
-      .hero-stats { flex-direction: column; gap: 16px; }
-      .hero-stats .stat-divider { display: none; }
+      .stat-divider { display: none; }
+      .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); }
+      .topic-list { grid-template-columns: 1fr; }
+      .nav-logo-text { display: none; }
     }
   </style>
 </head>
@@ -738,16 +661,17 @@
   ============================================================ -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#" class="nav-logo">
-                <img src="images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
-                <span class="nav-logo-text">خارطة طريق DevOps</span>
+      <a href="index.html" class="nav-logo">
+        <img src="images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
+        <span class="nav-logo-text">خارطة طريق DevOps</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#" class="nav-cta">ابدأ الآن</a></li>
-        <li><a href="#projects">المشاريع</a></li>
-        <li><a href="#learning-path">مسار التعلم</a></li>
+        <li><a href="#map" class="nav-cta">ابدأ الآن</a></li>
+        <li><a href="#tips">نصائح</a></li>
         <li><a href="#tools">الأدوات</a></li>
-        <li><a href="#roadmap">خارطة الطريق</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#tracks">التخصصات</a></li>
+        <li><a href="#map">الخريطة</a></li>
       </ul>
       <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
       <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="القائمة">
@@ -758,11 +682,11 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#roadmap" onclick="closeMobileMenu()">🗺️ خارطة الطريق</a>
-    <a href="#tools" onclick="closeMobileMenu()">🛠️ الأدوات</a>
-    <a href="#learning-path" onclick="closeMobileMenu()">🎯 مسار التعلم</a>
+    <a href="#map" onclick="closeMobileMenu()">🗺️ الخريطة الشاملة</a>
+    <a href="#tracks" onclick="closeMobileMenu()">🎯 مسارات التخصص</a>
     <a href="#projects" onclick="closeMobileMenu()">🚀 المشاريع</a>
-    <a href="#" onclick="closeMobileMenu()" style="color:var(--accent-blue);font-weight:800;">← ابدأ الآن</a>
+    <a href="#tools" onclick="closeMobileMenu()">🛠️ الأدوات</a>
+    <a href="#tips" onclick="closeMobileMenu()">💡 نصائح الدراسة</a>
   </div>
 
   <!-- ============================================================
@@ -771,12 +695,11 @@
   <section id="hero">
     <div class="hero-bg-glow glow-1"></div>
     <div class="hero-bg-glow glow-2"></div>
-    <div class="hero-bg-glow glow-3"></div>
 
     <div class="hero-content">
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
-        إصدار 2025 — محدّث ومكتمل
+        الخطة الشاملة — إصدار 2026
       </div>
 
       <h1 class="hero-title">
@@ -785,86 +708,87 @@
       </h1>
 
       <p class="hero-subtitle">
-        تعلّم Linux و Docker و Kubernetes و CI/CD و Cloud و Monitoring و Security
-        والبنية التحتية الحديثة — خطوة بخطوة، من الصفر حتى الاحتراف.
+        خريطة واحدة متكاملة تجمع كل ما يحتاجه مهندس DevOps: من Linux والشبكات، مرورًا بالحاويات وCI/CD وKubernetes والسحابة،
+        حتى SRE وDevSecOps وPlatform Engineering وAIOps. مرتّبة على مستويات، وكل موضوع قابل للتتبع.
       </p>
 
       <div class="hero-cta">
-        <a href="#roadmap" class="btn-primary">
-          <span>🚀</span> ابدأ التعلم الآن
-        </a>
-        <a href="#learning-path" class="btn-secondary">
-          <span>🗺️</span> استكشف خارطة الطريق
-        </a>
+        <a href="#map" class="btn-primary"><span>🗺️</span> استكشف الخريطة</a>
+        <a href="#order" class="btn-secondary"><span>🧭</span> ترتيب الدراسة المقترح</a>
       </div>
 
       <div class="hero-stats">
         <div class="hero-stat">
-          <div class="hero-stat-number" data-target="14">14</div>
-          <div class="hero-stat-label">مرحلة تعليمية</div>
+          <div class="hero-stat-number" id="statLevels">8</div>
+          <div class="hero-stat-label">مستويات</div>
         </div>
-        <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
+        <div class="stat-divider"></div>
         <div class="hero-stat">
-          <div class="hero-stat-number" data-target="60">60+</div>
-          <div class="hero-stat-label">تقنية واداة</div>
+          <div class="hero-stat-number" id="statDomains">34</div>
+          <div class="hero-stat-label">مجالًا معرفيًا</div>
         </div>
-        <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
+        <div class="stat-divider"></div>
         <div class="hero-stat">
-          <div class="hero-stat-number" data-target="6">6</div>
-          <div class="hero-stat-label">مشروع عملي</div>
+          <div class="hero-stat-number" id="statTopics">790</div>
+          <div class="hero-stat-label">موضوعًا وأداة</div>
         </div>
-        <div class="stat-divider" style="width:1px;height:40px;background:var(--border)"></div>
+        <div class="stat-divider"></div>
         <div class="hero-stat">
-          <div class="hero-stat-number">∞</div>
-          <div class="hero-stat-label">نمو مهني</div>
+          <div class="hero-stat-number" id="statProjects">40</div>
+          <div class="hero-stat-label">مشروعًا تطبيقيًا</div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       ROADMAP SECTION
+       MAP SECTION
   ============================================================ -->
-  <section id="roadmap">
+  <section id="map">
     <div class="container">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">🗺️ خارطة الطريق</div>
-        <h2 class="section-title">١٤ مرحلة نحو <span class="gradient-text">الاحتراف</span></h2>
-        <p class="section-desc">منهج تدريجي ومتسلسل يأخذك من أساسيات البرمجة حتى هندسة البنية التحتية على مستوى المؤسسات.</p>
+      <div class="section-header">
+        <div class="section-eyebrow">🗺️ الخريطة الشاملة</div>
+        <h2 class="section-title">من الصفر إلى <span class="gradient-text">الاحتراف</span></h2>
+        <p class="section-desc">
+          ثمانية مستويات متتالية، كل مستوى يبني على ما قبله. اضغط على أي مجال لعرض كل موضوعاته وتحديد ما أنجزته،
+          أو ابحث عن أداة أو مفهوم لتعرف مكانه في الخريطة.
+        </p>
       </div>
-      <div class="roadmap-grid" id="roadmapGrid"></div>
+
+      <div id="order">
+        <div class="order-title">🧭 ترتيب الدراسة المقترح — 10 خطوات</div>
+        <div class="order-stepper" id="orderStepper"></div>
+      </div>
+
+      <div class="map-toolbar">
+        <div class="search-wrap">
+          <input type="search" id="mapSearch" placeholder="ابحث عن أداة أو مفهوم… مثل Terraform أو DNS أو Backup" aria-label="البحث في الخريطة">
+        </div>
+        <div class="search-result" id="searchResult" aria-live="polite"></div>
+        <div class="overall">
+          <span class="overall-text">أنجزت <b id="doneCount">0</b> من <b id="totalCount">0</b></span>
+          <div class="bar"><span id="overallBar"></span></div>
+          <button class="link-btn" id="resetProgress" type="button">إعادة ضبط</button>
+        </div>
+      </div>
+
+      <div class="levels" id="levels"></div>
     </div>
   </section>
 
   <div class="divider"></div>
 
   <!-- ============================================================
-       TOOLS SECTION
+       TRACKS SECTION
   ============================================================ -->
-  <section id="tools">
+  <section id="tracks">
     <div class="container">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">🛠️ منظومة الأدوات</div>
-        <h2 class="section-title">أدوات <span class="gradient-text">معيار الصناعة</span></h2>
-        <p class="section-desc">أشهر وأقوى أدوات DevOps التي ستتقنها خلال هذه الخارطة.</p>
+      <div class="section-header">
+        <div class="section-eyebrow">🎯 بعد الأساسيات</div>
+        <h2 class="section-title">مسارات <span class="gradient-text">التخصص</span></h2>
+        <p class="section-desc">بعد إتمام المستويات الأساسية اختر تخصصًا واحدًا وتعمّق فيه. هذه المجالات التي يركّز عليها كل مسار.</p>
       </div>
-      <div class="tools-grid" id="toolsGrid"></div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <!-- ============================================================
-       LEARNING PATH SECTION
-  ============================================================ -->
-  <section id="learning-path">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-eyebrow">🎯 رحلتك</div>
-        <h2 class="section-title">مستويات <span class="gradient-text">مسار التعلم</span></h2>
-        <p class="section-desc">تقدّم عبر أربع مراحل متميزة، كل مرحلة تبني على السابقة — من الأساسيات حتى الاحتراف الكامل.</p>
-      </div>
-      <div class="path-stages" id="pathStages"></div>
+      <div class="tracks-grid" id="tracksGrid"></div>
     </div>
   </section>
 
@@ -875,440 +799,586 @@
   ============================================================ -->
   <section id="projects">
     <div class="container">
-      <div class="section-header reveal">
+      <div class="section-header">
         <div class="section-eyebrow">🚀 التطبيق العملي</div>
-        <h2 class="section-title">مشاريع <span class="gradient-text">حقيقية</span></h2>
-        <p class="section-desc">ابنِ مشاريع على مستوى الإنتاج تُثبت مهاراتك لأصحاب العمل والعملاء.</p>
+        <h2 class="section-title"><span id="projCountTitle">40</span> مشروعًا <span class="gradient-text">تطبيقيًا</span></h2>
+        <p class="section-desc">مشاريع مرتّبة حسب الموضوع والصعوبة. نفّذ كل مشروع في مختبرك الخاص ووثّقه في مستودع Git ليصبح جزءًا من معرض أعمالك.</p>
       </div>
       <div class="projects-grid" id="projectsGrid"></div>
+      <div class="proj-final">
+        <h3>🏁 مشروع التخرج</h3>
+        <p id="finalProject"></p>
+      </div>
     </div>
   </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       TOOLS SECTION
+  ============================================================ -->
+  <section id="tools">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">🛠️ منظومة الأدوات</div>
+        <h2 class="section-title">أدوات <span class="gradient-text">معيار الصناعة</span></h2>
+        <p class="section-desc">أبرز الأدوات في كل فئة. تعلّم المفهوم أولًا، ثم أتقن أداة واحدة من كل فئة وتعرّف على بدائلها.</p>
+      </div>
+      <div class="tools-groups" id="toolsGroups"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       TIPS SECTION
+  ============================================================ -->
+  <section id="tips">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">💡 كيف تستخدم الخريطة</div>
+        <h2 class="section-title">نصائح <span class="gradient-text">الدراسة</span></h2>
+      </div>
+      <div class="tips-grid">
+        <div class="tip">
+          <div class="tip-icon">🧩</div>
+          <h3>المفهوم قبل الأداة</h3>
+          <p>لا يلزم إتقان جميع الأدوات المتنافسة. تعلّم المفهوم، ثم أتقن أداة واحدة وتعرّف على البدائل.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">🧪</div>
+          <h3>طبّق في مختبر</h3>
+          <p>طبّق كل مرحلة عمليًا في مختبر آمن، ووثّق الأوامر والإعدادات وطرق استكشاف الأخطاء.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">🎯</div>
+          <h3>ليست كل الأدوات مطلوبة</h3>
+          <p>الخريطة مرجع واسع. أتقن الأساسيات أولًا، ثم اختر الأدوات حسب بيئة العمل والتخصص الذي تستهدفه.</p>
+        </div>
+        <div class="tip">
+          <div class="tip-icon">⚖️</div>
+          <h3>الأمان بتصريح فقط</h3>
+          <p>لا تختبر أدوات الأمن أو فحوصات الاختراق إلا على أنظمة تملكها أو لديك تصريح واضح لاختبارها.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       DOMAIN MODAL
+  ============================================================ -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-head">
+        <div class="modal-head-row">
+          <div class="tile-icon" id="modalIcon"></div>
+          <div class="modal-title-wrap">
+            <div class="level-en" id="modalLevel"></div>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <p class="modal-sub" id="modalDesc"></p>
+          </div>
+          <button class="modal-close" id="modalClose" type="button" aria-label="إغلاق">✕</button>
+        </div>
+        <div class="modal-tools">
+          <div class="search-wrap">
+            <input type="search" id="modalSearch" placeholder="تصفية الموضوعات…" aria-label="تصفية الموضوعات">
+          </div>
+          <div class="overall" style="flex:0 1 260px">
+            <span class="overall-text"><b id="modalDone">0</b> / <b id="modalTotal">0</b></span>
+            <div class="bar"><span id="modalBar"></span></div>
+          </div>
+          <a class="lesson-btn" id="modalLesson" href="#">📘 الدرس التفصيلي</a>
+        </div>
+      </div>
+      <div class="modal-body">
+        <ul class="topic-list" id="modalList"></ul>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
   <script>
     // ============================================================
-    // DATA — Arabic content, technical terms kept in English
+    // DATA — generated from devops-comprehensive-roadmap.md
     // ============================================================
-    const roadmapData = [
-      {
-        num: "01",
-        icon: "💻",
-        title: "البرمجة و Bash",
-        desc: "ابنِ مهارات الأتمتة باستخدام لغات السكريبت. الأساس الذي يحتاجه كل مهندس DevOps.",
-        difficulty: "beginner",
-        diffLabel: "مبتدئ",
-        progress: 30,
-        color: "#0555a2",
-        skills: ["Bash scripting", "Python basics", "APIs", "JSON/YAML", "Automation"],
-        tools: ["Bash", "Python", "curl", "jq"]
-      },
-      {
-        num: "02",
-        icon: "🐧",
-        title: "أساسيات Linux",
-        desc: "أتقن نظام التشغيل الذي يُشغّل ٩٠٪ من خوادم العالم. ضروري لكل دور في مجال DevOps.",
-        difficulty: "beginner",
-        diffLabel: "مبتدئ",
-        progress: 40,
-        color: "#2f7fd1",
-        skills: ["Terminal", "SSH", "File permissions", "Processes", "Systemd", "Networking"],
-        tools: ["Ubuntu", "CentOS", "systemctl", "iptables"]
-      },
-      {
-        num: "03",
-        icon: "🌿",
-        title: "Git و GitHub",
-        desc: "إتقان التحكم بالإصدارات — استراتيجيات التفريع وطلبات السحب وسير العمل التعاوني.",
-        difficulty: "beginner",
-        diffLabel: "مبتدئ",
-        progress: 45,
-        color: "#043d78",
-        skills: ["Branching", "Merge/Rebase", "Pull Requests", "GitHub Actions", "Git Flow"],
-        tools: ["Git", "GitHub", "GitLab", "pre-commit"]
-      },
-      {
-        num: "04",
-        icon: "🌐",
-        title: "الشبكات",
-        desc: "افهم البروتوكولات والمفاهيم التي تجعل البنية التحتية الحديثة تتواصل بكفاءة.",
-        difficulty: "intermediate",
-        diffLabel: "متوسط",
-        progress: 50,
-        color: "#f29125",
-        skills: ["IP/DNS", "HTTP/HTTPS", "Reverse Proxy", "SSL/TLS", "Load Balancer"],
-        tools: ["Nginx", "Traefik", "Cloudflare", "Let's Encrypt"]
-      },
-      {
-        num: "05",
-        icon: "🐳",
-        title: "Docker",
-        desc: "احجز كل شيء في حاويات. ابنِ بيئات تطبيق محمولة وقابلة للتكرار بسهولة.",
-        difficulty: "intermediate",
-        diffLabel: "متوسط",
-        progress: 60,
-        color: "#f7ab55",
-        skills: ["Containers", "Images", "Dockerfile", "Volumes", "Networks", "Compose"],
-        tools: ["Docker", "Docker Compose", "Docker Hub", "Podman"]
-      },
-      {
-        num: "06",
-        icon: "🔒",
-        title: "إدارة الخوادم",
-        desc: "آمِّن خوادم الإنتاج وراقبها وصُنها كمسؤول نظام محترف.",
-        difficulty: "intermediate",
-        diffLabel: "متوسط",
-        progress: 55,
-        color: "#0555a2",
-        skills: ["UFW", "Fail2Ban", "Monitoring", "Logs", "Backups", "Security"],
-        tools: ["UFW", "Fail2Ban", "rsync", "cron", "logrotate"]
-      },
-      {
-        num: "07",
-        icon: "⚡",
-        title: "CI/CD",
-        desc: "أتمت خط التسليم بالكامل — بنِ واختبر وانشر بدون أي خطوات يدوية.",
-        difficulty: "intermediate",
-        diffLabel: "متوسط",
-        progress: 65,
-        color: "#2f7fd1",
-        skills: ["Pipelines", "Auto Deploy", "Testing", "Build Systems", "GitHub Actions"],
-        tools: ["GitHub Actions", "Jenkins", "GitLab CI", "CircleCI"]
-      },
-      {
-        num: "08",
-        icon: "🗄️",
-        title: "قواعد البيانات",
-        desc: "إدارة قواعد البيانات في الإنتاج — النسخ المتماثل والنسخ الاحتياطي والتحسين والتوسع.",
-        difficulty: "intermediate",
-        diffLabel: "متوسط",
-        progress: 58,
-        color: "#043d78",
-        skills: ["PostgreSQL", "MySQL", "Redis", "Replication", "Optimization"],
-        tools: ["PostgreSQL", "MySQL", "Redis", "pgBackRest"]
-      },
-      {
-        num: "09",
-        icon: "☸️",
-        title: "Kubernetes",
-        desc: "نَسِّق الحاويات على نطاق واسع. المعيار الصناعي لأعباء عمل الإنتاج.",
-        difficulty: "advanced",
-        diffLabel: "متقدم",
-        progress: 75,
-        color: "#f29125",
-        skills: ["Pods", "Deployments", "Services", "Ingress", "Helm", "ConfigMaps"],
-        tools: ["kubectl", "Helm", "k9s", "Lens", "kind"]
-      },
-      {
-        num: "10",
-        icon: "🏗️",
-        title: "البنية التحتية كـ Code",
-        desc: "وفِّر البنية التحتية وأدِرها برمجياً. لا مزيد من إعداد الخوادم اليدوي.",
-        difficulty: "advanced",
-        diffLabel: "متقدم",
-        progress: 70,
-        color: "#f7ab55",
-        skills: ["Terraform", "Ansible", "Automation", "Provisioning", "State Management"],
-        tools: ["Terraform", "Ansible", "Pulumi", "Chef"]
-      },
-      {
-        num: "11",
-        icon: "📊",
-        title: "المراقبة والسجلات",
-        desc: "شاهد كل ما يحدث في بنيتك التحتية بشكل فوري. تنبيهات ولوحات تحكم وسجلات.",
-        difficulty: "advanced",
-        diffLabel: "متقدم",
-        progress: 72,
-        color: "#0555a2",
-        skills: ["Grafana", "Prometheus", "Loki", "ELK Stack", "Alerting"],
-        tools: ["Grafana", "Prometheus", "Loki", "Elasticsearch"]
-      },
-      {
-        num: "12",
-        icon: "☁️",
-        title: "منصات السحابة",
-        desc: "صمِّم وانشر وأدِر البنية التحتية السحابية على AWS وفق أفضل ممارسات المؤسسات.",
-        difficulty: "advanced",
-        diffLabel: "متقدم",
-        progress: 78,
-        color: "#2f7fd1",
-        skills: ["AWS EC2", "S3", "IAM", "VPC", "RDS", "Cloud Networking"],
-        tools: ["AWS", "AWS CLI", "CloudFormation", "Route 53"]
-      },
-      {
-        num: "13",
-        icon: "🛡️",
-        title: "DevSecOps",
-        desc: "الأمان ليس فكرة لاحقة. ادمج الأمان في كل مرحلة من مراحل خط الأنابيب.",
-        difficulty: "advanced",
-        diffLabel: "متقدم",
-        progress: 80,
-        color: "#043d78",
-        skills: ["Docker security", "Secrets mgmt", "Vuln scanning", "Vault", "CrowdSec"],
-        tools: ["HashiCorp Vault", "Trivy", "CrowdSec", "Falco"]
-      },
-      {
-        num: "14",
-        icon: "🔮",
-        title: "أدوات DevOps المتقدمة",
-        desc: "الأدوات المتطورة التي يستخدمها مهندسو DevOps المحترفون في شركات التقنية الحديثة.",
-        difficulty: "advanced",
-        diffLabel: "متقدم",
-        progress: 85,
-        color: "#f29125",
-        skills: ["Coolify", "Portainer", "Traefik", "ArgoCD", "Rancher", "Kestra"],
-        tools: ["Coolify", "ArgoCD", "Rancher", "Portainer"]
-      }
+    const SECTIONS = [{"n":1,"title":"أساسيات أنظمة التشغيل","items":[[1,"Linux Fundamentals"],[2,"Linux Filesystem Hierarchy"],[3,"Linux File Permissions and Ownership"],[4,"Users and Groups Management"],[5,"Processes and Signals"],[6,"Services and Systemd"],[7,"Package Managers (APT, DNF, YUM)"],[8,"Bash Shell"],[9,"Bash Scripting"],[10,"Environment Variables"],[11,"Cron Jobs and Scheduling"],[12,"Linux Logs and Journalctl"],[13,"Disk Management and Partitioning"],[14,"Filesystems and Mounting"],[15,"LVM and RAID"],[16,"Memory and Swap Management"],[17,"Linux Kernel Fundamentals"],[18,"Linux Performance Monitoring"],[19,"SSH and Remote Administration"],[20,"Windows Server Fundamentals"],[21,"PowerShell Fundamentals"]]},{"n":2,"title":"الشبكات Networking","items":[[22,"Networking Fundamentals"],[23,"OSI and TCP/IP Models"],[24,"IPv4 and IPv6"],[25,"Subnetting and CIDR"],[26,"MAC Addresses and ARP"],[27,"Routing and Switching"],[28,"VLANs"],[29,"DNS"],[30,"DHCP"],[31,"TCP, UDP and ICMP"],[32,"HTTP and HTTPS"],[33,"TLS/SSL Certificates"],[34,"Reverse Proxy"],[35,"Forward Proxy"],[36,"NAT and Port Forwarding"],[37,"Firewalls and Network ACLs"],[38,"VPN and Tunneling"],[39,"Load Balancing"],[40,"Network Troubleshooting"],[41,"Packet Analysis with Wireshark"],[42,"Network Tools (curl, dig, nslookup, ss, ip, tcpdump, traceroute)"],[43,"CDN Fundamentals"],[44,"Network Security Fundamentals"]]},{"n":3,"title":"البرمجة والأتمتة","items":[[45,"Python Fundamentals"],[46,"Python for System Administration"],[47,"Python Scripting and Automation"],[48,"Error Handling and Logging"],[49,"File and Process Automation"],[50,"Working with REST APIs"],[51,"JSON, YAML, TOML and XML"],[52,"Regular Expressions"],[53,"Git Automation"],[54,"Go Fundamentals"],[55,"PowerShell Automation"],[56,"Makefiles"],[57,"CLI Application Development"],[58,"Secure Coding for Automation"]]},{"n":4,"title":"Git وإدارة الشيفرات","items":[[59,"Git Fundamentals"],[60,"Git Branching and Merging"],[61,"Git Rebase and Cherry-Pick"],[62,"Git Conflict Resolution"],[63,"Git Tags and Releases"],[64,"Git Hooks"],[65,"Git Workflows (Git Flow, Trunk-Based Development)"],[66,"Pull Requests and Code Reviews"],[67,"GitHub"],[68,"GitLab"],[69,"Bitbucket"],[70,"Gitea"],[71,"Git Repository Security"],[72,"Monorepos and Multi-Repository Strategies"],[73,"Semantic Versioning"],[74,"Conventional Commits"]]},{"n":5,"title":"إدارة الخوادم والبنية التحتية","items":[[75,"Server Architecture"],[76,"Bare-Metal vs Virtual Machines"],[77,"VPS and Dedicated Servers"],[78,"Data Center Fundamentals"],[79,"Cloud Computing Fundamentals"],[80,"IaaS, PaaS and SaaS"],[81,"Public, Private and Hybrid Cloud"],[82,"AWS"],[83,"Microsoft Azure"],[84,"Google Cloud Platform (GCP)"],[85,"Hetzner Cloud"],[86,"OVHcloud"],[87,"Proxmox VE"],[88,"KVM and QEMU"],[89,"VMware vSphere"],[90,"VirtualBox"],[91,"Storage Systems (Block, File and Object Storage)"],[92,"NFS and SMB"],[93,"iSCSI"],[94,"High Availability Infrastructure"],[95,"Capacity Planning"],[96,"Infrastructure Documentation"]]},{"n":6,"title":"إدارة الخدمات على Linux","items":[[97,"Nginx"],[98,"Apache HTTP Server"],[99,"HAProxy"],[100,"Traefik"],[101,"Caddy"],[102,"Keepalived"],[103,"PHP-FPM"],[104,"MySQL"],[105,"PostgreSQL"],[106,"MariaDB"],[107,"Redis"],[108,"RabbitMQ"],[109,"Apache Kafka"],[110,"Elasticsearch and OpenSearch"],[111,"MinIO"],[112,"Samba"],[113,"NFS Server"],[114,"Mail Server Fundamentals"],[115,"SMTP, IMAP and POP3"],[116,"DNS Server Administration"],[117,"Web Server Hardening"],[118,"Log Rotation and Management"]]},{"n":7,"title":"الحاويات Containerization","items":[[119,"Containerization Fundamentals"],[120,"Docker Architecture"],[121,"Docker Engine"],[122,"Docker CLI"],[123,"Docker Images and Layers"],[124,"Dockerfile"],[125,"Docker Build Cache"],[126,"Multi-Stage Builds"],[127,"BuildKit and Buildx"],[128,"Docker Volumes"],[129,"Bind Mounts"],[130,"Docker Networks"],[131,"Docker DNS and Service Discovery"],[132,"Container Resource Limits"],[133,"Container Health Checks"],[134,"Container Logging"],[135,"Docker Security"],[136,"Docker Compose"],[137,"Compose Profiles and Overrides"],[138,"Multi-Container Applications"],[139,"Private Container Registries"],[140,"Docker Hub"],[141,"GitHub Container Registry (GHCR)"],[142,"GitLab Container Registry"],[143,"Harbor Registry"],[144,"Image Scanning and Signing"],[145,"Multi-Architecture Images"],[146,"Container Debugging"],[147,"Podman"],[148,"containerd"],[149,"CRI-O"],[150,"OCI Standards"],[151,"Container Backup and Recovery"],[152,"Docker Production Best Practices"]]},{"n":8,"title":"تنسيق الحاويات وإدارة التطبيقات","items":[[153,"Docker Compose Production Deployments"],[154,"Environment Configuration"],[155,"Secrets Management"],[156,"Persistent Storage"],[157,"Container Networking Patterns"],[158,"Reverse Proxy Integration"],[159,"Service Discovery"],[160,"Blue-Green Deployments"],[161,"Canary Deployments"],[162,"Rolling Updates"],[163,"Zero-Downtime Deployments"],[164,"Container Auto-Restart and Recovery"],[165,"Multi-Host Container Management"],[166,"Docker Swarm"],[167,"Nomad"],[168,"Kubernetes Comparison and Selection"]]},{"n":9,"title":"Kubernetes","items":[[169,"Kubernetes Fundamentals"],[170,"Kubernetes Architecture"],[171,"Control Plane Components"],[172,"Worker Nodes"],[173,"kube-apiserver"],[174,"etcd"],[175,"Scheduler"],[176,"Controller Manager"],[177,"kubelet and kube-proxy"],[178,"Pods"],[179,"ReplicaSets"],[180,"Deployments"],[181,"StatefulSets"],[182,"DaemonSets"],[183,"Jobs and CronJobs"],[184,"Namespaces"],[185,"Labels and Selectors"],[186,"Services"],[187,"ClusterIP, NodePort and LoadBalancer"],[188,"Ingress"],[189,"Gateway API"],[190,"ConfigMaps"],[191,"Secrets"],[192,"PersistentVolumes and PersistentVolumeClaims"],[193,"StorageClasses and CSI"],[194,"Resource Requests and Limits"],[195,"Probes and Health Checks"],[196,"Horizontal Pod Autoscaler"],[197,"Vertical Pod Autoscaler"],[198,"Cluster Autoscaler"],[199,"Scheduling and Affinity"],[200,"Taints and Tolerations"],[201,"Pod Disruption Budgets"],[202,"Network Policies"],[203,"RBAC"],[204,"Service Accounts"],[205,"Kubernetes Security Contexts"],[206,"Helm"],[207,"Kustomize"],[208,"Operators and Custom Resource Definitions"],[209,"Custom Controllers"],[210,"Kubernetes DNS and CoreDNS"],[211,"CNI Plugins (Cilium, Calico, Flannel)"],[212,"Container Runtime Integration"],[213,"Metrics Server"],[214,"Kubernetes Dashboard"],[215,"Ingress Controllers"],[216,"cert-manager"],[217,"ExternalDNS"],[218,"Secrets Store CSI Driver"],[219,"External Secrets Operator"],[220,"Cluster Backup with Velero"],[221,"etcd Backup and Recovery"],[222,"Cluster Upgrades"],[223,"Multi-Cluster Management"],[224,"Kubernetes Troubleshooting"],[225,"Kubernetes Hardening"],[226,"High Availability Kubernetes"],[227,"kubeadm"],[228,"K3s"],[229,"MicroK8s"],[230,"Minikube and kind"],[231,"Managed Kubernetes (EKS, AKS, GKE)"],[232,"OpenShift"],[233,"Kubernetes Production Operations"]]},{"n":10,"title":"Infrastructure as Code (IaC)","items":[[234,"Infrastructure as Code Fundamentals"],[235,"Terraform"],[236,"Terraform Providers"],[237,"Terraform Resources and Data Sources"],[238,"Variables, Outputs and Locals"],[239,"Terraform Modules"],[240,"Terraform State"],[241,"Remote State and State Locking"],[242,"Terraform Workspaces"],[243,"Terraform Import and Refactoring"],[244,"Terraform Lifecycle Management"],[245,"Terraform Provisioners and Their Limitations"],[246,"Terraform Plan and Apply"],[247,"Terraform Testing and Validation"],[248,"Terraform Security Scanning"],[249,"OpenTofu"],[250,"Pulumi"],[251,"AWS CloudFormation"],[252,"Azure Bicep"],[253,"Ansible"],[254,"Ansible Inventory"],[255,"Playbooks and Roles"],[256,"Ansible Variables and Templates"],[257,"Ansible Vault"],[258,"Ansible Collections"],[259,"Ansible Automation Platform"],[260,"Salt"],[261,"Puppet"],[262,"Chef"],[263,"Packer"],[264,"Vagrant"],[265,"Infrastructure Drift Detection"],[266,"IaC Policy Enforcement (OPA, Sentinel)"],[267,"Infrastructure Testing (Terratest)"]]},{"n":11,"title":"CI/CD","items":[[268,"CI/CD Fundamentals"],[269,"Continuous Integration"],[270,"Continuous Delivery"],[271,"Continuous Deployment"],[272,"Build Pipelines"],[273,"Automated Testing Pipelines"],[274,"GitHub Actions"],[275,"GitLab CI/CD"],[276,"Jenkins"],[277,"Jenkins Pipelines and Jenkinsfile"],[278,"Jenkins Agents and Distributed Builds"],[279,"Azure DevOps Pipelines"],[280,"Bitbucket Pipelines"],[281,"Argo CD"],[282,"Flux CD"],[283,"Tekton"],[284,"Drone CI"],[285,"Woodpecker CI"],[286,"Buildkite"],[287,"Pipeline as Code"],[288,"Workflow Triggers and Dependencies"],[289,"Pipeline Artifacts"],[290,"Caching Strategies"],[291,"Parallel and Matrix Builds"],[292,"Self-Hosted Runners"],[293,"CI/CD Secrets Management"],[294,"Pipeline Security"],[295,"Deployment Approvals and Gates"],[296,"Database Migration Pipelines"],[297,"Automated Rollbacks"],[298,"Release Management"],[299,"GitOps"],[300,"GitOps Reconciliation"],[301,"Progressive Delivery"],[302,"Feature Flags"],[303,"Deployment Strategies"],[304,"CI/CD Monitoring and Troubleshooting"]]},{"n":12,"title":"إدارة الإصدارات والنشر","items":[[305,"Semantic Versioning"],[306,"Artifact Management"],[307,"Nexus Repository"],[308,"JFrog Artifactory"],[309,"Package Registries"],[310,"Container Image Promotion"],[311,"Release Branching"],[312,"Release Automation"],[313,"Changelog Automation"],[314,"Database Schema Versioning"],[315,"Migration Safety"],[316,"Rollback and Roll-Forward Strategies"],[317,"Deployment Windows"],[318,"Release Governance"]]},{"n":13,"title":"Cloud Platforms","items":[[319,"AWS Fundamentals"],[320,"AWS IAM"],[321,"Amazon EC2"],[322,"Amazon VPC"],[323,"Security Groups and NACLs"],[324,"Elastic Load Balancing"],[325,"Auto Scaling Groups"],[326,"Amazon S3"],[327,"Amazon EBS and EFS"],[328,"Amazon RDS"],[329,"Amazon ElastiCache"],[330,"Amazon ECR"],[331,"Amazon ECS"],[332,"Amazon EKS"],[333,"AWS Lambda"],[334,"Route 53"],[335,"CloudWatch"],[336,"CloudTrail"],[337,"AWS Systems Manager"],[338,"AWS Secrets Manager"],[339,"AWS KMS"],[340,"AWS Backup"],[341,"Azure Virtual Machines"],[342,"Azure Virtual Network"],[343,"Azure Load Balancer and Application Gateway"],[344,"Azure Storage"],[345,"Azure Monitor"],[346,"Azure Key Vault"],[347,"Azure Container Registry"],[348,"Azure Kubernetes Service"],[349,"Azure DevOps"],[350,"Google Compute Engine"],[351,"Google VPC"],[352,"Cloud Storage"],[353,"Cloud SQL"],[354,"Google Kubernetes Engine"],[355,"Cloud Monitoring"],[356,"Cloud Logging"],[357,"Google Artifact Registry"],[358,"Cloud IAM"],[359,"Cloud Cost Management"],[360,"Multi-Cloud Architecture"]]},{"n":14,"title":"المراقبة Observability","items":[[361,"Monitoring Fundamentals"],[362,"Metrics, Logs and Traces"],[363,"Observability Fundamentals"],[364,"Prometheus"],[365,"PromQL"],[366,"Grafana"],[367,"Grafana Alerting"],[368,"Alertmanager"],[369,"Node Exporter"],[370,"cAdvisor"],[371,"Blackbox Exporter"],[372,"Loki"],[373,"Promtail and Grafana Alloy"],[374,"OpenTelemetry"],[375,"Jaeger"],[376,"Tempo"],[377,"Zipkin"],[378,"ELK Stack"],[379,"OpenSearch Stack"],[380,"Fluent Bit"],[381,"Fluentd"],[382,"Vector"],[383,"Filebeat and Metricbeat"],[384,"Datadog"],[385,"New Relic"],[386,"Dynatrace"],[387,"Zabbix"],[388,"Nagios"],[389,"Icinga"],[390,"Netdata"],[391,"Uptime Kuma"],[392,"Health Checks and Synthetic Monitoring"],[393,"SLI, SLO and SLA"],[394,"Error Budgets"],[395,"Alert Design and Noise Reduction"],[396,"Distributed Tracing"],[397,"Log Aggregation"],[398,"Incident Correlation"],[399,"Capacity and Performance Monitoring"],[400,"Observability for Kubernetes"]]},{"n":15,"title":"إدارة الحوادث والموثوقية SRE","items":[[401,"Site Reliability Engineering Fundamentals"],[402,"Reliability Engineering"],[403,"Incident Management"],[404,"Incident Response"],[405,"On-Call Operations"],[406,"Incident Command Systems"],[407,"Runbooks and Playbooks"],[408,"Postmortems and Root Cause Analysis"],[409,"Blameless Culture"],[410,"Error Budgets and Reliability Targets"],[411,"Chaos Engineering"],[412,"Chaos Mesh"],[413,"LitmusChaos"],[414,"Failure Injection"],[415,"Disaster Recovery Planning"],[416,"Business Continuity Planning"],[417,"High Availability Design"],[418,"Fault Tolerance"],[419,"Redundancy and Failover"],[420,"Backup and Restore Testing"],[421,"RTO and RPO"],[422,"Load and Stress Testing"],[423,"Performance Testing"],[424,"Resilience Testing"],[425,"Reliability Automation"]]},{"n":16,"title":"أمن DevSecOps","items":[[426,"DevSecOps Fundamentals"],[427,"Security by Design"],[428,"Linux Security Hardening"],[429,"SSH Hardening"],[430,"Firewall Management (nftables, UFW, firewalld)"],[431,"Identity and Access Management"],[432,"Least Privilege Principle"],[433,"IAM and RBAC"],[434,"Multi-Factor Authentication"],[435,"Secrets Management"],[436,"HashiCorp Vault"],[437,"SOPS"],[438,"Cloud KMS"],[439,"TLS and Certificate Management"],[440,"PKI Fundamentals"],[441,"OWASP Top 10"],[442,"OWASP API Security"],[443,"SAST"],[444,"DAST"],[445,"SCA and Dependency Scanning"],[446,"Container Image Scanning (Trivy, Grype)"],[447,"IaC Security Scanning (Checkov, tfsec)"],[448,"Secret Scanning (Gitleaks)"],[449,"Software Composition Analysis"],[450,"SBOM (CycloneDX, SPDX)"],[451,"Software Supply Chain Security"],[452,"SLSA Framework"],[453,"Artifact Signing (Cosign)"],[454,"Admission Policies"],[455,"OPA and Gatekeeper"],[456,"Kyverno"],[457,"Falco"],[458,"Runtime Security"],[459,"WAF"],[460,"DDoS Protection"],[461,"Cloud Security Posture Management"],[462,"Kubernetes Security"],[463,"Zero Trust Architecture"],[464,"Vulnerability Management"],[465,"Patch Management"],[466,"Security Auditing"],[467,"Compliance Automation"],[468,"Audit Logging"],[469,"Threat Modeling"],[470,"Security Incident Response"]]},{"n":17,"title":"قواعد البيانات وإدارة البيانات","items":[[471,"Database Fundamentals"],[472,"SQL Fundamentals"],[473,"MySQL Administration"],[474,"PostgreSQL Administration"],[475,"MariaDB Administration"],[476,"Database Users and Permissions"],[477,"Indexes and Query Optimization"],[478,"Connection Pooling"],[479,"Replication"],[480,"High Availability Databases"],[481,"Database Clustering"],[482,"Database Backup and Recovery"],[483,"Point-in-Time Recovery"],[484,"Database Migration Automation"],[485,"Redis Administration"],[486,"Redis Persistence and Replication"],[487,"MongoDB Administration"],[488,"Elasticsearch and OpenSearch"],[489,"Database Monitoring"],[490,"Database Security"],[491,"Managed Database Services"],[492,"Database Failover"],[493,"Data Retention and Archiving"],[494,"Storage Capacity Planning"]]},{"n":18,"title":"التخزين والنسخ الاحتياطي والتعافي","items":[[495,"Backup Fundamentals"],[496,"Full, Incremental and Differential Backups"],[497,"Snapshot-Based Backups"],[498,"Application-Consistent Backups"],[499,"Filesystem Snapshots"],[500,"LVM Snapshots"],[501,"ZFS"],[502,"Ceph"],[503,"MinIO"],[504,"S3-Compatible Storage"],[505,"Restic"],[506,"BorgBackup"],[507,"Kopia"],[508,"Rclone"],[509,"Rsync"],[510,"Bareos"],[511,"Bacula"],[512,"Velero"],[513,"Database Backup Strategies"],[514,"Docker Volume Backups"],[515,"Kubernetes Backup Strategies"],[516,"Immutable Backups"],[517,"Off-Site and Cross-Region Backups"],[518,"Backup Encryption"],[519,"Retention Policies"],[520,"Backup Integrity Verification"],[521,"Restore Drills"],[522,"Disaster Recovery Automation"],[523,"Recovery Time and Recovery Point Objectives"]]},{"n":19,"title":"إدارة الهوية والصلاحيات","items":[[524,"LDAP Fundamentals"],[525,"Active Directory Fundamentals"],[526,"LDAP Integration"],[527,"SSO"],[528,"OAuth 2.0"],[529,"OpenID Connect"],[530,"SAML"],[531,"Keycloak"],[532,"Identity Federation"],[533,"Service Accounts and Workload Identity"],[534,"Centralized Access Management"],[535,"Secrets Rotation"],[536,"Certificate-Based Authentication"]]},{"n":20,"title":"إدارة DNS وTLS والوصول الخارجي","items":[[537,"DNS Records (A, AAAA, CNAME, MX, TXT, SRV)"],[538,"DNSSEC"],[539,"Reverse DNS"],[540,"DNS Propagation and Troubleshooting"],[541,"Let's Encrypt"],[542,"ACME Protocol"],[543,"cert-manager"],[544,"Certificate Renewal Automation"],[545,"Cloudflare"],[546,"Cloudflare Tunnel"],[547,"Cloudflare WAF"],[548,"CDN Configuration"],[549,"Reverse Proxy Architecture"],[550,"API Gateway"],[551,"Rate Limiting"],[552,"WebSocket Proxying"],[553,"Zero-Downtime Certificate Rotation"]]},{"n":21,"title":"إدارة الخدمات والمنصات","items":[[554,"Platform Engineering Fundamentals"],[555,"Internal Developer Platforms"],[556,"Developer Portals"],[557,"Backstage"],[558,"Self-Service Infrastructure"],[559,"Golden Paths and Templates"],[560,"Service Catalogs"],[561,"Platform APIs"],[562,"Environment Provisioning"],[563,"Developer Experience (DevEx)"],[564,"Multi-Tenant Platforms"],[565,"Kubernetes Platform Management"],[566,"Policy as Code"],[567,"Platform Observability"],[568,"Platform Security"],[569,"Infrastructure Lifecycle Management"]]},{"n":22,"title":"إدارة التطبيقات والبيئات","items":[[570,"Development, Staging and Production Environments"],[571,"Environment Parity"],[572,"Configuration Management"],[573,"Twelve-Factor App"],[574,"Application Packaging"],[575,"Application Runtime Management"],[576,"PHP Application Deployment"],[577,"Laravel Deployment"],[578,"Node.js Application Deployment"],[579,"Python Application Deployment"],[580,"Go Application Deployment"],[581,"Java Application Deployment"],[582,"Static Frontend Deployment"],[583,"React Production Builds"],[584,"API Deployment"],[585,"Background Workers"],[586,"Queue Systems"],[587,"Scheduled Tasks"],[588,"WebSocket Services"],[589,"Database Migration Deployment"],[590,"Application Health Checks"],[591,"Application Performance Tuning"],[592,"Zero-Downtime Application Deployment"]]},{"n":23,"title":"إدارة الطوابير والمهام","items":[[593,"Message Queue Fundamentals"],[594,"RabbitMQ"],[595,"Apache Kafka"],[596,"Redis Streams"],[597,"NATS"],[598,"Celery"],[599,"Laravel Queues and Horizon"],[600,"Worker Lifecycle Management"],[601,"Retry and Backoff Strategies"],[602,"Dead-Letter Queues"],[603,"Idempotency"],[604,"Message Ordering and Delivery Guarantees"],[605,"Queue Monitoring"],[606,"Distributed Task Scheduling"]]},{"n":24,"title":"إدارة التكلفة FinOps","items":[[607,"FinOps Fundamentals"],[608,"Cloud Cost Optimization"],[609,"Resource Rightsizing"],[610,"Cost Allocation and Tagging"],[611,"Budget Alerts"],[612,"Reserved Instances and Savings Plans"],[613,"Storage Cost Optimization"],[614,"Network Egress Cost Management"],[615,"Kubernetes Cost Monitoring"],[616,"Kubecost"],[617,"OpenCost"],[618,"Cost Forecasting"],[619,"Capacity Planning"],[620,"Multi-Cloud Cost Comparison"]]},{"n":25,"title":"الاختبار والجودة","items":[[621,"Software Testing Fundamentals"],[622,"Unit Testing"],[623,"Integration Testing"],[624,"End-to-End Testing"],[625,"API Testing"],[626,"Contract Testing"],[627,"Smoke Testing"],[628,"Regression Testing"],[629,"Load Testing"],[630,"Stress Testing"],[631,"k6"],[632,"Apache JMeter"],[633,"Locust"],[634,"Playwright"],[635,"Testcontainers"],[636,"Infrastructure Testing"],[637,"Container Testing"],[638,"Deployment Validation"],[639,"Automated Rollback Testing"],[640,"Chaos Testing"],[641,"Test Data Management"]]},{"n":26,"title":"Serverless وEvent-Driven Architecture","items":[[642,"Serverless Fundamentals"],[643,"AWS Lambda"],[644,"Azure Functions"],[645,"Google Cloud Run Functions"],[646,"Knative"],[647,"Event-Driven Architecture"],[648,"Cloud Events"],[649,"Event Routing"],[650,"Serverless CI/CD"],[651,"Serverless Observability"],[652,"Serverless Security"],[653,"Cold Starts and Performance Optimization"]]},{"n":27,"title":"Service Mesh والأنظمة الموزعة","items":[[654,"Distributed Systems Fundamentals"],[655,"Microservices Architecture"],[656,"Service Discovery"],[657,"Inter-Service Communication"],[658,"Service Mesh Fundamentals"],[659,"Istio"],[660,"Linkerd"],[661,"Consul"],[662,"Envoy Proxy"],[663,"mTLS Between Services"],[664,"Traffic Management"],[665,"Retries and Circuit Breakers"],[666,"Distributed Tracing"],[667,"Distributed Configuration"],[668,"Resilience Patterns"],[669,"Multi-Region Architecture"]]},{"n":28,"title":"Edge Computing وIoT","items":[[670,"Edge Computing Fundamentals"],[671,"Edge Deployment"],[672,"IoT Infrastructure"],[673,"MQTT"],[674,"Edge Device Management"],[675,"Lightweight Kubernetes (K3s, MicroK8s)"],[676,"Edge Security"],[677,"Remote Fleet Management"],[678,"Intermittent Connectivity Handling"]]},{"n":29,"title":"الأدوات المساعدة وإدارة العمل","items":[[679,"Jira"],[680,"Linear"],[681,"Trello"],[682,"Confluence"],[683,"Notion"],[684,"Slack"],[685,"Microsoft Teams"],[686,"Mattermost"],[687,"ServiceNow"],[688,"PagerDuty"],[689,"Opsgenie"],[690,"Incident.io"],[691,"Runbook Automation"],[692,"ChatOps"],[693,"Webhooks"],[694,"Workflow Automation with n8n"],[695,"API Integration and Automation"]]},{"n":30,"title":"إدارة البنية التحتية عن بُعد","items":[[696,"Ansible Automation"],[697,"SSH Fleet Management"],[698,"Bastion Hosts"],[699,"Teleport"],[700,"Tailscale"],[701,"WireGuard"],[702,"Fleet Inventory Management"],[703,"Remote Command Execution"],[704,"Centralized Configuration Management"],[705,"Centralized Logging"],[706,"Remote Monitoring"],[707,"Patch Orchestration"],[708,"Fleet Compliance"],[709,"Server Provisioning Automation"]]},{"n":31,"title":"أدوات إدارة الخوادم والمنصات الجاهزة","items":[[710,"Coolify"],[711,"Dokku"],[712,"CapRover"],[713,"Dokploy"],[714,"Portainer"],[715,"Rancher"],[716,"Lens"],[717,"OpenLens"],[718,"Argo CD"],[719,"Flux CD"],[720,"Rundeck"],[721,"Semaphore UI"],[722,"AWX"],[723,"CloudPanel"],[724,"cPanel and WHM"],[725,"Plesk"],[726,"Virtualmin"],[727,"Webmin"],[728,"HestiaCP"],[729,"ISPConfig"],[730,"RunCloud"]]},{"n":32,"title":"DevOps على مستوى المؤسسات","items":[[731,"Enterprise Architecture"],[732,"Multi-Account Cloud Architecture"],[733,"Landing Zones"],[734,"Enterprise Networking"],[735,"Multi-Region Deployment"],[736,"Disaster Recovery Across Regions"],[737,"Multi-Tenant Kubernetes"],[738,"Governance and Guardrails"],[739,"Compliance as Code"],[740,"Policy Enforcement"],[741,"Change Management"],[742,"Access Reviews"],[743,"Audit and Compliance Reporting"],[744,"Enterprise Secrets Management"],[745,"Enterprise Observability"],[746,"Service Ownership"],[747,"Platform Standardization"],[748,"Enterprise Incident Management"],[749,"Business Continuity"],[750,"Enterprise Capacity Planning"]]},{"n":33,"title":"الذكاء الاصطناعي وعمليات التشغيل AIOps","items":[[751,"AIOps Fundamentals"],[752,"AI-Assisted Incident Analysis"],[753,"Log Anomaly Detection"],[754,"Metrics Anomaly Detection"],[755,"Root Cause Analysis Automation"],[756,"Predictive Capacity Planning"],[757,"Alert Correlation"],[758,"Intelligent Incident Triage"],[759,"LLM Integration with DevOps Tools"],[760,"AI Agents for Infrastructure Operations"],[761,"RAG for Internal Runbooks"],[762,"AI-Assisted Log Analysis"],[763,"AI-Assisted Security Analysis"],[764,"Guardrails for Autonomous Operations"],[765,"Human Approval for Destructive Actions"],[766,"AI Evaluation and Observability"],[767,"Privacy and Secrets Protection in AI Workflows"]]},{"n":34,"title":"مهارات الخبرة المتقدمة","items":[[768,"Systems Design for Infrastructure"],[769,"Distributed Systems Design"],[770,"Production Architecture Reviews"],[771,"Performance Engineering"],[772,"Bottleneck Analysis"],[773,"Capacity Modeling"],[774,"Reliability Modeling"],[775,"Fault Injection and Failure Analysis"],[776,"Advanced Linux Troubleshooting"],[777,"Advanced Network Troubleshooting"],[778,"Advanced Kubernetes Troubleshooting"],[779,"Advanced Database Troubleshooting"],[780,"Advanced CI/CD Design"],[781,"Supply Chain Threat Modeling"],[782,"Zero-Downtime Infrastructure Migration"],[783,"Legacy System Modernization"],[784,"Cloud Migration Strategies"],[785,"Hybrid Infrastructure Design"],[786,"Multi-Cloud Trade-Off Analysis"],[787,"Infrastructure Cost and Reliability Trade-Offs"],[788,"Technical Documentation and Runbooks"],[789,"Architecture Decision Records (ADR)"],[790,"Mentoring and Technical Leadership"]]},{"n":35,"title":"مشاريع تطبيقية شاملة","items":[[791,"بناء خادم Linux آمن من الصفر"],[792,"بناء بنية Web Server باستخدام Nginx وTLS"],[793,"نشر تطبيق Laravel مع MySQL وRedis"],[794,"نشر تطبيق React مع API Backend"],[795,"بناء Docker Images احترافية متعددة المراحل"],[796,"بناء بيئة متعددة الخدمات باستخدام Docker Compose"],[797,"بناء منصة نشر باستخدام Coolify"],[798,"بناء نظام إدارة حاويات باستخدام Portainer"],[799,"إنشاء CI/CD Pipeline باستخدام GitHub Actions"],[800,"إنشاء CI/CD Pipeline باستخدام GitLab CI"],[801,"بناء Jenkins Pipeline متكامل"],[802,"أتمتة إعداد الخوادم باستخدام Ansible"],[803,"بناء بنية سحابية كاملة باستخدام Terraform"],[804,"بناء Kubernetes Cluster عالي التوافر"],[805,"نشر تطبيق على Kubernetes باستخدام Helm"],[806,"بناء GitOps Pipeline باستخدام Argo CD"],[807,"بناء منصة Monitoring باستخدام Prometheus وGrafana"],[808,"بناء نظام تجميع سجلات باستخدام Loki"],[809,"بناء نظام Observability باستخدام OpenTelemetry"],[810,"بناء منصة Logging باستخدام ELK أو OpenSearch"],[811,"بناء نظام تنبيهات واستجابة للحوادث"],[812,"بناء نظام نسخ احتياطي واستعادة للخوادم"],[813,"بناء نظام Backup للحاويات وVolumes وقواعد البيانات"],[814,"بناء خطة Disaster Recovery واختبارها"],[815,"بناء منصة Secrets Management باستخدام Vault"],[816,"بناء DevSecOps Pipeline متكامل"],[817,"بناء نظام فحص صور Docker باستخدام Trivy"],[818,"بناء نظام إدارة شهادات TLS وتجديدها تلقائيًا"],[819,"بناء بنية High Availability باستخدام Load Balancer"],[820,"بناء نظام Blue-Green Deployment"],[821,"بناء نظام Canary Deployment"],[822,"بناء نظام Zero-Downtime Deployment"],[823,"بناء بنية Multi-Region"],[824,"بناء منصة Self-Service Developer Platform"],[825,"بناء نظام مراقبة وإدارة عدة خوادم مركزيًا"],[826,"بناء نظام إدارة البنية التحتية عبر الواجهات وواجهات API"],[827,"بناء نظام إدارة تكاليف Cloud وKubernetes"],[828,"بناء نظام AIOps لتحليل السجلات والتنبيهات"],[829,"بناء مختبر DevOps متكامل باستخدام Proxmox وKubernetes"],[830,"تنفيذ مشروع إنتاجي متكامل من الكود حتى النشر والمراقبة والتعافي"]]}];
+
+    // Per-domain presentation (keyed by section number in the plan)
+    const domainMeta = {
+      1:  { icon: "🐧", name: "أنظمة التشغيل", page: "devops-tech/linux.html",
+            desc: "Linux من الداخل: الملفات والصلاحيات والعمليات والخدمات والأقراص والأداء، مع أساسيات Windows Server وPowerShell." },
+      2:  { icon: "🌐", name: "الشبكات", page: "devops-tech/networking.html",
+            desc: "نماذج OSI وTCP/IP، العناوين والتوجيه، DNS وHTTP وTLS، الجدران النارية وموازنة الأحمال وتشخيص الأعطال." },
+      3:  { icon: "💻", name: "البرمجة والأتمتة", page: "devops-tech/bash.html",
+            desc: "Bash وPython وGo لأتمتة المهام، والتعامل مع REST APIs وصيغ JSON وYAML وبناء أدوات CLI." },
+      4:  { icon: "🌿", name: "Git وإدارة الشيفرات", page: "devops-tech/git.html",
+            desc: "الفروع والدمج وطلبات السحب، سير العمل الجماعي، الإصدارات والوسوم وحماية المستودعات." },
+      5:  { icon: "🏢", name: "الخوادم والبنية التحتية",
+            desc: "من الخادم الفعلي إلى السحابة: الأنظمة الافتراضية وProxmox وأنواع التخزين والتوافر العالي وتخطيط السعة." },
+      6:  { icon: "⚙️", name: "إدارة الخدمات على Linux", page: "devops-tech/server-admin.html",
+            desc: "تشغيل خدمات الإنتاج وضبطها: Nginx وHAProxy وقواعد البيانات وRedis والطوابير والبريد وتقسية الخدمات." },
+      7:  { icon: "🐳", name: "الحاويات Docker", page: "devops-tech/docker.html",
+            desc: "Docker من الأساس للإنتاج: الصور والبناء متعدد المراحل والشبكات والتخزين والسجلات والأمان والسجلات الخاصة." },
+      8:  { icon: "🧩", name: "تنسيق الحاويات",
+            desc: "تشغيل تطبيقات متعددة الحاويات في الإنتاج: الأسرار والتخزين والنشر بلا توقف وSwarm وNomad." },
+      9:  { icon: "☸️", name: "Kubernetes", page: "devops-tech/kubernetes.html",
+            desc: "المعمارية والموارد والشبكات والتخزين والأمان وHelm وOperators، حتى التشغيل الإنتاجي والتوافر العالي." },
+      10: { icon: "🏗️", name: "البنية التحتية ككود IaC", page: "devops-tech/iac.html",
+            desc: "Terraform وOpenTofu وPulumi وAnsible وPacker، مع إدارة الحالة واختبار البنية وفرض السياسات." },
+      11: { icon: "⚡", name: "CI/CD", page: "devops-tech/cicd.html",
+            desc: "أتمتة البناء والاختبار والنشر: GitHub Actions وGitLab CI وJenkins وArgo CD وGitOps والتسليم التدريجي." },
+      12: { icon: "📦", name: "الإصدارات والنشر",
+            desc: "ترقيم الإصدارات، مستودعات الحِزم Nexus وArtifactory، ترقية الصور، أمان الترحيل واستراتيجيات التراجع." },
+      13: { icon: "☁️", name: "المنصات السحابية", page: "devops-tech/cloud.html",
+            desc: "AWS وAzure وGCP: الحوسبة والشبكات والتخزين وقواعد البيانات والهوية والمراقبة وإدارة التكلفة." },
+      14: { icon: "📊", name: "المراقبة Observability", page: "devops-tech/monitoring.html",
+            desc: "المقاييس والسجلات والتتبع: Prometheus وGrafana وLoki وOpenTelemetry، مع SLO وتصميم التنبيهات." },
+      15: { icon: "🧯", name: "الحوادث والموثوقية SRE",
+            desc: "إدارة الحوادث والمناوبات، تحليل الأسباب الجذرية، هندسة الفوضى، والتعافي من الكوارث وRTO/RPO." },
+      16: { icon: "🛡️", name: "DevSecOps", page: "devops-tech/devsecops.html",
+            desc: "تقسية الأنظمة وإدارة الأسرار وVault، فحص الكود والصور والبنية، SBOM وأمن سلسلة التوريد." },
+      17: { icon: "🗄️", name: "قواعد البيانات", page: "devops-tech/databases.html",
+            desc: "إدارة MySQL وPostgreSQL وRedis وMongoDB: الصلاحيات والفهارس والتكرار والتوافر العالي والاستعادة." },
+      18: { icon: "💾", name: "التخزين والنسخ الاحتياطي",
+            desc: "أنواع النسخ واللقطات، ZFS وCeph وMinIO، أدوات Restic وBorg وVelero، التشفير والاحتفاظ واختبار الاستعادة." },
+      19: { icon: "🔑", name: "الهوية والصلاحيات",
+            desc: "LDAP وActive Directory وSSO وOAuth 2.0 وOIDC وSAML وKeycloak وهوية الأحمال وتدوير الأسرار." },
+      20: { icon: "🔐", name: "DNS وTLS والوصول الخارجي",
+            desc: "سجلات DNS وDNSSEC، Let's Encrypt وتجديد الشهادات آليًا، Cloudflare وCDN وAPI Gateway وتحديد المعدل." },
+      21: { icon: "🧱", name: "هندسة المنصات",
+            desc: "منصات المطورين الداخلية، Backstage، الخدمة الذاتية والمسارات الذهبية وتجربة المطور." },
+      22: { icon: "🚀", name: "التطبيقات والبيئات",
+            desc: "نشر تطبيقات Laravel وNode.js وPython وGo وJava والواجهات، وإدارة البيئات والإعدادات وTwelve-Factor." },
+      23: { icon: "📨", name: "الطوابير والمهام",
+            desc: "RabbitMQ وKafka وNATS وCelery وLaravel Horizon: العمال وإعادة المحاولة وضمانات التسليم." },
+      24: { icon: "💰", name: "إدارة التكلفة FinOps",
+            desc: "تحجيم الموارد والوسوم والميزانيات وخطط التوفير، وتكلفة Kubernetes عبر Kubecost وOpenCost." },
+      25: { icon: "🧪", name: "الاختبار والجودة",
+            desc: "اختبارات الوحدة والتكامل وE2E والحمل، أدوات k6 وPlaywright وTestcontainers، والتحقق من النشر." },
+      26: { icon: "🪶", name: "Serverless والأحداث",
+            desc: "Lambda وAzure Functions وCloud Run وKnative، المعمارية المعتمدة على الأحداث ومراقبتها وأمانها." },
+      27: { icon: "🕸️", name: "Service Mesh والأنظمة الموزعة",
+            desc: "الخدمات المصغرة، Istio وLinkerd وEnvoy، mTLS وإدارة المرور وأنماط المرونة والمناطق المتعددة." },
+      28: { icon: "📡", name: "Edge وIoT",
+            desc: "الحوسبة الطرفية، MQTT، Kubernetes الخفيف، إدارة أساطيل الأجهزة والتعامل مع الاتصال المتقطع." },
+      29: { icon: "🗂️", name: "أدوات العمل والتعاون",
+            desc: "Jira وConfluence وSlack، أدوات المناوبة PagerDuty وOpsgenie، وChatOps والأتمتة عبر n8n." },
+      30: { icon: "🛰️", name: "إدارة البنية عن بُعد",
+            desc: "إدارة أساطيل الخوادم: Bastion وTeleport وTailscale وWireGuard، السجلات المركزية وتنسيق التحديثات." },
+      31: { icon: "🧰", name: "المنصات والأدوات الجاهزة", page: "devops-tech/advanced-tools.html",
+            desc: "Coolify وDokku وPortainer وRancher وLens وAWX، ولوحات الاستضافة مثل cPanel وCloudPanel." },
+      32: { icon: "🏛️", name: "DevOps على مستوى المؤسسات",
+            desc: "الحسابات المتعددة ومناطق الهبوط، الحوكمة والامتثال ككود، إدارة التغيير والملكية والمعايير." },
+      33: { icon: "🤖", name: "الذكاء الاصطناعي AIOps",
+            desc: "كشف الشذوذ وتحليل السجلات بالذكاء الاصطناعي، وكلاء البنية التحتية وRAG، مع الضوابط والموافقة البشرية." },
+      34: { icon: "🎓", name: "مهارات الخبرة المتقدمة",
+            desc: "تصميم الأنظمة وهندسة الأداء، التشخيص المتقدم، الترحيل والتحديث، ADR والقيادة التقنية." }
+    };
+
+    const levels = [
+      { n: 1, en: "Foundations", title: "الأساسيات", color: "#10b981", time: "0 – 3 أشهر", steps: "الخطوة 1",
+        desc: "نظام التشغيل والشبكات وGit والبرمجة. لا تتجاوز هذا المستوى قبل أن تتقنه؛ كل ما بعده مبني عليه.",
+        domains: [1, 2, 4, 3] },
+      { n: 2, en: "Operations", title: "التشغيل والخدمات", color: "#2f7fd1", time: "3 – 5 أشهر", steps: "الخطوة 2",
+        desc: "تشغيل الخوادم والخدمات الحقيقية: خوادم الويب وقواعد البيانات وDNS وTLS والهوية.",
+        domains: [6, 17, 20, 5, 19] },
+      { n: 3, en: "Containers", title: "الحاويات والتطبيقات", color: "#0891b2", time: "5 – 7 أشهر", steps: "الخطوة 3",
+        desc: "تغليف التطبيقات في حاويات وتشغيلها في الإنتاج، مع إدارة البيئات والطوابير.",
+        domains: [7, 8, 22, 23] },
+      { n: 4, en: "Automation & Delivery", title: "الأتمتة والتسليم المستمر", color: "#f29125", time: "7 – 10 أشهر", steps: "الخطوتان 4 و5",
+        desc: "البنية التحتية ككود، إدارة الأساطيل، وخطوط CI/CD الكاملة من الاختبار حتى الإصدار.",
+        domains: [10, 30, 11, 12, 25] },
+      { n: 5, en: "Observability & Cloud", title: "المراقبة والسحابة", color: "#a855f7", time: "10 – 13 شهرًا", steps: "الخطوتان 6 و7",
+        desc: "رؤية كل ما يحدث في الأنظمة، ثم الانتقال إلى مزود سحابي رئيسي وضبط التكلفة.",
+        domains: [14, 13, 26, 24] },
+      { n: 6, en: "Kubernetes & Distributed", title: "Kubernetes والأنظمة الموزعة", color: "#6366f1", time: "13 – 16 شهرًا", steps: "الخطوة 8",
+        desc: "تنسيق الحاويات على نطاق واسع وGitOps، ثم Service Mesh والأنظمة الطرفية.",
+        domains: [9, 27, 28] },
+      { n: 7, en: "Security & Reliability", title: "الأمان والموثوقية", color: "#ef4444", time: "16 – 19 شهرًا", steps: "الخطوة 9",
+        desc: "دمج الأمان في كل مرحلة، وضمان استمرارية الخدمة بالنسخ الاحتياطي والتعافي وممارسات SRE.",
+        domains: [16, 18, 15] },
+      { n: 8, en: "Specialization & Mastery", title: "التخصص والاحتراف", color: "#db2777", time: "+19 شهرًا", steps: "الخطوة 10",
+        desc: "هندسة المنصات والمؤسسات وAIOps ومهارات الخبرة، مع الأدوات الجاهزة وأدوات العمل الجماعي.",
+        domains: [21, 31, 29, 32, 33, 34] }
     ];
 
-    const toolsData = [
-      { icon: "🐳", name: "Docker",      color: "#0555a2" },
-      { icon: "☸️", name: "Kubernetes",  color: "#2f7fd1" },
-      { icon: "☁️", name: "AWS",         color: "#043d78" },
-      { icon: "🏗️", name: "Terraform",   color: "#f29125" },
-      { icon: "📊", name: "Grafana",     color: "#f7ab55" },
-      { icon: "⚙️", name: "Jenkins",     color: "#0555a2" },
-      { icon: "🐙", name: "GitHub",      color: "#2f7fd1" },
-      { icon: "🐧", name: "Linux",       color: "#043d78" },
-      { icon: "🔀", name: "Nginx",       color: "#f29125" },
-      { icon: "🐘", name: "PostgreSQL",  color: "#f7ab55" },
-      { icon: "🔴", name: "Redis",       color: "#0555a2" },
-      { icon: "🚀", name: "Coolify",     color: "#2f7fd1" },
-      { icon: "🔥", name: "Prometheus",  color: "#043d78" }
+    const orderSteps = [
+      { title: "الأساسيات", desc: "Linux، الشبكات، Git، Bash، أساسيات Python", level: 1 },
+      { title: "التشغيل", desc: "إدارة الخدمات، Nginx، قواعد البيانات، DNS، TLS، SSH", level: 2 },
+      { title: "الحاويات", desc: "Docker وCompose، الشبكات والتخزين والأمان", level: 3 },
+      { title: "الأتمتة والبنية التحتية", desc: "Ansible، Terraform، إدارة الإعدادات", level: 4 },
+      { title: "CI/CD", desc: "اختر منصة واحدة أولًا: GitHub Actions أو GitLab CI أو Jenkins", level: 4 },
+      { title: "المراقبة", desc: "Prometheus وGrafana وإدارة السجلات والتنبيهات", level: 5 },
+      { title: "السحابة", desc: "اختر مزودًا رئيسيًا واحدًا وطبّق عليه مشاريع عملية", level: 5 },
+      { title: "Kubernetes وGitOps", desc: "بعد إتقان الحاويات والشبكات وIaC", level: 6 },
+      { title: "الأمان والموثوقية", desc: "DevSecOps، النسخ الاحتياطي، الاستعادة، SRE", level: 7 },
+      { title: "التخصص المتقدم", desc: "Platform أو Cloud أو SRE أو DevSecOps أو AIOps", level: 8 }
     ];
 
-    const pathStages = [
-      {
-        num: "المرحلة 01",
-        icon: "🌱",
-        title: "مبتدئ",
-        titleEn: "Beginner",
-        color: "#10b981",
-        glow: "rgba(16,185,129,0.3)",
-        desc: "المهارات الأساسية لكل مهندس DevOps",
-        items: ["Linux Terminal", "Bash Scripting", "Git Basics", "Networking 101", "Python Intro"],
-        badge: "0 – 3 أشهر"
-      },
-      {
-        num: "المرحلة 02",
-        icon: "⚡",
-        title: "متوسط",
-        titleEn: "Intermediate",
-        color: "#4f8ef7",
-        glow: "rgba(79,142,247,0.3)",
-        desc: "أدوات DevOps الأساسية والأتمتة",
-        items: ["Docker & Compose", "CI/CD Pipelines", "Server Security", "Databases", "GitHub Actions"],
-        badge: "3 – 8 أشهر"
-      },
-      {
-        num: "المرحلة 03",
-        icon: "🚀",
-        title: "متقدم",
-        titleEn: "Advanced",
-        color: "#a855f7",
-        glow: "rgba(168,85,247,0.3)",
-        desc: "البنية التحتية للمؤسسات والتنسيق",
-        items: ["Kubernetes", "Terraform/Ansible", "Cloud (AWS)", "Monitoring Stack", "DevSecOps"],
-        badge: "8 – 16 شهر"
-      },
-      {
-        num: "المرحلة 04",
-        icon: "🔮",
-        title: "محترف",
-        titleEn: "Professional",
-        color: "#f59e0b",
-        glow: "rgba(245,158,11,0.3)",
-        desc: "أدوات وهندسة المستوى المتقدم",
-        items: ["ArgoCD / GitOps", "Advanced K8s", "Multi-Cloud", "Cost Optimization", "Team Leadership"],
-        badge: "+16 شهر"
-      }
+    const tracks = [
+      { icon: "🧱", title: "هندسة المنصات", en: "Platform Engineering", color: "#db2777",
+        desc: "بناء منصة داخلية تتيح للمطورين النشر بأنفسهم بأمان وسرعة.", domains: [21, 9, 11, 31, 32] },
+      { icon: "☁️", title: "هندسة السحابة", en: "Cloud Engineering", color: "#a855f7",
+        desc: "تصميم بنى سحابية آمنة وقابلة للتوسع ومضبوطة التكلفة.", domains: [13, 10, 24, 26, 32] },
+      { icon: "🧯", title: "هندسة الموثوقية", en: "Site Reliability Engineering", color: "#ef4444",
+        desc: "إبقاء الأنظمة متاحة وسريعة، وقياس الموثوقية والتعامل مع الحوادث.", domains: [15, 14, 18, 25, 34] },
+      { icon: "🛡️", title: "الأمان في DevOps", en: "DevSecOps", color: "#f29125",
+        desc: "دمج الأمان في خط التسليم والبنية التحتية من البداية حتى التشغيل.", domains: [16, 19, 20, 11, 9] },
+      { icon: "🤖", title: "الذكاء الاصطناعي للعمليات", en: "AIOps", color: "#0891b2",
+        desc: "استخدام الذكاء الاصطناعي لتحليل السجلات والتنبيهات وأتمتة العمليات بضوابط آمنة.", domains: [33, 14, 3, 15] }
     ];
 
-    const projectsData = [
-      {
-        icon: "🚢",
-        title: "نشر Laravel مع Docker",
-        desc: "احجز تطبيق Laravel كاملاً مع Nginx و PHP-FPM و PostgreSQL و Redis وعمال قائمة الانتظار باستخدام Docker Compose.",
-        tech: ["Docker", "Nginx", "PHP", "PostgreSQL", "Redis", "Docker Compose"],
-        color: "#0555a2",
-        badge: "مبتدئ",
-        badgeBg: "rgba(16,185,129,0.15)",
-        badgeColor: "#10b981",
-        difficulty: "⭐⭐",
-        time: "~2 days"
-      },
-      {
-        icon: "⚡",
-        title: "خط أنابيب CI/CD كامل",
-        desc: "ابنِ خط أنابيب CI/CD كاملاً مع GitHub Actions — اختبار تلقائي وبناء صور Docker ونشر بدون توقف.",
-        tech: ["GitHub Actions", "Docker", "SSH Deploy", "Tests", "Secrets"],
-        color: "#2f7fd1",
-        badge: "متوسط",
-        badgeBg: "rgba(245,158,11,0.15)",
-        badgeColor: "#f59e0b",
-        difficulty: "⭐⭐⭐",
-        time: "~3 days"
-      },
-      {
-        icon: "☸️",
-        title: "مجموعة Kubernetes في الإنتاج",
-        desc: "أنشئ مجموعة K8s متعددة العقد مع Ingress و TLS و Helm ومقياس تلقائي لتطبيق ويب حقيقي.",
-        tech: ["Kubernetes", "Helm", "Ingress", "cert-manager", "HPA"],
-        color: "#043d78",
-        badge: "متقدم",
-        badgeBg: "rgba(239,68,68,0.15)",
-        badgeColor: "#ef4444",
-        difficulty: "⭐⭐⭐⭐",
-        time: "~1 week"
-      },
-      {
-        icon: "📊",
-        title: "منظومة مراقبة متكاملة",
-        desc: "انشر Prometheus و Grafana و Loki و Alertmanager لمراقبة الخوادم والحاويات والتطبيقات بلوحات تحكم مخصصة.",
-        tech: ["Grafana", "Prometheus", "Loki", "Alertmanager", "Node Exporter"],
-        color: "#f29125",
-        badge: "متقدم",
-        badgeBg: "rgba(239,68,68,0.15)",
-        badgeColor: "#ef4444",
-        difficulty: "⭐⭐⭐⭐",
-        time: "~5 days"
-      },
-      {
-        icon: "🔀",
-        title: "إعداد Traefik Reverse Proxy",
-        desc: "اضبط Traefik كـ Reverse Proxy ديناميكي مع SSL تلقائي واكتشاف الخدمات و Middleware وتكامل Docker.",
-        tech: ["Traefik", "Docker", "Let's Encrypt", "Middleware", "DNS"],
-        color: "#f7ab55",
-        badge: "متوسط",
-        badgeBg: "rgba(245,158,11,0.15)",
-        badgeColor: "#f59e0b",
-        difficulty: "⭐⭐⭐",
-        time: "~2 days"
-      },
-      {
-        icon: "🔒",
-        title: "تأمين VPS الاحترافي",
-        desc: "أمِّن خادم VPS في الإنتاج باستخدام UFW و Fail2Ban وتصلب SSH و CrowdSec والتحديثات التلقائية وكشف التسلل.",
-        tech: ["UFW", "Fail2Ban", "CrowdSec", "SSH", "auditd", "logwatch"],
-        color: "#0555a2",
-        badge: "متوسط",
-        badgeBg: "rgba(245,158,11,0.15)",
-        badgeColor: "#f59e0b",
-        difficulty: "⭐⭐⭐",
-        time: "~2 days"
-      }
+    // Groups of the plan's practical projects (section 35), by item number range
+    const projectGroups = [
+      { icon: "🖥️", title: "الخوادم والويب", diff: "beginner", label: "مبتدئ", from: 791, to: 794 },
+      { icon: "🐳", title: "الحاويات ومنصات النشر", diff: "beginner", label: "مبتدئ", from: 795, to: 798 },
+      { icon: "⚡", title: "CI/CD والأتمتة", diff: "intermediate", label: "متوسط", from: 799, to: 803 },
+      { icon: "☸️", title: "Kubernetes وGitOps", diff: "advanced", label: "متقدم", from: 804, to: 806 },
+      { icon: "📊", title: "المراقبة والسجلات", diff: "intermediate", label: "متوسط", from: 807, to: 811 },
+      { icon: "💾", title: "النسخ الاحتياطي والتعافي", diff: "intermediate", label: "متوسط", from: 812, to: 814 },
+      { icon: "🛡️", title: "الأمان", diff: "advanced", label: "متقدم", from: 815, to: 818 },
+      { icon: "🚀", title: "النشر والتوافر العالي", diff: "advanced", label: "متقدم", from: 819, to: 823 },
+      { icon: "🏛️", title: "المنصات والاحتراف", diff: "advanced", label: "متقدم", from: 824, to: 829 }
+    ];
+    const FINAL_PROJECT = 830;
+
+    const toolGroups = [
+      { title: "🐧 الأنظمة والشبكات", tools: ["Linux", "Bash", "systemd", "SSH", "Windows Server", "PowerShell", "Wireshark", "tcpdump", "dig", "curl"] },
+      { title: "🌿 الشيفرات والبرمجة", tools: ["Git", "GitHub", "GitLab", "Gitea", "Python", "Go", "Make", "jq"] },
+      { title: "🔀 خوادم الويب والوكلاء", tools: ["Nginx", "Apache", "HAProxy", "Traefik", "Caddy", "Envoy", "Cloudflare", "Let's Encrypt"] },
+      { title: "🐳 الحاويات", tools: ["Docker", "Docker Compose", "BuildKit", "Podman", "containerd", "Harbor", "GHCR", "Docker Swarm", "Nomad"] },
+      { title: "☸️ Kubernetes", tools: ["kubectl", "Helm", "Kustomize", "K3s", "kind", "cert-manager", "Cilium", "Velero", "OpenShift", "Lens"] },
+      { title: "🏗️ IaC والإعدادات", tools: ["Terraform", "OpenTofu", "Pulumi", "Ansible", "Packer", "Vagrant", "CloudFormation", "Bicep", "Terratest"] },
+      { title: "⚡ CI/CD وGitOps", tools: ["GitHub Actions", "GitLab CI", "Jenkins", "Argo CD", "Flux CD", "Tekton", "Azure DevOps", "Nexus", "Artifactory"] },
+      { title: "☁️ السحابة", tools: ["AWS", "Azure", "GCP", "Hetzner", "Proxmox VE", "KVM", "Lambda", "Knative", "Kubecost"] },
+      { title: "📊 المراقبة", tools: ["Prometheus", "Grafana", "Alertmanager", "Loki", "OpenTelemetry", "Jaeger", "Tempo", "ELK", "Fluent Bit", "Zabbix", "Uptime Kuma"] },
+      { title: "🛡️ الأمان", tools: ["Vault", "SOPS", "Trivy", "Grype", "Checkov", "Gitleaks", "Cosign", "Kyverno", "OPA", "Falco", "Keycloak"] },
+      { title: "🗄️ البيانات والطوابير", tools: ["PostgreSQL", "MySQL", "MariaDB", "Redis", "MongoDB", "OpenSearch", "RabbitMQ", "Kafka", "NATS", "MinIO"] },
+      { title: "💾 النسخ والتشغيل", tools: ["Restic", "BorgBackup", "Rclone", "ZFS", "Ceph", "Coolify", "Portainer", "Rancher", "Backstage", "PagerDuty", "n8n"] }
     ];
 
-    const roadmapPages = [
-      'devops-tech/bash.html',
-      'devops-tech/linux.html',
-      'devops-tech/git.html',
-      'devops-tech/networking.html',
-      'devops-tech/docker.html',
-      'devops-tech/server-admin.html',
-      'devops-tech/cicd.html',
-      'devops-tech/databases.html',
-      'devops-tech/kubernetes.html',
-      'devops-tech/iac.html',
-      'devops-tech/monitoring.html',
-      'devops-tech/cloud.html',
-      'devops-tech/devsecops.html',
-      'devops-tech/advanced-tools.html'
-    ];
+    // ============================================================
+    // STATE — topic progress (per-browser convenience only)
+    // ============================================================
+    const PROGRESS_KEY = 'devops-map-progress-v1';
+    let done = new Set();
+    try { done = new Set(JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]')); } catch (e) {}
+    function saveProgress() {
+      try { localStorage.setItem(PROGRESS_KEY, JSON.stringify([...done])); } catch (e) {}
+    }
+
+    const sectionByN = Object.fromEntries(SECTIONS.map(s => [s.n, s]));
+    const levelOfDomain = {};
+    levels.forEach(lv => lv.domains.forEach(n => { levelOfDomain[n] = lv; }));
+    const projectItems = (sectionByN[35] || { items: [] }).items;
+    const domainItemCount = levels.reduce((sum, lv) => sum + lv.domains.reduce((s, n) => s + sectionByN[n].items.length, 0), 0);
+    const totalItems = domainItemCount + projectItems.length;
+
+    let searchQuery = '';
+    let modalDomain = null;
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const pad = n => String(n).padStart(2, '0');
+    const norm = s => s.toLowerCase();
+
+    function highlight(text, q) {
+      if (!q) return esc(text);
+      const i = norm(text).indexOf(q);
+      if (i < 0) return esc(text);
+      return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.length)) + '</mark>' + esc(text.slice(i + q.length));
+    }
+
+    function topicItem([num, text], q) {
+      const isDone = done.has(num);
+      return `
+        <li>
+          <label class="topic${isDone ? ' is-done' : ''}">
+            <input type="checkbox" data-topic="${num}" ${isDone ? 'checked' : ''}>
+            <span class="topic-num">${num}</span>
+            <span class="topic-text">${highlight(text, q)}</span>
+          </label>
+        </li>`;
+    }
 
     // ============================================================
     // RENDER FUNCTIONS
     // ============================================================
-    function renderRoadmap() {
-      const grid = document.getElementById('roadmapGrid');
-      grid.innerHTML = roadmapData.map((card, i) => `
-        <div class="roadmap-card reveal"
-             style="--card-color:${card.color};transition-delay:${(i % 3) * 0.08}s"
-             data-progress="${card.progress}"
-             onclick="window.location.href='${roadmapPages[i]}'"
-             role="link" tabindex="0">
-          <div class="card-top">
-            <div class="card-icon-wrap" style="background:${card.color}">${card.icon}</div>
-            <span class="card-number">${card.num}</span>
-          </div>
-          <div class="card-title">${card.title}</div>
-          <div class="card-desc">${card.desc}</div>
-          <div class="card-skills">
-            ${card.skills.map(s => `<span class="skill-tag">${s}</span>`).join('')}
-          </div>
-          <div class="card-difficulty">
-            <span class="difficulty-label">مستوى الصعوبة</span>
-            <span class="difficulty-badge diff-${card.difficulty}">${card.diffLabel}</span>
-          </div>
-          <div class="progress-bar">
-            <div class="progress-fill" style="background:${card.color};width:${card.progress}%"></div>
-          </div>
-          <div class="card-tools">
-            <span class="tools-label">الأدوات:</span>
-            <div class="tools-list">
-              ${card.tools.map(t => `<span class="tool-chip">${t}</span>`).join('')}
+    function renderStats() {
+      document.getElementById('statLevels').textContent = levels.length;
+      document.getElementById('statDomains').textContent = Object.keys(levelOfDomain).length;
+      document.getElementById('statTopics').textContent = domainItemCount;
+      document.getElementById('statProjects').textContent = projectItems.length;
+      document.getElementById('projCountTitle').textContent = projectItems.length;
+      document.getElementById('totalCount').textContent = totalItems;
+    }
+
+    function renderOrder() {
+      document.getElementById('orderStepper').innerHTML = orderSteps.map((step, i) => {
+        const lv = levels[step.level - 1];
+        return `
+          <button class="order-step" type="button" data-level="${lv.n}" style="--lv:${lv.color}">
+            <span class="order-step-num">${i + 1}</span>
+            <span>
+              <span class="order-step-title">${step.title}</span>
+              <span class="order-step-desc" style="display:block">${step.desc}</span>
+            </span>
+          </button>`;
+      }).join('');
+    }
+
+    function renderLevels() {
+      document.getElementById('levels').innerHTML = levels.map(lv => {
+        const count = lv.domains.reduce((s, n) => s + sectionByN[n].items.length, 0);
+        return `
+          <div class="level" id="level-${lv.n}" style="--lv:${lv.color}">
+            <div class="level-rail">
+              <div class="level-node">${lv.n}</div>
+              <div>
+                <span class="level-en">LEVEL ${pad(lv.n)} · ${lv.en}</span>
+                <h3 class="level-title">${lv.title}</h3>
+                <p class="level-desc">${lv.desc}</p>
+                <div class="level-meta">
+                  <span class="pill lv">⏱ ${lv.time}</span>
+                  <span class="pill">${lv.domains.length} مجالات · ${count} موضوعًا</span>
+                  <span class="pill">🧭 ${lv.steps}</span>
+                </div>
+              </div>
             </div>
+            <div class="level-tiles">
+              ${lv.domains.map(n => renderTile(n, lv)).join('')}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function renderTile(n, lv) {
+      const meta = domainMeta[n];
+      const sec = sectionByN[n];
+      return `
+        <button class="domain-tile" type="button" data-domain="${n}" style="--lv:${lv.color}">
+          <span class="tile-match" hidden></span>
+          <span class="tile-top">
+            <span class="tile-icon">${meta.icon}</span>
+            <span class="tile-num">§${pad(n)}</span>
+          </span>
+          <span class="tile-title">${meta.name}</span>
+          <span class="tile-desc">${meta.desc}</span>
+          <span class="tile-foot">
+            <span class="tile-count" data-count="${n}">${sec.items.length} موضوعًا</span>
+            ${meta.page ? '<span class="tile-lesson">📘 درس تفصيلي</span>' : ''}
+          </span>
+          <span class="tile-bar"><span data-bar="${n}"></span></span>
+        </button>`;
+    }
+
+    function renderTracks() {
+      document.getElementById('tracksGrid').innerHTML = tracks.map(t => `
+        <div class="track-card" style="--lv:${t.color}">
+          <div class="track-icon">${t.icon}</div>
+          <div>
+            <div class="track-title">${t.title}</div>
+            <span class="track-en">${t.en}</span>
           </div>
-        </div>
-      `).join('');
-    }
-
-    function renderTools() {
-      const grid = document.getElementById('toolsGrid');
-      grid.innerHTML = toolsData.map((tool, i) => `
-        <div class="tool-card reveal" style="--tool-color:${tool.color};transition-delay:${(i % 6) * 0.06}s">
-          <div class="tool-icon">${tool.icon}</div>
-          <div class="tool-name">${tool.name}</div>
-        </div>
-      `).join('');
-    }
-
-    function renderPathStages() {
-      const container = document.getElementById('pathStages');
-      container.innerHTML = pathStages.map((stage, i) => `
-        <div class="path-stage reveal"
-             style="--stage-color:${stage.color};--stage-glow:${stage.glow};transition-delay:${i * 0.14}s">
-          <span class="stage-number">${stage.num}</span>
-          <div class="stage-icon" style="animation-delay:${i * 0.5}s">${stage.icon}</div>
-          <div class="stage-title">${stage.title}</div>
-          <div class="stage-desc">${stage.desc}</div>
-          <ul class="stage-items">
-            ${stage.items.map(item => `<li>${item}</li>`).join('')}
-          </ul>
-          <span class="neon-badge" style="color:${stage.color}">${stage.badge}</span>
+          <p class="track-desc">${t.desc}</p>
+          <div class="chip-row">
+            ${t.domains.map(n => `<button class="domain-chip" type="button" data-domain="${n}">${domainMeta[n].icon} ${domainMeta[n].name}</button>`).join('')}
+          </div>
         </div>
       `).join('');
     }
 
     function renderProjects() {
-      const grid = document.getElementById('projectsGrid');
-      grid.innerHTML = projectsData.map((proj, i) => `
-        <div class="project-card reveal"
-             style="--proj-color:${proj.color};transition-delay:${(i % 3) * 0.08}s">
-          <div class="proj-header">
-            <div class="proj-icon" style="background:${proj.color}">${proj.icon}</div>
-            <span class="proj-badge" style="background:${proj.badgeBg};color:${proj.badgeColor}">${proj.badge}</span>
-          </div>
-          <div class="proj-title">${proj.title}</div>
-          <div class="proj-desc">${proj.desc}</div>
-          <div class="proj-tech">
-            ${proj.tech.map(t => `<span class="proj-tech-tag">${t}</span>`).join('')}
-          </div>
-          <div class="proj-footer">
-            <div class="proj-difficulty">${proj.difficulty} ${proj.badge}</div>
-            <div class="proj-time">⏱ ${proj.time}</div>
-          </div>
+      document.getElementById('projectsGrid').innerHTML = projectGroups.map(g => {
+        const items = projectItems.filter(([num]) => num >= g.from && num <= g.to);
+        return `
+          <div class="proj-group" style="--lv:var(--accent-blue)">
+            <div class="proj-group-head">
+              <div class="tile-icon" style="--lv:var(--brand-blue)">${g.icon}</div>
+              <div class="proj-group-title">${g.title}</div>
+              <span class="pill diff-${g.diff}" style="border:none">${g.label}</span>
+            </div>
+            <ul class="topic-list">${items.map(it => topicItem(it, '')).join('')}</ul>
+          </div>`;
+      }).join('');
+      const final = projectItems.find(([num]) => num === FINAL_PROJECT);
+      document.getElementById('finalProject').textContent = final ? final[1] : '';
+    }
+
+    function renderTools() {
+      document.getElementById('toolsGroups').innerHTML = toolGroups.map(g => `
+        <div class="tools-group">
+          <div class="tools-group-title">${g.title}</div>
+          <div class="tool-chips">${g.tools.map(t => `<span class="tool-chip">${esc(t)}</span>`).join('')}</div>
         </div>
       `).join('');
     }
 
     // ============================================================
-    // KEYBOARD ACTIVATION (roadmap cards are focusable, Enter triggers the link)
+    // PROGRESS UI
     // ============================================================
-    function initCardKeyboardActivation() {
-      document.querySelectorAll('.roadmap-card').forEach(card => {
-        card.addEventListener('keydown', e => { if (e.key === 'Enter') card.click(); });
+    function updateProgress() {
+      levels.forEach(lv => lv.domains.forEach(n => {
+        const items = sectionByN[n].items;
+        const d = items.filter(([num]) => done.has(num)).length;
+        const bar = document.querySelector(`[data-bar="${n}"]`);
+        if (bar) bar.style.width = (d / items.length * 100) + '%';
+        const count = document.querySelector(`[data-count="${n}"]`);
+        if (count) count.textContent = d ? `${d} / ${items.length} موضوعًا` : `${items.length} موضوعًا`;
+      }));
+      document.getElementById('doneCount').textContent = done.size;
+      document.getElementById('overallBar').style.width = (done.size / totalItems * 100) + '%';
+      if (modalDomain) updateModalProgress();
+    }
+
+    function toggleTopic(num, checked) {
+      if (checked) done.add(num); else done.delete(num);
+      saveProgress();
+      document.querySelectorAll(`input[data-topic="${num}"]`).forEach(input => {
+        input.checked = checked;
+        input.closest('.topic').classList.toggle('is-done', checked);
+      });
+      updateProgress();
+    }
+
+    // ============================================================
+    // SEARCH
+    // ============================================================
+    function domainMatches(n, q) {
+      return sectionByN[n].items.filter(([, text]) => norm(text).includes(q)).length;
+    }
+
+    function applySearch() {
+      const q = searchQuery;
+      let topics = 0, domains = 0;
+      document.querySelectorAll('.domain-tile').forEach(tile => {
+        const n = +tile.dataset.domain;
+        const badge = tile.querySelector('.tile-match');
+        if (!q) {
+          tile.classList.remove('dim', 'hit');
+          badge.hidden = true;
+          return;
+        }
+        const meta = domainMeta[n];
+        const titleHit = norm(meta.name + ' ' + sectionByN[n].title).includes(q);
+        const m = domainMatches(n, q);
+        const hit = m > 0 || titleHit;
+        tile.classList.toggle('dim', !hit);
+        tile.classList.toggle('hit', hit);
+        badge.hidden = m === 0;
+        badge.textContent = `${m} نتيجة`;
+        topics += m;
+        if (hit) domains++;
+      });
+      document.getElementById('searchResult').textContent =
+        q ? (domains ? `${topics} موضوعًا في ${domains} مجالات` : 'لا توجد نتائج') : '';
+    }
+
+    // ============================================================
+    // MODAL
+    // ============================================================
+    let lastFocus = null;
+
+    function openDomain(n, q = '') {
+      const meta = domainMeta[n];
+      const lv = levelOfDomain[n];
+      modalDomain = n;
+      lastFocus = document.activeElement;
+      document.getElementById('modal').style.setProperty('--lv', lv.color);
+      const icon = document.getElementById('modalIcon');
+      icon.textContent = meta.icon;
+      icon.style.setProperty('--lv', lv.color);
+      document.getElementById('modalLevel').textContent = `LEVEL ${pad(lv.n)} · ${lv.en} — §${pad(n)}`;
+      document.getElementById('modalTitle').textContent = sectionByN[n].title;
+      document.getElementById('modalDesc').textContent = meta.desc;
+      const lesson = document.getElementById('modalLesson');
+      lesson.hidden = !meta.page;
+      if (meta.page) lesson.href = meta.page;
+      const search = document.getElementById('modalSearch');
+      search.value = q;
+      renderModalList();
+      document.getElementById('modalBackdrop').classList.add('open');
+      document.body.classList.add('modal-open');
+      document.getElementById('modalClose').focus();
+    }
+
+    function renderModalList() {
+      const q = norm(document.getElementById('modalSearch').value.trim());
+      const items = sectionByN[modalDomain].items.filter(([, text]) => !q || norm(text).includes(q));
+      document.getElementById('modalList').innerHTML = items.length
+        ? items.map(it => topicItem(it, q)).join('')
+        : '<li class="empty">لا توجد موضوعات مطابقة</li>';
+      updateModalProgress();
+    }
+
+    function updateModalProgress() {
+      const items = sectionByN[modalDomain].items;
+      const d = items.filter(([num]) => done.has(num)).length;
+      document.getElementById('modalDone').textContent = d;
+      document.getElementById('modalTotal').textContent = items.length;
+      document.getElementById('modalBar').style.width = (d / items.length * 100) + '%';
+    }
+
+    function closeModal() {
+      document.getElementById('modalBackdrop').classList.remove('open');
+      document.body.classList.remove('modal-open');
+      modalDomain = null;
+      if (lastFocus) lastFocus.focus();
+    }
+
+    // ============================================================
+    // EVENTS
+    // ============================================================
+    function scrollToEl(el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    function initEvents() {
+      document.addEventListener('click', e => {
+        const domainBtn = e.target.closest('[data-domain]');
+        if (domainBtn) { openDomain(+domainBtn.dataset.domain, searchQuery); return; }
+        const step = e.target.closest('.order-step');
+        if (step) { scrollToEl(document.getElementById('level-' + step.dataset.level)); }
+      });
+
+      document.addEventListener('change', e => {
+        if (e.target.matches('input[data-topic]')) toggleTopic(+e.target.dataset.topic, e.target.checked);
+      });
+
+      const search = document.getElementById('mapSearch');
+      search.addEventListener('input', () => {
+        searchQuery = norm(search.value.trim());
+        applySearch();
+      });
+      search.addEventListener('keydown', e => {
+        if (e.key !== 'Enter' || !searchQuery) return;
+        const first = document.querySelector('.domain-tile.hit');
+        if (first) openDomain(+first.dataset.domain, searchQuery);
+      });
+
+      document.getElementById('modalSearch').addEventListener('input', renderModalList);
+      document.getElementById('modalClose').addEventListener('click', closeModal);
+      document.getElementById('modalBackdrop').addEventListener('click', e => {
+        if (e.target.id === 'modalBackdrop') closeModal();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modalDomain) closeModal();
+      });
+
+      document.getElementById('resetProgress').addEventListener('click', () => {
+        if (!confirm('هل تريد مسح كل التقدم المحفوظ؟')) return;
+        done.clear();
+        saveProgress();
+        document.querySelectorAll('input[data-topic]').forEach(input => {
+          input.checked = false;
+          input.closest('.topic').classList.remove('is-done');
+        });
+        updateProgress();
       });
     }
 
@@ -1348,17 +1418,6 @@
     }
 
     // ============================================================
-    // COUNTER ANIMATION
-    // ============================================================
-    function animateCounters() {
-      document.querySelectorAll('.hero-stat-number[data-target]').forEach(counter => {
-        const target = parseInt(counter.dataset.target);
-        const suffix = counter.textContent.replace(/[0-9]/g, '');
-        counter.textContent = target + suffix;
-      });
-    }
-
-    // ============================================================
     // SMOOTH SCROLL
     // ============================================================
     function initSmoothScroll() {
@@ -1366,12 +1425,10 @@
         a.addEventListener('click', e => {
           const href = a.getAttribute('href');
           if (href === '#') return;
-          e.preventDefault();
           const target = document.querySelector(href);
-          if (target) {
-            const top = target.getBoundingClientRect().top + window.scrollY - 80;
-            window.scrollTo({ top, behavior: 'smooth' });
-          }
+          if (!target) return;
+          e.preventDefault();
+          scrollToEl(target);
         });
       });
     }
@@ -1399,12 +1456,14 @@
     // INIT
     // ============================================================
     document.addEventListener('DOMContentLoaded', () => {
-      renderRoadmap();
-      renderTools();
-      renderPathStages();
+      renderStats();
+      renderOrder();
+      renderLevels();
+      renderTracks();
       renderProjects();
-      animateCounters();
-      initCardKeyboardActivation();
+      renderTools();
+      updateProgress();
+      initEvents();
       initThemeToggle();
       initNavbar();
       initMobileMenu();

@@ -24,6 +24,7 @@
   <a href="#hero" onclick="closeMobile()">الرئيسية</a>
   <a href="#roadmap" onclick="closeMobile()">المراحل</a>
   <a href="#tools" onclick="closeMobile()">الأدوات</a>
+  <a href="#notes" onclick="closeMobile()">كيف تدرس</a>
   <a href="#cta" onclick="closeMobile()">الالتحاق</a>
 </div>
 
@@ -39,6 +40,7 @@
       <li><a href="#counters">الإحصائيات</a></li>
       <li><a href="#roadmap">المراحل</a></li>
       <li><a href="#tools">الأدوات</a></li>
+      <li><a href="#notes">كيف تدرس</a></li>
       <li><a href="#cta" class="nav-cta">سجّل الآن</a></li>
     </ul>
     <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
@@ -109,7 +111,7 @@
     <div class="counters-grid">
       <div class="counter-card reveal">
         <div class="counter-icon"><i class="fas fa-calendar-alt"></i></div>
-        <div class="counter-num" data-target="9" data-suffix="+">0</div>
+        <div class="counter-num" data-target="10" data-suffix="+">0</div>
         <div class="counter-label">أشهر دراسة</div>
       </div>
       <div class="counter-card reveal" style="transition-delay:.1s">
@@ -529,6 +531,39 @@
         <div class="tool-name">HackTheBox</div>
         <div class="tool-desc">تحديات اختراق متقدمة</div>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STUDY NOTES ===================== -->
+<section id="notes" class="section">
+  <div class="container">
+    <div class="glow-divider reveal"></div>
+    <h2 class="section-title reveal">كيف تدرس هذا الدبلوم</h2>
+    <p class="section-subtitle reveal">
+      إرشادات تجعل رحلتك أكثر فاعلية — وتضمن ممارسة الأمن السيبراني بشكل قانوني وأخلاقي
+    </p>
+    <div class="notes-grid">
+      <div class="note-card reveal">
+        <div class="note-icon" style="color:var(--cyan)"><i class="fas fa-layer-group"></i></div>
+        <h3>تدرّج بالترتيب</h3>
+        <p>ادرس المراحل بالتسلسل؛ كل مرحلة تبني على ما قبلها. لا تقفز إلى الاختراق قبل إتقان Linux والشبكات والبرمجة.</p>
+      </div>
+      <div class="note-card reveal" style="transition-delay:.1s">
+        <div class="note-icon" style="color:var(--purple)"><i class="fas fa-flask"></i></div>
+        <h3>طبّق في مختبر</h3>
+        <p>أنشئ مختبرًا معزولًا على أجهزة افتراضية (VirtualBox) ونفّذ كل تمرين بنفسك. المهارة تُبنى بالممارسة لا بالقراءة.</p>
+      </div>
+      <div class="note-card reveal" style="transition-delay:.2s">
+        <div class="note-icon" style="color:#ffcc00"><i class="fas fa-scale-balanced"></i></div>
+        <h3>بتصريح فقط</h3>
+        <p>لا تختبر أي أداة أو تقنية إلا على أنظمة تملكها أو لديك تصريح كتابي واضح باختبارها، أو على منصات تدريب مخصّصة مثل TryHackMe وHackTheBox.</p>
+      </div>
+      <div class="note-card reveal" style="transition-delay:.3s">
+        <div class="note-icon" style="color:var(--brand-orange)"><i class="fas fa-folder-open"></i></div>
+        <h3>ابنِ بورتفوليو</h3>
+        <p>وثّق حلولك وكتاباتك ومشاريعك على GitHub منذ البداية. سجلّ أعمالك هو ما يفتح لك سوق العمل، لا الشهادات وحدها.</p>
+      </div>
     </div>
   </div>
 </section>

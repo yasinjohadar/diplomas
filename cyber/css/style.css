@@ -734,6 +734,40 @@ nav.scrolled {
 }
 
 /* ===========================
+   STUDY NOTES SECTION
+=========================== */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.note-card {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  transition: var(--transition);
+  backdrop-filter: blur(10px);
+}
+.note-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-hover);
+  box-shadow: var(--glow-cyan);
+}
+.note-icon { font-size: 1.9rem; margin-bottom: 14px; }
+.note-card h3 {
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.note-card p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* ===========================
    CTA SECTION
 =========================== */
 #cta {
@@ -810,6 +844,7 @@ nav.scrolled {
 @media (max-width: 1024px) {
   .tools-grid { grid-template-columns: repeat(4, 1fr); }
   .counters-grid { grid-template-columns: repeat(2, 1fr); }
+  .notes-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -835,6 +870,7 @@ nav.scrolled {
   .tools-grid { grid-template-columns: repeat(2, 1fr); }
   .counters-grid { grid-template-columns: repeat(2, 1fr); }
   .phases-grid { grid-template-columns: 1fr; }
+  .notes-grid { grid-template-columns: 1fr; }
   .hero-btns { flex-direction: column; }
   .cta-btns { flex-direction: column; align-items: center; }
 }
