@@ -1,201 +1,1413 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دبلوم PHP وقواعد البيانات — أكاديمية كلاود سوفت</title>
-    <link rel="icon" type="image/png" href="images/logo.png">
-    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
-    <link rel="stylesheet" href="css/diploma.css?v=5.0">
-    <style>
-      :root { --module-color: var(--brand-blue-dark); --hero-glow: rgba(4,61,120,0.3); }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دبلوم Backend: PHP وLaravel — أكاديمية كلاود سوفت</title>
+  <meta name="description" content="المنهاج الشامل لتعلم PHP وLaravel من الصفر حتى مستوى الخبير: 22 مرحلة و96 وحدة ومشاريع عملية ومعايير اجتياز.">
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&family=Cairo:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ============================================================
+       CSS VARIABLES & RESET
+    ============================================================ */
+    :root {
+      --bg-primary: #050508;
+      --bg-secondary: #0a0a0f;
+      --bg-card: rgba(255,255,255,0.03);
+      --bg-card-hover: rgba(255,255,255,0.06);
+      --bg-chip: rgba(255,255,255,0.04);
+      --border: rgba(255,255,255,0.07);
+      --border-hover: rgba(255,255,255,0.15);
+      --text-primary: #f0f0f5;
+      --text-secondary: #8888a0;
+      --text-muted: #5a5a72;
+      --brand-blue: #0555a2;
+      --brand-blue-light: #2f7fd1;
+      --brand-blue-dark: #043d78;
+      --brand-orange: #f29125;
+      --brand-orange-light: #f7ab55;
+      --accent-blue: var(--brand-blue-light);
+      --accent-green: #10b981;
+      --glow-blue: rgba(47,127,209,0.3);
+      --font-heading: 'Alexandria', sans-serif;
+      --font-body: 'Cairo', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --overlay-88: rgba(5,5,8,0.88);
+      --overlay-97: rgba(5,5,8,0.97);
+      --shadow-card: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    :root[data-theme="light"] {
+      --bg-primary: #f6f7fb;
+      --bg-secondary: #eef1f7;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f2f4f9;
+      --bg-chip: #f1f3f8;
+      --border: rgba(5,25,60,0.12);
+      --border-hover: rgba(5,25,60,0.22);
+      --text-primary: #0c1524;
+      --text-secondary: #4b5568;
+      --text-muted: #6b7484;
+      --accent-blue: var(--brand-blue);
+      --overlay-88: rgba(246,247,251,0.88);
+      --overlay-97: rgba(246,247,251,0.97);
+      --shadow-card: 0 16px 40px rgba(5,25,60,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-blue) var(--bg-secondary);
+    }
+    html::-webkit-scrollbar { width: 6px; }
+    html::-webkit-scrollbar-track { background: var(--bg-secondary); }
+    html::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.7;
+      overflow-x: hidden;
+      direction: rtl;
+    }
+    body.modal-open { overflow: hidden; }
+
+    /* ============================================================
+       NAVBAR
+    ============================================================ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      transition: var(--transition);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px;
+      height: 68px;
+      border-bottom: 1px solid transparent;
+      transition: var(--transition);
+    }
+    nav.scrolled .nav-inner { border-bottom-color: var(--border); }
+    nav.scrolled {
+      background: var(--overlay-88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-logo-img { height: 40px; width: auto; object-fit: contain; flex-shrink: 0; display: block; }
+    .nav-logo-text { font-weight: 800; font-size: 1rem; color: var(--text-primary); font-family: var(--font-heading); }
+    .nav-links {
+      display: flex; align-items: center; gap: 4px;
+      list-style: none;
+      flex-direction: row-reverse;
+      margin-inline-start: auto;
+    }
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem; font-weight: 600;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--text-primary); background: var(--bg-card); }
+    .nav-cta { background: var(--brand-orange) !important; color: white !important; padding: 8px 20px !important; }
+    .nav-cta:hover { opacity: 0.9; }
+    .theme-toggle-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      font-size: 16px; line-height: 1;
+      cursor: pointer;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn:hover { border-color: var(--border-hover); background: var(--bg-card-hover); }
+    .nav-mobile-btn {
+      display: none;
+      flex-direction: column; gap: 5px;
+      background: none; border: none;
+      cursor: pointer; padding: 8px;
+    }
+    .nav-mobile-btn span {
+      width: 24px; height: 2px;
+      background: var(--text-secondary);
+      border-radius: 2px;
+      transition: var(--transition);
+      display: block;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--overlay-97);
+      backdrop-filter: blur(20px);
+      padding: 20px 24px 28px;
+      border-bottom: 1px solid var(--border);
+      z-index: 999;
+      flex-direction: column; gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 1rem; font-weight: 600;
+      padding: 12px 16px;
+      border-radius: var(--radius-sm);
+    }
+    .mobile-menu a:hover { color: var(--text-primary); background: var(--bg-card); }
+
+    /* ============================================================
+       HERO SECTION
+    ============================================================ */
+    #hero {
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+      padding: 130px 24px 84px;
+    }
+    .hero-bg-glow { position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; }
+    .glow-1 { width: 600px; height: 600px; background: rgba(47,127,209,0.12); top: -200px; right: -200px; }
+    .glow-2 { width: 500px; height: 500px; background: rgba(242,145,37,0.1); bottom: -150px; left: -150px; }
+    .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; text-align: center; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(47,127,209,0.1);
+      border: 1px solid rgba(47,127,209,0.25);
+      border-radius: 100px;
+      padding: 7px 20px;
+      font-size: 0.875rem; font-weight: 700;
+      color: var(--accent-blue);
+      margin-bottom: 32px;
+    }
+    .hero-badge-dot { width: 7px; height: 7px; background: var(--accent-blue); border-radius: 50%; flex-shrink: 0; }
+    .hero-title {
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 26px;
+      font-family: var(--font-heading);
+    }
+    .hero-title .line1 { display: block; color: var(--text-primary); }
+    .hero-title .line2 { display: block; color: var(--accent-blue); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-secondary);
+      max-width: 700px; margin: 0 auto 44px;
+      line-height: 1.9;
+    }
+    .hero-cta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; }
+    .btn-primary, .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px;
+      border-radius: var(--radius-md);
+      font-size: 1rem; font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: var(--font-heading);
+    }
+    .btn-primary { background: var(--brand-orange); color: white; border: none; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 16px 40px var(--glow-blue); }
+    .btn-secondary { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
+    .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
+    .hero-stats {
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 40px;
+      margin-top: 44px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-number { font-size: 2.2rem; font-weight: 900; color: var(--accent-blue); font-family: var(--font-mono); }
+    .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 4px; font-weight: 600; }
+    .stat-divider { width: 1px; height: 40px; background: var(--border); }
+
+    /* ============================================================
+       SECTION COMMONS
+    ============================================================ */
+    section { padding: 110px 24px; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 0.875rem; font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--accent-blue);
+      margin-bottom: 16px;
+    }
+    .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--accent-blue); opacity: 0.5; }
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 900;
+      margin-bottom: 16px;
+      color: var(--text-primary);
+      font-family: var(--font-heading);
+    }
+    .section-desc { font-size: 1.05rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.9; }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .gradient-text { color: var(--accent-blue); }
+    .divider { height: 1px; background: var(--border); }
+    ::selection { background: rgba(47,127,209,0.3); color: white; }
+
+    /* ============================================================
+       STUDY ORDER STEPPER
+    ============================================================ */
+    #map { background: var(--bg-secondary); }
+    .order-title {
+      font-family: var(--font-heading);
+      font-weight: 800; font-size: 1.05rem;
+      margin-bottom: 14px;
+      color: var(--text-primary);
+    }
+    .order-stepper {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 48px;
+      counter-reset: step;
+    }
+    .order-step {
+      display: flex; align-items: flex-start; gap: 10px;
+      text-align: right;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      cursor: pointer;
+      color: inherit;
+      font: inherit;
+      transition: var(--transition);
+    }
+    .order-step:hover { border-color: var(--lv); transform: translateY(-2px); }
+    .order-step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700;
+      background: var(--lv); color: #fff;
+    }
+    .order-step-title { font-weight: 800; font-size: 0.9rem; font-family: var(--font-heading); line-height: 1.5; }
+    .order-step-desc { font-size: 0.78rem; color: var(--text-secondary); line-height: 1.6; margin-top: 2px; }
+
+    /* ============================================================
+       MAP TOOLBAR
+    ============================================================ */
+    .map-toolbar {
+      position: sticky; top: 76px; z-index: 50;
+      display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+      background: var(--overlay-97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 12px 16px;
+      margin-bottom: 36px;
+    }
+    .search-wrap { position: relative; flex: 1 1 320px; }
+    .search-wrap input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      color: var(--text-primary);
+      font: inherit; font-size: 0.95rem;
+      padding: 10px 40px 10px 14px;
+      outline: none;
+      transition: var(--transition);
+    }
+    .search-wrap input:focus { border-color: var(--accent-blue); box-shadow: 0 0 0 3px rgba(47,127,209,0.15); }
+    .search-wrap::before { content: '🔍'; position: absolute; right: 13px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; opacity: 0.7; }
+    .search-result { font-size: 0.85rem; color: var(--text-secondary); min-width: 160px; }
+    .overall { display: flex; align-items: center; gap: 12px; flex: 0 1 340px; }
+    .overall-text { font-size: 0.82rem; color: var(--text-secondary); white-space: nowrap; }
+    .overall-text b { color: var(--text-primary); font-family: var(--font-mono); }
+    .bar { flex: 1; height: 6px; background: var(--border); border-radius: 6px; overflow: hidden; min-width: 80px; }
+    .bar > span { display: block; height: 100%; width: 0; background: var(--accent-green); border-radius: 6px; transition: width 0.4s ease; }
+    .link-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); font: inherit; font-size: 0.78rem;
+      text-decoration: underline; text-underline-offset: 3px;
+    }
+    .link-btn:hover { color: var(--text-primary); }
+
+    /* ============================================================
+       LEVELS MAP
+    ============================================================ */
+    .levels { position: relative; }
+    .levels::before {
+      content: '';
+      position: absolute;
+      top: 24px; bottom: 24px; right: 23px;
+      width: 2px;
+      background: linear-gradient(to bottom, #10b981, #2f7fd1, #0891b2, #f29125, #a855f7, #6366f1, #ef4444, #db2777);
+      opacity: 0.45;
+    }
+    .level {
+      position: relative;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 28px;
+      padding: 28px 0;
+      scroll-margin-top: 170px;
+    }
+    .level + .level { border-top: 1px dashed var(--border); }
+    .level-rail { display: flex; gap: 16px; align-items: flex-start; }
+    .level-node {
+      position: relative; z-index: 1;
+      flex-shrink: 0;
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-weight: 800; font-size: 1.1rem;
+      color: #fff;
+      background: var(--lv);
+      box-shadow: 0 0 0 6px var(--bg-secondary), 0 0 28px var(--lv);
+    }
+    .level-en { font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; color: var(--lv); letter-spacing: 1px; direction: ltr; display: inline-block; }
+    .level-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900; margin: 2px 0 8px; }
+    .level-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 12px; }
+    .level-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pill {
+      font-size: 0.74rem; font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: var(--bg-chip);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      white-space: nowrap;
+    }
+    .pill.lv { color: var(--lv); border-color: var(--lv); background: transparent; }
+    .level-tiles {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+      align-content: start;
+    }
+
+    /* Domain tile */
+    .domain-tile {
+      position: relative;
+      display: flex; flex-direction: column; gap: 8px;
+      text-align: right;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      color: inherit; font: inherit;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .domain-tile:hover, .domain-tile:focus-visible {
+      border-color: var(--lv);
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card), 0 0 0 1px var(--lv);
+      outline: none;
+    }
+    .domain-tile.dim { opacity: 0.28; }
+    .domain-tile.hit { border-color: var(--lv); }
+    .tile-top { display: flex; align-items: center; justify-content: space-between; }
+    .tile-icon {
+      width: 42px; height: 42px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      background: var(--lv);
+    }
+    .tile-num {
+      font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600;
+      color: var(--text-muted);
+      padding: 3px 9px; border-radius: 100px;
+      background: var(--border);
+      direction: ltr;
+    }
+    .tile-title { font-family: var(--font-heading); font-weight: 800; font-size: 1.02rem; line-height: 1.5; }
+    .tile-desc {
+      font-size: 0.8rem; color: var(--text-secondary); line-height: 1.7;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .tile-foot { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: auto; padding-top: 4px; }
+    .tile-count { font-size: 0.76rem; font-weight: 700; color: var(--text-muted); }
+    .tile-lesson { font-size: 0.7rem; font-weight: 700; color: var(--brand-orange); }
+    .tile-bar { height: 4px; background: var(--border); border-radius: 4px; overflow: hidden; }
+    .tile-bar > span { display: block; height: 100%; width: 0; background: var(--lv); transition: width 0.4s ease; }
+    .tile-match {
+      position: absolute; top: -9px; left: 14px;
+      font-size: 0.7rem; font-weight: 800;
+      padding: 2px 9px; border-radius: 100px;
+      background: var(--brand-orange); color: #fff;
+    }
+
+    /* ============================================================
+       DOMAIN MODAL
+    ============================================================ */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 24px 16px;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      width: 100%; max-width: 920px;
+      max-height: 100%;
+      display: flex; flex-direction: column;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-hover);
+      border-top: 4px solid var(--lv);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 40px 120px rgba(0,0,0,0.5);
+      overflow: hidden;
+    }
+    .modal-head { padding: 22px 24px 16px; border-bottom: 1px solid var(--border); }
+    .modal-head-row { display: flex; align-items: flex-start; gap: 14px; }
+    .modal-head .tile-icon { width: 50px; height: 50px; font-size: 24px; flex-shrink: 0; }
+    .modal-title-wrap { flex: 1; min-width: 0; }
+    .modal-title { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 900; line-height: 1.4; }
+    .modal-sub { font-size: 0.86rem; color: var(--text-secondary); margin-top: 4px; line-height: 1.7; }
+    .modal-close {
+      flex-shrink: 0;
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1px solid var(--border); background: var(--bg-card);
+      color: var(--text-primary); font-size: 18px; cursor: pointer;
+    }
+    .modal-close:hover { border-color: var(--border-hover); }
+    .modal-tools { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
+    .modal-tools .search-wrap { flex: 1 1 220px; }
+    .modal-tools .search-wrap input { padding-top: 8px; padding-bottom: 8px; font-size: 0.88rem; }
+    .lesson-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--brand-orange); color: #fff;
+      text-decoration: none; font-weight: 700; font-size: 0.85rem;
+      padding: 8px 16px; border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+    .lesson-btn:hover { opacity: 0.9; }
+    .modal-body { overflow-y: auto; padding: 18px 24px 24px; }
+    .topic-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px;
+    }
+    .topic {
+      display: flex; align-items: center; gap: 10px;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.88rem;
+    }
+    .topic:hover { border-color: var(--lv); }
+    .topic input { accent-color: var(--lv); width: 16px; height: 16px; flex-shrink: 0; cursor: pointer; }
+    .topic-num { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); flex-shrink: 0; min-width: 28px; }
+    .topic-text { flex: 1; unicode-bidi: plaintext; }
+    .topic.is-done .topic-text { color: var(--text-muted); text-decoration: line-through; }
+    mark { background: rgba(242,145,37,0.3); color: inherit; border-radius: 3px; padding: 0 2px; }
+    .empty { color: var(--text-muted); text-align: center; padding: 24px; font-size: 0.9rem; }
+
+    /* ============================================================
+       TRACKS
+    ============================================================ */
+    #tracks { background: var(--bg-primary); }
+    .tracks-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 16px; }
+    .track-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--lv);
+      border-radius: var(--radius-lg);
+      padding: 24px 20px;
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .track-icon { font-size: 2rem; }
+    .track-title { font-family: var(--font-heading); font-weight: 900; font-size: 1.1rem; }
+    .track-en { font-family: var(--font-mono); font-size: 0.72rem; color: var(--lv); direction: ltr; display: inline-block; }
+    .track-desc { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.75; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+    .domain-chip {
+      font: inherit; font-size: 0.75rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 100px;
+      background: var(--bg-chip); border: 1px solid var(--border);
+      color: var(--text-secondary);
+      cursor: pointer; transition: var(--transition);
+    }
+    .domain-chip:hover { border-color: var(--lv); color: var(--text-primary); }
+
+    /* ============================================================
+       PROJECTS
+    ============================================================ */
+    #projects { background: var(--bg-secondary); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 18px; }
+    .proj-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .proj-group-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .proj-group-title { font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; flex: 1; }
+    .diff-beginner { background: rgba(16,185,129,0.15); color: #10b981; }
+    .diff-intermediate { background: rgba(245,158,11,0.15); color: #d48806; }
+    .diff-advanced { background: rgba(239,68,68,0.15); color: #ef4444; }
+    .proj-group .topic-list { grid-template-columns: 1fr; }
+    .proj-final {
+      margin-top: 18px;
+      background: linear-gradient(135deg, rgba(47,127,209,0.12), rgba(242,145,37,0.12));
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      text-align: center;
+    }
+    .proj-final h3 { font-family: var(--font-heading); font-weight: 900; font-size: 1.25rem; margin-bottom: 6px; }
+    .proj-final p { color: var(--text-secondary); font-size: 0.92rem; }
+
+    /* ============================================================
+       TOOLS GRID
+    ============================================================ */
+    #tools { background: var(--bg-primary); }
+    .tools-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .tools-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+    }
+    .tools-group-title { font-family: var(--font-heading); font-weight: 800; font-size: 0.95rem; margin-bottom: 12px; }
+    .tool-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tool-chip {
+      font-family: var(--font-mono); font-size: 0.74rem; font-weight: 500;
+      padding: 4px 10px; border-radius: 6px;
+      background: var(--bg-chip); border: 1px solid var(--border);
+      color: var(--text-secondary);
+      direction: ltr;
+    }
+
+    /* ============================================================
+       TIPS
+    ============================================================ */
+    #tips { background: var(--bg-secondary); }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+    .tip {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .tip-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .tip h3 { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; margin-bottom: 6px; }
+    .tip p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.8; }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1100px) {
+      .nav-links a { padding: 8px 8px; font-size: 0.85rem; }
+      .order-stepper { grid-template-columns: repeat(2, 1fr); }
+      .level { grid-template-columns: 1fr; gap: 18px; }
+      .level-tiles { padding-right: 64px; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-mobile-btn { display: flex; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 80px 16px; }
+      #hero { padding: 110px 16px 64px; }
+      nav { padding: 0 16px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 22px; }
+      .map-toolbar { top: 72px; padding: 10px 12px; gap: 10px; }
+      .overall { flex: 1 1 100%; }
+      .search-result { min-width: 0; }
+      .modal-head, .modal-body { padding-left: 16px; padding-right: 16px; }
+    }
+    @media (max-width: 560px) {
+      .order-stepper { grid-template-columns: 1fr; }
+      .levels::before { display: none; }
+      .level-tiles { padding-right: 0; grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-secondary { justify-content: center; }
+      .stat-divider { display: none; }
+      .hero-stats { display: grid; grid-template-columns: repeat(2, 1fr); }
+      .topic-list { grid-template-columns: 1fr; }
+      .nav-logo-text { display: none; }
+    }
+
+    /* ============================================================
+       LARAVEL PAGE — overrides & additions
+    ============================================================ */
+    .glow-1 { background: rgba(239,68,68,0.10); }
+    .levels::before { background: linear-gradient(to bottom, #10b981, #2f7fd1, #f29125, #a855f7); }
+
+    /* Educational levels (order stepper) */
+    .order-stepper { grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .order-step { flex-direction: column; gap: 10px; padding: 18px; border-top: 3px solid var(--lv); }
+    .order-step-head { display: flex; align-items: center; gap: 10px; }
+    .order-step-title { font-size: 1.02rem; }
+    .order-step-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--lv); letter-spacing: 1px; direction: ltr; display: inline-block; }
+    .order-step-row { font-size: 0.8rem; color: var(--text-secondary); line-height: 1.7; }
+    .order-step-row b { color: var(--text-primary); font-weight: 700; }
+    .order-step-phases { margin-top: auto; }
+
+    /* Unit accordions */
+    .unit-list { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+    .unit-acc {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-right: 3px solid var(--lv);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      scroll-margin-top: 170px;
+    }
+    .unit-acc:hover { border-color: var(--border-hover); border-right-color: var(--lv); }
+    .unit-acc.open { border-color: var(--lv); box-shadow: var(--shadow-card); }
+    .unit-acc.dim { opacity: 0.3; }
+    .acc-head {
+      width: 100%;
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 16px;
+      background: none; border: 0;
+      color: inherit; font: inherit; text-align: right;
+      cursor: pointer;
+    }
+    .acc-head:focus-visible { outline: 2px solid var(--lv); outline-offset: -2px; border-radius: var(--radius-md); }
+    .acc-head .tile-icon { width: 40px; height: 40px; font-size: 18px; flex-shrink: 0; }
+    .acc-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+    .acc-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.74rem; font-weight: 700; color: var(--text-muted); }
+    .acc-unit { color: var(--lv); }
+    .acc-match {
+      font-size: 0.7rem; font-weight: 800;
+      padding: 1px 8px; border-radius: 100px;
+      background: var(--brand-orange); color: #fff;
+    }
+    .acc-title { font-family: var(--font-heading); font-weight: 800; font-size: 1rem; line-height: 1.5; }
+    .acc-bar { height: 3px; background: var(--border); border-radius: 3px; overflow: hidden; max-width: 220px; }
+    .acc-bar > span { display: block; height: 100%; width: 0; background: var(--lv); transition: width 0.4s ease; }
+    .acc-chev {
+      flex-shrink: 0;
+      width: 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg-chip); border: 1px solid var(--border);
+      color: var(--text-secondary); font-size: 0.75rem;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+    .unit-acc.open .acc-chev { transform: rotate(180deg); background: var(--lv); color: #fff; border-color: var(--lv); }
+    .acc-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
+    .unit-acc.open .acc-body { grid-template-rows: 1fr; }
+    .acc-inner { overflow: hidden; min-height: 0; }
+    .acc-inner .topic-list { padding: 4px 16px 16px; border-top: 1px dashed var(--border); padding-top: 14px; margin: 0 16px; padding-inline: 0; }
+    .acc-inner .topic-list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+    .acc-inner .topic { font-size: 0.86rem; align-items: flex-start; line-height: 1.8; }
+    .acc-inner .topic-text { unicode-bidi: normal; direction: rtl; text-align: right; }
+    .acc-inner .topic input { margin-top: 3px; }
+
+    .expand-btn {
+      background: var(--bg-card); border: 1px solid var(--border);
+      color: var(--text-primary); font: inherit; font-size: 0.8rem; font-weight: 700;
+      padding: 8px 14px; border-radius: var(--radius-sm);
+      cursor: pointer; white-space: nowrap; transition: var(--transition);
+    }
+    .expand-btn:hover { border-color: var(--accent-blue); }
+
+    /* Projects */
+    .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    .proj-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      display: flex; flex-direction: column; gap: 14px;
+      transition: var(--transition);
+    }
+    .proj-card:hover { border-color: var(--border-hover); transform: translateY(-3px); }
+    .proj-card .proj-group-head { margin-bottom: 0; }
+    .proj-card .tile-icon { background: var(--brand-blue); flex-shrink: 0; }
+    .proj-num { font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); direction: ltr; display: inline-block; }
+    .diff-expert { background: rgba(168,85,247,0.15); color: #a855f7; }
+    .diff-special { background: rgba(219,39,119,0.15); color: #db2777; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .proj-tag {
+      font-size: 0.76rem; font-weight: 600;
+      padding: 4px 10px; border-radius: 6px;
+      background: var(--bg-chip); border: 1px solid var(--border);
+      color: var(--text-secondary);
+      unicode-bidi: plaintext;
+    }
+
+    /* Competencies */
+    #skills { background: var(--bg-primary); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+    }
+    .skill-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .skill-head .tile-icon { background: var(--brand-orange); flex-shrink: 0; }
+    .skill-head h3 { font-family: var(--font-heading); font-weight: 800; font-size: 1.05rem; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .check-list li { position: relative; padding-right: 26px; font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+    .check-list li::before { content: '✓'; position: absolute; right: 0; top: 0; color: var(--accent-green); font-weight: 900; }
+
+    /* Lesson methodology */
+    #method { background: var(--bg-secondary); }
+    .method-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; counter-reset: m; }
+    .method-step {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 0.9rem; font-weight: 600;
+    }
+    .method-num {
+      flex-shrink: 0;
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;
+      background: var(--brand-blue); color: #fff;
+    }
+    .method-icon { font-size: 1.1rem; margin-inline-start: auto; }
+
+    #tips { background: var(--bg-primary); }
+
+    @media (max-width: 1100px) {
+      .order-stepper { grid-template-columns: repeat(2, 1fr); }
+      .unit-list { padding-right: 64px; }
+    }
+    @media (max-width: 768px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .map-toolbar .expand-btn { flex: 1 1 auto; }
+    }
+    @media (max-width: 560px) {
+      .order-stepper { grid-template-columns: 1fr; }
+      .unit-list { padding-right: 0; }
+      .acc-head { gap: 10px; padding: 12px; }
+      .acc-head .tile-icon { width: 34px; height: 34px; font-size: 16px; }
+      .acc-title { font-size: 0.92rem; }
+      .acc-chev { width: 28px; height: 28px; }
+      .acc-inner .topic-list { margin: 0 12px; }
+      .acc-inner .topic { padding: 9px 10px; }
+      .level-title { font-size: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
 
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
   <nav id="navbar">
-    <div class="nav-inner nav-inner--page">
-      <a href="index.html" class="nav-logo nav-logo--img-only">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
         <img src="images/logo.png" alt="كلاود سوفت" class="nav-logo-img">
+        <span class="nav-logo-text">دبلوم PHP و Laravel</span>
       </a>
-      <div class="nav-center">
-        <span class="nav-center-title">أكاديمية كلاود سوفت</span>
-        <div class="nav-breadcrumb">
-        <a href="index.html">الرئيسية</a>
-        <span class="separator">/</span>
-        <span>PHP      </span>
-        </div>
-      </div>
+      <ul class="nav-links">
+        <li><a href="#map" class="nav-cta">ابدأ الآن</a></li>
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="#tips">ملاحظات</a></li>
+        <li><a href="#method">المنهجية</a></li>
+        <li><a href="#skills">معايير الخبير</a></li>
+        <li><a href="#projects">المشاريع</a></li>
+        <li><a href="#map">المنهاج</a></li>
+      </ul>
       <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
-      <a href="index.html" class="nav-back-btn">→ العودة</a>
+      <button class="nav-mobile-btn" id="mobileMenuBtn" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
 
-  <div class="container">
-
-    <div class="diploma-hero reveal">
-      <div class="diploma-icon">🐘</div>
-      <h1 class="diploma-title">دبلوم PHP وقواعد البيانات</h1>
-      <p class="diploma-subtitle">موسوعة احتراف برمجة خلفيات الويب — هندسة البيانات، الأمان المتقدم، هندسة MVC و APIs.</p>
-      <div class="diploma-badges">
-        <span class="diploma-badge">المستوى الثالث</span>
-        <span class="diploma-badge green">Laravel</span>
-        <span class="diploma-badge orange">Full-Stack</span>
-      </div>
-      <div class="diploma-stats">
-        <div class="d-stat"><div class="d-stat-num">5</div><div class="d-stat-label">أقسام رئيسية</div></div>
-        <div class="d-stat"><div class="d-stat-num">70+</div><div class="d-stat-label">درس تفصيلي</div></div>
-        <div class="d-stat"><div class="d-stat-num">4</div><div class="d-stat-label">مشاريع عملية</div></div>
-        <div class="d-stat"><div class="d-stat-num">18+</div><div class="d-stat-label">تقنية وأداة</div></div>
-      </div>
-    </div>
-
-    <div class="modules-section">
-      <div class="section-header reveal">
-        <div class="section-title"><span class="icon">📖</span> محاور الدبلوم</div>
-        <p class="section-desc">من أساسيات PHP حتى بناء أنظمة متكاملة بـ Laravel مع APIs وقواعد بيانات متقدمة.</p>
-      </div>
-
-      <!-- PHP Basics -->
-      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
-        <div class="module-header" onclick="toggleModule(this)">
-          <div class="module-number">01</div>
-          <div class="module-title">
-            <h2>أساسيات PHP</h2>
-            <p>لغة برمجة خلفيات الويب الأكثر انتشاراً</p>
-          </div>
-        </div>
-        <div class="module-content">
-          <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في PHP وكيف تعمل على السيرفر</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">المتغيرات وأنواع البيانات والثوابت</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">الشروط والحلقات (if, switch, for, while, foreach)</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الدوال (Functions) وتمرير المعاملات</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">المصفوفات (Arrays) بجميع أنواعها</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">التعامل مع النصوص (String Functions)</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">التعامل مع الملفات (File Handling)</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Cookies و Sessions</span></div>
-            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">النماذج والتحقق من البيانات (Form Validation)</span></div>
-            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">البرمجة الكائنية OOP — Classes & Objects</span></div>
-            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">Namespaces و Autoloading و Composer</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MySQL -->
-      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
-        <div class="module-header" onclick="toggleModule(this)">
-          <div class="module-number">02</div>
-          <div class="module-title">
-            <h2>قواعد البيانات MySQL</h2>
-            <p>تصميم وإدارة قواعد البيانات العلائقية</p>
-          </div>
-        </div>
-        <div class="module-content">
-          <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مقدمة في قواعد البيانات العلائقية</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">تصميم الجداول والعلاقات (ERD)</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">استعلامات SQL الأساسية (SELECT, INSERT, UPDATE, DELETE)</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">JOINs والاستعلامات المتقدمة</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Indexes وتحسين الأداء</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">PDO — الاتصال الآمن بقواعد البيانات</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">الحماية من SQL Injection</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">Transactions و ACID</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- MVC -->
-      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
-        <div class="module-header" onclick="toggleModule(this)">
-          <div class="module-number">03</div>
-          <div class="module-title">
-            <h2>هندسة MVC</h2>
-            <p>بناء إطار عمل خاص بك من الصفر</p>
-          </div>
-        </div>
-        <div class="module-content">
-          <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مفهوم MVC — Model, View, Controller</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">بناء Router مخصص</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">نظام القوالب (Templating Engine)</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">نظام Middleware</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">نظام المصادقة والصلاحيات</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">بناء CRUD كامل</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">مشروع: نظام إدارة محتوى (CMS)</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Laravel -->
-      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
-        <div class="module-header" onclick="toggleModule(this)">
-          <div class="module-number">04</div>
-          <div class="module-title">
-            <h2>Laravel Framework</h2>
-            <p>أقوى إطار عمل PHP — بناء تطبيقات ويب حديثة</p>
-          </div>
-        </div>
-        <div class="module-content">
-          <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">تثبيت Laravel وهيكلية المشروع</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Routing و Controllers</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">Blade Templates و Components</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">Eloquent ORM والعلاقات</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">Migrations و Seeders و Factories</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Form Requests و Validation</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">Authentication و Authorization</span></div>
-            <div class="topic-item"><span class="topic-num">08</span><span class="topic-text">API Resources و API Development</span></div>
-            <div class="topic-item"><span class="topic-num">09</span><span class="topic-text">Queues و Jobs و Scheduling</span></div>
-            <div class="topic-item"><span class="topic-num">10</span><span class="topic-text">Testing و PHPUnit</span></div>
-            <div class="topic-item"><span class="topic-num">11</span><span class="topic-text">مشروع: نظام إدارة متكامل بـ Laravel</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- APIs & Security -->
-      <div class="module-card reveal" style="--module-color: var(--accent-purple);">
-        <div class="module-header" onclick="toggleModule(this)">
-          <div class="module-number">05</div>
-          <div class="module-title">
-            <h2>APIs & الأمان المتقدم</h2>
-            <p>بناء RESTful APIs آمنة وتأمين التطبيقات</p>
-          </div>
-        </div>
-        <div class="module-content">
-          <div class="module-topics">
-            <div class="topic-item"><span class="topic-num">01</span><span class="topic-text">مبادئ RESTful API Design</span></div>
-            <div class="topic-item"><span class="topic-num">02</span><span class="topic-text">Laravel Sanctum — المصادقة عبر Tokens</span></div>
-            <div class="topic-item"><span class="topic-num">03</span><span class="topic-text">بناء API كاملة مع توثيق Swagger</span></div>
-            <div class="topic-item"><span class="topic-num">04</span><span class="topic-text">الحماية من XSS و CSRF</span></div>
-            <div class="topic-item"><span class="topic-num">05</span><span class="topic-text">تشفير البيانات و Hashing</span></div>
-            <div class="topic-item"><span class="topic-num">06</span><span class="topic-text">Rate Limiting و Throttling</span></div>
-            <div class="topic-item"><span class="topic-num">07</span><span class="topic-text">النشر على سيرفر حقيقي (DigitalOcean / AWS)</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modules-section reveal">
-      <div class="section-header">
-        <div class="section-title"><span class="icon">✨</span> مميزات الدبلوم</div>
-      </div>
-      <div class="features-grid">
-        <div class="feature-item"><div class="feature-icon">🐘</div><h4>PHP 8 كامل</h4><p>أحدث إصدار مع كل الميزات الحديثة.</p></div>
-        <div class="feature-item"><div class="feature-icon">🏗️</div><h4>هندسة MVC</h4><p>ابنِ إطار عملك الخاص من الصفر.</p></div>
-        <div class="feature-item"><div class="feature-icon">🚀</div><h4>Laravel</h4><p>أقوى إطار عمل PHP في العالم.</p></div>
-        <div class="feature-item"><div class="feature-icon">🔒</div><h4>أمان متقدم</h4><p>حماية شاملة ضد كل أنواع الهجمات.</p></div>
-      </div>
-    </div>
-
-    <div class="alert alert-success reveal">
-      <span class="alert-icon">🚀</span>
-      <span>بعد هذا الدبلوم ستكون Full-Stack Developer قادر على بناء أي نظام ويب من الصفر حتى النشر!</span>
-    </div>
-
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#map" onclick="closeMobileMenu()">🗺️ المنهاج الشامل</a>
+    <a href="#projects" onclick="closeMobileMenu()">🚀 المشاريع العملية</a>
+    <a href="#skills" onclick="closeMobileMenu()">🏅 معايير اجتياز مستوى الخبير</a>
+    <a href="#method" onclick="closeMobileMenu()">📐 منهجية إعداد الدروس</a>
+    <a href="#tips" onclick="closeMobileMenu()">📌 ملاحظات تنظيمية</a>
+    <a href="index.html" onclick="closeMobileMenu()">🏠 الرئيسية</a>
   </div>
 
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <div class="hero-bg-glow glow-1"></div>
+    <div class="hero-bg-glow glow-2"></div>
 
-  <script src="js/diploma.js?v=5.0"></script>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        🐘 دبلوم Backend — المنهاج الشامل
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line1">PHP و Laravel</span>
+        <span class="line2">من الصفر حتى مستوى الخبير</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        منهاج متدرج يبدأ بأساسيات الويب وPHP وSQL، ثم Laravel بكل مكوناته: Eloquent وAPIs والمصادقة والطوابير
+        والأمان والاختبارات، وصولًا إلى الأنظمة متعددة المؤسسات وDevOps والتوسع وLaravel Internals.
+        كل موضوع قابل للتتبع لتعرف أين وصلت.
+      </p>
+
+      <div class="hero-cta">
+        <a href="#map" class="btn-primary"><span>🗺️</span> استكشف المنهاج</a>
+        <a href="#order" class="btn-secondary"><span>🧭</span> المستويات التعليمية</a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-number" id="statPhases">22</div>
+          <div class="hero-stat-label">مرحلة</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" id="statUnits">96</div>
+          <div class="hero-stat-label">وحدة تعليمية</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" id="statTopics">1464</div>
+          <div class="hero-stat-label">موضوعًا</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-number" id="statProjects">8</div>
+          <div class="hero-stat-label">مشاريع عملية</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CURRICULUM MAP
+  ============================================================ -->
+  <section id="map">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">🗺️ المنهاج الشامل</div>
+        <h2 class="section-title">من التأسيس إلى <span class="gradient-text">مستوى الخبير</span></h2>
+        <p class="section-desc">
+          اثنتان وعشرون مرحلة متتالية موزعة على أربعة مستويات تعليمية. اضغط على أي وحدة لعرض كل موضوعاتها
+          وتحديد ما أنجزته، أو ابحث عن مفهوم لتعرف مكانه في المنهاج.
+        </p>
+      </div>
+
+      <div id="order">
+        <div class="order-title">🧭 المستويات التعليمية ومعايير الانتقال</div>
+        <div class="order-stepper" id="orderStepper"></div>
+      </div>
+
+      <div class="map-toolbar">
+        <div class="search-wrap">
+          <input type="search" id="mapSearch" placeholder="ابحث عن مفهوم… مثل Eloquent أو Sanctum أو Queues" aria-label="البحث في المنهاج">
+        </div>
+        <div class="search-result" id="searchResult" aria-live="polite"></div>
+        <button class="expand-btn" id="expandAll" type="button">⇕ فتح كل الوحدات</button>
+        <div class="overall">
+          <span class="overall-text">أنجزت <b id="doneCount">0</b> من <b id="totalCount">0</b></span>
+          <div class="bar"><span id="overallBar"></span></div>
+          <button class="link-btn" id="resetProgress" type="button">إعادة ضبط</button>
+        </div>
+      </div>
+
+      <div class="levels" id="phases"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       PROJECTS
+  ============================================================ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">🚀 المرحلة الثالثة والعشرون</div>
+        <h2 class="section-title">المشاريع العملية التي <span class="gradient-text">تثبت إتقان Laravel</span></h2>
+        <p class="section-desc">ثمانية مشاريع متدرجة من مستوى المبتدئ حتى الخبير المتقدم، يجمع كل منها مهارات عدة مراحل في نظام حقيقي.</p>
+      </div>
+      <div class="projects-grid" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       COMPETENCIES
+  ============================================================ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">🏅 المرحلة الرابعة والعشرون</div>
+        <h2 class="section-title">معايير اجتياز <span class="gradient-text">مستوى الخبير</span></h2>
+        <p class="section-desc">ست كفاءات يجب أن يثبتها المتدرب عمليًا قبل اعتباره خبيرًا في Laravel.</p>
+      </div>
+      <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       LESSON METHODOLOGY
+  ============================================================ -->
+  <section id="method">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">📐 جودة المحتوى</div>
+        <h2 class="section-title">منهجية إعداد <span class="gradient-text">كل درس</span></h2>
+        <p class="section-desc">كل درس في الدبلوم يُبنى وفق هذه الخطوات الأربع عشرة، من تعريف المفهوم حتى المراجع الرسمية.</p>
+      </div>
+      <div class="method-grid" id="methodGrid"></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       NOTES
+  ============================================================ -->
+  <section id="tips">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">📌 قبل أن تبدأ</div>
+        <h2 class="section-title">ملاحظات <span class="gradient-text">تنظيمية</span></h2>
+      </div>
+      <div class="tips-grid" id="notesGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ============================================================
+    // DATA — generated from laravel_complete_curriculum.md
+    // Topic tuple: [globalId, numberInUnit, text]
+    // ============================================================
+    const PHASES = [{"n":1,"title":"التأسيس قبل Laravel","desc":"أسس الويب وبيئة التطوير وPHP والبرمجة الكائنية وComposer وSQL والمفاهيم المعمارية قبل الدخول إلى Laravel.","units":[{"n":1,"title":"مقدمة في تطوير الويب","icon":"🌐","items":[[1,1,"كيف يعمل الويب؟ Client وServer؛ Frontend وBackend؛ Web Server وApplication Server."],[2,2,"دورة حياة HTTP Request وHTTP Response؛ HTTP وHTTPS؛ Methods وStatus Codes وHeaders."],[3,3,"DNS وDomain Names والاستضافة؛ Cookies وSessions؛ JSON وXML؛ REST وAPI."],[4,4,"MVC ومفهوم Framework؛ Git وGitHub؛ بيئات Development وTesting وProduction."]]},{"n":2,"title":"إعداد بيئة التطوير","icon":"🧰","items":[[5,1,"تثبيت PHP وComposer وإعداد PATH وPHP Extensions."],[6,2,"إعداد VS Code أو PhpStorm وإضافات PHP وTerminal."],[7,3,"إعداد Linux أو Windows أو macOS وبيئة محلية أو Docker."],[8,4,"تثبيت MySQL أو MariaDB وأدوات إدارة قواعد البيانات."],[9,5,"إعداد Git والمستودعات وملفات البيئة."]]},{"n":3,"title":"أساسيات PHP","icon":"🐘","items":[[10,1,"PHP Runtime وكتابة أول برنامج والتعليقات."],[11,2,"المتغيرات والثوابت وأنواع البيانات والتحويل بينها."],[12,3,"Operators والمقارنات والشروط if وelseif وelse وswitch وmatch."],[13,4,"حلقات for وwhile وdo while وforeach."],[14,5,"Arrays بأنواعها وعملياتها."],[15,6,"Strings ودوال mb_* ودعم Unicode."],[16,7,"Functions وParameters وReturn Values وDefault وNamed Arguments."],[17,8,"Scope وAnonymous Functions وClosures وArrow Functions."],[18,9,"الملفات وInclude وRequire."],[19,10,"Error Handling وExceptions وtry/catch/finally."],[20,11,"التاريخ والوقت وJSON وSuperglobals."],[21,12,"Forms وGET وPOST وSessions وCookies."],[22,13,"Composer Autoloading وتنظيم تطبيق PHP."],[23,14,"بناء تطبيق PHP صغير دون إطار عمل."]]},{"n":4,"title":"البرمجة كائنية التوجه في PHP","icon":"🧱","items":[[24,1,"Classes وObjects وProperties وMethods وConstructors."],[25,2,"Visibility وEncapsulation وInheritance وOverriding."],[26,3,"Static Members وClass Constants."],[27,4,"Abstract Classes وInterfaces وTraits وNamespaces."],[28,5,"Autoloading وPSR-4."],[29,6,"Type Declarations وReturn Types وNullable وUnion وIntersection Types."],[30,7,"Enums وReadonly Properties وAttributes وReflection."],[31,8,"Dependency Injection وComposition مقابل Inheritance."],[32,9,"SOLID: SRP وOCP وLSP وISP وDIP."],[33,10,"Design by Contract وException Hierarchies."],[34,11,"Generators وIterators وكتابة كود قابل للاختبار."]]},{"n":5,"title":"Composer ومعايير PHP","icon":"📦","items":[[35,1,"Composer وcomposer.json وcomposer.lock."],[36,2,"تثبيت الحزم وإزالتها وتحديثها وإدارة Dependencies."],[37,3,"Semantic Versioning وAutoload وPSR-4 وComposer Scripts."],[38,4,"Composer Audit والحزم الخاصة."],[39,5,"PSR-1 وPSR-4 وPSR-12 وPSR-3 وPSR-7 وPSR-11 وPSR-15 وPSR-18."],[40,6,"إنشاء Package PHP صغيرة."]]},{"n":6,"title":"قواعد البيانات وSQL","icon":"🗄️","items":[[41,1,"قواعد البيانات العلائقية وDatabase وSchema وTable وRows وColumns."],[42,2,"Data Types وPrimary Keys وForeign Keys وConstraints."],[43,3,"CRUD وSELECT وWHERE وORDER BY وLIMIT وINSERT وUPDATE وDELETE."],[44,4,"Aggregate Functions وGROUP BY وHAVING."],[45,5,"INNER وLEFT وRIGHT وCROSS JOIN."],[46,6,"Subqueries وUNION."],[47,7,"Indexes وB-Tree وB+Tree وComposite Indexes."],[48,8,"Transactions وACID وNormalization."],[49,9,"علاقات One-to-One وOne-to-Many وMany-to-Many."],[50,10,"Views وStored Procedures وTriggers."],[51,11,"EXPLAIN وتحليل الاستعلامات والنسخ الاحتياطي وأمن قواعد البيانات."]]},{"n":7,"title":"المفاهيم المعمارية الأساسية","icon":"🏛️","items":[[52,1,"Framework وMVC وSeparation of Concerns وRequest Lifecycle."],[53,2,"Routing وControllers وModels وViews وMiddleware."],[54,3,"Dependency Injection وService Container."],[55,4,"Repository وService Layer ومتى نحتاجهما."],[56,5,"Events وListeners وQueues وBackground Processing."],[57,6,"Caching وConfiguration وLogging وTesting."],[58,7,"Clean Code وSOLID وDesign Patterns."]]}]},{"n":2,"title":"أساسيات Laravel","desc":"التعرف على Laravel وتثبيته وبنيته ودورة حياة الطلب والإعدادات وأوامر Artisan وTinker.","units":[{"n":8,"title":"مقدمة إلى Laravel","icon":"🚀","items":[[59,1,"ما هو Laravel ولماذا نستخدمه؟ تاريخه وفلسفته وتطور إصداراته."],[60,2,"سياسة الدعم والإصدارات وإصدارات PHP المتوافقة."],[61,3,"مقارنة Laravel بالأطر الأخرى ومميزاته وحدود استخدامه."],[62,4,"متطلبات التشغيل والتوثيق الرسمي ومجتمع Laravel."]]},{"n":9,"title":"تثبيت Laravel وإنشاء المشروع","icon":"⚙️","items":[[63,1,"Laravel Installer وComposer وإنشاء مشروع جديد."],[64,2,"بنية المجلدات والملفات وتشغيل خادم التطوير."],[65,3,".env وAPP_KEY وملفات config."],[66,4,"إعداد قاعدة البيانات وTimezone وLocale وDebug وLogging."],[67,5,"Artisan وTinker وGit وبيئة التطوير."]]},{"n":10,"title":"بنية Laravel ودورة حياة الطلب","icon":"🔄","items":[[68,1,"app وbootstrap وconfig وdatabase وpublic وresources وroutes وstorage وtests وvendor."],[69,2,"public/index.php وBootstrap Application."],[70,3,"HTTP Kernel أو آلية معالجة الطلب وفق الإصدار."],[71,4,"Service Providers وMiddleware Pipeline وRouter وController Dispatching."],[72,5,"Response Lifecycle وException Handling وConsole Lifecycle."]]},{"n":11,"title":"Configuration وEnvironment","icon":"🔧","items":[[73,1,"ملفات config وEnvironment Variables."],[74,2,"env() داخل ملفات الإعدادات وconfig() داخل التطبيق."],[75,3,"إعدادات البيئات المختلفة وConfig Caching."],[76,4,"إدارة الأسرار وعدم رفع .env إلى Git."],[77,5,"إعدادات Production والاختبار والتحقق من Configuration."]]},{"n":12,"title":"Artisan وTinker للمبتدئين","icon":"⌨️","items":[[78,1,"استعراض أوامر Artisan وإنشاء Controllers وModels وMigrations."],[79,2,"إنشاء Middleware وRequests وResources وCommands."],[80,3,"إنشاء Jobs وEvents وListeners وNotifications وMailables."],[81,4,"تشغيل Migrations وSeeders واستخدام Tinker."]]}]},{"n":3,"title":"Routing وControllers وHTTP","desc":"توجيه الطلبات وبناء Controllers والتعامل مع Request وResponse وكتابة Middleware.","units":[{"n":13,"title":"Routing في Laravel","icon":"🧭","items":[[82,1,"مفهوم Routing وملفات Web Routes وAPI Routes."],[83,2,"GET وPOST وPUT وPATCH وDELETE."],[84,3,"Route Parameters وOptional Parameters وConstraints."],[85,4,"Named Routes وRoute Groups وPrefix وName Prefix."],[86,5,"Middleware Groups وRoute Model Binding."],[87,6,"Implicit وExplicit Binding وCustom Route Keys وScoped Bindings."],[88,7,"Resource Routes وAPI Resource Routes وSingleton Resources."],[89,8,"Redirects وFallback وRoute Closures."],[90,9,"Route Caching وroute:list وترتيب المسارات وتجنب التعارض."],[91,10,"تنظيم Routes وحمايتها وبناء نظام Routing احترافي."]]},{"n":14,"title":"Controllers","icon":"🎛️","items":[[92,1,"مفهوم Controllers وإنشاؤها وController Methods."],[93,2,"Route Parameters وDependency Injection."],[94,3,"Invokable وResource وAPI Controllers."],[95,4,"Controller Middleware وForm Requests."],[96,5,"Response Types وRedirect وJSON وDownload Responses."],[97,6,"تقليل مسؤوليات Controllers وفصل Business Logic."],[98,7,"تنظيم Controllers واختبارها."]]},{"n":15,"title":"HTTP Request وResponse","icon":"📨","items":[[99,1,"Request Object وInput وQuery Parameters وHeaders وCookies."],[100,2,"Uploaded Files وInput Sanitization وJSON Requests وContent Types."],[101,3,"بناء Responses وHeaders وStatus Codes وRedirects."],[102,4,"Cookies وSessions وStreaming Responses وFile Downloads."],[103,5,"HTTP Exceptions وRequest Lifecycle عمليًا."]]},{"n":16,"title":"Middleware","icon":"🛂","items":[[104,1,"Middleware وإنشاؤه وGlobal وRoute Middleware."],[105,2,"Middleware Groups وترتيب التنفيذ وتمرير البيانات."],[106,3,"Middleware Parameters وAuthentication وAuthorization."],[107,4,"Rate Limiting وCORS وCustom Headers."],[108,5,"تسجيل الطلبات ومنع الوصول وفق شروط."],[109,6,"الاستجابات وTerminable Middleware والاختبارات."]]}]},{"n":4,"title":"Views وواجهات المستخدم","desc":"بناء الواجهات باستخدام Blade وإدارة الأصول عبر Vite وبناء النماذج وواجهات المستخدم.","units":[{"n":17,"title":"Blade Templating","icon":"🗡️","items":[[110,1,"Views وتمرير البيانات وBlade Echo وEscaping وRaw Output."],[111,2,"Layouts وSections وYields وTemplate Inheritance وIncludes."],[112,3,"Components وAnonymous Components وProps وSlots وAttributes."],[113,4,"Conditionals وLoops وForelse وSwitch."],[114,5,"Stacks وPush وPrepend وCustom Directives وBlade Comments."],[115,6,"View Composers وView Caching وتنظيم الواجهات."],[116,7,"حماية مخرجات Blade من XSS."]]},{"n":18,"title":"Frontend Assets وVite","icon":"⚡","items":[[117,1,"Asset Bundling وVite وJavaScript وCSS."],[118,2,"npm وPackage Scripts وتثبيت Bootstrap وTailwind."],[119,3,"تنظيم ملفات الواجهة والصور والخطوط."],[120,4,"Asset Versioning وHMR وProduction Build."],[121,5,"Code Splitting وإدارة Dependencies وتحسين أحجام الملفات."]]},{"n":19,"title":"Forms وواجهة المستخدم","icon":"📝","items":[[122,1,"HTML Forms وGET وPOST وCSRF Token."],[123,2,"Old Input وValidation Errors وForm Components."],[124,3,"File Uploads وSelect وCheckbox وRadio."],[125,4,"CRUD وPagination وSearch وFiltering."],[126,5,"Flash Messages وLocalization وRTL وAccessibility."]]}]},{"n":5,"title":"قواعد البيانات وEloquent ORM","desc":"Migrations وSeeders وEloquent والعلاقات وQuery Builder والمعاملات والتزامن في قاعدة البيانات.","units":[{"n":20,"title":"Migrations","icon":"🏗️","items":[[127,1,"Migrations وSchema Builder وإنشاء وتعديل وحذف الجداول."],[128,2,"أنواع الأعمدة وDefault وNullable وIndexes وUnique Constraints."],[129,3,"Foreign Keys وCascade وRestrict وComposite Indexes."],[130,4,"Renaming وChanging Columns وRollback وRefresh وReset."],[131,5,"Migration Order وProduction Migrations وBackward Compatibility."]]},{"n":21,"title":"Seeders وFactories","icon":"🌱","items":[[132,1,"Seeders وإنشاؤها وتشغيلها وDatabaseSeeder."],[133,2,"Model Factories وFaker وFactory States."],[134,3,"Factory Relationships وإنشاء بيانات مترابطة."],[135,4,"بيانات الاختبار والتطوير ومنع بيانات التجربة في Production."],[136,5,"بناء Dataset واقعي."]]},{"n":22,"title":"Eloquent ORM","icon":"💎","items":[[137,1,"ORM وModel وNaming Conventions وTable وPrimary Key Configuration."],[138,2,"Fillable وGuarded وMass Assignment."],[139,3,"Create وUpdate وFind وFirst وGet."],[140,4,"Where وOrWhere وSelect وOrderBy وLimit وOffset وPagination."],[141,5,"Chunk وChunkById وLazy Collections."],[142,6,"Soft Deletes وGlobal وLocal Scopes."],[143,7,"Model Events وObservers."],[144,8,"Accessors وMutators وAttribute Casting وCustom Casts."],[145,9,"Date وEncrypted Casts وUUID وULID."],[146,10,"Serialization وHidden وVisible وAppends وTouches."],[147,11,"Model Lifecycle."]]},{"n":23,"title":"Eloquent Relationships","icon":"🔗","items":[[148,1,"One-to-One وOne-to-Many وMany-to-One وMany-to-Many."],[149,2,"Has One Through وHas Many Through."],[150,3,"Polymorphic One-to-One وOne-to-Many وMany-to-Many."],[151,4,"Pivot Tables وPivot Attributes وCustom Pivot Models."],[152,5,"Eager وLazy وLazy Eager Loading."],[153,6,"Nested وConstrained Eager Loading."],[154,7,"Relationship Existence Queries وwhereHas وwhereDoesntHave."],[155,8,"withCount وwithSum وwithAvg."],[156,9,"Associate وDissociate وAttach وDetach وSync وSyncWithoutDetaching."],[157,10,"N+1 ومنع Lazy Loading غير المقصود واختبار العلاقات."]]},{"n":24,"title":"Query Builder وSQL المتقدم","icon":"🔎","items":[[158,1,"Query Builder وSelect وAddSelect وWhere Conditions."],[159,2,"WhereIn وWhereBetween وJoins وSubqueries وRaw Expressions."],[160,3,"Aggregates وGroupBy وHaving وUnions."],[161,4,"Conditional Queries وQuery Scopes."],[162,5,"Pagination وCursor Pagination وChunking."],[163,6,"Upsert وBulk Insert وUpdate."],[164,7,"Query Logging وEXPLAIN وQuery Optimization."],[165,8,"Parameter Binding وتجنب SQL Injection."],[166,9,"متى تستخدم Eloquent ومتى Query Builder؟"]]},{"n":25,"title":"Transactions وDatabase Concurrency","icon":"🔒","items":[[167,1,"Transactions وACID وDB::transaction وManual Transactions."],[168,2,"Nested Transactions وSavepoints وCommit وRollback."],[169,3,"Isolation Levels وDeadlocks وRow-Level Locks."],[170,4,"lockForUpdate وsharedLock."],[171,5,"Optimistic وPessimistic Locking."],[172,6,"Race Conditions ومنع التحديثات المتعارضة."],[173,7,"Retry عند Deadlocks."],[174,8,"Transactions مع Events وJobs وafterCommit."],[175,9,"اختبار Concurrency."]]}]},{"n":6,"title":"Validation وAuthentication وAuthorization","desc":"التحقق من المدخلات والمصادقة والصلاحيات وإدارة حسابات المستخدمين.","units":[{"n":26,"title":"Validation","icon":"✅","items":[[176,1,"Validation داخل Controllers وValidator Facade وvalidate Method."],[177,2,"Form Request Classes."],[178,3,"Required وNullable وSometimes وString وNumeric وBoolean."],[179,4,"Email وURL وDate وConfirmed وUnique وExists."],[180,5,"File وImage وArray وNested Array Validation."],[181,6,"Conditional Validation وCustom Rules وClosures."],[182,7,"Custom Messages وAttributes وLocalization."],[183,8,"Validation للـ API وJSON وBusiness Rules."],[184,9,"اختبار Validation."]]},{"n":27,"title":"Authentication","icon":"🔑","items":[[185,1,"Authentication وAuthorization وLaravel Authentication Architecture."],[186,2,"Guards وProviders وSession Authentication."],[187,3,"Login وLogout وRegistration وPassword Hashing."],[188,4,"Password Confirmation وRemember Me."],[189,5,"Email Verification وPassword Reset وPassword Policies."],[190,6,"Multi-Factor وTwo-Factor Authentication."],[191,7,"Login Rate Limiting وSession Regeneration وInvalidation."],[192,8,"Custom Guards وUser Providers."],[193,9,"Social Authentication وOAuth وSSO."],[194,10,"Authentication Testing."]]},{"n":28,"title":"Authorization","icon":"🛡️","items":[[195,1,"Gates وPolicies وإنشاء Policy وPolicy Methods."],[196,2,"Authorization Middleware وauthorize وcan."],[197,3,"Blade Authorization Directives."],[198,4,"Authorization في Controllers وAPIs وResources."],[199,5,"Ownership Checks."],[200,6,"RBAC وPermission-Based Access Control وABAC."],[201,7,"Hierarchical Roles وMulti-Tenant Authorization."],[202,8,"منع IDOR واختبار الصلاحيات."]]},{"n":29,"title":"إدارة المستخدمين والحسابات","icon":"👤","items":[[203,1,"User Model وملف المستخدم الشخصي."],[204,2,"تغيير البريد وكلمة المرور وإدارة الجلسات."],[205,3,"تسجيل الخروج من جميع الأجهزة."],[206,4,"تعطيل الحساب وحذفه واستعادته."],[207,5,"الأجهزة الموثوقة وسجل تسجيل الدخول."],[208,6,"Account Verification وصور المستخدمين والإعدادات."],[209,7,"تفضيلات الإشعارات والحسابات المؤسسية."]]}]},{"n":7,"title":"بناء RESTful APIs","desc":"تصميم REST APIs وبناؤها في Laravel وتأمينها عبر Sanctum وPassport وتوثيقها.","units":[{"n":30,"title":"أساسيات REST API","icon":"📡","items":[[210,1,"API وREST وREST Constraints وResource-Oriented Design."],[211,2,"HTTP Methods وStatus Codes وHeaders وJSON."],[212,3,"Naming Conventions وResource URLs."],[213,4,"Filtering وSorting وSearching وPagination."],[214,5,"API Error Format وIdempotency."],[215,6,"API Documentation وVersioning وAPI Contract."]]},{"n":31,"title":"بناء APIs في Laravel","icon":"🧩","items":[[216,1,"API Routes وControllers وJSON Responses."],[217,2,"API Resources وResource Collections وConditional Attributes."],[218,3,"Nested Resources وPagination Responses."],[219,4,"Form Requests وAPI Validation."],[220,5,"Exception Rendering وAPI Error Handling."],[221,6,"API Middleware وRate Limiting وAuthentication وAuthorization."],[222,7,"Versioned Routes وDeprecation."],[223,8,"OpenAPI وSwagger وبناء REST API متكامل."]]},{"n":32,"title":"Laravel Sanctum","icon":"🎟️","items":[[224,1,"Sanctum وSession Authentication للـ SPA."],[225,2,"CSRF Cookie Flow وAPI Tokens."],[226,3,"إنشاء Tokens وToken Abilities وExpiration وRevocation."],[227,4,"Token Rotation Concepts."],[228,5,"حماية SPA وإعداد CORS وStateful Domains."],[229,6,"حماية API Routes واختبار Sanctum."],[230,7,"اختيار Sanctum أو Passport."]]},{"n":33,"title":"Laravel Passport وOAuth 2.0","icon":"🪪","items":[[231,1,"OAuth 2.0 ومكوناته وأدواره."],[232,2,"Authorization Code Flow وPKCE."],[233,3,"Client Credentials Flow وRefresh Tokens وScopes."],[234,4,"Token Revocation وOpenID Connect Overview."],[235,5,"إعداد Passport وإنشاء Clients وحماية APIs."],[236,6,"إدارة الصلاحيات وتخزين Tokens وأمن OAuth."],[237,7,"متى تستخدم Passport؟"]]},{"n":34,"title":"API Security وDocumentation","icon":"🔐","items":[[238,1,"حماية API Endpoints وRate Limiting وRequest Size Limits."],[239,2,"Input Validation وOutput Filtering ومنع Mass Assignment وIDOR."],[240,3,"حماية Pagination ومنع Enumeration."],[241,4,"CORS وCSRF في SPA وToken Security وAPI Keys."],[242,5,"Request Signing وOpenAPI وSwagger UI."],[243,6,"API Versioning وContract Testing وAPI Changelog."],[244,7,"بناء API Developer Experience."]]}]},{"n":8,"title":"الملفات والتخزين والبريد والإشعارات","desc":"التخزين والملفات والبريد الإلكتروني والإشعارات والترجمة والتعامل مع التواريخ والمناطق الزمنية.","units":[{"n":44,"title":"Filesystem وStorage","icon":"📁","items":[[245,1,"نظام الملفات في Laravel."],[246,2,"مفهوم Filesystem Disks."],[247,3,"إعداد config/filesystems.php."],[248,4,"التخزين المحلي."],[249,5,"storage/app وpublic وstorage:link."],[250,6,"الفرق بين Public وPrivate Storage."],[251,7,"رفع الملفات."],[252,8,"التحقق من الملفات المرفوعة."],[253,9,"حفظ الملفات باستخدام Storage Facade."],[254,10,"إنشاء المجلدات وحذفها."],[255,11,"إعادة تسمية الملفات ونقلها."],[256,12,"قراءة محتوى الملفات."],[257,13,"إنشاء روابط الملفات."],[258,14,"Download Responses."],[259,15,"Temporary URLs."],[260,16,"Private File Downloads."],[261,17,"Local وPublic Disks."],[262,18,"Amazon S3."],[263,19,"S3-Compatible Object Storage."],[264,20,"ربط MinIO."],[265,21,"ربط Cloudflare R2 أو خدمات Object Storage المتوافقة."],[266,22,"إدارة صلاحيات الملفات."],[267,23,"التعامل مع أسماء الملفات بأمان."],[268,24,"منع Path Traversal."],[269,25,"فحص الملفات قبل قبولها."],[270,26,"التعامل مع MIME Types."],[271,27,"فحص الملفات المشبوهة باستخدام خدمات متخصصة عند الحاجة."],[272,28,"معالجة الملفات الكبيرة."],[273,29,"Streaming Uploads وDownloads."],[274,30,"رفع الملفات مباشرة إلى Object Storage."],[275,31,"التعامل مع الملفات المؤقتة."],[276,32,"تنظيف الملفات غير المستخدمة."],[277,33,"Storage Versioning وLifecycle Policies."],[278,34,"تصميم نظام ملفات لملايين المستخدمين."]]},{"n":45,"title":"Mail — البريد الإلكتروني","icon":"✉️","items":[[279,1,"آلية إرسال البريد في Laravel."],[280,2,"إعداد SMTP."],[281,3,"إعداد Mail Providers."],[282,4,"Mailables."],[283,5,"إنشاء Email Templates."],[284,6,"Blade Email Templates."],[285,7,"Markdown Mail."],[286,8,"HTML وPlain Text Emails."],[287,9,"إرسال البريد من Controllers."],[288,10,"إرسال البريد من Services."],[289,11,"Queued Mail."],[290,12,"Attachments."],[291,13,"Inline Attachments."],[292,14,"إرسال البريد إلى عدة مستلمين."],[293,15,"CC وBCC."],[294,16,"Email Verification."],[295,17,"Password Reset Emails."],[296,18,"تخصيص رسائل النظام."],[297,19,"Localization للبريد."],[298,20,"إعدادات البريد حسب البيئة."],[299,21,"Mailpit وMailtrap للاختبار."],[300,22,"التعامل مع Mailjet أو مزودي SMTP."],[301,23,"إعداد SPF وDKIM وDMARC على مستوى البريد والنطاق."],[302,24,"تحسين Deliverability."],[303,25,"Bounce وComplaint Handling."],[304,26,"تتبع حالة الرسائل عبر Webhooks."],[305,27,"إعادة المحاولة عند فشل الإرسال."],[306,28,"منع إرسال الرسالة نفسها مرتين."],[307,29,"تصميم Email Templates احترافية."],[308,30,"اختبار رسائل البريد."]]},{"n":46,"title":"Notifications","icon":"🔔","items":[[309,1,"مفهوم Notifications."],[310,2,"إنشاء Notification Class."],[311,3,"قنوات الإشعارات."],[312,4,"Mail Notifications."],[313,5,"Database Notifications."],[314,6,"Broadcast Notifications."],[315,7,"SMS Notifications عبر مزود خارجي."],[316,8,"Slack Notifications."],[317,9,"Custom Notification Channels."],[318,10,"إرسال الإشعارات إلى المستخدمين."],[319,11,"الإشعارات الفورية Queued Notifications."],[320,12,"الإشعارات المخصصة لكل مستخدم."],[321,13,"قراءة الإشعارات."],[322,14,"تعليم الإشعارات كمقروءة."],[323,15,"حذف الإشعارات."],[324,16,"Unread Notifications Count."],[325,17,"Notification Preferences."],[326,18,"إشعارات الأحداث المهمة."],[327,19,"إشعارات العمليات الطويلة."],[328,20,"تجميع الإشعارات."],[329,21,"منع الإشعارات المكررة."],[330,22,"التعامل مع الإشعارات الفاشلة."],[331,23,"Notification Templates."],[332,24,"Localization."],[333,25,"بناء مركز إشعارات كامل."]]},{"n":47,"title":"Localization والترجمة","icon":"🌍","items":[[334,1,"مفهوم Localization وInternationalization."],[335,2,"إعداد اللغة الافتراضية."],[336,3,"ملفات الترجمة."],[337,4,"Translation Strings."],[338,5,"JSON Translations."],[339,6,"__() وtrans()."],[340,7,"Translation Parameters."],[341,8,"Pluralization."],[342,9,"تحديد اللغة من المستخدم."],[343,10,"Middleware لتغيير اللغة."],[344,11,"حفظ تفضيلات اللغة."],[345,12,"ترجمة Validation Messages."],[346,13,"ترجمة Notifications."],[347,14,"ترجمة رسائل API."],[348,15,"الترجمة الديناميكية للمحتوى."],[349,16,"دعم RTL."],[350,17,"تنسيق التاريخ والوقت."],[351,18,"تنسيق الأرقام والعملات."],[352,19,"التعامل مع المناطق الزمنية."],[353,20,"اختبار الترجمات."],[354,21,"تصميم تطبيق متعدد اللغات."],[355,22,"فصل ترجمة الواجهة عن ترجمة محتوى قاعدة البيانات."]]},{"n":48,"title":"التواريخ والمناطق الزمنية","icon":"🕒","items":[[356,1,"التعامل مع التاريخ والوقت في PHP."],[357,2,"Carbon."],[358,3,"Date Casting في Eloquent."],[359,4,"Parsing وFormatting."],[360,5,"مقارنة التواريخ."],[361,6,"إضافة وطرح الفترات الزمنية."],[362,7,"Timezones."],[363,8,"تخزين الوقت في UTC."],[364,9,"عرض الوقت حسب المنطقة الزمنية للمستخدم."],[365,10,"التعامل مع التوقيت الصيفي."],[366,11,"Date Validation."],[367,12,"جدولة الأحداث."],[368,13,"حساب المدد الزمنية."],[369,14,"التعامل مع المواعيد المتكررة."],[370,15,"حفظ التواريخ في قاعدة البيانات."],[371,16,"أخطاء التوقيت في التطبيقات متعددة المناطق."],[372,17,"اختبار العمليات المرتبطة بالتاريخ."],[373,18,"بناء نظام حجوزات ومواعيد."]]}]},{"n":9,"title":"Queues وJobs والعمليات الخلفية","desc":"الطوابير وتصميم Jobs احترافية والمهام المجدولة ومراقبة الطوابير عبر Horizon.","units":[{"n":49,"title":"Queue System","icon":"📬","items":[[374,1,"ما هي Queues ولماذا نحتاج إليها؟"],[375,2,"الفرق بين Synchronous وAsynchronous Processing."],[376,3,"إنشاء Jobs."],[377,4,"Dispatch Jobs."],[378,5,"Queue Connections."],[379,6,"Queue Drivers."],[380,7,"Database Queue."],[381,8,"Redis Queue."],[382,9,"SQS ومزودات الطوابير الخارجية."],[383,10,"إعداد Queue Configuration."],[384,11,"تشغيل Queue Workers."],[385,12,"تحديد Queue Names."],[386,13,"Priority Queues."],[387,14,"تشغيل عدة Workers."],[388,15,"Worker Options."],[389,16,"Queue Timeouts."],[390,17,"Job Timeouts."],[391,18,"Max Attempts."],[392,19,"Retry Policies."],[393,20,"Backoff Strategies."],[394,21,"Delayed Jobs."],[395,22,"Unique Jobs."],[396,23,"Overlapping Jobs."],[397,24,"Middleware للـ Jobs."],[398,25,"التعامل مع Failed Jobs."],[399,26,"إعادة تشغيل Failed Jobs."],[400,27,"تنظيف سجل Failed Jobs."],[401,28,"التعامل مع Job Exceptions."],[402,29,"Job Chaining."],[403,30,"Job Batching."],[404,31,"Batch Progress."],[405,32,"Cancellation."],[406,33,"التعامل مع Jobs التي تستغرق ساعات."],[407,34,"Memory Leaks في Workers."],[408,35,"Restarting Workers بعد النشر."],[409,36,"Queue Monitoring."],[410,37,"Laravel Horizon."],[411,38,"التعامل مع Queue Backlogs."],[412,39,"تصميم نظام Queues متعدد الأولويات."],[413,40,"بناء نظام معالجة خلفية قابل للتوسع."]]},{"n":50,"title":"تصميم Jobs احترافية","icon":"🧪","items":[[414,1,"مبدأ أن تكون Job صغيرة وواضحة."],[415,2,"Serialization للبيانات داخل Jobs."],[416,3,"لماذا يجب تجنب تمرير Objects ضخمة؟"],[417,4,"تمرير معرف السجل بدلًا من البيانات الكاملة."],[418,5,"التعامل مع السجلات التي حُذفت قبل تنفيذ Job."],[419,6,"Idempotency."],[420,7,"Retry Safety."],[421,8,"التعامل مع العمليات غير القابلة للتكرار."],[422,9,"Distributed Locks."],[423,10,"تنفيذ Jobs بعد نجاح Transaction."],[424,11,"afterCommit."],[425,12,"التعامل مع External APIs."],[426,13,"Rate Limits للخدمات الخارجية."],[427,14,"Circuit Breaker Concept."],[428,15,"Retry مع Exponential Backoff."],[429,16,"Dead Letter Queues Concept."],[430,17,"تسجيل محاولات التنفيذ."],[431,18,"مراقبة زمن التنفيذ."],[432,19,"إلغاء Jobs."],[433,20,"تصميم Workflows طويلة."],[434,21,"منع التكرار عند تنفيذ Jobs بالتوازي."],[435,22,"اختبار Jobs."],[436,23,"محاكاة الفشل وإعادة المحاولة."],[437,24,"بناء Pipeline لمعالجة آلاف الملفات."]]},{"n":51,"title":"Scheduling — المهام المجدولة","icon":"⏰","items":[[438,1,"مفهوم Task Scheduling."],[439,2,"Laravel Scheduler."],[440,3,"إعداد Cron."],[441,4,"تعريف المهام المجدولة."],[442,5,"تحديد وقت التنفيذ."],[443,6,"Daily وWeekly وMonthly Tasks."],[444,7,"تحديد Timezones."],[445,8,"withoutOverlapping."],[446,9,"onOneServer."],[447,10,"تشغيل المهام في الخلفية."],[448,11,"شروط تنفيذ المهام."],[449,12,"Command Scheduling."],[450,13,"Job Scheduling."],[451,14,"تنظيف البيانات القديمة."],[452,15,"التقارير الدورية."],[453,16,"المهام المتكررة على مستوى المستخدم."],[454,17,"مراقبة المهام المجدولة."],[455,18,"تسجيل مخرجات المهام."],[456,19,"التعامل مع فشل Scheduler."],[457,20,"مراقبة عدم تنفيذ المهام المتوقعة."],[458,21,"تجنب تكرار التنفيذ في عدة خوادم."],[459,22,"بناء نظام جدولة للعمليات المؤسسية."]]},{"n":52,"title":"Laravel Horizon وQueue Monitoring","icon":"📈","items":[[460,1,"بنية Horizon."],[461,2,"متطلبات Redis."],[462,3,"إعداد Horizon."],[463,4,"تشغيل Horizon."],[464,5,"مراقبة Jobs."],[465,6,"مراقبة Failed Jobs."],[466,7,"مراقبة أوقات التنفيذ."],[467,8,"Queue Balancing."],[468,9,"Supervisor Strategies."],[469,10,"Worker Scaling."],[470,11,"Horizon Metrics."],[471,12,"ضبط Retention."],[472,13,"حماية لوحة Horizon."],[473,14,"إعداد Horizon في Production."],[474,15,"نشر تحديثات Jobs بأمان."],[475,16,"تشخيص Queue Backlog."],[476,17,"قياس Throughput."],[477,18,"تحديد عدد Workers المناسب."],[478,19,"مراقبة استهلاك الذاكرة."],[479,20,"تصميم استراتيجية Queue Scaling."]]}]},{"n":10,"title":"Cache وRedis وتحسين الأداء","desc":"استراتيجيات Cache وRedis وتحسين أداء Laravel والتطبيقات طويلة التشغيل عبر Octane.","units":[{"n":53,"title":"Cache في Laravel","icon":"⚡","items":[[480,1,"مفهوم Caching ولماذا نستخدم Cache؟"],[481,2,"Cache Drivers: File وDatabase وRedis وMemcached."],[482,3,"Cache::get وput وremember وrememberForever."],[483,4,"add وhas وincrement وdecrement."],[484,5,"Cache TTL وCache Tags عند دعمها من Driver المستخدم."],[485,6,"Cache Invalidation وCache Keys Strategy."],[486,7,"Cache Stampede وCache Warming."],[487,8,"Cache Locks وAtomic Locks."],[488,9,"Cache في Controllers وServices."],[489,10,"Query Result Caching وCache للصفحات وAPI Responses."],[490,11,"Cache للبيانات الإحصائية والصلاحيات."],[491,12,"التعامل مع البيانات المتغيرة وCache Invalidation عبر Events."],[492,13,"Distributed Cache."],[493,14,"Redis Data Structures وPersistence وMemory Management."],[494,15,"Redis Eviction Policies وMonitoring."],[495,16,"متى يكون Cache ضارًا؟"],[496,17,"اختبار Cache Consistency."],[497,18,"بناء استراتيجية Cache لتطبيق ضخم."]]},{"n":54,"title":"تحسين أداء Laravel","icon":"🏎️","items":[[498,1,"قياس الأداء قبل التحسين وتحديد Bottlenecks."],[499,2,"تحسين استعلامات قاعدة البيانات ومعالجة N+1."],[500,3,"Eager Loading وIndex Optimization وQuery Profiling."],[501,4,"تقليل عدد الاستعلامات واستخدام select للأعمدة المطلوبة."],[502,5,"استخدام Aggregates داخل SQL وPagination المناسبة."],[503,6,"Caching وConfig Cache وRoute Cache وView Cache."],[504,7,"Event Cache حيث ينطبق."],[505,8,"Composer Optimizations وOPcache."],[506,9,"تحسين PHP-FPM وإعدادات الخادم."],[507,10,"تقليل استهلاك الذاكرة وLazy Collections."],[508,11,"Streaming Large Responses."],[509,12,"Queues للعمليات الثقيلة."],[510,13,"تحسين معالجة الصور والملفات وExternal API Calls."],[511,14,"Connection Pooling وتحسين Bootstrap Time."],[512,15,"Laravel Octane وRoadRunner وSwoole عند الحاجة."],[513,16,"تسرب الذاكرة في العمليات طويلة التشغيل."],[514,17,"Load Testing وStress Testing."],[515,18,"Performance Budgets وP95 وP99 Latency وThroughput."],[516,19,"مقارنة الأداء قبل التعديل وبعده."],[517,20,"بناء خطة أداء مستندة إلى القياسات."]]},{"n":55,"title":"Laravel Octane والتطبيقات طويلة التشغيل","icon":"🐙","items":[[518,1,"Long-Lived Application Servers."],[519,2,"الفرق بين PHP-FPM وOctane."],[520,3,"دورة حياة الطلب وإعداد Octane."],[521,4,"Supported Application Servers."],[522,5,"إدارة الحالة بين الطلبات ومنع تسرب بيانات المستخدم."],[523,6,"Singleton State Pitfalls وStatic Variables."],[524,7,"إعادة تحميل Workers وMemory Leaks وWorker Lifecycle."],[525,8,"Concurrent Tasks حيث تدعم البيئة ذلك."],[526,9,"التعامل مع خدمات HTTP طويلة التشغيل."],[527,10,"Octane مع Redis وQueues."],[528,11,"اختبارات التوافق وقياس التحسن الحقيقي."],[529,12,"متى يكون Octane مفيدًا؟ ومتى يكون تحسين SQL أهم منه؟"]]}]},{"n":11,"title":"الأمان المتقدم في Laravel","desc":"أمن تطبيقات الويب والحماية من الهجمات والتشفير وأمن الملفات وAPIs واختبارات الأمان والتقسية.","units":[{"n":56,"title":"أساسيات أمن تطبيقات الويب","icon":"🛡️","items":[[530,1,"Threat Modeling."],[531,2,"Least Privilege وDefense in Depth وSecure by Default."],[532,3,"إدارة الأسرار وحماية .env ومفاتيح التطبيق."],[533,4,"HTTPS وأمن الجلسات وكلمات المرور."],[534,5,"إدارة الحسابات والصلاحيات وحماية البيانات الحساسة."],[535,6,"Secure Error Handling وLogging دون تسريب أسرار."],[536,7,"إدارة Dependencies وتحديث Laravel وPHP والحزم."],[537,8,"إدارة الثغرات الأمنية."],[538,9,"OWASP Top 10."],[539,10,"Secure Development Lifecycle."]]},{"n":57,"title":"حماية Laravel من الهجمات الشائعة","icon":"⚔️","items":[[540,1,"SQL Injection وParameterized Queries ومخاطر Raw SQL."],[541,2,"XSS: Stored وReflected وDOM-Based وOutput Escaping."],[542,3,"CSRF وCSRF Tokens وSameSite Cookies."],[543,4,"CORS."],[544,5,"SSRF."],[545,6,"Path Traversal."],[546,7,"Local File Inclusion وRemote File Inclusion."],[547,8,"Command Injection."],[548,9,"Mass Assignment."],[549,10,"Insecure Direct Object Reference وBroken Access Control."],[550,11,"Authentication Bypass."],[551,12,"Brute Force وCredential Stuffing."],[552,13,"Session Fixation وSession Hijacking."],[553,14,"Open Redirects."],[554,15,"HTTP Request Smuggling على مستوى الخادم والبنية التحتية."],[555,16,"Deserialization Risks."],[556,17,"Denial of Service وUnrestricted Resource Consumption."],[557,18,"Insecure File Uploads وMIME Spoofing."],[558,19,"Race Conditions."],[559,20,"Clickjacking وSecurity Headers وContent Security Policy."],[560,21,"التعامل مع معلومات الخطأ ومنع كشف بيانات المستخدمين."],[561,22,"اختبار حالات الهجوم على تطبيق تجريبي."]]},{"n":58,"title":"التشفير وإدارة كلمات المرور","icon":"🔏","items":[[562,1,"Hashing مقابل Encryption."],[563,2,"التشفير المتماثل وغير المتماثل."],[564,3,"Password Hashing وLaravel Hash Facade."],[565,4,"Bcrypt وArgon2 وSalting وPassword Rehashing."],[566,5,"لماذا لا تستخدم MD5 أو SHA-1 لتخزين كلمات المرور؟"],[567,6,"التحقق من كلمات المرور وقوتها وPassword Policies."],[568,7,"Application Encryption وLaravel Crypt."],[569,8,"Encryption Keys وKey Rotation وتخزين المفاتيح."],[570,9,"تشفير الحقول الحساسة والبيانات أثناء النقل والتخزين."],[571,10,"HMAC وDigital Signatures."],[572,11,"إدارة Tokens والأسرار الخارجية."],[573,12,"Hashing للملفات."],[574,13,"متى يكون Hashing مناسبًا ومتى تحتاج إلى Encryption؟"],[575,14,"بناء نظام آمن لإدارة البيانات الحساسة."]]},{"n":59,"title":"حماية الملفات والرفع والتنزيل","icon":"📂","items":[[576,1,"التحقق من نوع الملف وMIME Type والامتداد والحجم."],[577,2,"تغيير أسماء الملفات ومنع Path Traversal."],[578,3,"تخزين الملفات خارج Web Root وPrivate Storage."],[579,4,"Authorization عند تنزيل الملفات."],[580,5,"Signed URLs وTemporary URLs."],[581,6,"حماية ملفات المستخدمين من الوصول المباشر."],[582,7,"منع رفع ملفات تنفيذية وفحص Antivirus عند الحاجة."],[583,8,"معالجة الصور بطريقة آمنة وحماية PDF والمستندات."],[584,9,"التعامل مع Archive Files ومنع Zip Bombs."],[585,10,"حدود حجم الطلبات وStreaming وChunked Uploads."],[586,11,"Rate Limiting لرفع الملفات."],[587,12,"تنظيف الملفات المؤقتة وسياسات الاحتفاظ والحذف."],[588,13,"سجل عمليات رفع وتنزيل الملفات."],[589,14,"اختبار أمان نظام الملفات."]]},{"n":60,"title":"أمن API المتقدم","icon":"🔐","items":[[590,1,"Authentication مقابل Authorization."],[591,2,"Token Security وOAuth 2.0 وScope Enforcement."],[592,3,"Object-Level وProperty-Level وFunction-Level Authorization."],[593,4,"API Rate Limiting."],[594,5,"Replay Attacks وRequest Signing وIdempotency Keys."],[595,6,"Webhook Authentication وحماية API Keys وتدوير المفاتيح."],[596,7,"CORS الصحيح ومنع كشف الحقول الداخلية."],[597,8,"منع Enumeration وPagination Limits وRequest Size Limits."],[598,9,"حماية عمليات البحث والتصدير ومنع استهلاك الموارد المفرط."],[599,10,"API Audit Logs."],[600,11,"OWASP API Security Top 10."],[601,12,"اختبار أمان API باستخدام أدوات اختبار مصرح بها."]]},{"n":61,"title":"Security Testing وHardening","icon":"🧱","items":[[602,1,"Security Code Review وStatic Analysis."],[603,2,"Dependency Vulnerability Scanning وComposer Audit."],[604,3,"PHPStan وLarastan."],[605,4,"Security Headers وCSP وHTTPS وHSTS وSecure Cookies."],[606,5,"إخفاء معلومات الخادم وحماية لوحات الإدارة."],[607,6,"تقييد الوصول إلى Horizon وTelescope وحماية Debug Mode."],[608,7,"إدارة صلاحيات الخادم وLeast Privilege لقاعدة البيانات."],[609,8,"تدوير Logs ومراقبة تسجيل الدخول المشبوه."],[610,9,"Audit Logging وIncident Response."],[611,10,"Backup Security واختبار استعادة النسخ الاحتياطية."],[612,11,"Security Regression Tests."],[613,12,"قائمة مراجعة أمنية قبل الإطلاق."],[614,13,"اختبار اختراق مصرح به للتطبيق."],[615,14,"خطة معالجة الثغرات."]]}]},{"n":12,"title":"الاختبارات وضمان الجودة","desc":"الاختبارات بأنواعها والاختبار المتقدم وجودة الكود وإعادة الهيكلة.","units":[{"n":62,"title":"أساسيات Testing في Laravel","icon":"🧪","items":[[616,1,"لماذا نكتب الاختبارات؟ وأنواع الاختبارات البرمجية."],[617,2,"Unit وFeature وIntegration وEnd-to-End Testing."],[618,3,"PHPUnit وPest وإعداد بيئة الاختبار."],[619,4,"phpunit.xml ومجلد tests وكتابة أول اختبار."],[620,5,"Assertions وTest Naming وArrange-Act-Assert."],[621,6,"Test Isolation وDatabase Testing وTest Database."],[622,7,"RefreshDatabase وDatabase Transactions أثناء الاختبار."],[623,8,"Factories وSeeders في الاختبارات."],[624,9,"اختبار Controllers وServices وModels وRoutes."],[625,10,"اختبار Validation وExceptions وAuthorization وAuthentication."],[626,11,"اختبار File Uploads وMail وNotifications."],[627,12,"اختبار Jobs وQueues وEvents وListeners وCache."],[628,13,"اختبار API Responses والحالات الحدية Edge Cases."],[629,14,"Test Coverage وFlaky Tests."],[630,15,"بناء استراتيجية اختبار لمشروع حقيقي."]]},{"n":63,"title":"Testing المتقدم","icon":"🔬","items":[[631,1,"Mocking وStubbing وPHPUnit Mock Objects وMockery."],[632,2,"Laravel Mocking Helpers وFake Facades."],[633,3,"Http::fake وMail::fake وNotification::fake."],[634,4,"Queue::fake وBus::fake وEvent::fake وStorage::fake."],[635,5,"Cache::shouldReceive وMocking External Services."],[636,6,"Contract Testing وAPI Contract Testing."],[637,7,"Database Integration Tests وTesting Transactions."],[638,8,"Testing Race Conditions وIdempotency."],[639,9,"Testing Queue Retries وFailed Jobs وEvent Ordering."],[640,10,"Browser Testing وLaravel Dusk عند الحاجة."],[641,11,"اختبارات الواجهة مع Inertia أو React."],[642,12,"Accessibility وPerformance وLoad وSecurity Testing."],[643,13,"Mutation Testing وTest Data Management."],[644,14,"Test Pyramid وتقليل زمن تشغيل الاختبارات."],[645,15,"تشغيل الاختبارات بالتوازي."],[646,16,"Smoke وRegression Tests."],[647,17,"بناء Test Suite لتطبيق مؤسسي."]]},{"n":64,"title":"Code Quality وRefactoring","icon":"🧹","items":[[648,1,"Clean Code وNaming Conventions."],[649,2,"Code Duplication وCode Smells."],[650,3,"Refactoring Techniques واستخراج Methods وClasses."],[651,4,"تقليل مسؤوليات Controllers وتعقيد الشروط."],[652,5,"Coupling وCohesion."],[653,6,"Type Safety وStrict Types وPHPDoc."],[654,7,"Static Analysis وPHPStan وLarastan."],[655,8,"Laravel Pint وPHP_CodeSniffer وComposer Audit."],[656,9,"Dead Code Detection وComplexity Metrics."],[657,10,"Dependency Graphs وArchitectural Tests."],[658,11,"منع Circular Dependencies بين Modules."],[659,12,"Coding Standards وCode Review."],[660,13,"Pull Request Best Practices."],[661,14,"Technical Debt Management وBoy Scout Rule."],[662,15,"Quality Gates قبل دمج الكود."]]}]},{"n":13,"title":"تكامل Laravel مع الأنظمة والخدمات الخارجية","desc":"HTTP Client والتكاملات الخارجية وWebhooks والدفع الإلكتروني وتكامل خدمات التخزين والاتصال.","units":[{"n":65,"title":"HTTP Client والتكاملات الخارجية","icon":"🌐","items":[[663,1,"Laravel HTTP Client."],[664,2,"إرسال GET وPOST وPUT وPATCH وDELETE."],[665,3,"Query Parameters وHeaders وAuthentication."],[666,4,"Bearer Tokens وBasic Authentication."],[667,5,"إرسال JSON وMultipart Requests."],[668,6,"رفع الملفات إلى APIs خارجية."],[669,7,"قراءة Responses والتعامل مع Status Codes."],[670,8,"throw() وfailed()."],[671,9,"Connection Timeout وRequest Timeout."],[672,10,"Retry Policies وExponential Backoff."],[673,11,"HTTP Client Middleware وRequest Macros وResponse Macros."],[674,12,"منع تسريب API Keys."],[675,13,"Rate Limits وPagination من API خارجي."],[676,14,"Webhooks وIdempotency."],[677,15,"External API Failures وCircuit Breaker Concept."],[678,16,"Mocking HTTP Requests."],[679,17,"تسجيل الطلبات دون تخزين أسرار."],[680,18,"Integration Services."],[681,19,"بناء تكامل احترافي مع خدمة خارجية."]]},{"n":66,"title":"Webhooks","icon":"🪝","items":[[682,1,"مفهوم Webhooks والفرق بينها وبين Polling."],[683,2,"استقبال Webhooks وتصميم Endpoints."],[684,3,"التحقق من التوقيع وHMAC Verification."],[685,4,"التحقق من Timestamp ومنع Replay Attacks."],[686,5,"Idempotency وحفظ الأحداث المستلمة."],[687,6,"معالجة Webhooks عبر Queues والرد السريع على المرسل."],[688,7,"إعادة المحاولة والتعامل مع الأحداث المكررة وترتيب الأحداث."],[689,8,"فشل معالجة الحدث وDead Letter Handling."],[690,9,"Webhook Event Logs وWebhook Subscriptions."],[691,10,"إرسال Webhooks من Laravel وتوقيعها."],[692,11,"Retry Schedules ومراقبة Delivery Status."],[693,12,"تصميم Webhook System قابل للتوسع."]]},{"n":67,"title":"الدفع الإلكتروني","icon":"💳","items":[[694,1,"Payment Gateway Integration."],[695,2,"تصميم دورة حياة الدفع."],[696,3,"Payment Intent أو ما يعادله بحسب المزود."],[697,4,"حالات Pending وSucceeded وFailed وRefunded."],[698,5,"Payment Transactions وPayment Idempotency."],[699,6,"Webhooks المالية والتحقق من توقيعات مزود الدفع."],[700,7,"منع تكرار الخصم."],[701,8,"Refunds وPartial Refunds."],[702,9,"العملات وDecimal Precision وتخزين المبالغ بصورة صحيحة."],[703,10,"Payment Reconciliation وتسوية العمليات المالية."],[704,11,"سجل عمليات الدفع وAudit Trail."],[705,12,"فشل الاتصال بمزود الدفع ومعالجة الدفع غير المتزامن."],[706,13,"فصل Payment Gateway عن Business Logic."],[707,14,"Strategy Pattern لمزودات الدفع."],[708,15,"الاشتراكات المتكررة."],[709,16,"PCI DSS وما ينبغي عدم تخزينه."],[710,17,"اختبار سيناريوهات الدفع."],[711,18,"بناء نظام دفع تجريبي آمن."]]},{"n":68,"title":"تكامل خدمات التخزين والبريد والاتصال","icon":"🔌","items":[[712,1,"Amazon S3 وObject Storage المتوافق مع S3 وGoogle Cloud Storage."],[713,2,"خدمات البريد وSMS Gateways وWhatsApp Business Platform."],[714,3,"OAuth وCRM وERP."],[715,4,"AI APIs وخدمات التحليلات."],[716,5,"WebSocket Providers وخدمات الفوترة وأنظمة إدارة الهوية."],[717,6,"بناء Adapters لكل مزود وتوحيد واجهات التعامل."],[718,7,"التعامل مع تغيرات APIs واختبار Integrations."],[719,8,"إدارة Secrets ومراقبة حالة الخدمات الخارجية."]]}]},{"n":14,"title":"Real-Time Applications","desc":"Broadcasting وWebSockets وبناء أنظمة المحادثة والتعاون المباشر.","units":[{"n":69,"title":"Broadcasting وWebSockets","icon":"📡","items":[[720,1,"Real-Time Communication."],[721,2,"Polling وLong Polling وWebSockets وSSE."],[722,3,"Laravel Broadcasting وBroadcast Events."],[723,4,"Public وPrivate وPresence Channels."],[724,5,"Channel Authorization وإعداد Broadcasting."],[725,6,"Laravel Reverb وPusher-compatible Services وLaravel Echo."],[726,7,"WebSocket Connections وإرسال Events إلى المتصفح."],[727,8,"Real-Time Notifications وتحديث الواجهة دون Refresh."],[728,9,"Presence وOnline Users وReal-Time Dashboards."],[729,10,"انقطاع الاتصال وReconnection Strategies."],[730,11,"Authentication للـ WebSockets وحماية القنوات الخاصة."],[731,12,"التعامل مع آلاف الاتصالات."],[732,13,"توزيع WebSocket Servers وScaling وLoad Balancing."],[733,14,"Monitoring WebSocket Connections واختبار Broadcasting."],[734,15,"بناء نظام محادثات فوري."]]},{"n":70,"title":"أنظمة المحادثة والتعاون المباشر","icon":"💬","items":[[735,1,"تصميم قاعدة بيانات المحادثات."],[736,2,"Users وConversations وMessages."],[737,3,"Direct Messages وGroup Chats."],[738,4,"Message Status وRead Receipts وTyping Indicators."],[739,5,"Online Presence."],[740,6,"Attachments وPrivate Attachments."],[741,7,"Message Pagination والبحث في المحادثات."],[742,8,"الإشعارات الفورية."],[743,9,"إدارة عضوية المجموعات وصلاحيات المشرفين."],[744,10,"Message Delivery والتعامل مع الرسائل المكررة."],[745,11,"ترتيب الرسائل وQueue Processing وReal-Time Broadcasting."],[746,12,"حفظ الرسائل وإدارة أرشفتها."],[747,13,"Content Moderation وRate Limiting للرسائل."],[748,14,"تصميم Chat API واختبار النظام تحت الضغط."]]}]},{"n":15,"title":"Laravel مع React وInertia","desc":"بناء الواجهات الحديثة مع Inertia.js وReact، وLivewire وFilament ضمن منظومة Laravel.","units":[{"n":71,"title":"Laravel وInertia.js","icon":"🧬","items":[[749,1,"ما هو Inertia.js؟"],[750,2,"Traditional MVC مقابل SPA."],[751,3,"Inertia مقابل REST API منفصل."],[752,4,"متى تختار Inertia؟"],[753,5,"تثبيت Inertia مع Laravel."],[754,6,"إعداد React أو Vue مع Inertia."],[755,7,"Inertia Pages وتمرير Props من Laravel."],[756,8,"Shared Data وPersistent Layouts."],[757,9,"Forms وValidation Errors وRedirects وFlash Messages."],[758,10,"Partial Reloads وDeferred Props وLazy Props."],[759,11,"Infinite Scroll وRemembered State."],[760,12,"History وNavigation وFile Uploads."],[761,13,"Authentication مع Inertia."],[762,14,"Authorization في الواجهة والخادم."],[763,15,"حماية البيانات التي يرسلها الخادم."],[764,16,"تحسين أداء Pages وSSR عند الحاجة."],[765,17,"Code Splitting وإدارة الأصول باستخدام Vite."],[766,18,"بناء لوحة تحكم احترافية باستخدام Inertia."]]},{"n":72,"title":"Laravel مع React","icon":"⚛️","items":[[767,1,"بنية React مع Laravel وفصل الواجهة عن Backend."],[768,2,"إنشاء React Application باستخدام Vite."],[769,3,"تنظيم المكونات وReact Router."],[770,4,"Redux Toolkit وRTK Query."],[771,5,"إدارة حالة المستخدم وAPI Client."],[772,6,"API Authentication باستخدام Sanctum."],[773,7,"CORS وCSRF وإدارة Tokens والجلسات."],[774,8,"Forms وValidation ورفع الملفات."],[775,9,"Pagination وFiltering وError Handling وLoading States."],[776,10,"Cache للبيانات في الواجهة."],[777,11,"Protected Routes وRole-Based UI."],[778,12,"Real-Time Updates."],[779,13,"بناء Admin Dashboard."],[780,14,"فصل عقود API عن تفاصيل الواجهة."],[781,15,"نشر React وLaravel بصورة مستقلة."],[782,16,"مراقبة أخطاء الواجهة والخادم."]]},{"n":73,"title":"Livewire وFilament كخيارات ضمن منظومة Laravel","icon":"🪄","items":[[783,1,"Server-Driven UI."],[784,2,"مقدمة إلى Livewire ومتى يناسب."],[785,3,"دورة حياة Livewire Components."],[786,4,"Forms وValidation وPagination وEvents."],[787,5,"Security في Livewire وFile Uploads وTesting."],[788,6,"مقدمة إلى Filament."],[789,7,"بناء Resource وCRUD باستخدام Filament."],[790,8,"Forms وTables وFilters وActions."],[791,9,"إدارة المستخدمين وRoles وPermissions."],[792,10,"Custom Pages وWidgets."],[793,11,"بناء لوحة إدارة سريعة وتخصيص الواجهة."],[794,12,"متى تستخدم Filament بدل بناء لوحة مخصصة؟"],[795,13,"مقارنة Filament وInertia وReact."],[796,14,"اختيار الأدوات وفقًا لمتطلبات المشروع."]]}]},{"n":16,"title":"بناء الأنظمة الكبيرة ومتعددة المؤسسات","desc":"Modular Monolith وMulti-Tenancy وإدارة المؤسسات وأنظمة الاشتراكات والفوترة SaaS.","units":[{"n":74,"title":"Modular Monolith","icon":"🧩","items":[[797,1,"مفهوم Modular Monolith."],[798,2,"Monolith مقابل Microservices."],[799,3,"تقسيم النظام إلى Modules وتحديد حدود الوحدات."],[800,4,"فصل المسؤوليات."],[801,5,"تنظيم Models وServices وRoutes وMigrations داخل Modules."],[802,6,"تنظيم Events وListeners وModule Providers."],[803,7,"التواصل بين الوحدات."],[804,8,"منع Circular Dependencies."],[805,9,"مشاركة الكود المشترك وتحديد ملكية البيانات."],[806,10,"اختبار الوحدات وتوثيق حدود Modules."],[807,11,"Versioning للوحدات الداخلية."],[808,12,"استخراج Module إلى خدمة مستقلة عند الحاجة."],[809,13,"بناء تطبيق مؤسسي باستخدام Modular Monolith."]]},{"n":75,"title":"Multi-Tenancy","icon":"🏢","items":[[810,1,"مفهوم Multi-Tenancy وSingle-Tenant مقابل Multi-Tenant."],[811,2,"Shared Database وShared Schema."],[812,3,"Database per Tenant وSchema per Tenant."],[813,4,"اختيار استراتيجية العزل."],[814,5,"Tenant Identification."],[815,6,"Subdomain-Based Tenancy وCustom Domain Tenancy."],[816,7,"Tenant Middleware وTenant Context."],[817,8,"Tenant-Aware Models."],[818,9,"Global Scopes للعزل ومنع تسرب البيانات بين المؤسسات."],[819,10,"Tenant-Aware Cache وQueues وStorage وNotifications."],[820,11,"Tenant-Aware Database Connections."],[821,12,"إدارة مستخدمين مشتركين بين المؤسسات."],[822,13,"عضويات المستخدم في المؤسسات."],[823,14,"الأدوار والصلاحيات لكل مؤسسة."],[824,15,"اشتراكات المؤسسات وLimits حسب الباقة."],[825,16,"Provisioning للمؤسسات الجديدة."],[826,17,"Tenant Migration Strategy."],[827,18,"Backup وRestore لكل مؤسسة."],[828,19,"اختبار عزل البيانات."],[829,20,"مراقبة استهلاك الموارد لكل Tenant."],[830,21,"بناء SaaS Multi-Tenant."]]},{"n":76,"title":"إدارة المستخدمين والمؤسسات المتقدمة","icon":"👥","items":[[831,1,"تصميم نظام Organizations."],[832,2,"Organizations وTeams وDepartments."],[833,3,"المستخدمون والعضويات."],[834,4,"الأدوار على مستوى المؤسسة."],[835,5,"الصلاحيات على مستوى الفريق."],[836,6,"دعوات المستخدمين وقبول الدعوات وانتهاء صلاحيتها."],[837,7,"تسجيل دخول موحد للمؤسسة."],[838,8,"إدارة الحسابات المتعددة وتبديل السياق بين المؤسسات."],[839,9,"Audit Logs."],[840,10,"سياسات الاحتفاظ بالبيانات وأرشفة الحسابات."],[841,11,"حذف الحساب والبيانات."],[842,12,"Export بيانات المؤسسة."],[843,13,"Limits للموارد وBilling Integration وUsage Tracking."],[844,14,"بناء نظام مؤسسات قابل للتوسع."]]},{"n":77,"title":"Subscription وSaaS Billing","icon":"💰","items":[[845,1,"SaaS Business Model."],[846,2,"Plans وFeatures."],[847,3,"Subscription Lifecycle."],[848,4,"Free Trial."],[849,5,"الاشتراكات الشهرية والسنوية وتجديد الاشتراك."],[850,6,"Grace Periods."],[851,7,"Upgrade وDowngrade وProration."],[852,8,"Cancel وResume."],[853,9,"Failed Payments وDunning Strategies."],[854,10,"Webhook Processing."],[855,11,"Idempotent Billing Operations."],[856,12,"Usage-Based Billing وMetered Features."],[857,13,"Quotas وUsage Limits."],[858,14,"Coupons وDiscounts."],[859,15,"Invoices وTaxes."],[860,16,"Payment Reconciliation."],[861,17,"Billing Audit Logs."],[862,18,"التعامل مع اختلاف العملة."],[863,19,"اختبارات دورة الاشتراك."],[864,20,"بناء نظام SaaS Billing متكامل."]]}]},{"n":17,"title":"قواعد البيانات على مستوى الخبير","desc":"تصميم قواعد البيانات المتقدمة والمعاملات والتزامن والبحث المتقدم والتحليلات.","units":[{"n":78,"title":"تصميم قواعد البيانات المتقدمة","icon":"🗃️","items":[[865,1,"Database Design Principles وتحليل متطلبات البيانات."],[866,2,"ER Diagrams."],[867,3,"Logical وPhysical Data Modeling."],[868,4,"Normalization من 1NF إلى 5NF."],[869,5,"Denormalization."],[870,6,"Constraints وReferential Integrity."],[871,7,"Primary Keys وAuto-Increment مقابل UUID وULID."],[872,8,"Composite Keys."],[873,9,"Index Design وCovering Indexes."],[874,10,"Composite Index Column Order."],[875,11,"Selectivity وCardinality وIndex Maintenance."],[876,12,"Query Plans وJoin Algorithms."],[877,13,"Subquery Optimization."],[878,14,"Pagination على نطاق واسع."],[879,15,"Transaction Isolation Levels."],[880,16,"Dirty Reads وNon-Repeatable Reads وPhantom Reads."],[881,17,"Deadlocks وLocking Strategies."],[882,18,"Optimistic وPessimistic Concurrency."],[883,19,"Database Contention."],[884,20,"Read Replicas وReplication Lag."],[885,21,"Read/Write Splitting وConnection Pooling."],[886,22,"Database وTable Partitioning."],[887,23,"Sharding وShard Key Selection."],[888,24,"التعامل مع ملايين ومليارات السجلات."],[889,25,"أرشفة البيانات القديمة."],[890,26,"تصميم قاعدة بيانات للتحليلات."],[891,27,"فصل OLTP عن OLAP."],[892,28,"Database Capacity Planning."]]},{"n":79,"title":"Transactions وConcurrency في Laravel","icon":"🔒","items":[[893,1,"Transactions في Eloquent وQuery Builder."],[894,2,"DB::transaction()."],[895,3,"Nested Transactions وSavepoints."],[896,4,"Transaction Isolation."],[897,5,"lockForUpdate وsharedLock."],[898,6,"التعامل مع التحديثات المتزامنة وLost Updates."],[899,7,"Race Conditions وIdempotency."],[900,8,"Unique Constraints كخط دفاع أخير."],[901,9,"Distributed Locks وRedis Locks."],[902,10,"منع الخصم المكرر من الرصيد."],[903,11,"منع الحجز المزدوج."],[904,12,"تنفيذ العمليات المالية داخل Transactions."],[905,13,"حدود Transaction عند استخدام الخدمات الخارجية."],[906,14,"Transactional Outbox Pattern."],[907,15,"التعامل مع الفشل الجزئي."],[908,16,"Retry بعد Deadlock."],[909,17,"تصميم عمليات آمنة تحت الضغط."],[910,18,"اختبار Concurrency."]]},{"n":80,"title":"البحث المتقدم والتحليلات","icon":"🔍","items":[[911,1,"البحث باستخدام SQL وFull-Text Indexes."],[912,2,"البحث العربي وNormalization للنصوص العربية عند الحاجة."],[913,3,"Tokenization وRanking وRelevance."],[914,4,"Laravel Scout."],[915,5,"Database Search Engines."],[916,6,"Meilisearch."],[917,7,"Elasticsearch وOpenSearch."],[918,8,"متى تحتاج إلى Search Engine مستقل؟"],[919,9,"Indexing Documents وتحديث الفهارس وحذف السجلات."],[920,10,"معالجة الفهرسة عبر Queues."],[921,11,"Eventual Consistency."],[922,12,"Faceted Search وFilters وAggregations."],[923,13,"Autocomplete والبحث في ملايين السجلات."],[924,14,"بناء لوحات إحصائية."],[925,15,"تجميع البيانات زمنيًا وPrecomputed Aggregates."],[926,16,"Materialized Views حيث يدعمها المحرك."],[927,17,"Data Warehousing Basics."],[928,18,"فصل الاستعلامات التحليلية عن معاملات التطبيق."],[929,19,"بناء نظام تقارير كبير."]]}]},{"n":18,"title":"أوامر Artisan وتطوير أدوات المطورين","desc":"أوامر Artisan المخصصة وإنشاء Laravel Packages وأدوات Debugging وتجربة المطور.","units":[{"n":81,"title":"Artisan Commands","icon":"⌨️","items":[[930,1,"مفهوم Artisan واستعراض الأوامر المتاحة."],[931,2,"إنشاء Command وSignature وDescription."],[932,3,"Arguments وOptions."],[933,4,"Input وOutput وConsole Questions."],[934,5,"Progress Bars وTables داخل Terminal."],[935,6,"Confirmation Prompts وExit Codes."],[936,7,"كتابة أوامر قابلة للاختبار."],[937,8,"Commands لمعالجة البيانات والاستيراد والتصدير."],[938,9,"Commands لصيانة النظام وإدارة المستخدمين والاشتراكات."],[939,10,"التعامل مع Exceptions وLogging داخل Commands."],[940,11,"تنفيذ Commands داخل Scheduler."],[941,12,"استدعاء Commands من Commands أخرى."],[942,13,"Command Bus Concept."],[943,14,"التعامل مع الأوامر الطويلة."],[944,15,"تصميم CLI Tools احترافية."]]},{"n":82,"title":"إنشاء Laravel Packages","icon":"📦","items":[[945,1,"Composer Packages والفرق بين Package وModule."],[946,2,"إنشاء Package وتنظيم src وtests وconfig."],[947,3,"Composer Autoloading."],[948,4,"Service Provider وPackage Discovery."],[949,5,"نشر Config Files وMigrations."],[950,6,"Routes وViews وTranslations داخل Package."],[951,7,"Commands وEvents وListeners داخل Package."],[952,8,"Facades الخاصة بالحزمة."],[953,9,"Testing وTestbench عند الحاجة."],[954,10,"Semantic Versioning وDependency Constraints."],[955,11,"Backward Compatibility."],[956,12,"Documentation وPublishing على Packagist."],[957,13,"Private Composer Repositories."],[958,14,"إدارة الحزم الداخلية في المؤسسة."],[959,15,"صيانة الحزم وتحديثها."]]},{"n":83,"title":"Debugging وDeveloper Experience","icon":"🐞","items":[[960,1,"قراءة Stack Traces واستخدام Laravel Logs."],[961,2,"Laravel Tinker."],[962,3,"Laravel Debugbar في بيئة التطوير."],[963,4,"Laravel Telescope وLaravel Pulse."],[964,5,"Laravel Nightwatch أو أدوات المراقبة المتوافقة عند الحاجة."],[965,6,"Debugging في VS Code وPhpStorm."],[966,7,"Xdebug وProfiling."],[967,8,"SQL Query Logging وHTTP Request Inspection."],[968,9,"Queue وEvent وCache Debugging."],[969,10,"Memory Profiling واكتشاف تسرب الذاكرة."],[970,11,"Debugging Production Safely."],[971,12,"Redaction للبيانات الحساسة."],[972,13,"Local Development Environment وDocker Development Environment."],[973,14,"توحيد بيئة الفريق وإعداد Scripts للمشروع."],[974,15,"تحسين سرعة دورة التطوير."]]}]},{"n":19,"title":"DevOps ونشر Laravel في بيئة Production","desc":"Linux وإعداد خادم Laravel وDocker وCI/CD واستراتيجيات النشر والنسخ الاحتياطي والتعافي.","units":[{"n":84,"title":"Linux للمطور المحترف","icon":"🐧","items":[[975,1,"أساسيات Linux ونظام الملفات والصلاحيات."],[976,2,"المستخدمون والمجموعات وchmod وchown."],[977,3,"إدارة العمليات."],[978,4,"CPU وMemory وDisk Monitoring."],[979,5,"إدارة الخدمات باستخدام systemd."],[980,6,"SSH وإدارة المفاتيح."],[981,7,"إدارة متغيرات البيئة."],[982,8,"أساسيات Bash Scripting."],[983,9,"إدارة Logs وCron."],[984,10,"إدارة مساحة القرص."],[985,11,"Firewall Basics وTLS Certificates وDNS."],[986,12,"تشخيص مشكلات الشبكة."],[987,13,"استخدام curl وdig وss."],[988,14,"إدارة الأسرار على الخادم."],[989,15,"Hardening لخادم Linux."]]},{"n":85,"title":"إعداد خادم Laravel","icon":"🖥️","items":[[990,1,"متطلبات تشغيل Laravel في Production."],[991,2,"اختيار إصدار PHP المناسب وإعداد PHP Extensions."],[992,3,"Composer في Production."],[993,4,"PHP-FPM وNginx وApache وLiteSpeed عند استخدامه."],[994,5,"Document Root الصحيح وتوجيه الموقع إلى public."],[995,6,"صلاحيات storage وbootstrap/cache."],[996,7,"Environment Variables وDatabase Connection."],[997,8,"إعداد Redis وQueue Workers وScheduler."],[998,9,"Supervisor أو systemd."],[999,10,"HTTPS وDNS وReverse Proxy وTrusted Proxies."],[1000,11,"Firewall وLogs."],[1001,12,"إدارة عمليات PHP وحدود الذاكرة."],[1002,13,"التعامل مع أخطاء 500 و502 و504."],[1003,14,"تشخيص مشاكل صلاحيات الملفات."],[1004,15,"اختبار التطبيق قبل الإطلاق وإعداد Production آمنة."]]},{"n":86,"title":"Docker وLaravel","icon":"🐳","items":[[1005,1,"Containers وImages وDockerfile وDocker Compose."],[1006,2,"بناء Image لـ Laravel."],[1007,3,"PHP-FPM وNginx وMySQL وRedis Containers."],[1008,4,"فصل الخدمات."],[1009,5,"Persistent Volumes وNetwork Configuration."],[1010,6,"Environment Variables وDocker Secrets."],[1011,7,"Health Checks."],[1012,8,"Multi-Stage Builds وImage Optimization."],[1013,9,"تشغيل Composer أثناء البناء."],[1014,10,"إدارة Permissions داخل Container."],[1015,11,"تشغيل Queue Workers وScheduler داخل Containers."],[1016,12,"إدارة Logs."],[1017,13,"File Uploads وObject Storage."],[1018,14,"Docker Development وProduction."],[1019,15,"Docker Security وContainer Resource Limits."],[1020,16,"بناء Docker Compose متكامل."],[1021,17,"نشر Laravel باستخدام Docker."],[1022,18,"تشغيل Laravel على Coolify أو منصة مشابهة."],[1023,19,"إدارة Migrations أثناء النشر."],[1024,20,"تحديث Containers دون فقدان البيانات."]]},{"n":87,"title":"CI/CD باستخدام GitHub Actions","icon":"⚙️","items":[[1025,1,"CI/CD وGit Workflows وBranching Strategies."],[1026,2,"Pull Requests وGitHub Actions."],[1027,3,"Workflow YAML وTriggers وJobs وSteps وRunners."],[1028,4,"تثبيت PHP في CI وComposer Install."],[1029,5,"Dependency Caching."],[1030,6,"تشغيل Laravel Pint وPHPStan أو Larastan."],[1031,7,"تشغيل PHPUnit أو Pest."],[1032,8,"اختبار Database Migrations."],[1033,9,"Security Scanning وComposer Audit."],[1034,10,"بناء Frontend Assets وDocker Image."],[1035,11,"نشر Artifact."],[1036,12,"إعداد Secrets وDeployment Environments وموافقات النشر."],[1037,13,"Deployment على VPS باستخدام SSH."],[1038,14,"نشر Docker Images."],[1039,15,"Rollback Strategy وSmoke Tests."],[1040,16,"Database Migration Strategy."],[1041,17,"Zero-Downtime Deployment."],[1042,18,"مراقبة نتيجة النشر."],[1043,19,"بناء Pipeline احترافي."]]},{"n":88,"title":"استراتيجية النشر المتقدم","icon":"🚢","items":[[1044,1,"Release Management."],[1045,2,"Immutable وAtomic Deployments."],[1046,3,"Symlink-Based Deployments."],[1047,4,"Rolling Deployments."],[1048,5,"Blue-Green Deployments."],[1049,6,"Canary Releases."],[1050,7,"Zero-Downtime Deployments."],[1051,8,"Database Expand-and-Contract."],[1052,9,"Backward-Compatible Migrations."],[1053,10,"Queue Worker Restarts وScheduler Coordination."],[1054,11,"Cache Warmup وAsset Versioning."],[1055,12,"CDN Cache Invalidation."],[1056,13,"Health Checks وReadiness وLiveness Probes."],[1057,14,"Rollback Application Code."],[1058,15,"التعامل مع Migrations غير القابلة للتراجع."],[1059,16,"Feature Flags."],[1060,17,"Deployment Notifications وDeployment Audit Logs."],[1061,18,"Release Verification."],[1062,19,"Disaster Recovery أثناء النشر."]]},{"n":89,"title":"النسخ الاحتياطي والتعافي من الكوارث","icon":"💾","items":[[1063,1,"Backup Strategy."],[1064,2,"Database وFile Storage وConfiguration Backups."],[1065,3,"Backup Encryption وRetention."],[1066,4,"Offsite Backups وObject Storage."],[1067,5,"Incremental وFull Backups."],[1068,6,"Point-in-Time Recovery وBinary Logs عند دعمها."],[1069,7,"Restore Procedures وRestore Testing."],[1070,8,"Recovery Point Objective — RPO."],[1071,9,"Recovery Time Objective — RTO."],[1072,10,"Disaster Recovery Plan."],[1073,11,"النسخ الاحتياطي لقواعد بيانات ضخمة."],[1074,12,"النسخ الاحتياطي أثناء عمل التطبيق."],[1075,13,"اتساق البيانات بين قاعدة البيانات والملفات."],[1076,14,"إدارة النسخ الاحتياطية متعددة المؤسسات."],[1077,15,"مراقبة نجاح النسخ الاحتياطي وتنبيه فشله."],[1078,16,"منع حذف النسخ من حساب التطبيق نفسه."],[1079,17,"إعداد Runbook للتعافي من الكوارث."]]}]},{"n":20,"title":"المراقبة والاستقرار والتوسع","desc":"Logging وMonitoring والتوافر العالي والتوسع وMicroservices مع Laravel.","units":[{"n":90,"title":"Logging وMonitoring","icon":"📊","items":[[1080,1,"Laravel Logging وMonolog."],[1081,2,"Log Channels: Single وDaily وStack."],[1082,3,"Structured Logging."],[1083,4,"Correlation IDs وRequest IDs."],[1084,5,"Contextual Logging وLog Levels وLog Rotation."],[1085,6,"إخفاء البيانات الحساسة من Logs."],[1086,7,"Error Tracking."],[1087,8,"Laravel Pulse وLaravel Telescope."],[1088,9,"OpenTelemetry Basics."],[1089,10,"Metrics وLogs وTraces."],[1090,11,"Distributed Tracing وAPM Tools."],[1091,12,"Prometheus وGrafana Concepts."],[1092,13,"Health Endpoints."],[1093,14,"Database وRedis وQueue وExternal Services Health."],[1094,15,"Error Rate وLatency وThroughput Monitoring."],[1095,16,"Alerting."],[1096,17,"SLO وSLI وSLA."],[1097,18,"بناء لوحة مراقبة للتطبيق."]]},{"n":91,"title":"High Availability وScalability","icon":"🏗️","items":[[1098,1,"Availability."],[1099,2,"Vertical Scaling وHorizontal Scaling."],[1100,3,"Stateless Application Design."],[1101,4,"Load Balancers وMultiple Application Servers."],[1102,5,"Shared Sessions وShared Cache وShared File Storage."],[1103,6,"Centralized Logging."],[1104,7,"Database Replication وRead Replicas."],[1105,8,"Queue Scaling."],[1106,9,"Redis High Availability وDatabase Failover."],[1107,10,"Health Checks وGraceful Shutdown."],[1108,11,"Connection Limits وBackpressure وRate Limiting."],[1109,12,"Circuit Breakers وBulkheads وRetry Storms."],[1110,13,"Graceful Degradation وLoad Shedding."],[1111,14,"Capacity Planning وBottleneck Analysis."],[1112,15,"Horizontal Scaling لـ Laravel."],[1113,16,"تصميم نظام يتحمل تعطل خادم."],[1114,17,"بناء Architecture عالية التوافر."]]},{"n":92,"title":"Microservices مع Laravel","icon":"🕸️","items":[[1115,1,"متى تحتاج إلى Microservices؟"],[1116,2,"متى يكون Modular Monolith أفضل؟"],[1117,3,"Service Boundaries وBounded Contexts."],[1118,4,"API Communication."],[1119,5,"Synchronous وAsynchronous Communication."],[1120,6,"Message Brokers وRabbitMQ وApache Kafka."],[1121,7,"Event-Driven Communication."],[1122,8,"Service Discovery وAPI Gateway."],[1123,9,"Authentication بين الخدمات وService-to-Service Authorization."],[1124,10,"Distributed Transactions وSaga Pattern."],[1125,11,"Transactional Outbox وEventual Consistency."],[1126,12,"Idempotent Consumers."],[1127,13,"Distributed Tracing وCentralized Logging."],[1128,14,"Versioning بين الخدمات."],[1129,15,"Failure Isolation وRetry وCircuit Breaker."],[1130,16,"Service Deployment وContract Testing."],[1131,17,"Data Ownership."],[1132,18,"تجنب Distributed Monolith."],[1133,19,"تصميم نظام خدمات متعددة باستخدام Laravel."]]}]},{"n":21,"title":"Laravel المتخصص حسب نوع المشروع","desc":"تطبيق Laravel على أنواع أنظمة حقيقية: التجارة الإلكترونية وLMS وERP والحجوزات والوسائط والذكاء الاصطناعي وIoT.","units":[{"n":93,"title":"بناء أنظمة التجارة الإلكترونية","icon":"🛒","items":[[1134,1,"تصميم المنتجات والتصنيفات."],[1135,2,"المنتجات ذات المتغيرات Variants."],[1136,3,"إدارة المخزون."],[1137,4,"السلة Cart."],[1138,5,"قوائم الرغبات."],[1139,6,"إدارة الأسعار والخصومات."],[1140,7,"Coupons."],[1141,8,"Checkout Workflow."],[1142,9,"الطلبات Order Management."],[1143,10,"Order State Machine."],[1144,11,"Payment Integration."],[1145,12,"Refunds."],[1146,13,"الشحن والتوصيل."],[1147,14,"الضرائب."],[1148,15,"الفواتير."],[1149,16,"Inventory Transactions."],[1150,17,"منع بيع المخزون مرتين."],[1151,18,"Concurrency أثناء الشراء."],[1152,19,"الإشعارات."],[1153,20,"البحث والتصفية."],[1154,21,"تقارير المبيعات."],[1155,22,"إدارة الموردين."],[1156,23,"Multi-Vendor Marketplace."],[1157,24,"Commission Calculation."],[1158,25,"Refund and Dispute Workflows."],[1159,26,"حماية العمليات المالية."],[1160,27,"بناء متجر إلكتروني متكامل."]]},{"n":94,"title":"بناء أنظمة التعليم الإلكتروني LMS","icon":"🎓","items":[[1161,1,"تصميم المؤسسات التعليمية."],[1162,2,"إدارة المدرسين والطلاب."],[1163,3,"إدارة الدورات."],[1164,4,"إدارة الوحدات والدروس."],[1165,5,"إدارة الفيديوهات والملفات."],[1166,6,"تسجيل الطلاب في الدورات."],[1167,7,"تتبع تقدم الطالب."],[1168,8,"تسجيل الحضور."],[1169,9,"الاختبارات والواجبات."],[1170,10,"Question Banks."],[1171,11,"أنواع الأسئلة."],[1172,12,"تصحيح الاختبارات."],[1173,13,"حساب الدرجات."],[1174,14,"الشهادات."],[1175,15,"الاشتراكات والمدفوعات."],[1176,16,"إدارة المجموعات والدفعات."],[1177,17,"الإشعارات."],[1178,18,"نظام التعليقات والمناقشات."],[1179,19,"تقارير الأداء التعليمي."],[1180,20,"حماية محتوى الدورات."],[1181,21,"تكامل Video Streaming."],[1182,22,"تكامل SCORM أو xAPI عند الحاجة."],[1183,23,"بناء API لتطبيق موبايل."],[1184,24,"معالجة التقارير الثقيلة عبر Queues."],[1185,25,"بناء LMS متعدد المؤسسات."]]},{"n":95,"title":"بناء أنظمة ERP وCRM","icon":"🏭","items":[[1186,1,"تحليل نطاق النظام."],[1187,2,"إدارة العملاء."],[1188,3,"إدارة جهات الاتصال."],[1189,4,"إدارة فرص المبيعات."],[1190,5,"إدارة الموظفين."],[1191,6,"إدارة الأقسام."],[1192,7,"إدارة المهام."],[1193,8,"إدارة المشاريع."],[1194,9,"إدارة الموردين."],[1195,10,"إدارة المشتريات."],[1196,11,"إدارة المخزون."],[1197,12,"إدارة الفواتير."],[1198,13,"إدارة المصروفات."],[1199,14,"إدارة الموافقات."],[1200,15,"Workflows."],[1201,16,"Audit Logs."],[1202,17,"تقارير الأداء."],[1203,18,"إدارة الصلاحيات المؤسسية."],[1204,19,"تكامل البريد والتقويم."],[1205,20,"التكامل مع خدمات خارجية."],[1206,21,"إدارة البيانات بين الوحدات."],[1207,22,"تصميم Modular Monolith."],[1208,23,"بناء ERP قابل للتوسع."]]},{"n":96,"title":"بناء أنظمة الحجز والمواعيد","icon":"📅","items":[[1209,1,"تصميم الموارد القابلة للحجز."],[1210,2,"إدارة المواعيد."],[1211,3,"تحديد ساعات العمل."],[1212,4,"إدارة المناطق الزمنية."],[1213,5,"منع تضارب الحجوزات."],[1214,6,"Concurrency Control."],[1215,7,"Locking أثناء الحجز."],[1216,8,"الحجز المؤقت."],[1217,9,"انتهاء صلاحية الحجز المؤقت."],[1218,10,"Cancellation Policies."],[1219,11,"إعادة الجدولة."],[1220,12,"قوائم الانتظار."],[1221,13,"الإشعارات والتذكيرات."],[1222,14,"الدفع المسبق."],[1223,15,"استرداد المدفوعات."],[1224,16,"Recurring Appointments."],[1225,17,"إدارة الموظفين والموارد."],[1226,18,"Availability Search."],[1227,19,"Calendar Integrations."],[1228,20,"تقارير الإشغال."],[1229,21,"اختبارات التزامن."],[1230,22,"بناء نظام حجوزات متعدد الفروع."]]},{"n":97,"title":"بناء أنظمة الملفات والوسائط","icon":"🎞️","items":[[1231,1,"إدارة المستندات."],[1232,2,"تنظيم الملفات والمجلدات."],[1233,3,"صلاحيات الوصول."],[1234,4,"مشاركة الملفات."],[1235,5,"Signed URLs."],[1236,6,"File Versioning."],[1237,7,"Metadata Extraction."],[1238,8,"Image Processing."],[1239,9,"Video Processing."],[1240,10,"Document Preview."],[1241,11,"OCR Integration."],[1242,12,"Search Indexing."],[1243,13,"Large File Uploads."],[1244,14,"Chunked Uploads."],[1245,15,"Multipart Uploads إلى Object Storage."],[1246,16,"Deduplication."],[1247,17,"Hash Verification."],[1248,18,"Antivirus Scanning."],[1249,19,"Retention Policies."],[1250,20,"أرشفة الملفات."],[1251,21,"معالجة الوسائط عبر Queues."],[1252,22,"بناء Document Management System."]]},{"n":98,"title":"الذكاء الاصطناعي مع Laravel","icon":"🤖","items":[[1253,1,"أساسيات تكامل AI APIs."],[1254,2,"إدارة API Keys."],[1255,3,"تصميم AI Service Layer."],[1256,4,"استخدام نماذج اللغة الكبيرة LLMs."],[1257,5,"إرسال الرسائل واستقبال النتائج."],[1258,6,"Streaming Responses."],[1259,7,"Structured Outputs."],[1260,8,"JSON Schema."],[1261,9,"Tool Calling."],[1262,10,"Function Calling."],[1263,11,"التعامل مع Context Windows."],[1264,12,"Token Usage وCost Tracking."],[1265,13,"Rate Limits."],[1266,14,"Retry وTimeout."],[1267,15,"AI Jobs باستخدام Queues."],[1268,16,"حفظ المحادثات."],[1269,17,"Conversation Context."],[1270,18,"Prompt Versioning."],[1271,19,"Prompt Injection."],[1272,20,"حماية البيانات عند إرسالها إلى النماذج."],[1273,21,"Retrieval-Augmented Generation — RAG."],[1274,22,"Embeddings."],[1275,23,"Vector Databases."],[1276,24,"Semantic Search."],[1277,25,"Document Ingestion."],[1278,26,"Chunking Strategies."],[1279,27,"Retrieval Evaluation."],[1280,28,"AI Guardrails."],[1281,29,"Human-in-the-Loop."],[1282,30,"AI Observability."],[1283,31,"تقييم جودة المخرجات."],[1284,32,"إدارة التكلفة والاستهلاك."],[1285,33,"بناء Chatbot."],[1286,34,"بناء مساعد يعتمد على مستندات المؤسسة."],[1287,35,"بناء نظام تحليل تقارير باستخدام الذكاء الاصطناعي."]]},{"n":99,"title":"الأنظمة المتكاملة وIoT وSCADA","icon":"📟","items":[[1288,1,"استقبال البيانات من أجهزة خارجية."],[1289,2,"تصميم Ingestion API."],[1290,3,"استقبال Telemetry."],[1291,4,"WebSockets وMQTT Integration."],[1292,5,"تكامل أنظمة SCADA عبر واجهاتها الموثقة."],[1293,6,"تكامل OPC UA عبر وسيط أو مكتبة مناسبة."],[1294,7,"تصميم جداول Time-Series."],[1295,8,"تخزين القراءات التاريخية."],[1296,9,"معالجة بيانات ضخمة عبر Queues."],[1297,10,"Batch Processing."],[1298,11,"Stream Processing Concepts."],[1299,12,"التعامل مع البيانات المكررة."],[1300,13,"Data Validation."],[1301,14,"Timestamp Normalization."],[1302,15,"Data Retention."],[1303,16,"تجميع القراءات زمنيًا."],[1304,17,"بناء Dashboards."],[1305,18,"التنبيهات عند تجاوز Thresholds."],[1306,19,"تقارير الأداء."],[1307,20,"تكامل أنظمة التحليل."],[1308,21,"الفصل بين نظام الأعمال وشبكات التحكم."],[1309,22,"حماية بيانات التشغيل."],[1310,23,"التعامل مع انقطاع الاتصال."],[1311,24,"تصميم نظام مراقبة وتحليلات صناعية."]]}]},{"n":22,"title":"الموضوعات الدقيقة التي تميز الخبير","desc":"Laravel Internals والترقيات وPHP المتقدم والأداء العميق وهندسة الموثوقية والقيادة التقنية.","units":[{"n":100,"title":"فهم Laravel Internals","icon":"🔩","items":[[1312,1,"كيف يعمل Service Container داخليًا؟"],[1313,2,"كيف تعمل Facades؟"],[1314,3,"كيف يعمل Route Dispatcher؟"],[1315,4,"كيف يعمل Middleware Pipeline؟"],[1316,5,"كيف يتم حل Dependencies؟"],[1317,6,"كيف تعمل Service Providers؟"],[1318,7,"كيف تعمل Eloquent Hydration؟"],[1319,8,"كيف يعمل Lazy Loading؟"],[1320,9,"كيف يعمل Eager Loading؟"],[1321,10,"كيف يتم بناء SQL عبر Eloquent؟"],[1322,11,"كيف تعمل Model Events؟"],[1323,12,"كيف يعمل Event Dispatcher؟"],[1324,13,"كيف تعمل Queues؟"],[1325,14,"كيف تتم Serialization للـ Jobs؟"],[1326,15,"كيف تعمل Cache Drivers؟"],[1327,16,"كيف يعمل Session Manager؟"],[1328,17,"كيف تعمل Authentication Guards؟"],[1329,18,"كيف تعمل Policies وGates؟"],[1330,19,"كيف يعمل Blade Compiler؟"],[1331,20,"كيف تعمل Configuration وRoute Caches؟"],[1332,21,"كيف تعمل Exception Handling؟"],[1333,22,"كيف يتم تحميل الحزم؟"],[1334,23,"كيف يعمل Composer Autoloading؟"],[1335,24,"كيف تؤثر PHP Opcache على الأداء؟"],[1336,25,"قراءة أجزاء من مصدر Laravel."],[1337,26,"تتبع تنفيذ دالة من Facade إلى التنفيذ الحقيقي."],[1338,27,"استخدام Reflection عند الحاجة."],[1339,28,"كتابة تطبيقات تجريبية لفهم Framework Internals."]]},{"n":101,"title":"التوافق بين إصدارات Laravel وPHP","icon":"🔄","items":[[1340,1,"فهم Laravel Release Cycle."],[1341,2,"الإصدارات الرئيسية والفرعية والتصحيحية."],[1342,3,"Laravel Support Policy."],[1343,4,"PHP Compatibility."],[1344,5,"Composer Constraints."],[1345,6,"قراءة Release Notes."],[1346,7,"Deprecation Notices."],[1347,8,"Breaking Changes."],[1348,9,"تحديث Laravel Major Versions."],[1349,10,"تحديث Dependencies."],[1350,11,"فحص الحزم غير المتوافقة."],[1351,12,"اختبار التوافق."],[1352,13,"ترحيل الإعدادات القديمة."],[1353,14,"ترحيل Authentication وRouting عند تغيرهما."],[1354,15,"التعامل مع APIs التي تغيرت بين الإصدارات."],[1355,16,"اختبار التطبيق بعد الترقية."],[1356,17,"خطة Rollback."],[1357,18,"تحديث PHP دون تعطيل التطبيق."],[1358,19,"Upgrade Guides."],[1359,20,"إدارة دورة حياة التطبيق على المدى الطويل."]]},{"n":102,"title":"PHP المتقدم الذي يحتاجه خبير Laravel","icon":"🐘","items":[[1360,1,"PHP Runtime Model."],[1361,2,"Zend Engine بصورة مفاهيمية."],[1362,3,"Memory Management."],[1363,4,"Garbage Collection."],[1364,5,"Copy-on-Write."],[1365,6,"Object References."],[1366,7,"PHP-FPM Process Model."],[1367,8,"Opcache."],[1368,9,"Composer Autoload Optimization."],[1369,10,"PHP Attributes."],[1370,11,"Reflection API."],[1371,12,"Generators."],[1372,13,"Iterators."],[1373,14,"Fibers."],[1374,15,"Asynchronous Programming Concepts."],[1375,16,"Type System."],[1376,17,"Generics عبر Static Analysis وPHPDoc."],[1377,18,"Enums."],[1378,19,"Readonly Properties وClasses بحسب إصدار PHP."],[1379,20,"First-Class Callables."],[1380,21,"Exception Hierarchies."],[1381,22,"Error Handling."],[1382,23,"Streams."],[1383,24,"Memory-Efficient Processing."],[1384,25,"Profiling PHP."],[1385,26,"كتابة Extensions أو FFI عند الحاجة المتخصصة."],[1386,27,"الفرق بين PHP-FPM وLong-Running Workers."],[1387,28,"تشخيص مشاكل الأداء على مستوى PHP."]]},{"n":103,"title":"الأداء على مستوى قاعدة البيانات والخادم","icon":"🚀","items":[[1388,1,"قراءة Query Execution Plans."],[1389,2,"تحليل Slow Query Logs."],[1390,3,"اختيار Indexes وفقًا للاستعلامات."],[1391,4,"Query Cardinality."],[1392,5,"Lock Contention."],[1393,6,"Connection Saturation."],[1394,7,"Database Buffer Pools."],[1395,8,"Database Memory Management."],[1396,9,"Disk I/O."],[1397,10,"Network Latency."],[1398,11,"CPU Profiling."],[1399,12,"Memory Profiling."],[1400,13,"Load Testing."],[1401,14,"Stress Testing."],[1402,15,"Spike Testing."],[1403,16,"Soak Testing."],[1404,17,"تحديد نقطة الانهيار."],[1405,18,"قياس P50 وP95 وP99."],[1406,19,"Throughput مقابل Latency."],[1407,20,"Capacity Planning."],[1408,21,"Horizontal Scaling."],[1409,22,"Resource Limits."],[1410,23,"Queue Backpressure."],[1411,24,"تحسين الخدمات الخارجية."],[1412,25,"تحليل الأداء End-to-End."],[1413,26,"إعداد تقرير Performance Investigation."],[1414,27,"معالجة Bottlenecks بالترتيب الصحيح."]]},{"n":104,"title":"Reliability Engineering","icon":"🧯","items":[[1415,1,"مبادئ Reliability Engineering."],[1416,2,"Availability وDurability."],[1417,3,"Failure Modes."],[1418,4,"Failure Mode and Effects Analysis."],[1419,5,"Timeouts."],[1420,6,"Retries."],[1421,7,"Exponential Backoff."],[1422,8,"Jitter."],[1423,9,"Circuit Breakers."],[1424,10,"Bulkheads."],[1425,11,"Rate Limiting."],[1426,12,"Backpressure."],[1427,13,"Graceful Degradation."],[1428,14,"Idempotency."],[1429,15,"Distributed Locks."],[1430,16,"Outbox Pattern."],[1431,17,"Sagas."],[1432,18,"Compensating Transactions."],[1433,19,"Health Checks."],[1434,20,"Graceful Shutdown."],[1435,21,"Disaster Recovery."],[1436,22,"Chaos Engineering Concepts."],[1437,23,"Incident Management."],[1438,24,"Postmortems."],[1439,25,"SLO وError Budgets."],[1440,26,"بناء تطبيق يتحمل الفشل الجزئي."]]},{"n":105,"title":"Code Review والقيادة التقنية","icon":"🧑‍💼","items":[[1441,1,"مراجعة الكود."],[1442,2,"مراجعة تصميم قواعد البيانات."],[1443,3,"مراجعة الأمان."],[1444,4,"مراجعة الأداء."],[1445,5,"مراجعة قابلية الاختبار."],[1446,6,"مراجعة API Contracts."],[1447,7,"مراجعة Migrations."],[1448,8,"مراجعة Dependencies."],[1449,9,"كتابة Pull Requests واضحة."],[1450,10,"كتابة Technical Specifications."],[1451,11,"Architecture Decision Records."],[1452,12,"تقدير التعقيد والمخاطر."],[1453,13,"تخطيط Refactoring."],[1454,14,"إدارة Technical Debt."],[1455,15,"وضع Coding Standards للفريق."],[1456,16,"توحيد أدوات التنسيق والتحليل."],[1457,17,"بناء CI Quality Gates."],[1458,18,"مراجعة الحزم الخارجية."],[1459,19,"إدارة التغييرات الكبيرة."],[1460,20,"كتابة Runbooks."],[1461,21,"إدارة الحوادث التقنية."],[1462,22,"اتخاذ القرارات المعمارية."],[1463,23,"قيادة فريق Backend."],[1464,24,"تصميم خطة تقنية طويلة المدى."]]}]}];
+    const LEVELS = [{"label":"الأول","title":"التأسيس","content":"PHP، OOP، SQL، أساسيات Laravel","criterion":"بناء تطبيق CRUD متكامل","en":"Foundation","color":"#10b981","phases":[1,2,3,4]},{"label":"الثاني","title":"المطور المحترف","content":"Eloquent، APIs، Auth، Validation، Testing","criterion":"بناء تطبيق آمن ومختبر","en":"Professional Developer","color":"#2f7fd1","phases":[5,6,7,8]},{"label":"الثالث","title":"المتقدم","content":"Architecture، Queues، Redis، Security، Performance","criterion":"بناء نظام متكامل قابل للصيانة","en":"Advanced","color":"#f29125","phases":[9,10,11,12,13,14,15,16]},{"label":"الرابع","title":"الخبير","content":"Internals، Scaling، DevOps، Reliability، Distributed Systems","criterion":"تصميم ونشر نظام إنتاجي وتحليل مشكلاته","en":"Expert","color":"#a855f7","phases":[17,18,19,20,21,22]}];
+    const PROJECTS = [{"n":1,"title":"نظام إدارة المهام","level":"مستوى مبتدئ","items":["CRUD","Routing","Controllers","Blade","Validation","Eloquent","العلاقات","Authentication","Pagination"],"icon":"✅","diff":"beginner"},{"n":2,"title":"نظام إدارة المستخدمين والصلاحيات","level":"مستوى متوسط","items":["Roles وPermissions","Policies","Audit Logs","إدارة الجلسات","API","الاختبارات الأمنية"],"icon":"👥","diff":"intermediate"},{"n":3,"title":"منصة API متكاملة","level":"مستوى متوسط إلى متقدم","items":["Sanctum","API Resources","Versioning","Rate Limiting","توثيق OpenAPI","اختبارات Contract"],"icon":"📡","diff":"intermediate"},{"n":4,"title":"منصة تعليم إلكتروني LMS","level":"مستوى متقدم","items":["الدورات","الدروس","الاختبارات","تقدم الطلاب","الفيديوهات","الإشعارات","الصلاحيات","التقارير"],"icon":"🎓","diff":"advanced"},{"n":5,"title":"متجر إلكتروني احترافي","level":"مستوى متقدم","items":["المخزون","الطلبات","الدفع","الاسترداد","Webhooks","Concurrency","Queues","الاختبارات"],"icon":"🛒","diff":"advanced"},{"n":6,"title":"منصة SaaS متعددة المؤسسات","level":"مستوى خبير","items":["Multi-Tenancy","عزل البيانات","الاشتراكات","الفوترة","Usage Limits","Audit Logs","Billing Webhooks"],"icon":"🏢","diff":"expert"},{"n":7,"title":"نظام مؤسسي عالي الأداء","level":"مستوى خبير متقدم","items":["Modular Monolith","Redis","Queues","Read Replicas","Observability","CI/CD","Docker","Load Testing","Disaster Recovery"],"icon":"🏛️","diff":"expert"},{"n":8,"title":"منصة ذكاء اصطناعي متكاملة","level":"مشروع تخصصي","items":["LLM APIs","RAG","Vector Search","Streaming","Queues","إدارة التكلفة","حماية البيانات","تقييم جودة المخرجات"],"icon":"🤖","diff":"special"}];
+    const COMPETENCIES = [{"n":1,"title":"البرمجة والتصميم","items":["كتابة كود PHP حديث وآمن وقابل للصيانة.","تطبيق OOP وSOLID عند الحاجة دون إفراط في التجريد.","فهم Laravel Internals وتتبع تنفيذ الكود."],"icon":"🧠"},{"n":2,"title":"قواعد البيانات والأداء","items":["تصميم مخططات بيانات وعلاقات وفهارس مناسبة.","تشخيص N+1 والاستعلامات البطيئة وDeadlocks.","معالجة بيانات ضخمة دون استهلاك ذاكرة غير ضروري."],"icon":"🗄️"},{"n":3,"title":"الأمان","items":["تطبيق Authentication وAuthorization بصورة صحيحة.","حماية APIs والملفات والمدفوعات والبيانات الحساسة.","تنفيذ مراجعة أمنية واختبارات للثغرات الشائعة."],"icon":"🛡️"},{"n":4,"title":"هندسة الأنظمة","items":["الاختيار بين MVC وModular Monolith وMicroservices وفق الحاجة.","تصميم Queues وCaching وTransactions وIntegrations موثوقة.","تحليل مخاطر التصميم والتوسع والتعقيد."],"icon":"🏗️"},{"n":5,"title":"الاختبارات والجودة","items":["كتابة Unit وFeature وIntegration Tests.","استخدام Static Analysis وCode Review وCI.","إثبات صحة التغييرات دون كسر الوظائف السابقة."],"icon":"🧪"},{"n":6,"title":"النشر والتشغيل","items":["نشر تطبيق باستخدام Linux وDocker وCI/CD.","مراقبة الأداء والأخطاء والموارد.","اختبار النسخ الاحتياطية والاستعادة والتعافي من الأعطال."],"icon":"🚀"}];
+    const METHOD = [{"icon":"🎯","text":"تعريف المفهوم والهدف منه."},{"icon":"⚙️","text":"شرح آلية العمل داخليًا."},{"icon":"🐘","text":"شرح الاستخدام في Laravel."},{"icon":"🧪","text":"أمثلة عملية متدرجة."},{"icon":"🔍","text":"شرح الكود سطرًا بسطر عند الحاجة."},{"icon":"⚠️","text":"الأخطاء الشائعة وأسبابها."},{"icon":"⭐","text":"أفضل الممارسات."},{"icon":"🛡️","text":"اعتبارات الأمان."},{"icon":"⚡","text":"اعتبارات الأداء."},{"icon":"⚖️","text":"متى نستخدم التقنية ومتى نتجنبها؟"},{"icon":"🛠️","text":"تمرين تطبيقي."},{"icon":"❓","text":"أسئلة تقييم."},{"icon":"📌","text":"مهمة عملية مرتبطة بمشروع."},{"icon":"📚","text":"مراجع التوثيق الرسمي."}];
+    const NOTES = [{"icon":"📌","title":"ثبّت الإصدارات","text":"اعتمد إصدار Laravel حديثًا ومستقرًا، وثبّت إصدارات PHP وLaravel والحزم في بداية الدورة."},{"icon":"🧭","title":"لا تخلط الإصدارات","text":"لا تخلط أمثلة الإصدارات القديمة بالحديثة دون توضيح."},{"icon":"📚","title":"التوثيق الرسمي أولًا","text":"اعتمد توثيق Laravel وPHP وComposer وقواعد البيانات مرجعًا أساسيًا."},{"icon":"🔗","title":"الأمان والأداء والاختبارات من البداية","text":"اربط الأمان والأداء والاختبارات بالمشاريع منذ البداية."},{"icon":"⚖️","title":"لا تعقيد دون حاجة","text":"لا تطبق Design Patterns أو Architecture معقدة دون حاجة حقيقية."},{"icon":"🎯","title":"وحدات تخصصية حسب الحاجة","text":"أضف وحدات تخصصية حسب نوع الأنظمة التي سيعمل عليها الطالب."}];
+
+    // ============================================================
+    // DERIVED LOOKUPS
+    // ============================================================
+    const unitByN = {}, phaseOfUnit = {}, levelOfPhase = {};
+    LEVELS.forEach(lv => lv.phases.forEach(p => { levelOfPhase[p] = lv; }));
+    PHASES.forEach(p => p.units.forEach(u => { unitByN[u.n] = u; phaseOfUnit[u.n] = p; }));
+    const allUnits = PHASES.flatMap(p => p.units);
+    const totalItems = allUnits.reduce((s, u) => s + u.items.length, 0);
+
+    // ============================================================
+    // STATE — topic progress (per-browser convenience only)
+    // ============================================================
+    const PROGRESS_KEY = 'laravel-curriculum-progress-v1';
+    let done = new Set();
+    try { done = new Set(JSON.parse(localStorage.getItem(PROGRESS_KEY) || '[]')); } catch (e) {}
+    function saveProgress() {
+      try { localStorage.setItem(PROGRESS_KEY, JSON.stringify([...done])); } catch (e) {}
+    }
+
+    let searchQuery = '';
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const pad = n => String(n).padStart(2, '0');
+    const norm = s => s.toLowerCase();
+
+    function highlight(text, q) {
+      if (!q) return esc(text);
+      const i = norm(text).indexOf(q);
+      if (i < 0) return esc(text);
+      return esc(text.slice(0, i)) + '<mark>' + esc(text.slice(i, i + q.length)) + '</mark>' + esc(text.slice(i + q.length));
+    }
+
+    function topicItem([id, num, text], q) {
+      const isDone = done.has(id);
+      return `
+        <li>
+          <label class="topic${isDone ? ' is-done' : ''}">
+            <input type="checkbox" data-topic="${id}" ${isDone ? 'checked' : ''}>
+            <span class="topic-num">${pad(num)}</span>
+            <span class="topic-text">${highlight(text, q)}</span>
+          </label>
+        </li>`;
+    }
+
+    // ============================================================
+    // RENDER
+    // ============================================================
+    function renderStats() {
+      document.getElementById('statPhases').textContent = PHASES.length;
+      document.getElementById('statUnits').textContent = allUnits.length;
+      document.getElementById('statTopics').textContent = totalItems;
+      document.getElementById('statProjects').textContent = PROJECTS.length;
+      document.getElementById('totalCount').textContent = totalItems;
+    }
+
+    function renderLevels() {
+      document.getElementById('orderStepper').innerHTML = LEVELS.map((lv, i) => {
+        const first = lv.phases[0], last = lv.phases[lv.phases.length - 1];
+        return `
+          <button class="order-step" type="button" data-phase="${first}" style="--lv:${lv.color}">
+            <span class="order-step-head">
+              <span class="order-step-num">${i + 1}</span>
+              <span>
+                <span class="order-step-label">LEVEL ${pad(i + 1)} · ${lv.en}</span>
+                <span class="order-step-title" style="display:block">المستوى ${esc(lv.label)}: ${esc(lv.title)}</span>
+              </span>
+            </span>
+            <span class="order-step-row"><b>المحتوى:</b> ${esc(lv.content)}</span>
+            <span class="order-step-row"><b>معيار الانتقال:</b> ${esc(lv.criterion)}</span>
+            <span class="order-step-phases"><span class="pill lv">المراحل ${first} – ${last}</span></span>
+          </button>`;
+      }).join('');
+    }
+
+    function renderPhases() {
+      document.getElementById('phases').innerHTML = PHASES.map(p => {
+        const lv = levelOfPhase[p.n];
+        const count = p.units.reduce((s, u) => s + u.items.length, 0);
+        return `
+          <div class="level" id="phase-${p.n}" style="--lv:${lv.color}">
+            <div class="level-rail">
+              <div class="level-node">${p.n}</div>
+              <div>
+                <span class="level-en">PHASE ${pad(p.n)} · ${lv.en}</span>
+                <h3 class="level-title">${esc(p.title)}</h3>
+                <p class="level-desc">${esc(p.desc)}</p>
+                <div class="level-meta">
+                  <span class="pill lv">المستوى ${esc(lv.label)}</span>
+                  <span class="pill">${p.units.length} وحدات · ${count} موضوعًا</span>
+                </div>
+              </div>
+            </div>
+            <div class="unit-list">
+              ${p.units.map(u => renderUnit(u, lv)).join('')}
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    function renderUnit(u, lv) {
+      return `
+        <div class="unit-acc" id="unit-${u.n}" data-unit="${u.n}" style="--lv:${lv.color}">
+          <button class="acc-head" type="button" aria-expanded="false" aria-controls="unit-body-${u.n}">
+            <span class="tile-icon">${u.icon}</span>
+            <span class="acc-main">
+              <span class="acc-meta">
+                <span class="acc-unit">الوحدة ${u.n}</span>
+                <span data-count="${u.n}">${u.items.length} موضوعًا</span>
+                <span class="acc-match" hidden></span>
+              </span>
+              <span class="acc-title">${esc(u.title)}</span>
+              <span class="acc-bar"><span data-bar="${u.n}"></span></span>
+            </span>
+            <span class="acc-chev" aria-hidden="true">▼</span>
+          </button>
+          <div class="acc-body" id="unit-body-${u.n}" role="region">
+            <div class="acc-inner">
+              <ul class="topic-list">${u.items.map(it => topicItem(it, '')).join('')}</ul>
+            </div>
+          </div>
+        </div>`;
+    }
+
+    function renderProjects() {
+      document.getElementById('projectsGrid').innerHTML = PROJECTS.map(p => `
+        <div class="proj-card">
+          <div class="proj-group-head">
+            <div class="tile-icon">${p.icon}</div>
+            <div class="proj-group-title">
+              <span class="proj-num">PROJECT ${pad(p.n)}</span><br>${esc(p.title)}
+            </div>
+          </div>
+          <span><span class="pill diff-${p.diff}" style="border:none">${esc(p.level)}</span></span>
+          <div class="proj-tags">${p.items.map(t => `<span class="proj-tag">${esc(t)}</span>`).join('')}</div>
+        </div>
+      `).join('');
+    }
+
+    function renderCompetencies() {
+      document.getElementById('skillsGrid').innerHTML = COMPETENCIES.map(c => `
+        <div class="skill-card">
+          <div class="skill-head">
+            <div class="tile-icon">${c.icon}</div>
+            <h3>الكفاءة ${c.n}: ${esc(c.title)}</h3>
+          </div>
+          <ul class="check-list">${c.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul>
+        </div>
+      `).join('');
+    }
+
+    function renderMethod() {
+      document.getElementById('methodGrid').innerHTML = METHOD.map((m, i) => `
+        <div class="method-step">
+          <span class="method-num">${i + 1}</span>
+          <span>${esc(m.text)}</span>
+          <span class="method-icon">${m.icon}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderNotes() {
+      document.getElementById('notesGrid').innerHTML = NOTES.map(n => `
+        <div class="tip">
+          <div class="tip-icon">${n.icon}</div>
+          <h3>${esc(n.title)}</h3>
+          <p>${esc(n.text)}</p>
+        </div>
+      `).join('');
+    }
+
+    // ============================================================
+    // PROGRESS
+    // ============================================================
+    function updateProgress() {
+      allUnits.forEach(u => {
+        const d = u.items.filter(([id]) => done.has(id)).length;
+        const bar = document.querySelector(`[data-bar="${u.n}"]`);
+        if (bar) bar.style.width = (d / u.items.length * 100) + '%';
+        const count = document.querySelector(`[data-count="${u.n}"]`);
+        if (count) count.textContent = d ? `${d} / ${u.items.length} موضوعًا` : `${u.items.length} موضوعًا`;
+      });
+      document.getElementById('doneCount').textContent = done.size;
+      document.getElementById('overallBar').style.width = (done.size / totalItems * 100) + '%';
+    }
+
+    function toggleTopic(id, checked) {
+      if (checked) done.add(id); else done.delete(id);
+      saveProgress();
+      document.querySelectorAll(`input[data-topic="${id}"]`).forEach(input => {
+        input.checked = checked;
+        input.closest('.topic').classList.toggle('is-done', checked);
+      });
+      updateProgress();
+    }
+
+    // ============================================================
+    // ACCORDION
+    // Units the learner opened by hand are kept in userOpen; while
+    // searching, matching units are opened too without touching it.
+    // ============================================================
+    const userOpen = new Set();
+    const searchHits = new Set();
+
+    function syncAccordion(n) {
+      const el = document.getElementById('unit-' + n);
+      const open = userOpen.has(n) || searchHits.has(n);
+      el.classList.toggle('open', open);
+      el.querySelector('.acc-head').setAttribute('aria-expanded', open);
+    }
+
+    function toggleUnit(n) {
+      const isOpen = userOpen.has(n) || searchHits.has(n);
+      if (isOpen) { userOpen.delete(n); searchHits.delete(n); } else { userOpen.add(n); }
+      syncAccordion(n);
+      updateExpandBtn();
+    }
+
+    function updateExpandBtn() {
+      const allOpen = allUnits.every(u => userOpen.has(u.n));
+      document.getElementById('expandAll').textContent = allOpen ? '⇕ طي كل الوحدات' : '⇕ فتح كل الوحدات';
+    }
+
+    function setAll(open) {
+      allUnits.forEach(u => {
+        if (open) userOpen.add(u.n); else { userOpen.delete(u.n); searchHits.delete(u.n); }
+        syncAccordion(u.n);
+      });
+      updateExpandBtn();
+    }
+
+    // ============================================================
+    // SEARCH — highlights matching topics and opens their units
+    // ============================================================
+    function applySearch() {
+      const q = searchQuery;
+      let topics = 0, units = 0;
+      searchHits.clear();
+      allUnits.forEach(u => {
+        const el = document.getElementById('unit-' + u.n);
+        const badge = el.querySelector('.acc-match');
+        const m = q ? u.items.filter(([, , text]) => norm(text).includes(q)).length : 0;
+        const hit = !q || m > 0 || norm(u.title).includes(q);
+        el.classList.toggle('dim', !hit);
+        badge.hidden = !q || m === 0;
+        badge.textContent = `${m} نتيجة`;
+        el.querySelector('.topic-list').innerHTML = u.items.map(it => topicItem(it, q)).join('');
+        if (q && m > 0) { searchHits.add(u.n); topics += m; }
+        if (q && hit) units++;
+        syncAccordion(u.n);
+      });
+      document.getElementById('searchResult').textContent =
+        q ? (units ? `${topics} موضوعًا في ${units} وحدة` : 'لا توجد نتائج') : '';
+    }
+
+    // ============================================================
+    // EVENTS
+    // ============================================================
+    function scrollToEl(el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+
+    function initEvents() {
+      document.addEventListener('click', e => {
+        const head = e.target.closest('.acc-head');
+        if (head) { toggleUnit(+head.closest('.unit-acc').dataset.unit); return; }
+        const step = e.target.closest('.order-step');
+        if (step) scrollToEl(document.getElementById('phase-' + step.dataset.phase));
+      });
+
+      document.addEventListener('change', e => {
+        if (e.target.matches('input[data-topic]')) toggleTopic(+e.target.dataset.topic, e.target.checked);
+      });
+
+      document.getElementById('expandAll').addEventListener('click', () => {
+        setAll(!allUnits.every(u => userOpen.has(u.n)));
+      });
+
+      let searchTimer = null;
+      const search = document.getElementById('mapSearch');
+      search.addEventListener('input', () => {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(() => {
+          searchQuery = norm(search.value.trim());
+          applySearch();
+        }, 150);
+      });
+      search.addEventListener('keydown', e => {
+        if (e.key !== 'Enter') return;
+        clearTimeout(searchTimer);
+        searchQuery = norm(search.value.trim());
+        applySearch();
+        const first = document.querySelector('.unit-acc.open:not(.dim)');
+        if (searchQuery && first) scrollToEl(first);
+      });
+
+      document.getElementById('resetProgress').addEventListener('click', () => {
+        if (!confirm('هل تريد مسح كل التقدم المحفوظ؟')) return;
+        done.clear();
+        saveProgress();
+        document.querySelectorAll('input[data-topic]').forEach(input => {
+          input.checked = false;
+          input.closest('.topic').classList.remove('is-done');
+        });
+        updateProgress();
+      });
+    }
+
+    // ============================================================
+    // NAVBAR / MOBILE MENU / SMOOTH SCROLL / THEME
+    // ============================================================
+    function initNavbar() {
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 20);
+      });
+    }
+
+    function initMobileMenu() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenu');
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('open');
+        const spans = btn.querySelectorAll('span');
+        if (menu.classList.contains('open')) {
+          spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+        } else {
+          spans.forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+        }
+      });
+    }
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const btn = document.getElementById('mobileMenuBtn');
+      menu.classList.remove('open');
+      btn.querySelectorAll('span').forEach(s => { s.style.transform = ''; s.style.opacity = ''; });
+    }
+
+    function initSmoothScroll() {
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const href = a.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (!target) return;
+          e.preventDefault();
+          scrollToEl(target);
+        });
+      });
+    }
+
+    function initThemeToggle() {
+      const toggleBtn = document.getElementById('themeToggle');
+      if (!toggleBtn) return;
+      const updateIcon = (theme) => {
+        toggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        toggleBtn.setAttribute('aria-label', theme === 'dark' ? 'تفعيل الوضع النهاري' : 'تفعيل الوضع الليلي');
+      };
+      updateIcon(document.documentElement.getAttribute('data-theme') || 'dark');
+      toggleBtn.addEventListener('click', () => {
+        const newTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        try { localStorage.setItem('theme', newTheme); } catch (e) {}
+        updateIcon(newTheme);
+      });
+    }
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      renderStats();
+      renderLevels();
+      renderPhases();
+      renderProjects();
+      renderCompetencies();
+      renderMethod();
+      renderNotes();
+      updateProgress();
+      initEvents();
+      initThemeToggle();
+      initNavbar();
+      initMobileMenu();
+      initSmoothScroll();
+    });
+  </script>
 </body>
 </html>
