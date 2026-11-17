@@ -179,9 +179,9 @@
     #hero {
       display: flex; align-items: center; justify-content: center;
       position: relative; overflow: hidden;
-      padding: 130px 24px 84px;
+      padding: 100px 24px 40px;
     }
-    .hero-bg-glow { position: absolute; border-radius: 50%; filter: blur(120px); pointer-events: none; }
+    .hero-bg-glow { display: none; }
     .glow-1 { width: 600px; height: 600px; background: rgba(47,127,209,0.12); top: -200px; right: -200px; }
     .glow-2 { width: 500px; height: 500px; background: rgba(242,145,37,0.1); bottom: -150px; left: -150px; }
     .hero-content { position: relative; z-index: 2; max-width: 920px; margin: 0 auto; text-align: center; }
@@ -193,15 +193,15 @@
       padding: 7px 20px;
       font-size: 0.875rem; font-weight: 700;
       color: var(--accent-blue);
-      margin-bottom: 32px;
+      margin-bottom: 18px;
     }
     .hero-badge-dot { width: 7px; height: 7px; background: var(--accent-blue); border-radius: 50%; flex-shrink: 0; }
     .hero-title {
-      font-size: clamp(2.4rem, 7vw, 5rem);
+      font-size: clamp(2rem, 5vw, 3.6rem);
       font-weight: 900;
       letter-spacing: -1px;
-      line-height: 1.15;
-      margin-bottom: 26px;
+      line-height: 1.25;
+      margin-bottom: 14px;
       font-family: var(--font-heading);
     }
     .hero-title .line1 { display: block; color: var(--text-primary); }
@@ -209,13 +209,13 @@
     .hero-subtitle {
       font-size: clamp(1rem, 2vw, 1.15rem);
       color: var(--text-secondary);
-      max-width: 700px; margin: 0 auto 44px;
-      line-height: 1.9;
+      max-width: 720px; margin: 0 auto 26px;
+      line-height: 1.8;
     }
     .hero-cta { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 16px; }
     .btn-primary, .btn-secondary {
       display: inline-flex; align-items: center; gap: 10px;
-      padding: 14px 32px;
+      padding: 12px 28px;
       border-radius: var(--radius-md);
       font-size: 1rem; font-weight: 700;
       text-decoration: none;
@@ -229,21 +229,21 @@
     .btn-secondary:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
     .hero-stats {
       display: flex; align-items: center; justify-content: center;
-      flex-wrap: wrap; gap: 40px;
-      margin-top: 44px;
-      padding-top: 28px;
+      flex-wrap: wrap; gap: 32px;
+      margin-top: 28px;
+      padding-top: 18px;
       border-top: 1px solid var(--border);
     }
     .hero-stat { text-align: center; }
-    .hero-stat-number { font-size: 2.2rem; font-weight: 900; color: var(--accent-blue); font-family: var(--font-mono); }
+    .hero-stat-number { font-size: 1.8rem; font-weight: 900; color: var(--accent-blue); font-family: var(--font-mono); }
     .hero-stat-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 4px; font-weight: 600; }
     .stat-divider { width: 1px; height: 40px; background: var(--border); }
 
     /* ============================================================
        SECTION COMMONS
     ============================================================ */
-    section { padding: 110px 24px; }
-    .section-header { text-align: center; margin-bottom: 56px; }
+    section { padding: 72px 24px; }
+    .section-header { text-align: center; margin-bottom: 40px; }
     .section-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
       font-size: 0.875rem; font-weight: 700;
@@ -632,8 +632,8 @@
       .nav-mobile-btn { display: flex; }
     }
     @media (max-width: 768px) {
-      section { padding: 80px 16px; }
-      #hero { padding: 110px 16px 64px; }
+      section { padding: 56px 16px; }
+      #hero { padding: 92px 16px 32px; }
       nav { padding: 0 16px; }
       .projects-grid { grid-template-columns: 1fr; }
       .hero-stats { gap: 22px; }
@@ -813,6 +813,7 @@
       .level-title { font-size: 1.2rem; }
     }
   </style>
+<link rel="stylesheet" href="css/navbar.css?v=1.1">
 </head>
 <body>
 
@@ -828,7 +829,6 @@
       <ul class="nav-links">
         <li><a href="#map" class="nav-cta">ابدأ الآن</a></li>
         <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="#tips">ملاحظات</a></li>
         <li><a href="#method">المنهجية</a></li>
         <li><a href="#skills">معايير الخبير</a></li>
         <li><a href="#projects">المشاريع</a></li>
@@ -847,7 +847,6 @@
     <a href="#projects" onclick="closeMobileMenu()">🚀 المشاريع العملية</a>
     <a href="#skills" onclick="closeMobileMenu()">🏅 معايير اجتياز مستوى الخبير</a>
     <a href="#method" onclick="closeMobileMenu()">📐 منهجية إعداد الدروس</a>
-    <a href="#tips" onclick="closeMobileMenu()">📌 ملاحظات تنظيمية</a>
     <a href="index.html" onclick="closeMobileMenu()">🏠 الرئيسية</a>
   </div>
 
@@ -880,27 +879,6 @@
         <a href="#order" class="btn-secondary"><span>🧭</span> المستويات التعليمية</a>
       </div>
 
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-number" id="statPhases">22</div>
-          <div class="hero-stat-label">مرحلة</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" id="statUnits">96</div>
-          <div class="hero-stat-label">وحدة تعليمية</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" id="statTopics">1464</div>
-          <div class="hero-stat-label">موضوعًا</div>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-number" id="statProjects">8</div>
-          <div class="hero-stat-label">مشاريع عملية</div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -988,20 +966,6 @@
     </div>
   </section>
 
-  <div class="divider"></div>
-
-  <!-- ============================================================
-       NOTES
-  ============================================================ -->
-  <section id="tips">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-eyebrow">📌 قبل أن تبدأ</div>
-        <h2 class="section-title">ملاحظات <span class="gradient-text">تنظيمية</span></h2>
-      </div>
-      <div class="tips-grid" id="notesGrid"></div>
-    </div>
-  </section>
 
   <!-- ============================================================
        JAVASCRIPT
@@ -1069,10 +1033,10 @@
     // RENDER
     // ============================================================
     function renderStats() {
-      document.getElementById('statPhases').textContent = PHASES.length;
-      document.getElementById('statUnits').textContent = allUnits.length;
-      document.getElementById('statTopics').textContent = totalItems;
-      document.getElementById('statProjects').textContent = PROJECTS.length;
+      (document.getElementById('statPhases') || {}).textContent = PHASES.length;
+      (document.getElementById('statUnits') || {}).textContent = allUnits.length;
+      (document.getElementById('statTopics') || {}).textContent = totalItems;
+      (document.getElementById('statProjects') || {}).textContent = PROJECTS.length;
       document.getElementById('totalCount').textContent = totalItems;
     }
 
@@ -1182,7 +1146,9 @@
     }
 
     function renderNotes() {
-      document.getElementById('notesGrid').innerHTML = NOTES.map(n => `
+      const grid = document.getElementById('notesGrid');
+      if (!grid) return;
+      grid.innerHTML = NOTES.map(n => `
         <div class="tip">
           <div class="tip-icon">${n.icon}</div>
           <h3>${esc(n.title)}</h3>

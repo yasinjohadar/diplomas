@@ -6,7 +6,8 @@
     <title>أكاديمية كلاود سوفت - الدبلومات الاحترافية</title>
     <link rel="icon" type="image/png" href="images/logo.png">
     <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'dark');</script>
-    <link rel="stylesheet" href="css/main.css?v=5.0">
+    <link rel="stylesheet" href="css/main.css?v=5.5">
+<link rel="stylesheet" href="css/navbar.css?v=1.1">
 </head>
 <body>
 
@@ -23,7 +24,6 @@
                 <li><a href="devOps.html">DevOps</a></li>
                 <li><a href="flutter.html">Flutter</a></li>
                 <li><a href="professional_php_diploma.html">PHP</a></li>
-                <li><a href="javascript.html">JavaScript</a></li>
                 <li><a href="frontend.html">Frontend</a></li>
             </ul>
             <button class="theme-toggle-btn" id="themeToggle" aria-label="تبديل الوضع الليلي/النهاري"></button>
@@ -36,7 +36,6 @@
     <!-- MOBILE MENU -->
     <div class="mobile-menu" id="mobileMenu">
         <a href="frontend.html" onclick="closeMobileMenu()">🎨 Frontend</a>
-        <a href="javascript.html" onclick="closeMobileMenu()">⚡ JavaScript</a>
         <a href="professional_php_diploma.html" onclick="closeMobileMenu()">🐘 PHP</a>
         <a href="flutter.html" onclick="closeMobileMenu()">📱 Flutter</a>
         <a href="devOps.html" onclick="closeMobileMenu()">⚙️ DevOps</a>
@@ -94,37 +93,15 @@
                    data-delay="0">
                     <div class="card-top">
                         <div class="card-icon-wrap" style="background: var(--brand-blue-light);">🎨</div>
-                        <span class="card-level">المستوى الأول</span>
+                        <span class="card-level">4 مستويات متكاملة</span>
                     </div>
-                    <div class="card-title">دبلوم الـ Front-End</div>
-                    <div class="card-desc">إتقان أساسيات تصميم الواجهات بـ HTML5, CSS3، معسكر المشاريع الحقيقية باستخدام Bootstrap و Tailwind.</div>
+                    <div class="card-title">دبلوم الفرونت إند الشامل</div>
+                    <div class="card-desc">من HTML5 و CSS3 مروراً بـ Bootstrap و Tailwind و SASS، وصولاً إلى JavaScript و React.js و Next.js و MongoDB.</div>
                     <div class="card-skills">
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Bootstrap</span>
+                        <span class="skill-tag">HTML5 & CSS3</span>
                         <span class="skill-tag">Tailwind</span>
-                    </div>
-                    <div class="card-cta">
-                        <span>عرض الخطة الدراسية</span>
-                        <span class="arrow">←</span>
-                    </div>
-                </a>
-
-                <!-- JavaScript -->
-                <a href="javascript.html" class="course-card reveal"
-                   style="--card-color: var(--brand-orange);"
-                   data-delay="1">
-                    <div class="card-top">
-                        <div class="card-icon-wrap" style="background: var(--brand-orange);">⚡</div>
-                        <span class="card-level">المستوى الثاني</span>
-                    </div>
-                    <div class="card-title">دبلوم JavaScript</div>
-                    <div class="card-desc">احتراف الـ Front-End المتقدم مع React.js, Next.js, قواعد بيانات MongoDB، وهيكلة واجهات حديثة.</div>
-                    <div class="card-skills">
-                        <span class="skill-tag">React.js</span>
-                        <span class="skill-tag">Next.js</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React & Next.js</span>
                     </div>
                     <div class="card-cta">
                         <span>عرض الخطة الدراسية</span>
@@ -135,12 +112,12 @@
                 <!-- PHP -->
                 <a href="professional_php_diploma.html" class="course-card reveal"
                    style="--card-color: var(--brand-blue-dark);"
-                   data-delay="2">
+                   data-delay="1">
                     <div class="card-top">
                         <div class="card-icon-wrap" style="background: var(--brand-blue-dark);">🐘</div>
-                        <span class="card-level">المستوى الثالث</span>
+                        <span class="card-level">22 مرحلة · 96 وحدة</span>
                     </div>
-                    <div class="card-title">دبلوم Backend: PHP و Laravel</div>
+                    <div class="card-title">دبلوم PHP و Laravel</div>
                     <div class="card-desc">منهاج شامل من الصفر حتى مستوى الخبير: 22 مرحلة و96 وحدة تغطي Eloquent وAPIs والأمان والطوابير والاختبارات وDevOps والتوسع.</div>
                     <div class="card-skills">
                         <span class="skill-tag">PHP 8</span>
@@ -157,7 +134,7 @@
                 <!-- Flutter -->
                 <a href="flutter.html" class="course-card reveal"
                    style="--card-color: var(--brand-orange-light);"
-                   data-delay="3">
+                   data-delay="2">
                     <div class="card-top">
                         <div class="card-icon-wrap" style="background: var(--brand-orange-light);">📱</div>
                         <span class="card-level">Dart & Flutter</span>
@@ -179,7 +156,7 @@
                 <!-- DevOps -->
                 <a href="devOps.html" class="course-card reveal"
                    style="--card-color: var(--brand-blue);"
-                   data-delay="4">
+                   data-delay="3">
                     <div class="card-top">
                         <div class="card-icon-wrap" style="background: var(--brand-blue);">⚙️</div>
                         <span class="card-level">من الصفر للاحتراف</span>
@@ -201,7 +178,7 @@
                 <!-- Cyber Security -->
                 <a href="cyber/index.html" class="course-card reveal"
                    style="--card-color: var(--brand-orange);"
-                   data-delay="5">
+                   data-delay="4">
                     <div class="card-top">
                         <div class="card-icon-wrap" style="background: var(--brand-orange);">🛡️</div>
                         <span class="card-level">9 مراحل متخصصة</span>
